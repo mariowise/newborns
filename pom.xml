@@ -8,7 +8,7 @@
   <name>newborns</name>
   <modules>
     <module>newborns-ear</module>
-    <module>newborns-web</module>
     <module>newborns-ejb</module>
+    <module>newborn-web</module>
   </modules>
 </project>

@@ -8,11 +8,11 @@
   </parent>
 
     <groupId>cl.diinf</groupId>
-    <artifactId>newborns-web</artifactId>
+    <artifactId>newborn-web</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>newborns-web</name>
+    <name>newborn-web</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -24,8 +24,6 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>newborns-ejb</artifactId>
             <version>${project.version}</version>
-            <scope>provided</scope>
-            <type>ejb</type>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
