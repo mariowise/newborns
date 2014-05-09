@@ -38,11 +38,11 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>cl.diinf</groupId>
             <artifactId>newborns-ejb</artifactId>
             <version>${project.version}</version>
-            <scope>provided</scope>
             <type>ejb</type>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
