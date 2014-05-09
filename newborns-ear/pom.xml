@@ -42,15 +42,15 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>cl.diinf</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>newborns-ejb</artifactId>
-            <version>1.0</version>
+            <version>${project.version}</version>
             <type>ejb</type>
         </dependency>
         <dependency>
-            <groupId>cl.diinf</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>newborns-web</artifactId>
-            <version>1.0</version>
+            <version>${project.version}</version>
             <type>war</type>
         </dependency>
     </dependencies>

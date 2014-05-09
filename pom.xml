@@ -9,6 +9,6 @@
   <modules>
     <module>newborns-ear</module>
     <module>newborns-ejb</module>
-    <module>newborn-web</module>
+    <module>newborns-web</module>
   </modules>
 </project>
