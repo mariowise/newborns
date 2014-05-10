@@ -1,31 +1,36 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-        <h:outputStylesheet name="css/jsfcrud.css"/>
-    </h:head>
-    <h:body>
-        <h:form>
-            <h:outputLabel for="usernameInput">#{bundle.login_username}:</h:outputLabel>
-            <h:inputText id="usernameInput" value="#{Session.rut}" required="true" />
-            <br />
-            <h:outputLabel for="passwordInput">#{bundle.login_password}:</h:outputLabel>
-            <h:inputSecret id="passwordInput" value="#{Session.password}" required="true" />
-            <br />
-            <h:commandButton value="${bundle.login_submit}" action="#{Session.login}" />
-        </h:form>
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-        <br />
-        <h:link outcome="/account/List" value="Show All Account Items"/>
-        <br />
-        <h:link outcome="/accountType/List" value="Show All AccountType Items"/>
-    </h:body>
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="/template.xhtml">
+        
+        <ui:define name="title">
+            <h:outputText value="#{bundle.loginPageTitle}"></h:outputText>
+        </ui:define>
+        
+        <ui:define name="body">
+            
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="username" value="#{bundle.login_username}" />
+                    <p:inputText value="#{SessionController.rut}" id="username" required="true" label="rut" />
 
+                    <h:outputLabel for="password" value="#{bundle.login_password}" />
+                    <h:inputSecret value="#{SessionController.password}" id="password" required="true" label="password" />
 
-
+                    <f:facet name="footer">
+                        <p:commandButton id="loginButton" value="${bundle.login_submit}" action="#{SessionController.login}"/>
+                    </f:facet>
+                </h:panelGrid>
+            </h:form>
+            
+        </ui:define>
+        
+    </ui:composition>
 
 </html>
 
