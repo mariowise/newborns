@@ -17,4 +17,23 @@
             <var>bundle</var>
         </resource-bundle>
     </application>
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>admin</from-outcome>
+            <to-view-id>/roles/admin/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>matrona</from-outcome>
+            <to-view-id>/roles/matrona/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>fonoaudiologo</from-outcome>
+            <to-view-id>/roles/fonoaudiologo/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>medico</from-outcome>
+            <to-view-id>/roles/medico/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>
