@@ -7,12 +7,25 @@
         <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h:form>
+            <h:outputLabel for="usernameInput">#{bundle.login_username}:</h:outputLabel>
+            <h:inputText id="usernameInput" value="#{Session.rut}" required="true" />
+            <br />
+            <h:outputLabel for="passwordInput">#{bundle.login_password}:</h:outputLabel>
+            <h:inputSecret id="passwordInput" value="#{Session.password}" required="true" />
+            <br />
+            <h:commandButton value="${bundle.login_submit}" action="#{Session.login}" />
+        </h:form>
         <br />
         <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
         <br />
         <h:link outcome="/account/List" value="Show All Account Items"/>
+        <br />
+        <h:link outcome="/accountType/List" value="Show All AccountType Items"/>
     </h:body>
+
+
+
 
 </html>
 

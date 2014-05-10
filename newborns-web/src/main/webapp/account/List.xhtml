@@ -19,7 +19,7 @@
                     <p:dataTable id="datalist" value="#{accountController.items}" var="item"
                                  selectionMode="single" selection="#{accountController.selected}"
                                  paginator="true"
-                                 rowKey="#{item.id}"
+                                 rowKey="#{item.rut}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  >
@@ -29,33 +29,27 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAccountTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAccountTitle_rut}"/>
                             </f:facet>
                             <h:outputText value="#{item.rut}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAccountTitle_username}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.username}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAccountTitle_userType}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.userType}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAccountTitle_phone}"/>
                             </f:facet>
                             <h:outputText value="#{item.phone}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAccountTitle_email}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAccountTitle_accountType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.accountType.name}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{accountController.prepareCreate}" update=":AccountCreateForm" oncomplete="PF('AccountCreateDialog').show()"/>

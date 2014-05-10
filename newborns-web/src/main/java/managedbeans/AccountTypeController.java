@@ -1,9 +1,9 @@
 package managedbeans;
 
-import entities.Account;
+import entities.AccountType;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
-import sessionbeans.AccountFacadeLocal;
+import sessionbeans.AccountTypeFacadeLocal;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("accountController")
+@Named("accountTypeController")
 @SessionScoped
-public class AccountController implements Serializable {
+public class AccountTypeController implements Serializable {
 
     @EJB
-    private AccountFacadeLocal ejbFacade;
-    private List<Account> items = null;
-    private Account selected;
+    private AccountTypeFacadeLocal ejbFacade;
+    private List<AccountType> items = null;
+    private AccountType selected;
 
-    public AccountController() {
+    public AccountTypeController() {
     }
 
-    public Account getSelected() {
+    public AccountType getSelected() {
         return selected;
     }
 
-    public void setSelected(Account selected) {
+    public void setSelected(AccountType selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class AccountController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private AccountFacadeLocal getFacade() {
+    private AccountTypeFacadeLocal getFacade() {
         return ejbFacade;
     }
 
-    public Account prepareCreate() {
-        selected = new Account();
+    public AccountType prepareCreate() {
+        selected = new AccountType();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("AccountCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("AccountTypeCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("AccountUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("AccountTypeUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("AccountDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("AccountTypeDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Account> getItems() {
+    public List<AccountType> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,38 +109,38 @@ public class AccountController implements Serializable {
         }
     }
 
-    public Account getAccount(java.lang.String id) {
+    public AccountType getAccountType(java.lang.Long id) {
         return getFacade().find(id);
     }
 
-    public List<Account> getItemsAvailableSelectMany() {
+    public List<AccountType> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Account> getItemsAvailableSelectOne() {
+    public List<AccountType> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Account.class)
-    public static class AccountControllerConverter implements Converter {
+    @FacesConverter(forClass = AccountType.class)
+    public static class AccountTypeControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            AccountController controller = (AccountController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "accountController");
-            return controller.getAccount(getKey(value));
+            AccountTypeController controller = (AccountTypeController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "accountTypeController");
+            return controller.getAccountType(getKey(value));
         }
 
-        java.lang.String getKey(String value) {
-            java.lang.String key;
-            key = value;
+        java.lang.Long getKey(String value) {
+            java.lang.Long key;
+            key = Long.valueOf(value);
             return key;
         }
 
-        String getStringKey(java.lang.String value) {
+        String getStringKey(java.lang.Long value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();
@@ -151,11 +151,11 @@ public class AccountController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Account) {
-                Account o = (Account) object;
-                return getStringKey(o.getRut());
+            if (object instanceof AccountType) {
+                AccountType o = (AccountType) object;
+                return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Account.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), AccountType.class.getName()});
                 return null;
             }
         }

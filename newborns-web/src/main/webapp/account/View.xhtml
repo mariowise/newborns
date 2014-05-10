@@ -12,16 +12,16 @@
             <h:form id="AccountViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{accountController.selected != null}">
-                        <h:outputText value="#{bundle.ViewAccountLabel_id}"/>
-                        <h:outputText value="#{accountController.selected.id}" title="#{bundle.ViewAccountTitle_id}"/>
                         <h:outputText value="#{bundle.ViewAccountLabel_rut}"/>
                         <h:outputText value="#{accountController.selected.rut}" title="#{bundle.ViewAccountTitle_rut}"/>
-                        <h:outputText value="#{bundle.ViewAccountLabel_username}"/>
-                        <h:outputText value="#{accountController.selected.username}" title="#{bundle.ViewAccountTitle_username}"/>
-                        <h:outputText value="#{bundle.ViewAccountLabel_userType}"/>
-                        <h:outputText value="#{accountController.selected.userType}" title="#{bundle.ViewAccountTitle_userType}"/>
+                        <h:outputText value="#{bundle.ViewAccountLabel_password}"/>
+                        <h:outputText value="#{accountController.selected.password}" title="#{bundle.ViewAccountTitle_password}"/>
                         <h:outputText value="#{bundle.ViewAccountLabel_phone}"/>
                         <h:outputText value="#{accountController.selected.phone}" title="#{bundle.ViewAccountTitle_phone}"/>
+                        <h:outputText value="#{bundle.ViewAccountLabel_email}"/>
+                        <h:outputText value="#{accountController.selected.email}" title="#{bundle.ViewAccountTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewAccountLabel_accountType}"/>
+                        <h:outputText value="#{accountController.selected.accountType}" title="#{bundle.ViewAccountTitle_accountType}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="AccountViewDialog.hide()"/>
                 </h:panelGroup>

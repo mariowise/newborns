@@ -7,10 +7,13 @@
 package entities;
 
 import java.io.Serializable;
+import java.security.MessageDigest;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -20,27 +23,18 @@ import javax.persistence.Id;
 public class Account implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
     private String rut;
-    
-    private String username;
     
     private String password;
     
-    private String userType;
+    private String email;
+    
+    @JoinColumn(nullable = false)
+    @ManyToOne
+    private AccountType accountType;
     
     private String phone;
     
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getRut() {
         return rut;
     }
@@ -49,28 +43,13 @@ public class Account implements Serializable {
         this.rut = rut;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
+        System.out.println("Account.sha256 (" + password + ")");
+        this.password = this.sha256(password);
     }
 
     public String getPhone() {
@@ -80,11 +59,27 @@ public class Account implements Serializable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
     
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (rut != null ? rut.hashCode() : 0);
         return hash;
     }
 
@@ -95,15 +90,35 @@ public class Account implements Serializable {
             return false;
         }
         Account other = (Account) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.rut == null && other.rut != null) || (this.rut != null && !this.rut.equals(other.rut))) {
             return false;
         }
         return true;
     }
+    
+    private String sha256(String base) {
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(base.getBytes("UTF-8"));
+            StringBuffer hexString = new StringBuffer();
+
+            for (int i = 0; i < hash.length; i++) {
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if(hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            
+            return hexString.toString();
+            
+        } catch(Exception ex){
+            throw new RuntimeException(ex);
+        }
+    }
+        
 
     @Override
     public String toString() {
-        return "entities.User[ id=" + id + " ]";
+        return "entities.User[ id=" + rut + " ]";
     }
     
 }
