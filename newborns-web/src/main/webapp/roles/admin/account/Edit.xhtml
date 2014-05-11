@@ -13,9 +13,7 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{accountController.selected != null}">
                         <p:outputLabel value="#{bundle.EditAccountLabel_rut}" for="rut" />
-                        <p:inputText id="rut" value="#{accountController.selected.rut}" title="#{bundle.EditAccountTitle_rut}" />
-                        <p:outputLabel value="#{bundle.EditAccountLabel_password}" for="password" />
-                        <p:inputText id="password" value="#{accountController.selected.password}" title="#{bundle.EditAccountTitle_password}" />
+                        <h:outputText id="rut" value="#{accountController.selected.rut}" title="#{bundle.EditAccountTitle_rut}" />
                         <p:outputLabel value="#{bundle.EditAccountLabel_phone}" for="phone" />
                         <p:inputText id="phone" value="#{accountController.selected.phone}" title="#{bundle.EditAccountTitle_phone}" />
                         <p:outputLabel value="#{bundle.EditAccountLabel_email}" for="email" />

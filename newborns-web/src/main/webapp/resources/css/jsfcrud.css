@@ -5234,3 +5234,6 @@ button.close {
   margin-bottom: 5px; }
 .login .input-group-addon {
   min-width: 100px; }
+
+body {
+  background: #fcf2e5; }

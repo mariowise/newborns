@@ -14,8 +14,6 @@
                     <p:panelGrid columns="2" rendered="#{accountController.selected != null}">
                         <h:outputText value="#{bundle.ViewAccountLabel_rut}"/>
                         <h:outputText value="#{accountController.selected.rut}" title="#{bundle.ViewAccountTitle_rut}"/>
-                        <h:outputText value="#{bundle.ViewAccountLabel_password}"/>
-                        <h:outputText value="#{accountController.selected.password}" title="#{bundle.ViewAccountTitle_password}"/>
                         <h:outputText value="#{bundle.ViewAccountLabel_phone}"/>
                         <h:outputText value="#{accountController.selected.phone}" title="#{bundle.ViewAccountTitle_phone}"/>
                         <h:outputText value="#{bundle.ViewAccountLabel_email}"/>
