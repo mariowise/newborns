@@ -47,6 +47,11 @@
             <description/>
             <url-pattern>/faces/roles/admin/*</url-pattern>
         </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>adminPagesAccount</web-resource-name>
+            <description/>
+            <url-pattern>/faces/roles/admin/account/*</url-pattern>
+        </web-resource-collection>
         <auth-constraint>
             <description/>
             <role-name>admin</role-name>
