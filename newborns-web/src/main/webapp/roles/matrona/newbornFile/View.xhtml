@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="NewbornFileViewDlg" widgetVar="NewbornFileViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewNewbornFileTitle}">
+            <h:form id="NewbornFileViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{newbornFileController.selected != null}">
+                        <h:outputText value="#{bundle.ViewNewbornFileLabel_id}"/>
+                        <h:outputText value="#{newbornFileController.selected.id}" title="#{bundle.ViewNewbornFileTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewNewbornFileLabel_rut}"/>
+                        <h:outputText value="#{newbornFileController.selected.rut}" title="#{bundle.ViewNewbornFileTitle_rut}"/>
+                        <h:outputText value="#{bundle.ViewNewbornFileLabel_firstName}"/>
+                        <h:outputText value="#{newbornFileController.selected.firstName}" title="#{bundle.ViewNewbornFileTitle_firstName}"/>
+                        <h:outputText value="#{bundle.ViewNewbornFileLabel_secondName}"/>
+                        <h:outputText value="#{newbornFileController.selected.secondName}" title="#{bundle.ViewNewbornFileTitle_secondName}"/>
+                        <h:outputText value="#{bundle.ViewNewbornFileLabel_firstLastName}"/>
+                        <h:outputText value="#{newbornFileController.selected.firstLastName}" title="#{bundle.ViewNewbornFileTitle_firstLastName}"/>
+                        <h:outputText value="#{bundle.ViewNewbornFileLabel_secondLastName}"/>
+                        <h:outputText value="#{newbornFileController.selected.secondLastName}" title="#{bundle.ViewNewbornFileTitle_secondLastName}"/>
+                        <h:outputText value="#{bundle.ViewNewbornFileLabel_dateOfBirth}"/>
+                        <h:outputText value="#{newbornFileController.selected.dateOfBirth}" title="#{bundle.ViewNewbornFileTitle_dateOfBirth}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewNewbornFileLabel_motherFile}"/>
+                        <h:outputText value="#{newbornFileController.selected.motherFile}" title="#{bundle.ViewNewbornFileTitle_motherFile}"/>
+                        <h:outputText value="#{bundle.ViewNewbornFileLabel_deliveryType}"/>
+                        <h:outputText value="#{newbornFileController.selected.deliveryType}" title="#{bundle.ViewNewbornFileTitle_deliveryType}"/>
+                        <h:outputText value="#{bundle.ViewNewbornFileLabel_gestationWeeks}"/>
+                        <h:outputText value="#{newbornFileController.selected.gestationWeeks}" title="#{bundle.ViewNewbornFileTitle_gestationWeeks}"/>
+                        <h:outputText value="#{bundle.ViewNewbornFileLabel_size}"/>
+                        <h:outputText value="#{newbornFileController.selected.size}" title="#{bundle.ViewNewbornFileTitle_size}"/>
+                        <h:outputText value="#{bundle.ViewNewbornFileLabel_weight}"/>
+                        <h:outputText value="#{newbornFileController.selected.weight}" title="#{bundle.ViewNewbornFileTitle_weight}"/>
+                        <h:outputText value="#{bundle.ViewNewbornFileLabel_firstApgar}"/>
+                        <h:outputText value="#{newbornFileController.selected.firstApgar}" title="#{bundle.ViewNewbornFileTitle_firstApgar}"/>
+                        <h:outputText value="#{bundle.ViewNewbornFileLabel_secondApgar}"/>
+                        <h:outputText value="#{newbornFileController.selected.secondApgar}" title="#{bundle.ViewNewbornFileTitle_secondApgar}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="NewbornFileViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

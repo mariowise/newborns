@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MotherFileEditDlg" widgetVar="MotherFileEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMotherFileTitle}">
+            <h:form id="MotherFileEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{motherFileController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMotherFileLabel_rut}" for="rut" />
+                        <p:inputText id="rut" value="#{motherFileController.selected.rut}" title="#{bundle.EditMotherFileTitle_rut}" />
+                        <p:outputLabel value="#{bundle.EditMotherFileLabel_firstName}" for="firstName" />
+                        <p:inputText id="firstName" value="#{motherFileController.selected.firstName}" title="#{bundle.EditMotherFileTitle_firstName}" />
+                        <p:outputLabel value="#{bundle.EditMotherFileLabel_secondName}" for="secondName" />
+                        <p:inputText id="secondName" value="#{motherFileController.selected.secondName}" title="#{bundle.EditMotherFileTitle_secondName}" />
+                        <p:outputLabel value="#{bundle.EditMotherFileLabel_firstLastName}" for="firstLastName" />
+                        <p:inputText id="firstLastName" value="#{motherFileController.selected.firstLastName}" title="#{bundle.EditMotherFileTitle_firstLastName}" />
+                        <p:outputLabel value="#{bundle.EditMotherFileLabel_secondLastName}" for="secondLastName" />
+                        <p:inputText id="secondLastName" value="#{motherFileController.selected.secondLastName}" title="#{bundle.EditMotherFileTitle_secondLastName}" />
+                        <p:outputLabel value="#{bundle.EditMotherFileLabel_dateOfBirth}" for="dateOfBirth" />
+                        <p:calendar id="dateOfBirth" pattern="MM/dd/yyyy" value="#{motherFileController.selected.dateOfBirth}" title="#{bundle.EditMotherFileTitle_dateOfBirth}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMotherFileLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{motherFileController.selected.phone}" title="#{bundle.EditMotherFileTitle_phone}" />
+                        <p:outputLabel value="#{bundle.EditMotherFileLabel_consultory}" for="consultory" />
+                        <p:inputText id="consultory" value="#{motherFileController.selected.consultory}" title="#{bundle.EditMotherFileTitle_consultory}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{motherFileController.update}" value="#{bundle.Save}" update="display,:MotherFileListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MotherFileEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MotherFileEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
