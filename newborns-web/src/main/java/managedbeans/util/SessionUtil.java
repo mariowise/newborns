@@ -66,18 +66,11 @@ public class SessionUtil implements Serializable {
         return false;
     }
 
-    public void logout() {
+    public String logout() {
         System.out.println("SessionUtil: Logout for " + rut);
-        
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         externalContext.invalidateSession();
-        
-        try {
-            externalContext.redirect(externalContext.getRequestContextPath() + "/faces/index.xhtml.xhtml");
-        } 
-        catch (IOException ex) {
-            Logger.getLogger(SessionUtil.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        return "/faces/index.xhtml";
     }
 
     public boolean hasIdentity(){

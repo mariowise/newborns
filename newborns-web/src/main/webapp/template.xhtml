@@ -15,23 +15,36 @@
     <h:body>
 
         <p:growl id="growl" life="3000" />
+        <h:form>
+        <nav class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="container-fluid">
+                  <!-- Brand and toggle get grouped for better mobile display -->
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/newborns-web/">NewBorns</a>
+                  </div>
+                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                      <li>
+                          <p:commandLink type="submit" value="Logout" immediate="true" action="#{SessionController.logout}"></p:commandLink>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+        </nav>
+        </h:form>
 
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     
-                    <h:form id="menuForm">
-                        <p:menubar>
-                            <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
-                            <p:submenu label="#{bundle.Maintenance}">
-                                <p:menuitem value="Account" outcome="/account/List.xhtml" />
-                                <p:menuitem value="Account types" outcome="/accountType/List.xhtml" />
-                            </p:submenu>
-                            <f:facet name="options">
-                                <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" action="#{SessionController.logout()}" />
-                            </f:facet>
-                        </p:menubar>
-                    </h:form>
                     <div class="row">
                         <div class="col-md-3">
                             <ui:insert name="sidebar-left"/>

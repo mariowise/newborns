@@ -5,20 +5,14 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-    
-    <ui:composition template="/template.xhtml">
+
+    <ui:composition>
         
-        <ui:define name="title">
-            <h:outputText value="#{bundle.fonoaudiologoIndexPageTitle}"></h:outputText>
-        </ui:define>
-        
-        <ui:define name="body">
-            
-            Hello Fonoaudiologo
-            
-        </ui:define>
+        <h4>Herramientas</h4>
+        <div class="btn-group btn-group-vertical full">
+            <a href="${pageContext.request.contextPath}/newborns-web/faces/roles/admin/account/List.xhtml" class="btn btn-default">Usuarios del sistema</a>
+        </div>
         
     </ui:composition>
-    
 </html>
 

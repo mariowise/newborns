@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
     <ui:composition template="/template.xhtml">
         
@@ -15,17 +16,24 @@
         <ui:define name="body">
             
             <h:form>
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputLabel for="username" value="#{bundle.login_username}" />
-                    <p:inputText value="#{SessionController.rut}" id="username" required="true" label="rut" />
-
-                    <h:outputLabel for="password" value="#{bundle.login_password}" />
-                    <h:inputSecret value="#{SessionController.password}" id="password" required="true" label="password" />
-
-                    <f:facet name="footer">
-                        <p:commandButton id="loginButton" value="${bundle.login_submit}" action="#{SessionController.login}"/>
-                    </f:facet>
-                </h:panelGrid>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default login">
+                            <div class="panel-heading">Bienvenido</div>
+                            <div class="panel-body">
+                                <div class="input-group">
+                                    <span class="input-group-addon">RUT</span>
+                                    <h:inputText id="username" class="form-control" autocomplete="off" size="20" value="#{SessionController.rut}" />
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Contraseña</span>
+                                    <h:inputSecret id="password" class="form-control" autocomplete="off" size="20" value="#{SessionController.password}" />
+                                </div>
+                                <h:commandButton class="btn btn-default float-right" type="submit" value="Ingresar" action="#{SessionController.login()}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </h:form>
             
         </ui:define>
