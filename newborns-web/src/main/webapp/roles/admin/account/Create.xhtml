@@ -19,6 +19,7 @@
                         <p:outputLabel value="#{bundle.CreateAccountLabel_password}" for="password" />
                         <p:password id="password" value="#{accountController.selected.password}" title="#{bundle.CreateAccountTitle_password}" validatorMessage="#{bundle.wrongPassword}">
                             <f:validateLength minimum="4" maximum="24" />
+                            <f:validateRegex pattern="[a-zA-Z0-9]+" />
                         </p:password>
                         <p:outputLabel value="#{bundle.CreateAccountLabel_phone}" for="phone" />
                         <p:inputText id="phone" value="#{accountController.selected.phone}" title="#{bundle.CreateAccountTitle_phone}" />

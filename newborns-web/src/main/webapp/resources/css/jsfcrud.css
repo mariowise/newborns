@@ -5235,5 +5235,9 @@ button.close {
 .login .input-group-addon {
   min-width: 100px; }
 
+.navbar-brand img {
+  width: 32px;
+  margin-top: -8px; }
+
 body {
-  background: #fcf2e5; }
+  background: #fffbf7; }

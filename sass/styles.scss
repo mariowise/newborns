@@ -12,6 +12,13 @@
 	}
 }
 
+.navbar-brand {
+	img {
+		width: 32px;
+		margin-top: -8px;
+	}
+}
+
 body {
 	background: $back-color;
 }
