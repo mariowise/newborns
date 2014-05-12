@@ -14,6 +14,8 @@
                     <p:panelGrid columns="2" rendered="#{accountController.selected != null}">
                         <h:outputText value="RUT"/>
                         <h:outputText value="#{accountController.selected.rut}" title="Cédula de identidad"/>
+                        <h:outputText value="Nombre"/>
+                        <h:outputText value="#{accountController.selected.name}" title="Nombre"/>
                         <h:outputText value="Teléfono"/>
                         <h:outputText value="#{accountController.selected.phone}" title="Teléfono de contacto"/>
                         <h:outputText value="Email"/>

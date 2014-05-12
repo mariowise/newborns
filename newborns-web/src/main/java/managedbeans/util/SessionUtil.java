@@ -42,6 +42,10 @@ public class SessionUtil implements Serializable {
         this.rut = rut;
     }
     
+    public Account getCurrentUser() {
+        return ejbFacade.find(rut);
+    }
+    
     public boolean login(String _rut, String _password) {
 
         FacesContext context = FacesContext.getCurrentInstance();

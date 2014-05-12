@@ -75,4 +75,8 @@ public class SessionController {
         JsfUtil.redirect(sessionUtil.logout());
     }
     
+    public boolean hasIdentity() {
+        return sessionUtil.hasIdentity();
+    }
+    
 }

@@ -27,6 +27,8 @@ public class Account implements Serializable {
     
     private String password;
     
+    private String name;
+    
     private String email;
     
     @JoinColumn(nullable = false)
@@ -50,6 +52,14 @@ public class Account implements Serializable {
     public void setPassword(String password) {
         System.out.println("Account.sha256 (" + password + ")");
         this.password = this.sha256(password);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhone() {

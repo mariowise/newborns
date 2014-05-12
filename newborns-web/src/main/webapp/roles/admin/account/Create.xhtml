@@ -13,8 +13,13 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{accountController.selected != null}">
                         <p:outputLabel value="RUT" for="rut"/>
-                        <p:inputText id="rut" value="#{accountController.selected.rut}" title="Cédula de identidad">
+                        <p:inputText id="rut" value="#{accountController.selected.rut}" title="Cédula de identidad" validatorMessage="Es necesario registrar un rut válido">
                             <f:validator validatorId="rutValidator" />
+                        </p:inputText>
+                        <p:outputLabel value="Nombre" for="name"/>
+                        <p:inputText id="name" value="#{accountController.selected.name}" title="Nombre" validatorMessage="Es necesario proporcionar un nombre alfabético con un largo mínimo de 4 caracteres y máximo 50">
+                            <f:validateLength minimum="4" maximum="50" />
+                            <f:validateRegex pattern="[a-zA-Z]+" />
                         </p:inputText>
                         <p:outputLabel value="Contraseña" for="password" />
                         <p:password id="password" value="#{accountController.selected.password}" title="Contraseña" validatorMessage="La contraseña debe contener al menos 4 caracteres y como máximo 24 del tipo alfanumérico">
@@ -22,7 +27,9 @@
                             <f:validateRegex pattern="[a-zA-Z0-9]+" />
                         </p:password>
                         <p:outputLabel value="Teléfono" for="phone" />
-                        <p:inputText id="phone" value="#{accountController.selected.phone}" title="Teléfono de contacto" />
+                        <p:inputText id="phone" value="#{accountController.selected.phone}" title="Teléfono de contacto">
+                            <f:validateRegex pattern="[0-9]+" />
+                        </p:inputText>
                         <p:outputLabel value="Email" for="email" />
                         <p:inputText id="email" value="#{accountController.selected.email}" title="Correo electrónico" validatorMessage="Debe ingresar un correo electrónico válido">
                             <f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" />
