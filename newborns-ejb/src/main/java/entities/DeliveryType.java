@@ -65,7 +65,7 @@ public class DeliveryType implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.DeliveryType[ id=" + id + " ]";
+        return name;
     }
     
 }

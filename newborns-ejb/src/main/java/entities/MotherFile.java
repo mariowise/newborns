@@ -136,7 +136,7 @@ public class MotherFile implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.MotherFile[ id=" + id + " ]";
+        return rut;
     }
     
 }
