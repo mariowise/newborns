@@ -8,22 +8,23 @@
 
     <ui:composition>
 
-        <p:dialog id="AccountEditDlg" widgetVar="AccountEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAccountTitle}">
+        <p:dialog id="AccountEditDlg" widgetVar="AccountEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar usuario">
             <h:form id="AccountEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{accountController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditAccountLabel_rut}" for="rut" />
-                        <h:outputText id="rut" value="#{accountController.selected.rut}" title="#{bundle.EditAccountTitle_rut}" />
-                        <p:outputLabel value="#{bundle.EditAccountLabel_phone}" for="phone" />
-                        <p:inputText id="phone" value="#{accountController.selected.phone}" title="#{bundle.EditAccountTitle_phone}" />
-                        <p:outputLabel value="#{bundle.EditAccountLabel_email}" for="email" />
-                        <p:inputText id="email" value="#{accountController.selected.email}" title="#{bundle.EditAccountTitle_email}" />
-                        <p:outputLabel value="#{bundle.EditAccountLabel_accountType}" for="accountType" />
-                        <p:selectOneMenu id="accountType" value="#{accountController.selected.accountType}" required="true" requiredMessage="#{bundle.EditAccountRequiredMessage_accountType}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                        <p:outputLabel value="RUT" for="rut"/>
+                        <h:outputText id="rut" value="#{accountController.selected.rut}" title="Cédula de identidad"/>
+                        <p:outputLabel value="Teléfono" for="phone" />
+                        <p:inputText id="phone" value="#{accountController.selected.phone}" title="Teléfono de contacto" />
+                        <p:outputLabel value="Email" for="email" />
+                        <p:inputText id="email" value="#{accountController.selected.email}" title="Correo electrónico" validatorMessage="Debe ingresar un correo electrónico válido">
+                            <f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" />
+                        </p:inputText>
+                        <p:outputLabel value="Tipo" for="accountType" />
+                        <p:selectOneMenu id="accountType" value="#{accountController.selected.accountType}" required="true" requiredMessage="Es necesario registrar un tipo de usuario">
                             <f:selectItems value="#{accountTypeController.itemsAvailableSelectOne}"
-                                           var="accountTypeItem"
-                                           itemValue="#{accountTypeItem}"/>
+                                var="accountTypeItem"
+                                itemValue="#{accountTypeItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{accountController.update}" value="#{bundle.Save}" update="display,:AccountListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AccountEditDialog');"/>
