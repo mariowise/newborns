@@ -24,6 +24,12 @@ public class Rut implements Validator, ClientValidator {
     @EJB
     private AccountFacadeLocal ejbFacade;
     
+    /**
+    * Función que retorna un boolean para ver si el parámetro de entrada
+    * Rut es válido, esta función tiene como parámetro de entrada un string.
+    * @param rut string que contiene el rut que se desea verificar
+    * @return boolean retorna verdadero si el rut es válido
+    */ 
     public boolean check(String rut) {  
         boolean validacion = false;
         try {  
@@ -44,6 +50,11 @@ public class Rut implements Validator, ClientValidator {
         return validacion;
     }
     
+    /**
+    *  Función que verifica la existencia de un rut en la base de datos.
+    *  @param Rut string que vontiene el rut que se desea consultar
+    *  @return boolean retorna verdadero si el rut existe en la base de datos
+    */
     private boolean checkExistence(String rut) {
         Account selected = ejbFacade.find(rut);
         if(selected != null) {
@@ -51,7 +62,18 @@ public class Rut implements Validator, ClientValidator {
         }
         return false;
     }
-
+    
+    /**
+    *  Función que valida en la interfaz si un rut es válido y no existe en la base de datos.
+    *  @param  context contiene todos los estados de información de los pre-requisitos 
+    *  relacionado a la ejecución de una petición de JavaServer Face, y la renderización de la 
+    *  respuesta correspondiente.
+    *  @param component componentes de interfaz de usuario que tienen un objeto Iteración de 
+    *  negocios y la petición de un objetivo utilizado a lo largo de una solicitud de página
+    *  y devuelven el HTML adecuado a la plantilla solicitada
+    *  @param value objeto con los datos a evaluar
+    *  
+    */
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         if(!check(value.toString())) {

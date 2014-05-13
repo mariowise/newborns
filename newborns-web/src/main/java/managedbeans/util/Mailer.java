@@ -23,6 +23,12 @@ import javax.mail.internet.MimeMessage;
 @Named(value = "Mailer")
 @RequestScoped
 public class Mailer {
+    
+    /**
+     * Funcion utilizada para crear una nueva password al usuario que lo solicite
+     * @param account objeto que incluye los datos del usuario
+     * @return newPassword string que devuelve la nueva contraseña al usuario
+     */
 
     public String sendPasswordRecoveryMessage(Account account) {
         SecureRandom random = new SecureRandom();
@@ -42,6 +48,14 @@ public class Mailer {
             return null;
         }        
     }
+    
+    /**
+     * Funcion que envia un mensaje al usuario con su nueva contraseña
+     * @param email string que contiene el mail del usuario que solicita el cambio
+     * de contraseña
+     * @param messageSubject string que contiene el asunto del mail
+     * @param messageBody string que contiene el mensaje del mail
+     */
     
     private void sendMessage(String email, String messageSubject, String messageBody) {
         final String username = "sistema.newborns@gmail.com";

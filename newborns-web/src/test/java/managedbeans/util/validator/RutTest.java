@@ -53,8 +53,8 @@ public class RutTest extends TestCase {
     
     }
     
-    /*
-        Función que evalua el rut utilizando el método check de la clase Rut
+    /**
+    * Función que evalua el rut utilizando el método check de la clase Rut
     */
     public boolean evaluarRut(String rut){
         System.out.println("checking Rut ->".concat(rut));

@@ -78,29 +78,41 @@ public class AccountController implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    
     public Account prepareCreate() {
         selected = new Account();
         initializeEmbeddableKey();
         return selected;
     }
-
+    
+    /**
+     * Crea un nuevo usuario
+     */
     public void create() {
         persist(PersistAction.CREATE, "El usuario ha sido creado");
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
-
+    
+    /**
+     * Modifica un usuario
+     */
     public void update() {
         persist(PersistAction.UPDATE, "El usuario ha sido actualizado");
     }
-    
+    /**
+     * Modifica un usuario y redirige
+     * @param destiny string con la direccion a la que se desea redirigir
+     */
     public void updateAndGo(String destiny) {
         persist(PersistAction.UPDATE, "El usuario ha sido actualizado");
         JsfUtil.redirect(destiny);
     }
-
+    
+    /**
+     * Eliminar un usuario
+     */
     public void destroy() {
         if(sessionUtil.getCurrentUser().getRut().compareTo(selected.getRut()) != 0) {
             persist(PersistAction.DELETE, "El usuario se ha eliminado");
@@ -112,7 +124,10 @@ public class AccountController implements Serializable {
             JsfUtil.addErrorMessage("No puede eliminar su propia cuenta.");
         }
     }
-    
+        
+    /**
+     * Metodo que envia la nueva contraseña al usuario
+     */
     public void restorePassword() {
         System.out.println("AccountController: restore password triggered for user " + selected.getRut());
         String newPassword;
@@ -126,6 +141,10 @@ public class AccountController implements Serializable {
         }
     }
     
+    
+    /**
+     * Metodo que recupera la contraseña del usuario
+     */
     public void recoverPassword() {
         System.out.println("AccountController: recover password triggered for user " + rut);
         selected = getAccount(rut);
@@ -138,6 +157,10 @@ public class AccountController implements Serializable {
         email = "";
     }
 
+    /**
+     * Obtiene todos los usuarios ingresados en el sistema
+     * @return lista con los usuarios registrados en el sistema
+     */
     public List<Account> getItems() {
         if (items == null) {
             items = getFacade().findAll();
@@ -145,6 +168,11 @@ public class AccountController implements Serializable {
         return items;
     }
 
+    /**
+     * Funcion que llama a la unidad de persistencia y envia un mensaje al usuario
+     * @param persistAction unidad de persistencia
+     * @param successMessage string que contiene un mensaje de validacion
+     */
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -172,19 +200,32 @@ public class AccountController implements Serializable {
             }
         }
     }
-
+    
+    /**
+     * Obtiene el usuario con el valor ingresado
+     * @param id identificador del usuario
+     * @return usuario con el identificador solicitado
+     */
     public Account getAccount(java.lang.String id) {
         return getFacade().find(id);
     }
-
+    
+    /**
+     * Lista todos los usuarios del sistema
+     * @return 
+     */
     public List<Account> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
-
+    
+    /**
+     * Lista todos los usuarios disponibles del sistema para ser seleccionados
+     * @return 
+     */
     public List<Account> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
-
+    
     @FacesConverter(forClass = Account.class)
     public static class AccountControllerConverter implements Converter {
 

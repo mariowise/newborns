@@ -55,17 +55,26 @@ public class MotherFileController implements Serializable {
         return selected;
     }
 
+    /**
+     * Crear ficha de la madre
+     */
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("MotherFileCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
-
+    
+    /**
+     * Modificar ficha de la madre
+     */
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("MotherFileUpdated"));
     }
 
+    /**
+     * Eliminar ficha de la madre
+     */
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("MotherFileDeleted"));
         if (!JsfUtil.isValidationFailed()) {
@@ -74,13 +83,22 @@ public class MotherFileController implements Serializable {
         }
     }
 
+    /**
+     * Lista de fichas de las madres
+     * @return 
+     */
     public List<MotherFile> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
         return items;
     }
-
+    
+    /**
+     * Funcion que llama a la unidad de persistencia y envia un mensaje al usuario
+     * @param persistAction unidad de persistencia
+     * @param successMessage string que contiene un mensaje de validacion
+     */
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -109,14 +127,27 @@ public class MotherFileController implements Serializable {
         }
     }
 
+    /**
+     * Obtiene la ficha de la madre con el valor ingresado
+     * @param id identificador de las ficha de la madre
+     * @return ficha de la madre con el identificador solicitado
+     */
     public MotherFile getMotherFile(java.lang.Long id) {
         return getFacade().find(id);
     }
 
+    /**
+    * Lista todas las fichas de la madre del sistema
+    * @return 
+    */
     public List<MotherFile> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
+    /**
+     * Lista todas las fichas de la madre disponibles del sistema para ser seleccionados
+     * @return 
+    */
     public List<MotherFile> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }

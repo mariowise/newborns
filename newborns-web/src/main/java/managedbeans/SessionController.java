@@ -60,7 +60,10 @@ public class SessionController {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    
+    /**
+     * Metodo que llama a la funcion ingreso al sistema mediante su rut y password
+     */
     public void login() {
         System.out.println("Calling login for " + rut);
 
@@ -73,6 +76,9 @@ public class SessionController {
         }
     }
     
+    /**
+     * Metodo que llama a la funcion de desconectar y redirige a la pagina retornada
+     */
     public void logout() {
         sessionUtil.logout();
         JsfUtil.redirect(sessionUtil.logout());

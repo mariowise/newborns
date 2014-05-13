@@ -54,18 +54,27 @@ public class NewbornFileController implements Serializable {
         initializeEmbeddableKey();
         return selected;
     }
-
+    
+    /**
+     * Crear una ficha de recien nacido
+     */
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("NewbornFileCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
-
+    
+    /**
+     * Modificar una ficha de recien nacido
+     */
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("NewbornFileUpdated"));
     }
-
+    
+    /**
+     * Eliminar una ficha de recien nacido
+     */
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("NewbornFileDeleted"));
         if (!JsfUtil.isValidationFailed()) {
@@ -73,14 +82,23 @@ public class NewbornFileController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
-
+    
+    /**
+     * Lista de fichas de recien nacidos
+     * @return 
+     */
     public List<NewbornFile> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
         return items;
     }
-
+    
+    /**
+     * Funcion que llama a la unidad de persistencia y envia un mensaje al usuario
+     * @param persistAction unidad de persistencia
+     * @param successMessage string que contiene un mensaje de validacion
+     */
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -109,14 +127,27 @@ public class NewbornFileController implements Serializable {
         }
     }
 
+    /**
+     * Obtiene la ficha de recien nacido con el valor ingresado
+     * @param id identificador de las ficha de recien nacido
+     * @return ficha recien nacido con el identificador solicitado
+     */
     public NewbornFile getNewbornFile(java.lang.Long id) {
         return getFacade().find(id);
     }
 
+    /**
+    * Lista todas las fichas de recien nacido del sistema
+    * @return 
+    */
     public List<NewbornFile> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
+    /**
+     * Lista todas las fichas de recien nacido disponibles del sistema para ser seleccionados
+     * @return 
+    */    
     public List<NewbornFile> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }

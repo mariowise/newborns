@@ -40,7 +40,7 @@ public class AssociativeComponentTypeFacadeLocalTest {
      */
     @Test
     public void testCreate() {
-        System.out.println("create");
+        System.out.println("Crear un componente asociativo: ");
         EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
         AssociativeComponentTypeFacadeLocal instance = null;
         try {
@@ -68,7 +68,7 @@ public class AssociativeComponentTypeFacadeLocalTest {
      */
     @Test
     public void testEdit() {        
-        System.out.println("edit");
+        System.out.println("Modificar un componente asociativo: ");
         EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
         AssociativeComponentTypeFacadeLocal instance = null;
         try {
@@ -95,7 +95,7 @@ public class AssociativeComponentTypeFacadeLocalTest {
      */
     @Test
     public void testRemove() {
-        System.out.println("remove");
+        System.out.println("Eliminar un componente asociativo: ");
         EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
         AssociativeComponentTypeFacadeLocal instance = null;
         try {

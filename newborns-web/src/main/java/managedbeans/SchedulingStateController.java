@@ -48,24 +48,33 @@ public class SchedulingStateController implements Serializable {
     private SchedulingStateFacadeLocal getFacade() {
         return ejbFacadeLocal;
     }
-
+    
     public SchedulingState prepareCreate() {
         selected = new SchedulingState();
         initializeEmbeddableKey();
         return selected;
     }
-
+    
+    /**
+     * Crear un estado de agendamiento
+     */
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("SchedulingStateCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
-
+    
+    /**
+     * Modificar un estado de agendamiento
+     */
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("SchedulingStateUpdated"));
     }
 
+    /**
+     * Elimina un estado de agendamiento
+     */
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("SchedulingStateDeleted"));
         if (!JsfUtil.isValidationFailed()) {
@@ -74,13 +83,22 @@ public class SchedulingStateController implements Serializable {
         }
     }
 
+    /**
+     * Lista de estados de agendamiento
+     * @return 
+     */
     public List<SchedulingState> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
         return items;
     }
-
+    
+    /**
+     * Funcion que llama a la unidad de persistencia y envia un mensaje al usuario
+     * @param persistAction unidad de persistencia
+     * @param successMessage string que contiene un mensaje de validacion
+     */
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -109,18 +127,31 @@ public class SchedulingStateController implements Serializable {
         }
     }
 
+    /**
+     * Obtiene el estado de agendamiento con el valor ingresado
+     * @param id identificador del estado de agendamiento
+     * @return estado de agendamiento con el identificador solicitado
+     */
     public SchedulingState getSchedulingState(java.lang.Long id) {
         return getFacade().find(id);
     }
 
+    /**
+    * Lista todos los estados de agendamiento del sistema
+    * @return 
+    */
     public List<SchedulingState> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
-
+    
+    /**
+     * Lista todos los estados de agendamiento disponibles del sistema para ser seleccionados
+     * @return 
+    */
     public List<SchedulingState> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
-
+    
     @FacesConverter(forClass = SchedulingState.class)
     public static class SchedulingStateControllerConverter implements Converter {
 

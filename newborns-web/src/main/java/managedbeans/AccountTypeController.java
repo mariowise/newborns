@@ -55,6 +55,9 @@ public class AccountTypeController implements Serializable {
         return selected;
     }
 
+    /**
+     * Crear un tipo de usuario
+     */
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("AccountTypeCreated"));
         if (!JsfUtil.isValidationFailed()) {
@@ -62,10 +65,16 @@ public class AccountTypeController implements Serializable {
         }
     }
 
+    /**
+     * Modificar tipo de usuario
+     */
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("AccountTypeUpdated"));
     }
 
+    /**
+     * Eliminar tipo de usuario
+     */
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("AccountTypeDeleted"));
         if (!JsfUtil.isValidationFailed()) {
@@ -74,6 +83,10 @@ public class AccountTypeController implements Serializable {
         }
     }
 
+    /**
+     * Lista de tipos de usuario
+     * @return 
+     */
     public List<AccountType> getItems() {
         if (items == null) {
             items = getFacade().findAll();
@@ -81,6 +94,11 @@ public class AccountTypeController implements Serializable {
         return items;
     }
 
+    /**
+     * Funcion que llama a la unidad de persistencia y envia un mensaje al usuario
+     * @param persistAction unidad de persistencia
+     * @param successMessage string que contiene un mensaje de validacion
+     */
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -109,14 +127,27 @@ public class AccountTypeController implements Serializable {
         }
     }
 
+    /**
+     * Obtiene el tipo de cuenta con el valor ingresado
+     * @param id identificador del tipo de cuenta
+     * @return tipo de cuenta con el identificador solicitado
+     */    
     public AccountType getAccountType(java.lang.Long id) {
         return getFacade().find(id);
     }
 
+    /**
+    * Lista todos los tipos de usuario del sistema
+    * @return 
+    */
     public List<AccountType> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
-
+    
+    /**
+     * Lista todos los tipos de usuario disponibles del sistema para ser seleccionados
+     * @return 
+    */
     public List<AccountType> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }

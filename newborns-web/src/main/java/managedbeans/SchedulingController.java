@@ -54,7 +54,10 @@ public class SchedulingController implements Serializable {
         initializeEmbeddableKey();
         return selected;
     }
-
+    
+    /**
+     * Crear un agendamiento
+     */
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("SchedulingCreated"));
         if (!JsfUtil.isValidationFailed()) {
@@ -62,10 +65,16 @@ public class SchedulingController implements Serializable {
         }
     }
 
+    /**
+     * Modificar un agendamiento
+     */
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("SchedulingUpdated"));
     }
 
+    /**
+     * Eliminar un agendamiento
+     */
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("SchedulingDeleted"));
         if (!JsfUtil.isValidationFailed()) {
@@ -74,6 +83,10 @@ public class SchedulingController implements Serializable {
         }
     }
 
+    /**
+     * Lista de agendamientos
+     * @return 
+     */
     public List<Scheduling> getItems() {
         if (items == null) {
             items = getFacade().findAll();
@@ -81,6 +94,11 @@ public class SchedulingController implements Serializable {
         return items;
     }
 
+    /**
+     * Funcion que llama a la unidad de persistencia y envia un mensaje al usuario
+     * @param persistAction unidad de persistencia
+     * @param successMessage string que contiene un mensaje de validacion
+     */
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -108,15 +126,28 @@ public class SchedulingController implements Serializable {
             }
         }
     }
-
+    
+    /**
+     * Obtiene agendamiento con el valor ingresado
+     * @param id identificador del agendamiento
+     * @return agendamiento con el identificador solicitado
+     */
     public Scheduling getScheduling(java.lang.Long id) {
         return getFacade().find(id);
     }
 
+    /**
+    * Lista todos los agendamientos del sistema
+    * @return 
+    */
     public List<Scheduling> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
-
+    
+    /**
+     * Lista todos agendamientos disponibles del sistema para ser seleccionados
+     * @return 
+    */  
     public List<Scheduling> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }

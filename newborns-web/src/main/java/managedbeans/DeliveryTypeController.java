@@ -54,7 +54,10 @@ public class DeliveryTypeController implements Serializable {
         initializeEmbeddableKey();
         return selected;
     }
-
+    
+    /**
+     * Crear tipo de parto
+     */
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("DeliveryTypeCreated"));
         if (!JsfUtil.isValidationFailed()) {
@@ -62,10 +65,16 @@ public class DeliveryTypeController implements Serializable {
         }
     }
 
+    /**
+     * Modificar tipo de parto
+     */
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("DeliveryTypeUpdated"));
     }
 
+    /**
+     * Eliminar tipo de parto
+     */
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("DeliveryTypeDeleted"));
         if (!JsfUtil.isValidationFailed()) {
@@ -74,13 +83,22 @@ public class DeliveryTypeController implements Serializable {
         }
     }
 
+    /**
+     * Lista de tipos de parto
+     * @return 
+     */
     public List<DeliveryType> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
         return items;
     }
-
+    
+    /**
+     * Funcion que llama a la unidad de persistencia y envia un mensaje al usuario
+     * @param persistAction unidad de persistencia
+     * @param successMessage string que contiene un mensaje de validacion
+     */
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -108,15 +126,28 @@ public class DeliveryTypeController implements Serializable {
             }
         }
     }
-
+    
+    /**
+     * Obtiene el tipo de parto con el valor ingresado
+     * @param id identificador tipo de parto 
+     * @return tipo de parto con el identificador solicitado
+     */
     public DeliveryType getDeliveryType(java.lang.Long id) {
         return getFacade().find(id);
     }
 
+    /**
+    * Lista todos los tipos de parto del sistema
+    * @return 
+    */
     public List<DeliveryType> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
+    /**
+     * Lista todos los tipos de parto disponibles del sistema para ser seleccionados
+     * @return 
+    */
     public List<DeliveryType> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }

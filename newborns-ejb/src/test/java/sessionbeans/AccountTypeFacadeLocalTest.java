@@ -39,7 +39,7 @@ public class AccountTypeFacadeLocalTest {
      */
     @Test
     public void testCreate() {
-        System.out.println("create");
+        System.out.println("Crear un tipo de cuenta:");
         EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
         AccountTypeFacadeLocal instance = null;
         try {
@@ -64,7 +64,7 @@ public class AccountTypeFacadeLocalTest {
      */
     @Test
     public void testEdit() {
-        System.out.println("edit");
+        System.out.println("Modificar un tipo de cuenta: ");
         EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
         AccountTypeFacadeLocal instance=null;
         try {
@@ -91,7 +91,7 @@ public class AccountTypeFacadeLocalTest {
      */
     @Test
     public void testRemove() {
-        System.out.println("remove");
+        System.out.println("Eliminar un tipo de cuenta: ");
         EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
         AccountTypeFacadeLocal instance=null;
         try {

@@ -46,6 +46,12 @@ public class SessionUtil implements Serializable {
         return ejbFacade.find(rut);
     }
     
+    /**
+     * Funcion que valida la autentificacion de un usuario a traves de su contraseña
+     * @param _rut string que contiene el rut del usuario
+     * @param _password string que contiene la password del usuario
+     * @return verdadero si el usuario pudo ingresar al sistema, falso en caso contrario
+     */
     public boolean login(String _rut, String _password) {
 
         FacesContext context = FacesContext.getCurrentInstance();
@@ -69,6 +75,11 @@ public class SessionUtil implements Serializable {
         }
         return false;
     }
+    
+    /**
+     * Funcion que desconecta al usuario del sistema
+     * @return se retorna la direccion a la pagina de inicio
+     */
 
     public String logout() {
         System.out.println("SessionUtil: Logout for " + rut);
@@ -76,7 +87,7 @@ public class SessionUtil implements Serializable {
         externalContext.invalidateSession();
         return "/faces/index.xhtml";
     }
-
+    
     public boolean hasIdentity(){
         FacesContext context = FacesContext.getCurrentInstance();
         ExternalContext externalContext = context.getExternalContext();
@@ -87,6 +98,11 @@ public class SessionUtil implements Serializable {
         }
         return true;
     }
+    
+    /**
+     * Funcion que redirige al usuario a la ruta que corresponda a su rol
+     * @return retorna la direccion donde debe ser redigirido el usuario
+     */
     
     public String route66() {
         System.out.println("Calling SessionUtil.route66");
