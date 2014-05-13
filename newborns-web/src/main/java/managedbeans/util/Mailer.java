@@ -68,7 +68,7 @@ public class Mailer {
             message.setSubject(messageSubject);
             message.setText(messageBody);
             Transport.send(message);
-            System.out.println("Mailer: email send success.");
+            System.out.println("Mailer: email send success to " + email);
         } 
         catch (MessagingException e) {
             System.out.println("Mailer: error on email send process.");

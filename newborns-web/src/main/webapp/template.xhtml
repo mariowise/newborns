@@ -35,9 +35,18 @@
                   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                       <li>
-                          <c:if test="#{SessionController.hasIdentity()}">
-                            <p:commandLink type="submit" value="Cerrar sesión" immediate="true" action="#{SessionController.logout}"></p:commandLink>
-                          </c:if>
+                        <c:if test="#{SessionController.hasIdentity()}">
+                            <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Perfil <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/newborns-web/faces/roles/Profile.xhtml">Ver perfil</a></li>
+                                    <li><a href="/newborns-web/faces/roles/ProfileChangePassword.xhtml">Cambiar contraseña</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <p:commandLink type="submit" value="Cerrar sesión" immediate="true" action="#{SessionController.logout}"></p:commandLink>
+                            </li>
+                        </c:if>
                       </li>
                     </ul>
                   </div>
@@ -63,6 +72,19 @@
             </div>
         </div>
 
+        <h:outputScript library="js/bootstrap" name="affix.js"/>
+        <h:outputScript library="js/bootstrap" name="alert.js"/>
+        <h:outputScript library="js/bootstrap" name="button.js"/>
+        <h:outputScript library="js/bootstrap" name="carousel.js"/>
+        <h:outputScript library="js/bootstrap" name="collapse.js"/>
+        <h:outputScript library="js/bootstrap" name="dropdown.js"/>
+        <h:outputScript library="js/bootstrap" name="modal.js"/>
+        <h:outputScript library="js/bootstrap" name="popover.js"/>
+        <h:outputScript library="js/bootstrap" name="scrollspy.js"/>
+        <h:outputScript library="js/bootstrap" name="tab.js"/>
+        <h:outputScript library="js/bootstrap" name="tooltip.js"/>
+        <h:outputScript library="js/bootstrap" name="transition.js"/>
+        
     </h:body>
 
 </html>

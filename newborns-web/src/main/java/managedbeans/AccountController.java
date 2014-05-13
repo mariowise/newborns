@@ -36,7 +36,11 @@ public class AccountController implements Serializable {
     private SessionUtil sessionUtil;
     
     @Inject 
-    private Mailer sendMail;    
+    private Mailer sendMail;
+    
+    private String rut;
+    
+    private String email;
 
     public AccountController() {
     }
@@ -59,6 +63,22 @@ public class AccountController implements Serializable {
         return ejbFacade;
     }
 
+    public String getRut() {
+        return rut;
+    }
+
+    public void setRut(String rut) {
+        this.rut = rut;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Account prepareCreate() {
         selected = new Account();
         initializeEmbeddableKey();
@@ -74,6 +94,11 @@ public class AccountController implements Serializable {
 
     public void update() {
         persist(PersistAction.UPDATE, "El usuario ha sido actualizado");
+    }
+    
+    public void updateAndGo(String destiny) {
+        persist(PersistAction.UPDATE, "El usuario ha sido actualizado");
+        JsfUtil.redirect(destiny);
     }
 
     public void destroy() {
@@ -99,6 +124,18 @@ public class AccountController implements Serializable {
         } catch (Exception ex) {
             JsfUtil.addErrorMessage("No ha sido posible reestablecer la contraseña, inténtelo mas tarde.");
         }
+    }
+    
+    public void recoverPassword() {
+        System.out.println("AccountController: recover password triggered for user " + rut);
+        selected = getAccount(rut);
+        if(selected.getEmail().compareTo(email) == 0) {
+            restorePassword();
+        } else {
+            JsfUtil.addErrorMessage("Los datos no coinciden con ningún usuario registrado.");
+        }
+        rut = "";
+        email = "";
     }
 
     public List<Account> getItems() {

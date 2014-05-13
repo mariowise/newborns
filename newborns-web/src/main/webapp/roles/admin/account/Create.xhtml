@@ -13,13 +13,13 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{accountController.selected != null}">
                         <p:outputLabel value="RUT" for="rut"/>
-                        <p:inputText id="rut" value="#{accountController.selected.rut}" title="Cédula de identidad" validatorMessage="Es necesario registrar un rut válido">
+                        <p:inputText id="rut" value="#{accountController.selected.rut}" title="Cédula de identidad">
                             <f:validator validatorId="rutValidator" />
                         </p:inputText>
                         <p:outputLabel value="Nombre" for="name"/>
                         <p:inputText id="name" value="#{accountController.selected.name}" title="Nombre" validatorMessage="Es necesario proporcionar un nombre alfabético con un largo mínimo de 4 caracteres y máximo 50">
                             <f:validateLength minimum="4" maximum="50" />
-                            <f:validateRegex pattern="[a-zA-Z]+" />
+                            <f:validateRegex pattern="[a-z A-Záéíóú]+" />
                         </p:inputText>
                         <p:outputLabel value="Contraseña" for="password" />
                         <p:password id="password" value="#{accountController.selected.password}" title="Contraseña" validatorMessage="La contraseña debe contener al menos 4 caracteres y como máximo 24 del tipo alfanumérico">
@@ -27,7 +27,8 @@
                             <f:validateRegex pattern="[a-zA-Z0-9]+" />
                         </p:password>
                         <p:outputLabel value="Teléfono" for="phone" />
-                        <p:inputText id="phone" value="#{accountController.selected.phone}" title="Teléfono de contacto">
+                        <p:inputText id="phone" value="#{accountController.selected.phone}" title="Teléfono de contacto" validatorMessage="El teléfono debe contener 8 dígitos numericos">
+                            <f:validateLength minimum="8" maximum="8" />
                             <f:validateRegex pattern="[0-9]+" />
                         </p:inputText>
                         <p:outputLabel value="Email" for="email" />
