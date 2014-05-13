@@ -21,17 +21,42 @@
         <ui:define name="body">
             <h:form id="NewbornFileListForm">
                 <p:panel header="#{bundle.ListNewbornFileTitle}">
-                    <p:dataTable id="datalist" value="#{newbornFileController.items}" var="item"
+
+                    <p:dataTable id="datalist" value="#{newbornFileController.newbornFilesSmall}" var="item"
                                  selectionMode="single" selection="#{newbornFileController.selected}"
                                  paginator="true"
                                  rowKey="#{item.id}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
+                                 
+                                 widgetVar="newbornFilesTable"
+                                 emptyMessage="No files found with given criteria"
+                                 filteredValue="#{newbornFileController.items}"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                        
+                        
+                        
+                        <f:facet name="header">
+                            <!--
+                            <p:outputPanel>
+                                <h:outputText value="Search all fields: " />
+                                <p:inputText id="globalFilter" onkeyup="PF('newbornFilesTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+                            </p:outputPanel>
+                            -->
+                            <p:messages showDetail="true"/>
 
+                            <h:outputLabel value="Search: "/>
+                            <p:inputText id="keyword" value="#{newbornFileController.keyword}" required="true" label="Keyword" />
+                            <p:watermark for="keyword" value="Search with a keyword" />
+
+                            <p:commandButton actionListener="#{newbornFileController.search}" value="Regular" ajax="false" />
+                            <p:commandButton actionListener="#{newbornFileController.search}" value="Ajax" onclick="PrimeFaces.cleanWatermarks();" oncomplete="PrimeFaces.showWatermarks();"  />
+
+                        </f:facet>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNewbornFileTitle_id}"/>

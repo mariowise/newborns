@@ -30,5 +30,7 @@ public interface NewbornFileFacadeLocal {
     List<NewbornFile> findRange(int[] range);
 
     int count();
+
+    public List<NewbornFile> findByKeyword(String keyword);
     
 }

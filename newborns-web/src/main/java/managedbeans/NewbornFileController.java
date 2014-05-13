@@ -1,23 +1,24 @@
 package managedbeans;
 
 import entities.NewbornFile;
-import managedbeans.util.JsfUtil;
-import managedbeans.util.JsfUtil.PersistAction;
-import sessionbeans.NewbornFileFacadeLocal;
-
 import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Named;
+import managedbeans.util.JsfUtil;
+import managedbeans.util.JsfUtil.PersistAction;
+import sessionbeans.NewbornFileFacadeLocal;
 
 @Named("newbornFileController")
 @SessionScoped
@@ -28,6 +29,12 @@ public class NewbornFileController implements Serializable {
     private List<NewbornFile> items = null;
     private NewbornFile selected;
 
+    //Lista
+    private List<NewbornFile> filteredNewbornFiles;
+    private List<NewbornFile> newbornFilesSmall;
+    //búsqueda normal    
+    private String keyword;
+ 
     public NewbornFileController() {
     }
 
@@ -74,12 +81,12 @@ public class NewbornFileController implements Serializable {
         }
     }
 
-    public List<NewbornFile> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
-        return items;
-    }
+//    public List<NewbornFile> getItems() {
+//        if (items == null) {
+//            items = getFacade().findAll();
+//        }
+//        return items;
+//    }
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
@@ -160,6 +167,59 @@ public class NewbornFileController implements Serializable {
             }
         }
 
+    }
+
+    //Tabla dinámica
+    public List<NewbornFile> getItems() {
+        if (items == null) {
+            items = getFacade().findAll();
+        }
+        return items;
+    }
+    
+    public void getFilteredItems(String keyword){
+        items = getFacade().findByKeyword(keyword);
+    }
+
+    public List<NewbornFile> getNewbornFilesSmall() {
+        return newbornFilesSmall;
+    }
+
+    public void setNewbornFilesSmall(List<NewbornFile> newbornFilesSmall) {
+        this.newbornFilesSmall = newbornFilesSmall;
+    }
+    
+    public boolean filter(Object value, Object filter, Locale locale) {
+        String filterText = (filter == null) ? null : filter.toString().trim();
+        if(filterText == null||filterText.equals("")) {
+            return true;
+        }
+         
+        if(value == null) {
+            return false;
+        }
+         
+        return ((Comparable) value).compareTo(Integer.valueOf(filterText)) > 0;
+    }
+
+    ///Busqueda Normal
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+       
+    public void search() {
+        List<NewbornFile> resultList = ejbFacadeLocal.findByKeyword(keyword);
+
+        items = resultList;
+
+        if (items==null) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"No results found with ", "'" + keyword + "'"));
+        }
+          
     }
 
 }
