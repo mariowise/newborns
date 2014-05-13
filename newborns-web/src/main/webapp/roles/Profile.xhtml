@@ -14,7 +14,7 @@
         </ui:define>
         
         <ui:define name="sidebar-left">
-            <ui:include src="admin/sidebar-left.xhtml"/>
+            <ui:include src="#{SessionUtil.currentUser.accountType.name}/sidebar-left.xhtml"/>
         </ui:define>
 
         <ui:define name="body">

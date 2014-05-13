@@ -213,7 +213,7 @@ public class NewbornFile implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.NewbornFile[ id=" + id + " ]";
+        return rut;
     }
     
 }

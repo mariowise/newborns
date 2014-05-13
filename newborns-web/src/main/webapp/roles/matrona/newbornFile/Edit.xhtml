@@ -15,11 +15,17 @@
                         <p:outputLabel value="#{bundle.EditNewbornFileLabel_rut}" for="rut" />
                         <p:inputText id="rut" value="#{newbornFileController.selected.rut}" title="#{bundle.EditNewbornFileTitle_rut}" />
                         <p:outputLabel value="#{bundle.EditNewbornFileLabel_firstName}" for="firstName" />
-                        <p:inputText id="firstName" value="#{newbornFileController.selected.firstName}" title="#{bundle.EditNewbornFileTitle_firstName}" />
+                        <p:inputText id="firstName" value="#{newbornFileController.selected.firstName}" title="#{bundle.EditNewbornFileTitle_firstName}" >
+                            <f:validateLength minimum="4" maximum="50" />
+                            <f:validateRegex pattern="[a-z A-Záéíóú]+" />
+                        </p:inputText>
                         <p:outputLabel value="#{bundle.EditNewbornFileLabel_secondName}" for="secondName" />
                         <p:inputText id="secondName" value="#{newbornFileController.selected.secondName}" title="#{bundle.EditNewbornFileTitle_secondName}" />
                         <p:outputLabel value="#{bundle.EditNewbornFileLabel_firstLastName}" for="firstLastName" />
-                        <p:inputText id="firstLastName" value="#{newbornFileController.selected.firstLastName}" title="#{bundle.EditNewbornFileTitle_firstLastName}" />
+                        <p:inputText id="firstLastName" value="#{newbornFileController.selected.firstLastName}" title="#{bundle.EditNewbornFileTitle_firstLastName}" >
+                            <f:validateLength minimum="4" maximum="50" />
+                            <f:validateRegex pattern="[a-z A-Záéíóú]+" />
+                        </p:inputText>
                         <p:outputLabel value="#{bundle.EditNewbornFileLabel_secondLastName}" for="secondLastName" />
                         <p:inputText id="secondLastName" value="#{newbornFileController.selected.secondLastName}" title="#{bundle.EditNewbornFileTitle_secondLastName}" />
                         <p:outputLabel value="#{bundle.EditNewbornFileLabel_dateOfBirth}" for="dateOfBirth" />

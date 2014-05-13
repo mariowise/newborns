@@ -12,8 +12,6 @@
             <h:form id="SchedulingCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{schedulingController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateSchedulingLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{schedulingController.selected.id}" title="#{bundle.CreateSchedulingTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateSchedulingLabel_nextDateAppointment}" for="nextDateAppointment" />
                         <p:calendar id="nextDateAppointment" pattern="MM/dd/yyyy" value="#{schedulingController.selected.nextDateAppointment}" title="#{bundle.EditSchedulingTitle_nextDateAppointment}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateSchedulingLabel_nextTimeAppointment}" for="nextTimeAppointment" />
