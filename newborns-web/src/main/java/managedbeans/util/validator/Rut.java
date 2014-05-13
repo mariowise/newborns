@@ -18,7 +18,7 @@ import org.primefaces.validate.ClientValidator;
 @FacesValidator("rutValidator")
 public class Rut implements Validator, ClientValidator {
     
-    private boolean check(String rut) {  
+    public boolean check(String rut) {  
         boolean validacion = false;
         try {  
             rut =  rut.toUpperCase();
@@ -32,7 +32,7 @@ public class Rut implements Validator, ClientValidator {
             if (dv == (char) (s != 0 ? s + 47 : 75))
                 validacion = true;
         }
-        catch (Exception e) {
+        catch (NumberFormatException e) {
             System.out.println("managedbeans.util.validator.Rut.validate(): Exception throwed on Rut validation of " + rut);
         }
         return validacion;
