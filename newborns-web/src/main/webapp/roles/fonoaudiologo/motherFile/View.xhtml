@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MotherFileViewDlg" widgetVar="MotherFileViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMotherFileTitle}">
+            <h:form id="MotherFileViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{motherFileController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMotherFileLabel_id}"/>
+                        <h:outputText value="#{motherFileController.selected.id}" title="#{bundle.ViewMotherFileTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewMotherFileLabel_rut}"/>
+                        <h:outputText value="#{motherFileController.selected.rut}" title="#{bundle.ViewMotherFileTitle_rut}"/>
+                        <h:outputText value="#{bundle.ViewMotherFileLabel_firstName}"/>
+                        <h:outputText value="#{motherFileController.selected.firstName}" title="#{bundle.ViewMotherFileTitle_firstName}"/>
+                        <h:outputText value="#{bundle.ViewMotherFileLabel_secondName}"/>
+                        <h:outputText value="#{motherFileController.selected.secondName}" title="#{bundle.ViewMotherFileTitle_secondName}"/>
+                        <h:outputText value="#{bundle.ViewMotherFileLabel_firstLastName}"/>
+                        <h:outputText value="#{motherFileController.selected.firstLastName}" title="#{bundle.ViewMotherFileTitle_firstLastName}"/>
+                        <h:outputText value="#{bundle.ViewMotherFileLabel_secondLastName}"/>
+                        <h:outputText value="#{motherFileController.selected.secondLastName}" title="#{bundle.ViewMotherFileTitle_secondLastName}"/>
+                        <h:outputText value="#{bundle.ViewMotherFileLabel_dateOfBirth}"/>
+                        <h:outputText value="#{motherFileController.selected.dateOfBirth}" title="#{bundle.ViewMotherFileTitle_dateOfBirth}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMotherFileLabel_phone}"/>
+                        <h:outputText value="#{motherFileController.selected.phone}" title="#{bundle.ViewMotherFileTitle_phone}"/>
+                        <h:outputText value="#{bundle.ViewMotherFileLabel_consultory}"/>
+                        <h:outputText value="#{motherFileController.selected.consultory}" title="#{bundle.ViewMotherFileTitle_consultory}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MotherFileViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

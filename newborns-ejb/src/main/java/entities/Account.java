@@ -38,10 +38,14 @@ public class Account implements Serializable {
     private String phone;
     
     public String getRut() {
+        // return rut.substring(0, rut.length()-1) + "-" + rut.substring(rut.length()-1, rut.length());
         return rut;
     }
 
     public void setRut(String rut) {
+        rut = rut.replace(".", "");
+        rut = rut.replace(",", "");
+        rut = rut.replace("-", "");
         this.rut = rut;
     }
 

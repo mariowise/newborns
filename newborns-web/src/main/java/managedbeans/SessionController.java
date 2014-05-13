@@ -6,11 +6,14 @@
 
 package managedbeans;
 
+import entities.Account;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.SessionUtil;
+import sessionbeans.AccountFacadeLocal;
 
 /**
  *
@@ -57,7 +60,7 @@ public class SessionController {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public void login() {
         System.out.println("Calling login for " + rut);
 

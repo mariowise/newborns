@@ -6,7 +6,9 @@
 
 package managedbeans.util.validator;
 
+import entities.Account;
 import java.util.Map;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -14,9 +16,13 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 import org.primefaces.validate.ClientValidator;
+import sessionbeans.AccountFacadeLocal;
 
 @FacesValidator("rutValidator")
 public class Rut implements Validator, ClientValidator {
+    
+    @EJB
+    private AccountFacadeLocal ejbFacade;
     
     public boolean check(String rut) {  
         boolean validacion = false;
@@ -36,13 +42,25 @@ public class Rut implements Validator, ClientValidator {
             System.out.println("managedbeans.util.validator.Rut.validate(): Exception throwed on Rut validation of " + rut);
         }
         return validacion;
-    }  
+    }
+    
+    private boolean checkExistence(String rut) {
+        Account selected = ejbFacade.find(rut);
+        if(selected != null) {
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         if(!check(value.toString())) {
-            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Validation Error", 
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, value + " no es un Rut válido", 
                 value + " no es un Rut válido"));
+        }
+        if(checkExistence(value.toString())) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, value + " ya existe en el sistema", 
+                value + " ya existe en el sistema"));
         }
     }
 

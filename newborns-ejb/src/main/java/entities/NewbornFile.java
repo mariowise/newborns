@@ -8,11 +8,14 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries; 
+import javax.persistence.NamedQuery;  
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 
@@ -20,8 +23,15 @@ import javax.validation.constraints.NotNull;
  *
  * @author pingeso
  */
-@Entity
+@Entity 
+@NamedQueries({
+@NamedQuery(name = "NewbornFile.findByFirstName", query = "SELECT n FROM NewbornFile n WHERE n.firstName LIKE :firstName"),
+@NamedQuery(name = "NewbornFile.findByFirstLastName", query = "SELECT nf FROM NewbornFile nf WHERE nf.firstLastName LIKE :firstLastName"),
+@NamedQuery(name = "NewbornFile.findBySecondLastName", query = "SELECT nf FROM NewbornFile nf WHERE nf.secondLastName LIKE :secondLastName"),
+@NamedQuery(name = "NewbornFile.findByRut", query = "SELECT nf FROM NewbornFile nf WHERE nf.rut = :rut"),
+})
 public class NewbornFile implements Serializable {
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,7 +47,7 @@ public class NewbornFile implements Serializable {
     private Float gestationWeeks;
     
     private String rut;
-    
+     
     private String firstName;
     
     private String secondName;
@@ -50,6 +60,9 @@ public class NewbornFile implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateOfBirth;
     
+    @Temporal(javax.persistence.TemporalType.TIME)
+    private Date timeOfBirth;
+    
     private Float size;
     
     private Float weight;
@@ -57,7 +70,7 @@ public class NewbornFile implements Serializable {
     private Float firstApgar;
     
     private Float secondApgar;
-
+    
     public Long getId() {
         return id;
     }
@@ -112,6 +125,14 @@ public class NewbornFile implements Serializable {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Date getTimeOfBirth() {
+        return timeOfBirth;
+    }
+
+    public void setTimeOfBirth(Date timeOfBirth) {
+        this.timeOfBirth = timeOfBirth;
     }
 
     public MotherFile getMotherFile() {
