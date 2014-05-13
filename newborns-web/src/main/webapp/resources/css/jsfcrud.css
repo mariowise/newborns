@@ -5194,9 +5194,6 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
-.ui-widget {
-  font-size: 12px !important; }
-
 .ui-layout-north {
   z-index: 20 !important;
   overflow: visible !important; }
@@ -5235,5 +5232,12 @@ button.close {
 .login .input-group-addon {
   min-width: 100px; }
 
+.navbar-brand img {
+  width: 32px;
+  margin-top: -8px; }
+
+.nav.navbar-nav.navbar-right > li > a {
+  font-size: 14px; }
+
 body {
-  background: #fcf2e5; }
+  background: #fffbf7; }

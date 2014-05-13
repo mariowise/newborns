@@ -12,6 +12,17 @@
 	}
 }
 
+.navbar-brand {
+	img {
+		width: 32px;
+		margin-top: -8px;
+	}
+}
+
+.nav.navbar-nav.navbar-right > li > a {
+	font-size: 14px;
+}
+
 body {
 	background: $back-color;
 }

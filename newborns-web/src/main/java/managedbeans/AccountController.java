@@ -1,10 +1,6 @@
 package managedbeans;
 
 import entities.Account;
-import managedbeans.util.JsfUtil;
-import managedbeans.util.JsfUtil.PersistAction;
-import sessionbeans.AccountFacadeLocal;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -12,12 +8,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.validator.ValidatorException;
+import javax.inject.Inject;
+import javax.inject.Named;
+import managedbeans.util.JsfUtil;
+import managedbeans.util.JsfUtil.PersistAction;
+import managedbeans.util.Mailer;
+import managedbeans.util.SessionUtil;
+import sessionbeans.AccountFacadeLocal;
 
 @Named("accountController")
 @SessionScoped
@@ -27,6 +31,12 @@ public class AccountController implements Serializable {
     private AccountFacadeLocal ejbFacade;
     private List<Account> items = null;
     private Account selected;
+    
+    @Inject
+    private SessionUtil sessionUtil;
+    
+    @Inject 
+    private Mailer sendMail;    
 
     public AccountController() {
     }
@@ -56,21 +66,38 @@ public class AccountController implements Serializable {
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("AccountCreated"));
+        persist(PersistAction.CREATE, "El usuario ha sido creado");
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("AccountUpdated"));
+        persist(PersistAction.UPDATE, "El usuario ha sido actualizado");
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("AccountDeleted"));
-        if (!JsfUtil.isValidationFailed()) {
-            selected = null; // Remove selection
-            items = null;    // Invalidate list of items to trigger re-query.
+        if(sessionUtil.getCurrentUser().getRut().compareTo(selected.getRut()) != 0) {
+            persist(PersistAction.DELETE, "El usuario se ha eliminado");
+            if (!JsfUtil.isValidationFailed()) {
+                selected = null; // Remove selection
+                items = null;    // Invalidate list of items to trigger re-query.
+            }
+        } else {
+            JsfUtil.addErrorMessage("No puede eliminar su propia cuenta.");
+        }
+    }
+    
+    public void restorePassword() {
+        System.out.println("AccountController: restore password triggered for user " + selected.getRut());
+        String newPassword;
+        try {
+            newPassword = sendMail.sendPasswordRecoveryMessage(selected);
+            selected.setPassword(newPassword);
+            getFacade().edit(selected);
+            JsfUtil.addSuccessMessage("Se ha enviado un correo electrónico reestableciendo la contraseña.");
+        } catch (Exception ex) {
+            JsfUtil.addErrorMessage("No ha sido posible reestablecer la contraseña, inténtelo mas tarde.");
         }
     }
 

@@ -8,33 +8,41 @@
 
     <ui:composition>
 
-        <p:dialog id="AccountCreateDlg" widgetVar="AccountCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAccountTitle}">
+        <p:dialog id="AccountCreateDlg" widgetVar="AccountCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Registrar un nuevo usuario">
             <h:form id="AccountCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{accountController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateAccountLabel_rut}" for="rut"/>
-                        <p:inputText id="rut" value="#{accountController.selected.rut}" title="#{bundle.CreateAccountTitle_rut}">
+                        <p:outputLabel value="RUT" for="rut"/>
+                        <p:inputText id="rut" value="#{accountController.selected.rut}" title="Cédula de identidad" validatorMessage="Es necesario registrar un rut válido">
                             <f:validator validatorId="rutValidator" />
                         </p:inputText>
-                        <p:outputLabel value="#{bundle.CreateAccountLabel_password}" for="password" />
-                        <p:password id="password" value="#{accountController.selected.password}" title="#{bundle.CreateAccountTitle_password}" validatorMessage="#{bundle.wrongPassword}">
+                        <p:outputLabel value="Nombre" for="name"/>
+                        <p:inputText id="name" value="#{accountController.selected.name}" title="Nombre" validatorMessage="Es necesario proporcionar un nombre alfabético con un largo mínimo de 4 caracteres y máximo 50">
+                            <f:validateLength minimum="4" maximum="50" />
+                            <f:validateRegex pattern="[a-zA-Z]+" />
+                        </p:inputText>
+                        <p:outputLabel value="Contraseña" for="password" />
+                        <p:password id="password" value="#{accountController.selected.password}" title="Contraseña" validatorMessage="La contraseña debe contener al menos 4 caracteres y como máximo 24 del tipo alfanumérico">
                             <f:validateLength minimum="4" maximum="24" />
+                            <f:validateRegex pattern="[a-zA-Z0-9]+" />
                         </p:password>
-                        <p:outputLabel value="#{bundle.CreateAccountLabel_phone}" for="phone" />
-                        <p:inputText id="phone" value="#{accountController.selected.phone}" title="#{bundle.CreateAccountTitle_phone}" />
-                        <p:outputLabel value="#{bundle.CreateAccountLabel_email}" for="email" />
-                        <p:inputText id="email" value="#{accountController.selected.email}" title="#{bundle.CreateAccountTitle_email}" validatorMessage="#{bundle.wrongEmail}">
+                        <p:outputLabel value="Teléfono" for="phone" />
+                        <p:inputText id="phone" value="#{accountController.selected.phone}" title="Teléfono de contacto">
+                            <f:validateRegex pattern="[0-9]+" />
+                        </p:inputText>
+                        <p:outputLabel value="Email" for="email" />
+                        <p:inputText id="email" value="#{accountController.selected.email}" title="Correo electrónico" validatorMessage="Debe ingresar un correo electrónico válido">
                             <f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" />
                         </p:inputText>
-                        <p:outputLabel value="#{bundle.CreateAccountLabel_accountType}" for="accountType" />
-                        <p:selectOneMenu id="accountType" value="#{accountController.selected.accountType}" required="true" requiredMessage="#{bundle.EditAccountRequiredMessage_accountType}">
+                        <p:outputLabel value="Tipo" for="accountType" />
+                        <p:selectOneMenu id="accountType" value="#{accountController.selected.accountType}" required="true" requiredMessage="Es necesario registrar un tipo de usuario">
                             <f:selectItems value="#{accountTypeController.itemsAvailableSelectOne}"
                                 var="accountTypeItem"
                                 itemValue="#{accountTypeItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{accountController.create}" value="#{bundle.Save}" update="display,:AccountListForm:datalist,:growl" oncomplete="handleSubmit(args,'AccountCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="AccountCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{accountController.create}" value="Guardar" update="display,:AccountListForm:datalist,:growl" oncomplete="handleSubmit(args,'AccountCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="AccountCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

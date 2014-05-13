@@ -8,18 +8,20 @@
 
     <ui:composition>
 
-        <p:dialog id="AccountViewDlg" widgetVar="AccountViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAccountTitle}">
+        <p:dialog id="AccountViewDlg" widgetVar="AccountViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Ver detalles del usuario">
             <h:form id="AccountViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{accountController.selected != null}">
-                        <h:outputText value="#{bundle.ViewAccountLabel_rut}"/>
-                        <h:outputText value="#{accountController.selected.rut}" title="#{bundle.ViewAccountTitle_rut}"/>
-                        <h:outputText value="#{bundle.ViewAccountLabel_phone}"/>
-                        <h:outputText value="#{accountController.selected.phone}" title="#{bundle.ViewAccountTitle_phone}"/>
-                        <h:outputText value="#{bundle.ViewAccountLabel_email}"/>
-                        <h:outputText value="#{accountController.selected.email}" title="#{bundle.ViewAccountTitle_email}"/>
-                        <h:outputText value="#{bundle.ViewAccountLabel_accountType}"/>
-                        <h:outputText value="#{accountController.selected.accountType}" title="#{bundle.ViewAccountTitle_accountType}"/>
+                        <h:outputText value="RUT"/>
+                        <h:outputText value="#{accountController.selected.rut}" title="Cédula de identidad"/>
+                        <h:outputText value="Nombre"/>
+                        <h:outputText value="#{accountController.selected.name}" title="Nombre"/>
+                        <h:outputText value="Teléfono"/>
+                        <h:outputText value="#{accountController.selected.phone}" title="Teléfono de contacto"/>
+                        <h:outputText value="Email"/>
+                        <h:outputText value="#{accountController.selected.email}" title="Correo electrónico"/>
+                        <h:outputText value="Tipo"/>
+                        <h:outputText value="#{accountController.selected.accountType.name}" title="Tipo de usuario"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="AccountViewDialog.hide()"/>
                 </h:panelGroup>
