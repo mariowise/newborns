@@ -60,6 +60,9 @@ public class NewbornFile implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateOfBirth;
     
+    @Temporal(javax.persistence.TemporalType.TIME)
+    private Date timeOfBirth;
+    
     private Float size;
     
     private Float weight;
@@ -67,7 +70,7 @@ public class NewbornFile implements Serializable {
     private Float firstApgar;
     
     private Float secondApgar;
-
+    
     public Long getId() {
         return id;
     }
@@ -122,6 +125,14 @@ public class NewbornFile implements Serializable {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Date getTimeOfBirth() {
+        return timeOfBirth;
+    }
+
+    public void setTimeOfBirth(Date timeOfBirth) {
+        this.timeOfBirth = timeOfBirth;
     }
 
     public MotherFile getMotherFile() {

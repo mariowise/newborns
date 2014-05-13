@@ -12,12 +12,27 @@
             <h:outputText value="#{bundle.fonoaudiologoIndexPageTitle}"></h:outputText>
         </ui:define>
         
-        <ui:define name="body">
+        <ui:define name="sidebar-left">
             
-            Hello Fonoaudiologo
+            <ui:include src="sidebar-left.xhtml"/>
             
         </ui:define>
         
+        <ui:define name="body">
+            
+            <h4>Bienvenido <b>#{SessionUtil.currentUser.name}</b></h4>
+            
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>El rol de fonoaudiología contempla la administración de 
+                        <b>fichas de recién nacidos</b> y <b>Agendamiento</b> de citas
+                        dentro del sistema.
+                    </p>    
+                </div>
+            </div>
+            
+        </ui:define>
+
     </ui:composition>
     
 </html>

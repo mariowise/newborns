@@ -1,9 +1,9 @@
 package managedbeans;
 
-import entities.NewbornFile;
+import entities.Scheduling;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
-import sessionbeans.NewbornFileFacadeLocal;
+import sessionbeans.SchedulingFacadeLocal;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("newbornFileController")
+@Named("schedulingController")
 @SessionScoped
-public class NewbornFileController implements Serializable {
+public class SchedulingController implements Serializable {
 
     @EJB
-    private NewbornFileFacadeLocal ejbFacadeLocal;
-    private List<NewbornFile> items = null;
-    private NewbornFile selected;
+    private SchedulingFacadeLocal ejbFacadeLocal;
+    private List<Scheduling> items = null;
+    private Scheduling selected;
 
-    public NewbornFileController() {
+    public SchedulingController() {
     }
 
-    public NewbornFile getSelected() {
+    public Scheduling getSelected() {
         return selected;
     }
 
-    public void setSelected(NewbornFile selected) {
+    public void setSelected(Scheduling selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class NewbornFileController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private NewbornFileFacadeLocal getFacade() {
+    private SchedulingFacadeLocal getFacade() {
         return ejbFacadeLocal;
     }
 
-    public NewbornFile prepareCreate() {
-        selected = new NewbornFile();
+    public Scheduling prepareCreate() {
+        selected = new Scheduling();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("NewbornFileCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("SchedulingCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("NewbornFileUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("SchedulingUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("NewbornFileDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("SchedulingDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<NewbornFile> getItems() {
+    public List<Scheduling> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,29 +109,29 @@ public class NewbornFileController implements Serializable {
         }
     }
 
-    public NewbornFile getNewbornFile(java.lang.Long id) {
+    public Scheduling getScheduling(java.lang.Long id) {
         return getFacade().find(id);
     }
 
-    public List<NewbornFile> getItemsAvailableSelectMany() {
+    public List<Scheduling> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<NewbornFile> getItemsAvailableSelectOne() {
+    public List<Scheduling> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = NewbornFile.class)
-    public static class NewbornFileControllerConverter implements Converter {
+    @FacesConverter(forClass = Scheduling.class)
+    public static class SchedulingControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            NewbornFileController controller = (NewbornFileController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "newbornFileController");
-            return controller.getNewbornFile(getKey(value));
+            SchedulingController controller = (SchedulingController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "schedulingController");
+            return controller.getScheduling(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -151,11 +151,11 @@ public class NewbornFileController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof NewbornFile) {
-                NewbornFile o = (NewbornFile) object;
+            if (object instanceof Scheduling) {
+                Scheduling o = (Scheduling) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), NewbornFile.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Scheduling.class.getName()});
                 return null;
             }
         }
