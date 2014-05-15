@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MotherFileCreateDlg" widgetVar="MotherFileCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMotherFileTitle}">
+            <h:form id="MotherFileCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{motherFileController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMotherFileLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{motherFileController.selected.id}" title="#{bundle.CreateMotherFileTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateMotherFileLabel_rut}" for="rut" />
+                        <p:inputText id="rut" value="#{motherFileController.selected.rut}" title="#{bundle.CreateMotherFileTitle_rut}" />
+                        <p:outputLabel value="#{bundle.CreateMotherFileLabel_firstName}" for="firstName" />
+                        <p:inputText id="firstName" value="#{motherFileController.selected.firstName}" title="#{bundle.CreateMotherFileTitle_firstName}" />
+                        <p:outputLabel value="#{bundle.CreateMotherFileLabel_secondName}" for="secondName" />
+                        <p:inputText id="secondName" value="#{motherFileController.selected.secondName}" title="#{bundle.CreateMotherFileTitle_secondName}" />
+                        <p:outputLabel value="#{bundle.CreateMotherFileLabel_firstLastName}" for="firstLastName" />
+                        <p:inputText id="firstLastName" value="#{motherFileController.selected.firstLastName}" title="#{bundle.CreateMotherFileTitle_firstLastName}" />
+                        <p:outputLabel value="#{bundle.CreateMotherFileLabel_secondLastName}" for="secondLastName" />
+                        <p:inputText id="secondLastName" value="#{motherFileController.selected.secondLastName}" title="#{bundle.CreateMotherFileTitle_secondLastName}" />
+                        <p:outputLabel value="#{bundle.CreateMotherFileLabel_dateOfBirth}" for="dateOfBirth" />
+                        <p:calendar id="dateOfBirth" pattern="MM/dd/yyyy" value="#{motherFileController.selected.dateOfBirth}" title="#{bundle.EditMotherFileTitle_dateOfBirth}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateMotherFileLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{motherFileController.selected.phone}" title="#{bundle.CreateMotherFileTitle_phone}" />
+                        <p:outputLabel value="#{bundle.CreateMotherFileLabel_consultory}" for="consultory" />
+                        <p:inputText id="consultory" value="#{motherFileController.selected.consultory}" title="#{bundle.CreateMotherFileTitle_consultory}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{motherFileController.create}" value="#{bundle.Save}" update="display,:MotherFileListForm:datalist,:growl" oncomplete="handleSubmit(args,'MotherFileCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MotherFileCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
