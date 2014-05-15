@@ -70,6 +70,7 @@ public class SessionController {
         } 
         else {
             System.out.println("SessionController: Login fail");
+            JsfUtil.addErrorMessage("El RUT y/o contraseña no coinciden");
         }
     }
     
