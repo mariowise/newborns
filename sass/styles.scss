@@ -23,6 +23,7 @@
 	font-size: 14px;
 }
 
-body {
-	background: $back-color;
+.ui-button {
+	@extend .btn;
+	@extend .btn-default;
 }
