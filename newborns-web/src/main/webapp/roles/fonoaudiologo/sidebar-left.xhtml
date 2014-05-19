@@ -9,12 +9,21 @@
     <ui:composition>
         
         <h4>Herramientas Fonoaudiología</h4>
-        <div class="btn-group btn-group-vertical full">
-            <a href="${pageContext.request.contextPath}/newborns-web/faces/roles/fonoaudiologo/index.xhtml" class="btn btn-default">Inicio</a>
-            <a href="${pageContext.request.contextPath}/newborns-web/faces/roles/fonoaudiologo/newbornFile/List.xhtml" class="btn btn-default">Fichas de recién nacidos</a>
-            <a href="${pageContext.request.contextPath}/newborns-web/faces/roles/fonoaudiologo/motherFile/List.xhtml" class="btn btn-default">Fichas de madres</a>
-            <a href="${pageContext.request.contextPath}/newborns-web/faces/roles/fonoaudiologo/scheduling/List.xhtml" class="btn btn-default">Agendamiento</a>
-        </div>
+        
+        <h:form>
+                 
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p:menu style="width: 100%">
+                        <p:menuitem value="Inicio" outcome="/roles/fonoaudiologo/index.xhtml" update="messages" />
+                        <p:menuitem value="Fichas de recién nacidos" outcome="/roles/fonoaudiologo/newbornFile/List.xhtml" update="messages" />
+                        <p:menuitem value="Fichas de madres" outcome="/roles/fonoaudiologo/motherFile/List.xhtml" update="messages" />
+                        <p:menuitem value="Agendamiento" outcome="/roles/fonoaudiologo/scheduling/List.xhtml" update="messages" />
+                    </p:menu>
+                </div>
+            </div>
+
+        </h:form>
         
     </ui:composition>
 </html>

@@ -127,8 +127,7 @@ public class Account implements Serializable {
         } catch(Exception ex){
             throw new RuntimeException(ex);
         }
-    }
-        
+    }        
 
     @Override
     public String toString() {

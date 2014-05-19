@@ -9,10 +9,15 @@
     <ui:composition>
         
         <h4>Herramientas</h4>
-        <div class="btn-group btn-group-vertical full">
-            <a href="${pageContext.request.contextPath}/newborns-web/faces/roles/admin/index.xhtml" class="btn btn-default">Inicio</a>
-            <a href="${pageContext.request.contextPath}/newborns-web/faces/roles/admin/account/List.xhtml" class="btn btn-default">Usuarios del sistema</a>
-        </div>
+        
+        <h:form>
+                 
+            <p:menu style="width: 100%">
+                <p:menuitem value="Inicio" outcome="/roles/admin/index.xhtml" update="messages" />
+                <p:menuitem value="Usuarios del sistema" outcome="/roles/admin/account/List.xhtml" update="messages" />
+            </p:menu>
+
+        </h:form>
         
     </ui:composition>
 </html>

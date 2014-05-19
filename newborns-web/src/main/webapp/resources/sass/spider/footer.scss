@@ -1,0 +1,22 @@
+
+.footer {
+	height: $footer-height;
+	background-color: $footer-back;
+	border-top: 30px solid $brand-primary;
+
+	.links {
+		padding-top: 15px;
+
+		ul {
+			padding-left: 0px;
+			list-style: none;
+		}
+	}
+
+	.about-us {
+		padding-top: 15px;
+	}
+	a {
+		color: $footer-link-color;
+	}
+}

@@ -3,34 +3,59 @@
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
         <Node id="roles/matrona/deliveryType/View.xhtml" x="650" y="600" zoom="true"/>
-        <Node id="roles/matrona/sidebar-left.xhtml" x="150" y="150" zoom="true"/>
-        <Node id="template.xhtml" x="427" y="353" zoom="true"/>
-        <Node id="roles/matrona/newbornFile/List.xhtml" x="650" y="750" zoom="true"/>
-        <Node id="roles/matrona/newbornFile/View.xhtml" x="650" y="150" zoom="true"/>
-        <Node id="roles/admin/account/Edit.xhtml" x="1650" y="150" zoom="true"/>
-        <Node id="roles/matrona/newbornFile/Create.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="roles/fonoaudiologo/deliveryType/Edit.xhtml" x="150" y="1200" zoom="true"/>
+        <Node id="roles/fonoaudiologo/sidebar-left.xhtml" x="1900" y="300" zoom="true"/>
         <Node id="roles/matrona/motherFile/Edit.xhtml" x="1150" y="300" zoom="true"/>
-        <Node id="roles/admin/index.xhtml" x="893" y="142" zoom="true"/>
-        <Node id="welcomePrimefaces.xhtml" x="576" y="389" zoom="true"/>
+        <Node id="roles/fonoaudiologo/schedulingState/Edit.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="roles/fonoaudiologo/newbornFile/Create.xhtml" x="1650" y="300" zoom="true"/>
         <Node id="roles/matrona/motherFile/View.xhtml" x="400" y="450" zoom="true"/>
         <Node id="account/View.xhtml" x="287" y="414" zoom="true"/>
         <Node id="roles/index.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="roles/fonoaudiologo/index.xhtml" x="931" y="395" zoom="true"/>
+        <Node id="roles/fonoaudiologo/newbornFile/List.xhtml" x="900" y="900" zoom="true"/>
+        <Node id="roles/admin/sidebar-left.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="roles/fonoaudiologo/scheduling/List.xhtml" x="400" y="1200" zoom="true"/>
+        <Node id="roles/matrona/motherFile/Create.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="roles/admin/account/View.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="roles/Profile.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="roles/ProfileEdit.xhtml" x="1400" y="600" zoom="true"/>
+        <Node id="roles/fonoaudiologo/scheduling/View.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="account/List.xhtml" x="400" y="150" zoom="false"/>
+        <Node id="roles/fonoaudiologo/deliveryType/List.xhtml" x="150" y="1350" zoom="true"/>
+        <Node id="roles/fonoaudiologo/deliveryType/Create.xhtml" x="1150" y="750" zoom="true"/>
+        <Node id="roles/matrona/deliveryType/List.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="roles/fonoaudiologo/newbornFile/View.xhtml" x="650" y="1050" zoom="true"/>
+        <Node id="roles/matrona/motherFile/List.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="roles/fonoaudiologo/deliveryType/View.xhtml" x="2150" y="150" zoom="true"/>
+        <Node id="roles/matrona/sidebar-left.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="roles/fonoaudiologo/scheduling/Create.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="roles/fonoaudiologo/schedulingState/View.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="template.xhtml" x="427" y="353" zoom="true"/>
+        <Node id="roles/matrona/newbornFile/List.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="roles/matrona/newbornFile/View.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="roles/fonoaudiologo/motherFile/Edit.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="roles/admin/account/Edit.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="passwordRecovery.xhtml" x="900" y="750" zoom="true"/>
+        <Node id="roles/matrona/newbornFile/Create.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="template-1column.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="roles/fonoaudiologo/motherFile/View.xhtml" x="1650" y="450" zoom="true"/>
+        <Node id="roles/admin/index.xhtml" x="893" y="142" zoom="true"/>
+        <Node id="roles/ProfileChangePassword.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="roles/fonoaudiologo/schedulingState/Create.xhtml" x="2400" y="150" zoom="true"/>
         <Node id="roles/admin/account/Create.xhtml" x="1150" y="450" zoom="true"/>
         <Node id="account/Create.xhtml" x="296" y="303" zoom="true"/>
         <Node id="roles/medico/index.xhtml" x="150" y="600" zoom="true"/>
-        <Node id="roles/admin/sidebar-left.xhtml" x="1400" y="150" zoom="true"/>
-        <Node id="roles/fonoaudiologo/index.xhtml" x="931" y="395" zoom="true"/>
-        <Node id="roles/matrona/motherFile/Create.xhtml" x="900" y="450" zoom="true"/>
-        <Node id="roles/admin/account/View.xhtml" x="900" y="600" zoom="true"/>
         <Node id="roles/matrona/deliveryType/Edit.xhtml" x="1400" y="300" zoom="true"/>
-        <Node id="roles/matrona/deliveryType/Create.xhtml" x="400" y="750" zoom="true"/>
         <Node id="roles/matrona/newbornFile/Edit.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="roles/matrona/deliveryType/Create.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="roles/fonoaudiologo/motherFile/Create.xhtml" x="400" y="1050" zoom="true"/>
         <Node id="account/Edit.xhtml" x="546" y="190" zoom="true"/>
+        <Node id="roles/fonoaudiologo/scheduling/Edit.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="roles/fonoaudiologo/newbornFile/Edit.xhtml" x="1900" y="450" zoom="true"/>
+        <Node id="roles/fonoaudiologo/motherFile/List.xhtml" x="2150" y="300" zoom="true"/>
         <Node id="roles/admin/account/List.xhtml" x="150" y="300" zoom="true"/>
-        <Node id="account/List.xhtml" x="400" y="150" zoom="false"/>
         <Node id="index.xhtml" x="1027" y="305" zoom="true"/>
-        <Node id="roles/matrona/deliveryType/List.xhtml" x="150" y="450" zoom="true"/>
-        <Node id="roles/matrona/motherFile/List.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="roles/fonoaudiologo/schedulingState/List.xhtml" x="400" y="600" zoom="true"/>
         <Node id="roles/matrona/index.xhtml" x="1105" y="191" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>

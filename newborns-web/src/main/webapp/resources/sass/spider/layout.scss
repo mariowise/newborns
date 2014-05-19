@@ -1,0 +1,39 @@
+
+.float-right {
+	float: right;
+}
+
+.float-left {
+	float: left;
+}
+
+.align-right {
+	text-align: right;
+}
+
+.align-left {
+	text-align: left;
+}
+
+.full {
+	width: 100%;
+}
+
+html, body {
+	height: 100%;
+}
+
+.wrapper {
+	position: relative;
+	min-height: 100%;
+
+	.footer-ghost {
+		height: $footer-height;
+	}
+
+	.footer {
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+	}
+}
