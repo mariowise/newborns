@@ -153,7 +153,7 @@ public class NewbornFileController implements Serializable {
             }
             if (object instanceof NewbornFile) {
                 NewbornFile o = (NewbornFile) object;
-                return getStringKey(o.getId());
+                return getStringKey(o.getFileCode());
             } else {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), NewbornFile.class.getName()});
                 return null;

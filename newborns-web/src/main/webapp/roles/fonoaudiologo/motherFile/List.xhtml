@@ -14,77 +14,40 @@
         </ui:define>
         
         <ui:define name="sidebar-left">
-            
             <ui:include src="../sidebar-left.xhtml"/>
-            
         </ui:define>
-
+        
         <ui:define name="body">
             <h:form id="MotherFileListForm">
                 <p:panel header="#{bundle.ListMotherFileTitle}">
                     <p:dataTable id="datalist" value="#{motherFileController.items}" var="item"
                                  selectionMode="single" selection="#{motherFileController.selected}"
                                  paginator="true"
-                                 rowKey="#{item.id}"
+                                 rowKey="#{item.fileCode}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  >
 
-                        <p:ajax event="rowSelect"   update="viewButton editButton"/>
-                        <p:ajax event="rowUnselect" update="viewButton editButton"/>
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListMotherFileTitle_id}"/>
+                                <h:outputText value="#{bundle.ListMotherFileTitle_fileCode}"/>
                             </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListMotherFileTitle_rut}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.rut}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListMotherFileTitle_firstName}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.firstName}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListMotherFileTitle_firstLastName}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.firstLastName}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListMotherFileTitle_dateOfBirth}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.dateOfBirth}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListMotherFileTitle_phone}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.phone}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListMotherFileTitle_consultory}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.consultory}"/>
+                            <h:outputText value="#{item.fileCode}"/>
                         </p:column>
                         <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{motherFileController.prepareCreate}" update=":MotherFileCreateForm" oncomplete="PF('MotherFileCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MotherFileViewForm" oncomplete="PF('MotherFileViewDialog').show()" disabled="#{empty motherFileController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MotherFileEditForm" oncomplete="PF('MotherFileEditDialog').show()" disabled="#{empty motherFileController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{motherFileController.destroy}" update=":growl,datalist" disabled="#{empty motherFileController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
             </h:form>
 
+            <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
         </ui:define>

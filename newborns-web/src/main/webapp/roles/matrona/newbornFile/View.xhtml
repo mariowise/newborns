@@ -12,21 +12,15 @@
             <h:form id="NewbornFileViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{newbornFileController.selected != null}">
-                        <h:outputText value="#{bundle.ViewNewbornFileLabel_id}"/>
-                        <h:outputText value="#{newbornFileController.selected.id}" title="#{bundle.ViewNewbornFileTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewNewbornFileLabel_rut}"/>
-                        <h:outputText value="#{newbornFileController.selected.rut}" title="#{bundle.ViewNewbornFileTitle_rut}"/>
-                        <h:outputText value="#{bundle.ViewNewbornFileLabel_firstName}"/>
-                        <h:outputText value="#{newbornFileController.selected.firstName}" title="#{bundle.ViewNewbornFileTitle_firstName}"/>
-                        <h:outputText value="#{bundle.ViewNewbornFileLabel_secondName}"/>
-                        <h:outputText value="#{newbornFileController.selected.secondName}" title="#{bundle.ViewNewbornFileTitle_secondName}"/>
-                        <h:outputText value="#{bundle.ViewNewbornFileLabel_firstLastName}"/>
-                        <h:outputText value="#{newbornFileController.selected.firstLastName}" title="#{bundle.ViewNewbornFileTitle_firstLastName}"/>
-                        <h:outputText value="#{bundle.ViewNewbornFileLabel_secondLastName}"/>
-                        <h:outputText value="#{newbornFileController.selected.secondLastName}" title="#{bundle.ViewNewbornFileTitle_secondLastName}"/>
+                        <h:outputText value="#{bundle.ViewNewbornFileLabel_fileCode}"/>
+                        <h:outputText value="#{newbornFileController.selected.fileCode}" title="#{bundle.ViewNewbornFileTitle_fileCode}"/>
                         <h:outputText value="#{bundle.ViewNewbornFileLabel_dateOfBirth}"/>
                         <h:outputText value="#{newbornFileController.selected.dateOfBirth}" title="#{bundle.ViewNewbornFileTitle_dateOfBirth}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewNewbornFileLabel_timeOfBirth}"/>
+                        <h:outputText value="#{newbornFileController.selected.timeOfBirth}" title="#{bundle.ViewNewbornFileTitle_timeOfBirth}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewNewbornFileLabel_motherFile}"/>
                         <h:outputText value="#{newbornFileController.selected.motherFile}" title="#{bundle.ViewNewbornFileTitle_motherFile}"/>

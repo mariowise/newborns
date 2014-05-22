@@ -24,6 +24,26 @@
             <base-name>/Bundle</base-name>
             <var>bundle</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
     </application>
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
@@ -42,6 +62,10 @@
         <navigation-case>
             <from-outcome>medico</from-outcome>
             <to-view-id>/roles/medico/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>administrativo</from-outcome>
+            <to-view-id>/roles/administrativo/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

@@ -9,15 +9,28 @@
     <ui:composition template="/layout/2columns-left.xhtml">
         
         <ui:define name="title">
-            <h:outputText value="#{bundle.medicoIndexPageTitle}"></h:outputText>
+            <h:outputText value="#{bundle.matronaIndexPageTitle}"></h:outputText>
+        </ui:define>
+        
+        <ui:define name="sidebar-left">
+            
+            <ui:include src="sidebar-left.xhtml"/>
+            
         </ui:define>
         
         <ui:define name="body">
+            <h4>Bienvenido <b>#{SessionUtil.currentUser.name}</b></h4>
             
-            Hello Medico
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>El rol de obstetricia contempla la administración completa de
+                                <b>fichas de recién nacidos</b>.
+                    </p>
+                </div>
+            </div>
             
         </ui:define>
-        
+
     </ui:composition>
     
 </html>

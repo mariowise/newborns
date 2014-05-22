@@ -12,34 +12,8 @@
             <h:form id="MotherFileEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{motherFileController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditMotherFileLabel_rut}" for="rut" />
-                        <p:inputText id="rut" value="#{motherFileController.selected.rut}" title="#{bundle.EditMotherFileTitle_rut}">
-                            <f:validator validatorId="rutValidator" />
-                        </p:inputText>
-                        <p:outputLabel value="#{bundle.EditMotherFileLabel_firstName}" for="firstName" />
-                        <p:inputText id="firstName" value="#{motherFileController.selected.firstName}" title="#{bundle.EditMotherFileTitle_firstName}" >
-                            <f:validateLength minimum="4" maximum="50" />
-                            <f:validateRegex pattern="[a-z A-Záéíóú]+" />
-                        </p:inputText>
-                        <p:outputLabel value="#{bundle.EditMotherFileLabel_secondName}" for="secondName" />
-                        <p:inputText id="secondName" value="#{motherFileController.selected.secondName}" title="#{bundle.EditMotherFileTitle_secondName}" />
-                        <p:outputLabel value="#{bundle.EditMotherFileLabel_firstLastName}" for="firstLastName" />
-                        <p:inputText id="firstLastName" value="#{motherFileController.selected.firstLastName}" title="#{bundle.EditMotherFileTitle_firstLastName}" >
-                            <f:validateLength minimum="4" maximum="50" />
-                            <f:validateRegex pattern="[a-z A-Záéíóú]+" />
-                        </p:inputText>
-                        <p:outputLabel value="#{bundle.EditMotherFileLabel_secondLastName}" for="secondLastName" />
-                        <p:inputText id="secondLastName" value="#{motherFileController.selected.secondLastName}" title="#{bundle.EditMotherFileTitle_secondLastName}" />
-                        <p:outputLabel value="#{bundle.EditMotherFileLabel_dateOfBirth}" for="dateOfBirth" />
-                        <p:calendar id="dateOfBirth" pattern="MM/dd/yyyy" value="#{motherFileController.selected.dateOfBirth}" title="#{bundle.EditMotherFileTitle_dateOfBirth}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditMotherFileLabel_phone}" for="phone" />
-                        <p:inputText id="phone" value="#{motherFileController.selected.phone}" title="#{bundle.EditMotherFileTitle_phone}" >
-                            <f:validateLength minimum="8" maximum="8" />
-                            <f:validateRegex pattern="[0-9]+" />
-                        </p:inputText>
-                        <p:outputLabel value="#{bundle.EditMotherFileLabel_consultory}" for="consultory" />
-                        <p:inputText id="consultory" value="#{motherFileController.selected.consultory}" title="#{bundle.EditMotherFileTitle_consultory}"/>
-                         
+                        <p:outputLabel value="#{bundle.EditMotherFileLabel_fileCode}" for="fileCode" />
+                        <p:inputText id="fileCode" value="#{motherFileController.selected.fileCode}" title="#{bundle.EditMotherFileTitle_fileCode}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{motherFileController.update}" value="#{bundle.Save}" update="display,:MotherFileListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MotherFileEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="MotherFileEditDialog.hide()"/>

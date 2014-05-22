@@ -12,26 +12,8 @@
             <h:form id="MotherFileViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{motherFileController.selected != null}">
-                        <h:outputText value="#{bundle.ViewMotherFileLabel_id}"/>
-                        <h:outputText value="#{motherFileController.selected.id}" title="#{bundle.ViewMotherFileTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewMotherFileLabel_rut}"/>
-                        <h:outputText value="#{motherFileController.selected.rut}" title="#{bundle.ViewMotherFileTitle_rut}"/>
-                        <h:outputText value="#{bundle.ViewMotherFileLabel_firstName}"/>
-                        <h:outputText value="#{motherFileController.selected.firstName}" title="#{bundle.ViewMotherFileTitle_firstName}"/>
-                        <h:outputText value="#{bundle.ViewMotherFileLabel_secondName}"/>
-                        <h:outputText value="#{motherFileController.selected.secondName}" title="#{bundle.ViewMotherFileTitle_secondName}"/>
-                        <h:outputText value="#{bundle.ViewMotherFileLabel_firstLastName}"/>
-                        <h:outputText value="#{motherFileController.selected.firstLastName}" title="#{bundle.ViewMotherFileTitle_firstLastName}"/>
-                        <h:outputText value="#{bundle.ViewMotherFileLabel_secondLastName}"/>
-                        <h:outputText value="#{motherFileController.selected.secondLastName}" title="#{bundle.ViewMotherFileTitle_secondLastName}"/>
-                        <h:outputText value="#{bundle.ViewMotherFileLabel_dateOfBirth}"/>
-                        <h:outputText value="#{motherFileController.selected.dateOfBirth}" title="#{bundle.ViewMotherFileTitle_dateOfBirth}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewMotherFileLabel_phone}"/>
-                        <h:outputText value="#{motherFileController.selected.phone}" title="#{bundle.ViewMotherFileTitle_phone}"/>
-                        <h:outputText value="#{bundle.ViewMotherFileLabel_consultory}"/>
-                        <h:outputText value="#{motherFileController.selected.consultory}" title="#{bundle.ViewMotherFileTitle_consultory}"/>
+                        <h:outputText value="#{bundle.ViewMotherFileLabel_fileCode}"/>
+                        <h:outputText value="#{motherFileController.selected.fileCode}" title="#{bundle.ViewMotherFileTitle_fileCode}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="MotherFileViewDialog.hide()"/>
                 </h:panelGroup>

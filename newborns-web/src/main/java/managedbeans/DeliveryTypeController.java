@@ -19,12 +19,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("deliveryTypeController")
 @SessionScoped
 public class DeliveryTypeController implements Serializable {
 
-    @EJB
-    private DeliveryTypeFacadeLocal ejbFacadeLocal;
+
+    @EJB private DeliveryTypeFacadeLocal ejbFacadeLocal;
     private List<DeliveryType> items = null;
     private DeliveryType selected;
 
@@ -121,7 +122,7 @@ public class DeliveryTypeController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = DeliveryType.class)
+    @FacesConverter(forClass=DeliveryType.class)
     public static class DeliveryTypeControllerConverter implements Converter {
 
         @Override
@@ -129,7 +130,7 @@ public class DeliveryTypeController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            DeliveryTypeController controller = (DeliveryTypeController) facesContext.getApplication().getELResolver().
+            DeliveryTypeController controller = (DeliveryTypeController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "deliveryTypeController");
             return controller.getDeliveryType(getKey(value));
         }

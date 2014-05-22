@@ -23,101 +23,20 @@ public class MotherFile implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long fileCode;
     
-    private String rut;
-    
-    private String firstName;
-    
-    private String secondName;
-    
-    private String firstLastName;
-
-    private String secondLastName;
-    
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateOfBirth;
-    
-    private String phone;
-    
-    private String consultory;
-    
-    public Long getId() {
-        return id;
+    public Long getFileCode() {
+        return fileCode;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setFileCode(Long fileCode) {
+        this.fileCode = fileCode;
     }
 
-    public String getRut() {
-        return rut;
-    }
-
-    public void setRut(String rut) {
-        this.rut = rut;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public String getFirstLastName() {
-        return firstLastName;
-    }
-
-    public void setFirstLastName(String firstLastName) {
-        this.firstLastName = firstLastName;
-    }
-
-    public String getSecondLastName() {
-        return secondLastName;
-    }
-
-    public void setSecondLastName(String secondLastName) {
-        this.secondLastName = secondLastName;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getConsultory() {
-        return consultory;
-    }
-
-    public void setConsultory(String consultory) {
-        this.consultory = consultory;
-    }
-    
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (fileCode != null ? fileCode.hashCode() : 0);
         return hash;
     }
 
@@ -128,7 +47,7 @@ public class MotherFile implements Serializable {
             return false;
         }
         MotherFile other = (MotherFile) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.fileCode == null && other.fileCode != null) || (this.fileCode != null && !this.fileCode.equals(other.fileCode))) {
             return false;
         }
         return true;
@@ -136,7 +55,7 @@ public class MotherFile implements Serializable {
 
     @Override
     public String toString() {
-        return rut;
+        return fileCode.toString();
     }
     
 }

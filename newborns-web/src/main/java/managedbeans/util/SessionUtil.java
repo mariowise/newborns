@@ -104,6 +104,9 @@ public class SessionUtil implements Serializable {
         if(currentAccount.getAccountType().getName().compareTo("medico") == 0) {
             return "/faces/roles/medico/index.xhtml";
         }
+        if(currentAccount.getAccountType().getName().compareTo("administrativo") == 0) {
+            return "/faces/roles/administrativo/index.xhtml";
+        }
         return "/faces/roles/index.xhtml";    
     }
 }

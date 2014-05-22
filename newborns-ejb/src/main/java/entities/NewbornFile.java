@@ -24,18 +24,18 @@ import javax.validation.constraints.NotNull;
  * @author pingeso
  */
 @Entity 
-@NamedQueries({
+/*@NamedQueries({
 @NamedQuery(name = "NewbornFile.findByFirstName", query = "SELECT n FROM NewbornFile n WHERE n.firstName LIKE :firstName"),
 @NamedQuery(name = "NewbornFile.findByFirstLastName", query = "SELECT nf FROM NewbornFile nf WHERE nf.firstLastName LIKE :firstLastName"),
 @NamedQuery(name = "NewbornFile.findBySecondLastName", query = "SELECT nf FROM NewbornFile nf WHERE nf.secondLastName LIKE :secondLastName"),
 @NamedQuery(name = "NewbornFile.findByRut", query = "SELECT nf FROM NewbornFile nf WHERE nf.rut = :rut"),
-})
+})*/
 public class NewbornFile implements Serializable {
     
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long fileCode;
     
     @ManyToOne
     private MotherFile motherFile;
@@ -45,16 +45,6 @@ public class NewbornFile implements Serializable {
     private DeliveryType deliveryType;
     
     private Float gestationWeeks;
-    
-    private String rut;
-     
-    private String firstName;
-    
-    private String secondName;
-    
-    private String firstLastName;
-
-    private String secondLastName;
     
     @NotNull
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -71,52 +61,12 @@ public class NewbornFile implements Serializable {
     
     private Float secondApgar;
     
-    public Long getId() {
-        return id;
+    public Long getFileCode() {
+        return fileCode;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getRut() {
-        return rut;
-    }
-
-    public void setRut(String rut) {
-        this.rut = rut;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public String getFirstLastName() {
-        return firstLastName;
-    }
-
-    public void setFirstLastName(String firstLastName) {
-        this.firstLastName = firstLastName;
-    }
-
-    public String getSecondLastName() {
-        return secondLastName;
-    }
-
-    public void setSecondLastName(String secondLastName) {
-        this.secondLastName = secondLastName;
+    public void setFileCode(Long fileCode) {
+        this.fileCode = fileCode;
     }
 
     public Date getDateOfBirth() {
@@ -194,7 +144,7 @@ public class NewbornFile implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (fileCode != null ? fileCode.hashCode() : 0);
         return hash;
     }
 
@@ -205,7 +155,7 @@ public class NewbornFile implements Serializable {
             return false;
         }
         NewbornFile other = (NewbornFile) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.fileCode == null && other.fileCode != null) || (this.fileCode != null && !this.fileCode.equals(other.fileCode))) {
             return false;
         }
         return true;
@@ -213,7 +163,7 @@ public class NewbornFile implements Serializable {
 
     @Override
     public String toString() {
-        return rut;
+        return this.motherFile.getFileCode().toString();
     }
     
 }

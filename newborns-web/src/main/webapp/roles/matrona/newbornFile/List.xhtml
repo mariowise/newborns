@@ -13,7 +13,6 @@
             <h:outputText value="#{bundle.ListNewbornFileTitle}"></h:outputText>
         </ui:define>
         
-        
         <ui:define name="sidebar-left">
             <ui:include src="../sidebar-left.xhtml"/>
         </ui:define>
@@ -21,78 +20,23 @@
         <ui:define name="body">
             <h:form id="NewbornFileListForm">
                 <p:panel header="#{bundle.ListNewbornFileTitle}">
-
                     <p:dataTable id="datalist" value="#{newbornFileController.items}" var="item"
                                  selectionMode="single" selection="#{newbornFileController.selected}"
                                  paginator="true"
-                                 rowKey="#{item.id}"
+                                 rowKey="#{item.fileCode}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
-                                 
-                                 widgetVar="newbornFilesTable"
-                                 emptyMessage="No files found with given criteria"
-                                 filteredValue="#{newbornFileController.items}"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
-                        
-                        
-                        
-                        <f:facet name="header">
-                            <!--
-                            <p:outputPanel>
-                                <h:outputText value="Search all fields: " />
-                                <p:inputText id="globalFilter" onkeyup="PF('newbornFilesTable').filter()" style="width:150px" placeholder="Enter keyword"/>
-                            </p:outputPanel>
-                            -->
-<!--                            <p:messages showDetail="true"/>
 
-                            <h:outputLabel value="Search: "/>
-                            <p:inputText id="keyword" value="{newbornFileController.keyword}" required="true" label="Keyword" />
-                            <p:watermark for="keyword" value="Search with a keyword" />
-
-                            <p:commandButton actionListener="{newbornFileController.search}" value="Regular" ajax="false" />
-                            <p:commandButton actionListener="{newbornFileController.search}" value="Ajax" onclick="PrimeFaces.cleanWatermarks();" oncomplete="PrimeFaces.showWatermarks();"  />-->
-
-                        </f:facet>
-                        
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListNewbornFileTitle_id}"/>
+                                <h:outputText value="#{bundle.ListNewbornFileTitle_fileCode}"/>
                             </f:facet>
-                            <h:outputText value="#{item.id}"/>
+                            <h:outputText value="#{item.fileCode}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListNewbornFileTitle_rut}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.rut}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListNewbornFileTitle_firstName}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.firstName}"/>
-                        </p:column>
-                        <!--<p:column>
-                            <f:facet name="header">
-                                <h:outputText value="{bundle.ListNewbornFileTitle_secondName}"/>
-                            </f:facet>
-                            <h:outputText value="{item.secondName}"/>
-                        </p:column> -->
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListNewbornFileTitle_firstLastName}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.firstLastName}"/>
-                        </p:column>
-                        <!--<p:column>
-                            <f:facet name="header">
-                                <h:outputText value="{bundle.ListNewbornFileTitle_secondLastName}"/>
-                            </f:facet>
-                            <h:outputText value="{item.secondLastName}"/>
-                        </p:column>-->
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNewbornFileTitle_dateOfBirth}"/>
@@ -103,15 +47,23 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNewbornFileTitle_timeOfBirth}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.timeOfBirth}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNewbornFileTitle_motherFile}"/>
                             </f:facet>
-                            <h:outputText value="#{item.motherFile.rut}"/>
+                            <h:outputText value="#{item.motherFile}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNewbornFileTitle_deliveryType}"/>
                             </f:facet>
-                            <h:outputText value="#{item.deliveryType.name}"/>
+                            <h:outputText value="#{item.deliveryType}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -119,30 +71,30 @@
                             </f:facet>
                             <h:outputText value="#{item.gestationWeeks}"/>
                         </p:column>
-                        <!--<p:column>
+                        <p:column>
                             <f:facet name="header">
-                                <h:outputText value="{bundle.ListNewbornFileTitle_size}"/>
+                                <h:outputText value="#{bundle.ListNewbornFileTitle_size}"/>
                             </f:facet>
-                            <h:outputText value="{item.size}"/>
+                            <h:outputText value="#{item.size}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="{bundle.ListNewbornFileTitle_weight}"/>
+                                <h:outputText value="#{bundle.ListNewbornFileTitle_weight}"/>
                             </f:facet>
-                            <h:outputText value="{item.weight}"/>
-                        </p:column>-->
-                        <!--<p:column>
-                            <f:facet name="header">
-                                <h:outputText value="{bundle.ListNewbornFileTitle_firstApgar}"/>
-                            </f:facet>
-                            <h:outputText value="{item.firstApgar}"/>
+                            <h:outputText value="#{item.weight}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="{bundle.ListNewbornFileTitle_secondApgar}"/>
+                                <h:outputText value="#{bundle.ListNewbornFileTitle_firstApgar}"/>
                             </f:facet>
-                            <h:outputText value="{item.secondApgar}"/>
-                        </p:column>-->
+                            <h:outputText value="#{item.firstApgar}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNewbornFileTitle_secondApgar}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.secondApgar}"/>
+                        </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{newbornFileController.prepareCreate}" update=":NewbornFileCreateForm" oncomplete="PF('NewbornFileCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":NewbornFileViewForm" oncomplete="PF('NewbornFileViewDialog').show()" disabled="#{empty newbornFileController.selected}"/>

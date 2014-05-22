@@ -12,24 +12,12 @@
             <h:form id="NewbornFileCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{newbornFileController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateNewbornFileLabel_rut}" for="rut" />
-                        <p:inputText id="rut" value="#{newbornFileController.selected.rut}" title="#{bundle.CreateNewbornFileTitle_rut}" />
-                        <p:outputLabel value="#{bundle.CreateNewbornFileLabel_firstName}" for="firstName" />
-                        <p:inputText id="firstName" value="#{newbornFileController.selected.firstName}" title="#{bundle.CreateNewbornFileTitle_firstName}" >
-                            <f:validateLength minimum="4" maximum="50" />
-                            <f:validateRegex pattern="[a-z A-Záéíóú]+" />
-                        </p:inputText>
-                        <p:outputLabel value="#{bundle.CreateNewbornFileLabel_secondName}" for="secondName" />
-                        <p:inputText id="secondName" value="#{newbornFileController.selected.secondName}" title="#{bundle.CreateNewbornFileTitle_secondName}" />
-                        <p:outputLabel value="#{bundle.CreateNewbornFileLabel_firstLastName}" for="firstLastName" />
-                        <p:inputText id="firstLastName" value="#{newbornFileController.selected.firstLastName}" title="#{bundle.CreateNewbornFileTitle_firstLastName}" >
-                            <f:validateLength minimum="4" maximum="50" />
-                            <f:validateRegex pattern="[a-z A-Záéíóú]+" />
-                        </p:inputText>
-                        <p:outputLabel value="#{bundle.CreateNewbornFileLabel_secondLastName}" for="secondLastName" />
-                        <p:inputText id="secondLastName" value="#{newbornFileController.selected.secondLastName}" title="#{bundle.CreateNewbornFileTitle_secondLastName}" />
+                        <p:outputLabel value="#{bundle.CreateNewbornFileLabel_fileCode}" for="fileCode" />
+                        <p:inputText id="fileCode" value="#{newbornFileController.selected.fileCode}" title="#{bundle.CreateNewbornFileTitle_fileCode}" />
                         <p:outputLabel value="#{bundle.CreateNewbornFileLabel_dateOfBirth}" for="dateOfBirth" />
                         <p:calendar id="dateOfBirth" pattern="MM/dd/yyyy" value="#{newbornFileController.selected.dateOfBirth}" title="#{bundle.EditNewbornFileTitle_dateOfBirth}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateNewbornFileLabel_timeOfBirth}" for="timeOfBirth" />
+                        <p:calendar id="timeOfBirth" pattern="HH:mm:ss" value="#{newbornFileController.selected.timeOfBirth}" title="#{bundle.EditNewbornFileTitle_timeOfBirth}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateNewbornFileLabel_motherFile}" for="motherFile" />
                         <p:selectOneMenu id="motherFile" value="#{newbornFileController.selected.motherFile}" >
                             <f:selectItems value="#{motherFileController.itemsAvailableSelectOne}"
