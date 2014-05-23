@@ -63,7 +63,7 @@ public class Gender implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Gender[ id=" + id + " ]";
+        return name;
     }
     
 }

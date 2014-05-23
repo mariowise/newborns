@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -26,16 +27,18 @@ import javax.validation.constraints.NotNull;
 public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
     @NotNull
     private Long run;
     
     @NotNull
+    @Size(min = 1, max = 1)
     private String dvRun;
     
     @NotNull
-    private String names;
+    private String name;
     
     @NotNull
     private String firstLastname;
@@ -53,7 +56,8 @@ public class Person implements Serializable {
     
     @JoinColumn(nullable = false)
     @ManyToOne
-    private Forecast forecastHealth;     
+    private Forecast forecastHealth;  
+    
     @NotNull
     private Boolean prais;
     
@@ -115,12 +119,12 @@ public class Person implements Serializable {
         this.dvRun = dvRun;
     }
 
-    public String getNames() {
-        return names;
+    public String getName() {
+        return name;
     }
 
-    public void setNames(String names) {
-        this.names = names;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getFirstLastname() {
@@ -163,7 +167,7 @@ public class Person implements Serializable {
         this.forecastHealth = forecastHealth;
     }
 
-    public Boolean isPrais() {
+    public Boolean getPrais() {
         return prais;
     }
 
@@ -195,7 +199,7 @@ public class Person implements Serializable {
         this.municipality = municipality;
     }
 
-    public Boolean isRuralResidency() {
+    public Boolean getRuralResidency() {
         return ruralResidency;
     }
 

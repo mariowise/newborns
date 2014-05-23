@@ -63,7 +63,7 @@ public class Forecast implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.ForecastHealth[ id=" + id + " ]";
+        return name;
     }
     
 }

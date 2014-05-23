@@ -63,7 +63,7 @@ public class ResidencyType implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.ResidencyType[ id=" + id + " ]";
+        return name;
     }
     
 }

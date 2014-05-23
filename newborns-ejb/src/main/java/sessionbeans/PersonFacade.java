@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author pingeso
+ * @author sylar
  */
 @Stateless
 public class PersonFacade extends AbstractFacade<Person> implements PersonFacadeLocal {
