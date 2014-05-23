@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author sylar
+ * @author pingeso
  */
 @Stateless
 public class GenderFacade extends AbstractFacade<Gender> implements GenderFacadeLocal {

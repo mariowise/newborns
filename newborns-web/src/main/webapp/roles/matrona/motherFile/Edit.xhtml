@@ -14,6 +14,13 @@
                     <p:panelGrid columns="2" rendered="#{motherFileController.selected != null}">
                         <p:outputLabel value="#{bundle.EditMotherFileLabel_fileCode}" for="fileCode" />
                         <p:inputText id="fileCode" value="#{motherFileController.selected.fileCode}" title="#{bundle.EditMotherFileTitle_fileCode}" />
+                        <p:outputLabel value="#{bundle.EditMotherFileLabel_admissionFile}" for="admissionFile" />
+                        <p:selectOneMenu id="admissionFile" value="#{motherFileController.selected.admissionFile}" required="true" requiredMessage="#{bundle.EditMotherFileRequiredMessage_admissionFile}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{admissionFileController.itemsAvailableSelectOne}"
+                                           var="admissionFileItem"
+                                           itemValue="#{admissionFileItem}"/>
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{motherFileController.update}" value="#{bundle.Save}" update="display,:MotherFileListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MotherFileEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="MotherFileEditDialog.hide()"/>

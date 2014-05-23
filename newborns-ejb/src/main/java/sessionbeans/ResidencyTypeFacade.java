@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author sylar
+ * @author pingeso
  */
 @Stateless
 public class ResidencyTypeFacade extends AbstractFacade<ResidencyType> implements ResidencyTypeFacadeLocal {
