@@ -18,101 +18,64 @@
         </ui:define>
 
         <ui:define name="body">
+            <h4>#{bundle.ListAdmissionFileTitle}</h4>
+               
             <h:form id="AdmissionFileListForm">
-                <p:panel header="#{bundle.ListAdmissionFileTitle}">
-                    <p:dataTable id="datalist" value="#{admissionFileController.items}" var="item"
-                                 selectionMode="single" selection="#{admissionFileController.selected}"
-                                 paginator="true"
-                                 rowKey="#{item.id}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
-                                 >
+                <p:dataTable id="datalist" value="#{admissionFileController.items}" var="item"
+                             selectionMode="single" selection="#{admissionFileController.selected}"
+                             paginator="true"
+                             rowKey="#{item.id}"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             >
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                    <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                    <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAdmissionFileTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAdmissionFileTitle_motherFile}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.motherFile}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAdmissionFileTitle_run}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.run}-#{item.dvRun}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAdmissionFileTitle_names}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.names}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAdmissionFileTitle_firstLastname}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.firstLastname}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAdmissionFileTitle_secondLastname}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.secondLastname}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAdmissionFileTitle_birthDate}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.birthDate}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAdmissionFileTitle_forecastHealth}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.forecastHealth}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAdmissionFileTitle_city}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.city}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAdmissionFileTitle_municipality}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.municipality}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAdmissionFileTitle_streetName}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.streetName}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAdmissionFileTitle_email}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.email}"/>
-                        </p:column>
-                        <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{admissionFileController.prepareCreate}" update=":AdmissionFileCreateForm" oncomplete="PF('AdmissionFileCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":AdmissionFileViewForm" oncomplete="PF('AdmissionFileViewDialog').show()" disabled="#{empty admissionFileController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AdmissionFileEditForm" oncomplete="PF('AdmissionFileEditDialog').show()" disabled="#{empty admissionFileController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{admissionFileController.destroy}" update=":growl,datalist" disabled="#{empty admissionFileController.selected}"/>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListAdmissionFileTitle_id}"/>
                         </f:facet>
-                    </p:dataTable>
-                </p:panel>
+                        <h:outputText value="#{item.id}-#{item.id}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListAdmissionFileTitle_run}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.run}-#{item.dvRun}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListAdmissionFileTitle_names}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.names}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListAdmissionFileTitle_firstLastname}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.firstLastname}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListAdmissionFileTitle_forecastHealth}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.forecastHealth}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListAdmissionFileTitle_municipality}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.municipality}"/>
+                    </p:column>
+                    <f:facet name="footer">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{admissionFileController.prepareCreate}" update=":AdmissionFileCreateForm" oncomplete="PF('AdmissionFileCreateDialog').show()"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":AdmissionFileViewForm" oncomplete="PF('AdmissionFileViewDialog').show()" disabled="#{empty admissionFileController.selected}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AdmissionFileEditForm" oncomplete="PF('AdmissionFileEditDialog').show()" disabled="#{empty admissionFileController.selected}"/>
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{admissionFileController.destroy}" update=":growl,datalist" disabled="#{empty admissionFileController.selected}"/>
+                    </f:facet>
+                </p:dataTable>
+                
             </h:form>
 
             <ui:include src="Create.xhtml"/>

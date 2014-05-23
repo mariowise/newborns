@@ -14,6 +14,12 @@
                     <p:panelGrid columns="2" rendered="#{newbornFileController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateNewbornFileLabel_fileCode}" for="fileCode" />
                         <p:inputText id="fileCode" value="#{newbornFileController.selected.fileCode}" title="#{bundle.CreateNewbornFileTitle_fileCode}" />
+                        <p:outputLabel value="#{bundle.CreateNewbornFileLabel_admissionFile}" for="admissionFile" />
+                        <p:selectOneMenu id="admissionFile" value="#{newbornFileController.selected.admissionFile}" required="true" requiredMessage="#{bundle.EditNewbornFileRequiredMessage_admissionFile}">
+                            <f:selectItems value="#{admissionFileController.itemsAvailableSelectOne}"
+                                           var="admissionFileItem"
+                                           itemValue="#{admissionFileItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateNewbornFileLabel_dateOfBirth}" for="dateOfBirth" />
                         <p:calendar id="dateOfBirth" pattern="MM/dd/yyyy" value="#{newbornFileController.selected.dateOfBirth}" title="#{bundle.EditNewbornFileTitle_dateOfBirth}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateNewbornFileLabel_timeOfBirth}" for="timeOfBirth" />
@@ -25,7 +31,7 @@
                                            itemValue="#{motherFileItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateNewbornFileLabel_deliveryType}" for="deliveryType" />
-                        <p:selectOneMenu id="deliveryType" value="#{newbornFileController.selected.deliveryType}" >
+                        <p:selectOneMenu id="deliveryType" value="#{newbornFileController.selected.deliveryType}" required="true" requiredMessage="#{bundle.EditNewbornFileRequiredMessage_deliveryType}">
                             <f:selectItems value="#{deliveryTypeController.itemsAvailableSelectOne}"
                                            var="deliveryTypeItem"
                                            itemValue="#{deliveryTypeItem}"/>

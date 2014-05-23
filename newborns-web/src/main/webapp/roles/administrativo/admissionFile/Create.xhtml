@@ -12,20 +12,6 @@
             <h:form id="AdmissionFileCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{admissionFileController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateAdmissionFileLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{admissionFileController.selected.id}" title="#{bundle.CreateAdmissionFileTitle_id}" />
-                        <p:outputLabel value="#{bundle.CreateAdmissionFileLabel_newbornFile}" for="newbornFile" />
-                        <p:selectOneMenu id="newbornFile" value="#{admissionFileController.selected.newbornFile}" >
-                            <f:selectItems value="#{newbornFileController.itemsAvailableSelectOne}"
-                                           var="newbornFileItem"
-                                           itemValue="#{newbornFileItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateAdmissionFileLabel_motherFile}" for="motherFile" />
-                        <p:selectOneMenu id="motherFile" value="#{admissionFileController.selected.motherFile}" >
-                            <f:selectItems value="#{motherFileController.itemsAvailableSelectOne}"
-                                           var="motherFileItem"
-                                           itemValue="#{motherFileItem}"/>
-                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateAdmissionFileLabel_run}" for="run" />
                         <p:inputText id="run" value="#{admissionFileController.selected.run}" title="#{bundle.CreateAdmissionFileTitle_run}" />
                         <p:outputLabel value="#{bundle.CreateAdmissionFileLabel_dvRun}" for="dvRun" />

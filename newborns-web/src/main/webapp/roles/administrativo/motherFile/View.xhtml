@@ -14,6 +14,8 @@
                     <p:panelGrid columns="2" rendered="#{motherFileController.selected != null}">
                         <h:outputText value="#{bundle.ViewMotherFileLabel_fileCode}"/>
                         <h:outputText value="#{motherFileController.selected.fileCode}" title="#{bundle.ViewMotherFileTitle_fileCode}"/>
+                        <h:outputText value="#{bundle.ViewMotherFileLabel_admissionFile}"/>
+                        <h:outputText value="#{motherFileController.selected.admissionFile}" title="#{bundle.ViewMotherFileTitle_admissionFile}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="MotherFileViewDialog.hide()"/>
                 </h:panelGroup>

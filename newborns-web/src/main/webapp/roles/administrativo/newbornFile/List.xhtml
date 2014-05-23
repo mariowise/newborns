@@ -35,6 +35,12 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNewbornFileTitle_admissionFile}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.admissionFile}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNewbornFileTitle_dateOfBirth}"/>
                             </f:facet>
                             <h:outputText value="#{item.dateOfBirth}">

@@ -14,20 +14,6 @@
                     <p:panelGrid columns="2" rendered="#{admissionFileController.selected != null}">
                         <p:outputLabel value="#{bundle.EditAdmissionFileLabel_id}" for="id" />
                         <p:inputText id="id" value="#{admissionFileController.selected.id}" title="#{bundle.EditAdmissionFileTitle_id}" />
-                        <p:outputLabel value="#{bundle.EditAdmissionFileLabel_newbornFile}" for="newbornFile" />
-                        <p:selectOneMenu id="newbornFile" value="#{admissionFileController.selected.newbornFile}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{newbornFileController.itemsAvailableSelectOne}"
-                                           var="newbornFileItem"
-                                           itemValue="#{newbornFileItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditAdmissionFileLabel_motherFile}" for="motherFile" />
-                        <p:selectOneMenu id="motherFile" value="#{admissionFileController.selected.motherFile}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{motherFileController.itemsAvailableSelectOne}"
-                                           var="motherFileItem"
-                                           itemValue="#{motherFileItem}"/>
-                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditAdmissionFileLabel_run}" for="run" />
                         <p:inputText id="run" value="#{admissionFileController.selected.run}" title="#{bundle.EditAdmissionFileTitle_run}" />
                         <p:outputLabel value="#{bundle.EditAdmissionFileLabel_dvRun}" for="dvRun" />

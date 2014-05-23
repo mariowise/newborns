@@ -13,9 +13,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries; 
 import javax.persistence.NamedQuery;  
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 
@@ -37,10 +39,14 @@ public class NewbornFile implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long fileCode;
     
+    @JoinColumn(nullable = false)
+    @OneToOne
+    private AdmissionFile admissionFile;
+    
     @ManyToOne
     private MotherFile motherFile;
     
-    @NotNull
+    @JoinColumn(nullable = false)
     @ManyToOne
     private DeliveryType deliveryType;
     
@@ -67,6 +73,14 @@ public class NewbornFile implements Serializable {
 
     public void setFileCode(Long fileCode) {
         this.fileCode = fileCode;
+    }
+
+    public AdmissionFile getAdmissionFile() {
+        return admissionFile;
+    }
+
+    public void setAdmissionFile(AdmissionFile admissionFile) {
+        this.admissionFile = admissionFile;
     }
 
     public Date getDateOfBirth() {

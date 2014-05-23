@@ -28,12 +28,6 @@ public class AdmissionFile implements Serializable {
     @Id
     private Long id;
     
-    @OneToOne
-    private NewbornFile newbornFile;
-    
-    @OneToOne
-    private MotherFile motherFile;
-    
     @NotNull
     private Long run;
     
@@ -109,22 +103,6 @@ public class AdmissionFile implements Serializable {
         this.id = id;
     }
     
-    public NewbornFile getNewbornFile() {
-        return newbornFile;
-    }
-
-    public void setNewbornFile(NewbornFile newbornFile) {
-        this.newbornFile = newbornFile;
-    }
-
-    public MotherFile getMotherFile() {
-        return motherFile;
-    }
-
-    public void setMotherFile(MotherFile motherFile) {
-        this.motherFile = motherFile;
-    }
-
     public Long getRun() {
         return run;
     }
