@@ -11,7 +11,7 @@
         <p:dialog id="AdmissionFileCreateDlg" widgetVar="AdmissionFileCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAdmissionFileTitle}">
             <h:form id="AdmissionFileCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{admissionFileController.selected != null}">
+                    <p:panelGrid columns="4" rendered="#{admissionFileController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateAdmissionFileLabel_run}" for="run" />
                         <p:inputText id="run" value="#{admissionFileController.selected.run}" title="#{bundle.CreateAdmissionFileTitle_run}" />
                         <p:outputLabel value="#{bundle.CreateAdmissionFileLabel_dvRun}" for="dvRun" />

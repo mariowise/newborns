@@ -1,23 +1,23 @@
 package managedbeans;
 
 import entities.AdmissionFile;
-import managedbeans.util.JsfUtil;
-import managedbeans.util.JsfUtil.PersistAction;
-import sessionbeans.AdmissionFileFacadeLocal;
-
 import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Named;
+import managedbeans.util.JsfUtil;
+import managedbeans.util.JsfUtil.PersistAction;
+import sessionbeans.AdmissionFileFacadeLocal;
 
 
 @Named("admissionFileController")
@@ -27,6 +27,7 @@ public class AdmissionFileController implements Serializable {
 
     @EJB private AdmissionFileFacadeLocal ejbFacadeLocal;
     private List<AdmissionFile> items = null;
+    private List<AdmissionFile> filteredAdmissionFiles = null;
     private AdmissionFile selected;
 
     public AdmissionFileController() {
@@ -161,6 +162,27 @@ public class AdmissionFileController implements Serializable {
             }
         }
 
+    }
+    
+    public boolean filterByRut(Object value, Object filter, Locale locale) {
+        String filterText = (filter == null) ? null : filter.toString().trim();
+        if(filterText == null||filterText.equals("")) {
+            return true;
+        }
+         
+        if(value == null) {
+            return false;
+        }
+         
+        return ((Comparable) value).compareTo(Integer.valueOf(filterText)) > 0;
+    }
+
+    public List<AdmissionFile> getFilteredAdmissionFiles() {
+        return filteredAdmissionFiles;
+    }
+
+    public void setFilteredAdmissionFiles(List<AdmissionFile> filteredAdmissionFiles) {
+        this.filteredAdmissionFiles = filteredAdmissionFiles;
     }
 
 }
