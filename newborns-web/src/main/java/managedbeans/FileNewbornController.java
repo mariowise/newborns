@@ -1,10 +1,7 @@
 package managedbeans;
 
+import entities.File;
 import entities.FileNewborn;
-import managedbeans.util.JsfUtil;
-import managedbeans.util.JsfUtil.PersistAction;
-import sessionbeans.FileNewbornFacadeLocal;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -12,12 +9,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Named;
+import managedbeans.util.JsfUtil;
+import managedbeans.util.JsfUtil.PersistAction;
+import sessionbeans.FileFacadeLocal;
+import sessionbeans.FileNewbornFacadeLocal;
 
 @Named("fileNewbornController")
 @SessionScoped
@@ -27,6 +28,9 @@ public class FileNewbornController implements Serializable {
     private FileNewbornFacadeLocal ejbFacade;
     private List<FileNewborn> items = null;
     private FileNewborn selected;
+    
+    @EJB
+    private FileFacadeLocal fileFacade;
 
     public FileNewbornController() {
     }
@@ -85,7 +89,17 @@ public class FileNewbornController implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if (persistAction != PersistAction.DELETE) {
+                if(persistAction == PersistAction.CREATE) {
+                    // Creación de la ficha
+                    System.out.println("Creando ficha");
+                    File newFile = new File();
+                    fileFacade.edit(newFile);
+                    selected.setFile(newFile);
+                    
+                    // Creación de la fichaNeonato
+                    System.out.println("Creando ficha Neonato");
+                    getFacade().edit(selected);
+                } else if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);

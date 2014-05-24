@@ -43,10 +43,11 @@ public class FileNewborn implements Serializable {
     
     private Float gestationWeeks;
     
-    @NotNull
+    @NotNull(message="Es necesario proporcionar una Fecha de nacimiento")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateOfBirth;
     
+    @NotNull(message="Es necesario proporcionar una Hora de nacimiento")
     @Temporal(javax.persistence.TemporalType.TIME)
     private Date timeOfBirth;
     
