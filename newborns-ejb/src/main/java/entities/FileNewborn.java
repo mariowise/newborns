@@ -34,10 +34,6 @@ public class FileNewborn implements Serializable {
     @OneToOne
     private File file;
     
-    @JoinColumn(nullable = false)
-    @OneToOne
-    private Person person;
-   
     @ManyToOne
     private FileMother motherFile;
     
@@ -101,14 +97,6 @@ public class FileNewborn implements Serializable {
 
     public void setMotherFile(FileMother motherFile) {
         this.motherFile = motherFile;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
     }
 
     public DeliveryType getDeliveryType() {
