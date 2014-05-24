@@ -17,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 /**
@@ -34,20 +36,24 @@ public class Person implements Serializable {
     private Long run;
     
     @NotNull
-    @Size(min = 1, max = 1)
+    @Size(min = 1, max = 1, message = "Deve ingresar un caracter verificador")
     private String dvRun;
     
     @NotNull
+    @Pattern(regexp = "\\D*", message = "El campo Nombres no debe contener números")
     private String name;
     
     @NotNull
+    @Pattern(regexp = "\\D*", message = "El campo Primer apellido no debe contener números ni tildes")
     private String firstLastname;
     
     @NotNull
+    @Pattern(regexp = "\\D*", message = "El campo Segundo apellido no puede contener números ni tildes")
     private String secondLastname;
 
-    @NotNull
+    @NotNull(message= "Debe colocar una fecha de nacimiento")
     @Temporal(javax.persistence.TemporalType.DATE)
+    @Past(message = "Coloque una fecha de nacimiento anterior al día de hoy")
     private Date birthDate;
     
     @JoinColumn(nullable = false)
@@ -87,12 +93,12 @@ public class Person implements Serializable {
     
     private String movilePhoneNumber;
     
+    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$" , message = "Ingrese un correo valido, e.g.=mail@mail.com")
     private String email;
     
-    @NotNull
+    @NotNull( message = "Debe ingresar una sospecha de diagnóstico")
     private String diagnosticSuspicion;
     
-    @NotNull
     private String diagnosticConfirmation;
     
     public Long getId() {
