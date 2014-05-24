@@ -185,4 +185,7 @@ public class PersonController implements Serializable {
         return ((Comparable) value).compareTo(Integer.valueOf(filterText)) > 0;
     }
      
+    public void registerAdmission(){
+        System.out.println(selected.getId().toString());
+    }
 }
