@@ -30,13 +30,6 @@
                                            var="motherFileItem"
                                            itemValue="#{motherFileItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditFileNewbornLabel_person}" for="person" />
-                        <p:selectOneMenu id="person" value="#{fileNewbornController.selected.person}" required="true" requiredMessage="#{bundle.EditFileNewbornRequiredMessage_person}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{personController.itemsAvailableSelectOne}"
-                                           var="personItem"
-                                           itemValue="#{personItem}"/>
-                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditFileNewbornLabel_deliveryType}" for="deliveryType" />
                         <p:selectOneMenu id="deliveryType" value="#{fileNewbornController.selected.deliveryType}" required="true" requiredMessage="#{bundle.EditFileNewbornRequiredMessage_deliveryType}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

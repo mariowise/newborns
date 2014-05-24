@@ -36,15 +36,21 @@
 
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{bundle.ListFileNewbornTitle_fileCode}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.fileCode}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
                             <h:outputText value="#{bundle.ListFileNewbornTitle_file}"/>
                         </f:facet>
                         <h:outputText value="#{item.file}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListFileNewbornTitle_motherFile}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.motherFile}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListFileNewbornTitle_deliveryType}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.deliveryType}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
@@ -61,54 +67,6 @@
                         <h:outputText value="#{item.timeOfBirth}">
                             <f:convertDateTime pattern="HH:mm:ss" />
                         </h:outputText>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListFileNewbornTitle_motherFile}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.motherFile}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListFileNewbornTitle_person}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.person}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListFileNewbornTitle_deliveryType}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.deliveryType}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListFileNewbornTitle_gestationWeeks}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.gestationWeeks}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListFileNewbornTitle_height}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.height}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListFileNewbornTitle_weight}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.weight}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListFileNewbornTitle_firstApgar}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.firstApgar}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListFileNewbornTitle_secondApgar}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.secondApgar}"/>
                     </p:column>
                     <f:facet name="footer">
                         <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{fileNewbornController.prepareCreate}" update=":FileNewbornCreateForm" oncomplete="PF('FileNewbornCreateDialog').show()"/>

@@ -1,7 +1,10 @@
 package managedbeans;
 
-import entities.File;
-import entities.FileNewborn;
+import entities.DeliveryType;
+import managedbeans.util.JsfUtil;
+import managedbeans.util.JsfUtil.PersistAction;
+import sessionbeans.DeliveryTypeFacadeLocal;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -9,37 +12,30 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.inject.Named;
-import managedbeans.util.JsfUtil;
-import managedbeans.util.JsfUtil.PersistAction;
-import sessionbeans.FileFacadeLocal;
-import sessionbeans.FileNewbornFacadeLocal;
 
-@Named("fileNewbornController")
+@Named("deliveryTypeController")
 @SessionScoped
-public class FileNewbornController implements Serializable {
+public class DeliveryTypeController implements Serializable {
 
     @EJB
-    private FileNewbornFacadeLocal ejbFacade;
-    private List<FileNewborn> items = null;
-    private FileNewborn selected;
-    
-    @EJB
-    private FileFacadeLocal fileFacade;
+    private DeliveryTypeFacadeLocal ejbFacade;
+    private List<DeliveryType> items = null;
+    private DeliveryType selected;
 
-    public FileNewbornController() {
+    public DeliveryTypeController() {
     }
 
-    public FileNewborn getSelected() {
+    public DeliveryType getSelected() {
         return selected;
     }
 
-    public void setSelected(FileNewborn selected) {
+    public void setSelected(DeliveryType selected) {
         this.selected = selected;
     }
 
@@ -49,36 +45,36 @@ public class FileNewbornController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private FileNewbornFacadeLocal getFacade() {
+    private DeliveryTypeFacadeLocal getFacade() {
         return ejbFacade;
     }
 
-    public FileNewborn prepareCreate() {
-        selected = new FileNewborn();
+    public DeliveryType prepareCreate() {
+        selected = new DeliveryType();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("FileNewbornCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("DeliveryTypeCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("FileNewbornUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("DeliveryTypeUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("FileNewbornDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("DeliveryTypeDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<FileNewborn> getItems() {
+    public List<DeliveryType> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -89,17 +85,7 @@ public class FileNewbornController implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if(persistAction == PersistAction.CREATE) {
-                    // Creación de la ficha
-                    System.out.println("Creando ficha");
-                    File newFile = new File();
-                    fileFacade.edit(newFile);
-                    selected.setFile(newFile);
-                    
-                    // Creación de la fichaNeonato
-                    System.out.println("Creando ficha Neonato");
-                    getFacade().edit(selected);
-                } else if (persistAction != PersistAction.DELETE) {
+                if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);
@@ -123,29 +109,29 @@ public class FileNewbornController implements Serializable {
         }
     }
 
-    public FileNewborn getFileNewborn(java.lang.Long id) {
+    public DeliveryType getDeliveryType(java.lang.Long id) {
         return getFacade().find(id);
     }
 
-    public List<FileNewborn> getItemsAvailableSelectMany() {
+    public List<DeliveryType> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<FileNewborn> getItemsAvailableSelectOne() {
+    public List<DeliveryType> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = FileNewborn.class)
-    public static class FileNewbornControllerConverter implements Converter {
+    @FacesConverter(forClass = DeliveryType.class)
+    public static class DeliveryTypeControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            FileNewbornController controller = (FileNewbornController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "fileNewbornController");
-            return controller.getFileNewborn(getKey(value));
+            DeliveryTypeController controller = (DeliveryTypeController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "deliveryTypeController");
+            return controller.getDeliveryType(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -165,11 +151,11 @@ public class FileNewbornController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof FileNewborn) {
-                FileNewborn o = (FileNewborn) object;
-                return getStringKey(o.getFileCode());
+            if (object instanceof DeliveryType) {
+                DeliveryType o = (DeliveryType) object;
+                return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), FileNewborn.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), DeliveryType.class.getName()});
                 return null;
             }
         }
