@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FileNewbornEditDlg" widgetVar="FileNewbornEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditFileNewbornTitle}">
+            <h:form id="FileNewbornEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" rendered="#{fileNewbornController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditFileNewbornLabel_file}" for="file" />
+                        <p:selectOneMenu id="file" value="#{fileNewbornController.selected.file}" required="true" requiredMessage="#{bundle.EditFileNewbornRequiredMessage_file}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{fileController.itemsAvailableSelectOne}"
+                                           var="fileItem"
+                                           itemValue="#{fileItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFileNewbornLabel_dateOfBirth}" for="dateOfBirth" />
+                        <p:calendar id="dateOfBirth" pattern="MM/dd/yyyy" value="#{fileNewbornController.selected.dateOfBirth}" title="#{bundle.EditFileNewbornTitle_dateOfBirth}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditFileNewbornLabel_timeOfBirth}" for="timeOfBirth" />
+                        <p:calendar id="timeOfBirth" pattern="HH:mm:ss" value="#{fileNewbornController.selected.timeOfBirth}" title="#{bundle.EditFileNewbornTitle_timeOfBirth}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditFileNewbornLabel_motherFile}" for="motherFile" />
+                        <p:selectOneMenu id="motherFile" value="#{fileNewbornController.selected.motherFile}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{fileMotherController.itemsAvailableSelectOne}"
+                                           var="motherFileItem"
+                                           itemValue="#{motherFileItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFileNewbornLabel_person}" for="person" />
+                        <p:selectOneMenu id="person" value="#{fileNewbornController.selected.person}" required="true" requiredMessage="#{bundle.EditFileNewbornRequiredMessage_person}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{personController.itemsAvailableSelectOne}"
+                                           var="personItem"
+                                           itemValue="#{personItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFileNewbornLabel_deliveryType}" for="deliveryType" />
+                        <p:selectOneMenu id="deliveryType" value="#{fileNewbornController.selected.deliveryType}" required="true" requiredMessage="#{bundle.EditFileNewbornRequiredMessage_deliveryType}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{deliveryTypeController.itemsAvailableSelectOne}"
+                                           var="deliveryTypeItem"
+                                           itemValue="#{deliveryTypeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFileNewbornLabel_gestationWeeks}" for="gestationWeeks" />
+                        <p:inputText id="gestationWeeks" value="#{fileNewbornController.selected.gestationWeeks}" title="#{bundle.EditFileNewbornTitle_gestationWeeks}" />
+                        <p:outputLabel value="#{bundle.EditFileNewbornLabel_height}" for="height" />
+                        <p:inputText id="height" value="#{fileNewbornController.selected.height}" title="#{bundle.EditFileNewbornTitle_height}" />
+                        <p:outputLabel value="#{bundle.EditFileNewbornLabel_weight}" for="weight" />
+                        <p:inputText id="weight" value="#{fileNewbornController.selected.weight}" title="#{bundle.EditFileNewbornTitle_weight}" />
+                        <p:outputLabel value="#{bundle.EditFileNewbornLabel_firstApgar}" for="firstApgar" />
+                        <p:inputText id="firstApgar" value="#{fileNewbornController.selected.firstApgar}" title="#{bundle.EditFileNewbornTitle_firstApgar}" />
+                        <p:outputLabel value="#{bundle.EditFileNewbornLabel_secondApgar}" for="secondApgar" />
+                        <p:inputText id="secondApgar" value="#{fileNewbornController.selected.secondApgar}" title="#{bundle.EditFileNewbornTitle_secondApgar}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{fileNewbornController.update}" value="#{bundle.Save}" update="display,:FileNewbornListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FileNewbornEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FileNewbornEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
