@@ -31,4 +31,5 @@ public interface ServiceAttentionFacadeLocal {
 
     int count();
     
+    public Boolean registerAdmission(ServiceAttention sa);
 }

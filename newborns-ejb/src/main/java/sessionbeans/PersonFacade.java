@@ -7,6 +7,9 @@
 package sessionbeans;
 
 import entities.Person;
+import entities.Service;
+import entities.ServiceAttention;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,7 +22,7 @@ import javax.persistence.PersistenceContext;
 public class PersonFacade extends AbstractFacade<Person> implements PersonFacadeLocal {
     @PersistenceContext(unitName = "cl.diinf.newborns-ejb.PU")
     private EntityManager em;
-
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;

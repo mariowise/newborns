@@ -72,6 +72,12 @@
                         <p:inputText id="diagnosticSuspicion" value="#{personController.selected.diagnosticSuspicion}" title="#{bundle.EditPersonTitle_diagnosticSuspicion}" />
                         <p:outputLabel value="#{bundle.EditPersonLabel_diagnosticConfirmation}" for="diagnosticConfirmation" />
                         <p:inputText id="diagnosticConfirmation" value="#{personController.selected.diagnosticConfirmation}" title="#{bundle.EditPersonTitle_diagnosticConfirmation}" />
+                        <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_healthService}" />
+                        <p:dataTable id="healthServiceDT" scrollHeight="true" var="service" value="#{serviceController.items}" selectionMode="single" selection="#{personController.selectedService}" rowKey="#{service.id}">
+                            <p:column>
+                                <h:outputText value="#{service.name}" />
+                            </p:column>
+                        </p:dataTable>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{personController.registerAdmission}" value="#{bundle.RegisterPersonAdmissionButton}" update="display,:PersonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PersonAdmissionDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="PersonAdmissionDialog.hide()"/>

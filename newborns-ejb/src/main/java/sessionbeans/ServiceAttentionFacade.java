@@ -29,4 +29,12 @@ public class ServiceAttentionFacade extends AbstractFacade<ServiceAttention> imp
         super(ServiceAttention.class);
     }
     
+    public Boolean registerAdmission(ServiceAttention sa){
+        if (sa==null) {
+            return false;
+        }else{
+            em.persist(sa);
+            return true;
+        }
+    }
 }

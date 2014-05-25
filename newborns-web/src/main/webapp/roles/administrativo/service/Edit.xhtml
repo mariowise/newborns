@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ServiceEditDlg" widgetVar="ServiceEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditServiceTitle}">
+            <h:form id="ServiceEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{serviceController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditServiceLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{serviceController.selected.id}" title="#{bundle.EditServiceTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditServiceLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{serviceController.selected.name}" title="#{bundle.EditServiceTitle_name}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{serviceController.update}" value="#{bundle.Save}" update="display,:ServiceListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ServiceEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ServiceEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
