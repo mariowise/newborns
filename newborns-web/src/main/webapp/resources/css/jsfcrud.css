@@ -5257,7 +5257,7 @@ html, body {
 .login .input-group {
   margin-bottom: 5px; }
 .login .input-group-addon {
-  min-width: 100px; }
+  min-width: 120px; }
 
 .navbar-brand img {
   width: 32px;

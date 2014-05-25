@@ -307,7 +307,7 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return id.toString();
+        return "(" + run + dvRun + ") " + name;
     }
     
 }

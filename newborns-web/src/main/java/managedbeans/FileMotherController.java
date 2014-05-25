@@ -1,7 +1,7 @@
 package managedbeans;
 
 import entities.File;
-import entities.FileNewborn;
+import entities.FileMother;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -20,28 +20,29 @@ import javax.inject.Named;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
 import managedbeans.util.SessionUtil;
-import sessionbeans.FileNewbornFacadeLocal;
+import sessionbeans.FileFacadeLocal;
+import sessionbeans.FileMotherFacadeLocal;
 
-@Named("fileNewbornController")
+@Named("fileMotherController")
 @SessionScoped
-public class FileNewbornController implements Serializable {
+public class FileMotherController implements Serializable {
 
     @EJB
-    private FileNewbornFacadeLocal ejbFacade;
-    private List<FileNewborn> items = null;
-    private FileNewborn selected;
+    private FileMotherFacadeLocal ejbFacade;
+    private List<FileMother> items = null;
+    private FileMother selected;
     
     @Inject
     private SessionUtil sessionUtil;
 
-    public FileNewbornController() {
+    public FileMotherController() {
     }
 
-    public FileNewborn getSelected() {
+    public FileMother getSelected() {
         return selected;
     }
 
-    public void setSelected(FileNewborn selected) {
+    public void setSelected(FileMother selected) {
         this.selected = selected;
     }
 
@@ -51,36 +52,36 @@ public class FileNewbornController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private FileNewbornFacadeLocal getFacade() {
+    private FileMotherFacadeLocal getFacade() {
         return ejbFacade;
     }
 
-    public FileNewborn prepareCreate() {
-        selected = new FileNewborn();
+    public FileMother prepareCreate() {
+        selected = new FileMother();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("FileNewbornCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("FileMotherCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("FileNewbornUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("FileMotherUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("FileNewbornDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("FileMotherDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<FileNewborn> getItems() {
+    public List<FileMother> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -92,12 +93,17 @@ public class FileNewbornController implements Serializable {
             setEmbeddableKeys();
             try {
                 if(persistAction == PersistAction.CREATE) {
+                    // Creando la ficha
+                    System.out.println("Creando la Ficha");
                     File newFile = new File();
                     newFile.setCreatedAt(new Date());
                     newFile.setCreator(sessionUtil.getCurrentUser());
+                    
+                    // Creando ficha de la madre
                     selected.setFile(newFile);
                     getFacade().edit(selected);
-                } else if (persistAction != PersistAction.DELETE) {
+                }
+                else if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);
@@ -121,29 +127,29 @@ public class FileNewbornController implements Serializable {
         }
     }
 
-    public FileNewborn getFileNewborn(java.lang.Long id) {
+    public FileMother getFileMother(java.lang.Long id) {
         return getFacade().find(id);
     }
 
-    public List<FileNewborn> getItemsAvailableSelectMany() {
+    public List<FileMother> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<FileNewborn> getItemsAvailableSelectOne() {
+    public List<FileMother> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = FileNewborn.class)
-    public static class FileNewbornControllerConverter implements Converter {
+    @FacesConverter(forClass = FileMother.class)
+    public static class FileMotherControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            FileNewbornController controller = (FileNewbornController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "fileNewbornController");
-            return controller.getFileNewborn(getKey(value));
+            FileMotherController controller = (FileMotherController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "fileMotherController");
+            return controller.getFileMother(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -163,11 +169,11 @@ public class FileNewbornController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof FileNewborn) {
-                FileNewborn o = (FileNewborn) object;
+            if (object instanceof FileMother) {
+                FileMother o = (FileMother) object;
                 return getStringKey(o.getFileCode());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), FileNewborn.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), FileMother.class.getName()});
                 return null;
             }
         }

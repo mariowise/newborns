@@ -12,22 +12,22 @@
             <h:form id="FileNewbornCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="4" rendered="#{fileNewbornController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateFileNewbornLabel_file}" for="file" />
-                        <p:selectOneMenu id="file" value="#{fileNewbornController.selected.file}" required="true" requiredMessage="#{bundle.EditFileNewbornRequiredMessage_file}">
-                            <f:selectItems value="#{fileController.itemsAvailableSelectOne}"
-                                           var="fileItem"
-                                           itemValue="#{fileItem}"/>
-                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateFileNewbornLabel_dateOfBirth}" for="dateOfBirth" />
-                        <p:calendar id="dateOfBirth" pattern="MM/dd/yyyy" value="#{fileNewbornController.selected.dateOfBirth}" title="#{bundle.EditFileNewbornTitle_dateOfBirth}"  showOn="button"/>
+                        <p:calendar id="dateOfBirth" pattern="dd/MM/yyyy" value="#{fileNewbornController.selected.dateOfBirth}" title="#{bundle.EditFileNewbornTitle_dateOfBirth}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateFileNewbornLabel_timeOfBirth}" for="timeOfBirth" />
                         <p:calendar id="timeOfBirth" pattern="HH:mm:ss" value="#{fileNewbornController.selected.timeOfBirth}" title="#{bundle.EditFileNewbornTitle_timeOfBirth}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateFileNewbornLabel_motherFile}" for="motherFile" />
-                        <p:selectOneMenu id="motherFile" value="#{fileNewbornController.selected.motherFile}" >
-                            <f:selectItems value="#{fileMotherController.itemsAvailableSelectOne}"
-                                           var="motherFileItem"
-                                           itemValue="#{motherFileItem}"/>
-                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="#{bundle.CreateFileNewbornLabel_motherFile}" for="motherFile"/>
+                        <p:selectOneListbox id="motherFile" value="#{fileNewbornController.selected.motherFile}" var="motherFileItem" filter="true" filterMatchMode="contains">
+                            <f:selectItems value="#{fileMotherController.itemsAvailableSelectOne}" var="motherFileItem" itemLabel="#{motherFileItem.person.run}" itemValue="#{motherFileItem}" />
+                            <p:column>
+                                <h:outputText value="#{motherFileItem.file.id}" />
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="#{motherFileItem.person.run}#{motherFileItem.person.dvRun} - #{motherFileItem.person.name} #{motherFileItem.person.firstLastname} #{motherFileItem.person.secondLastname}" />
+                            </p:column>
+                        </p:selectOneListbox>
+                        
                         <p:outputLabel value="#{bundle.CreateFileNewbornLabel_deliveryType}" for="deliveryType" />
                         <p:selectOneMenu id="deliveryType" value="#{fileNewbornController.selected.deliveryType}" required="true" requiredMessage="#{bundle.EditFileNewbornRequiredMessage_deliveryType}">
                             <f:selectItems value="#{deliveryTypeController.itemsAvailableSelectOne}"
