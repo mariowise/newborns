@@ -8,27 +8,88 @@
 
     <ui:composition>
 
-        <p:dialog id="ServiceAttentionCreateDlg" widgetVar="SACreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateServiceAttentionTitle}">
-            <h:form id="SACreateForm">
+        <p:dialog id="ServiceAttentionCreateDlg" widgetVar="ServiceAttentionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateServiceAttentionTitle}">
+            <h:form id="ServiceAttentionCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{serviceAttentionController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_healthService}" for="healthService" />
-                        <p:selectOneMenu id="healthService" value="#{serviceAttentionController.selected.healthService}" required="true" requiredMessage="#{bundle.EditServiceAttentionRequiredMessage_healthService}">
-                            <f:selectItems value="#{serviceController.itemsAvailableSelectOne}"
+                    <p:panelGrid columns="1" rendered="#{serviceAttentionController.selected != null}">
+                        <!--<p:outputLabel value="{bundle.CreateServiceAttentionLabel_healthService}" for="healthService" />-->
+<!--                        <p:selectOneMenu id="healthService" value="{serviceAttentionController.selected.healthService}" required="true" requiredMessage="{bundle.EditServiceAttentionRequiredMessage_healthService}">
+                            <f:selectItems value="{serviceController.itemsAvailableSelectOne}"
                                            var="healthServiceItem"
-                                           itemValue="#{healthServiceItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_admissionFile}" for="admissionFile" />
-                        <p:selectOneMenu id="admissionFile" value="#{serviceAttentionController.selected.admissionFile}" required="true" requiredMessage="#{bundle.EditServiceAttentionRequiredMessage_admissionFile}">
-                            <f:selectItems value="#{personController.itemsAvailableSelectOne}"
+                                           itemValue="{healthServiceItem}"/>
+                        </p:selectOneMenu>-->
+                        <p:row>
+                            <p:dataTable id="healthService" value="#{serviceController.itemsAvailableSelectOne}" var="healthServiceItem"
+                                             selectionMode="single" selection="#{serviceAttentionController.selected.healthService}"
+                                             rowKey="#{healthServiceItem.id}"
+                                             rows="5"
+
+                                             widgetVar="healthService"
+                                             emptyMessage="No se encontraron resultados según el criterio de búsqueda" filteredValue="#{serviceController.filteredHealthServices}" 
+                                             >
+
+                                <f:facet name="header">
+                                    <p:outputPanel>
+                                        <h:outputText value="Buscar servicios de salud:" />
+                                        <p:inputText id="globalFilter" onkeyup="PF('healthService').filter()" style="width:150px" placeholder="Ingresar criterio..."/>
+                                    </p:outputPanel>
+                                </f:facet>
+
+                                <p:column filterBy="#{healthServiceItem.name}" headerText="Name" filterMatchMode="contains">
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListServiceTitle_name}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{healthServiceItem.name}"/>
+                                </p:column>                            
+                            </p:dataTable> 
+                        </p:row>
+<!--                        <p:selectOneMenu id="admissionFile" value="{serviceAttentionController.selected.admissionFile}" required="true" requiredMessage="{bundle.EditServiceAttentionRequiredMessage_admissionFile}">
+                            <f:selectItems value="{personController.itemsAvailableSelectOne}"
                                            var="admissionFileItem"
-                                           itemValue="#{admissionFileItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_registerDate}" for="registerDate" />
-                        <p:calendar id="registerDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{serviceAttentionController.selected.registerDate}" title="#{bundle.EditServiceAttentionTitle_registerDate}"  showOn="button"/>
+                                           itemValue="{admissionFileItem}"/>
+                        </p:selectOneMenu>-->
+                        <!--<p:outputLabel value="{bundle.CreateServiceAttentionLabel_admissionFile}" for="admissionFile" />-->
+                        <p:row>
+                            <p:dataTable id="admissionFile" value="#{personController.itemsAvailableSelectOne}" var="admissionFileItem"
+                                             selectionMode="single" selection="#{serviceAttentionController.selected.admissionFile}"
+                                             rowKey="#{admissionFileItem.id}"
+                                             rows="5"
+
+                                             widgetVar="admissionFile"
+                                             emptyMessage="No se encontraron resultados según el criterio de búsqueda" filteredValue="#{personController.filteredPersons}" 
+                                             >
+
+    <!--                            <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton createAdmissionButton"/>
+                                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton createAdmissionButton"/>-->
+
+                                <f:facet name="header">
+                                    <p:outputPanel>
+                                        <h:outputText value="Buscar personas ingresadas:" />
+                                        <p:inputText id="globalFilter" onkeyup="PF('admissionFile').filter()" style="width:150px" placeholder="Ingresar..."/>
+                                    </p:outputPanel>
+                                </f:facet>
+
+                                <p:column filterBy="#{admissionFileItem.id}" headerText="Id" filterMatchMode="contains">
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListPersonTitle_id}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{admissionFileItem.id}"/>
+                                </p:column>
+                                <p:column filterBy="#{admissionFileItem.run}" headerText="Run" filterMatchMode="contains">
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListPersonTitle_run}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{admissionFileItem.run}"/>
+                                </p:column>                            
+                            </p:dataTable> 
+                        </p:row>
+                        <p:row>
+                            <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_registerDate}" for="registerDate" />
+                            <p:calendar id="registerDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{serviceAttentionController.selected.registerDate}" title="#{bundle.EditServiceAttentionTitle_registerDate}"  showOn="button"/>
+                        </p:row>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{serviceAttentionController.create}" value="#{bundle.Save}" update="display,:PersonListForm:datalist,:growl" oncomplete="handleSubmit(args,'SACreateForm');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="SACreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{serviceAttentionController.create}" value="#{bundle.Save}" update="display,:PersonListForm:datalist,:growl" oncomplete="handleSubmit(args,'ServiceAttentionCreateForm');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ServiceAttentionCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

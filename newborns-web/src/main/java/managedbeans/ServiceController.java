@@ -27,6 +27,9 @@ public class ServiceController implements Serializable {
     private ServiceFacadeLocal ejbFacadeLocal;
     private List<Service> items = null;
     private Service selected;
+    
+    private List<Service> filteredHealthServices;
+    
 
     public ServiceController() {
     }
@@ -162,4 +165,12 @@ public class ServiceController implements Serializable {
 
     }
 
+    public List<Service> getFilteredHealthServices() {
+        return filteredHealthServices;
+    }
+
+    public void setFilteredHealthServices(List<Service> filteredHealthServices) {
+        this.filteredHealthServices = filteredHealthServices;
+    }
+    
 }
