@@ -92,7 +92,10 @@ public class ServiceAttention implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.AdmissionService[ id=" + id + " ]";
+        return id.toString().concat(" - ")
+                .concat(registerDate.toString()).concat(" - ")
+                .concat(admissionFile.getId().toString()).concat(" - ")
+                .concat(healthService.toString());
     }
     
 }

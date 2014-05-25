@@ -63,7 +63,7 @@ public class Service implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.HealthService[ id=" + id + " ]";
+        return name;
     }
     
 }
