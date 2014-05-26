@@ -45,6 +45,9 @@ public class Rut implements Validator, ClientValidator {
     }
     
     private boolean checkExistence(String rut) {
+        rut =  rut.toUpperCase();
+            rut = rut.replace(".", "");
+            rut = rut.replace("-", "");
         Account selected = ejbFacade.find(rut);
         if(selected != null) {
             return true;
