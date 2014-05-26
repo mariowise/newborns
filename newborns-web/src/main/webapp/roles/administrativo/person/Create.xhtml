@@ -36,6 +36,12 @@
                                            var="forecastHealthItem"
                                            itemValue="#{forecastHealthItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePersonLabel_country}" for="country" />
+                        <p:selectOneMenu id="country" value="#{personController.selected.country}" required="true" requiredMessage="#{bundle.EditPersonRequiredMessage_country}">
+                            <f:selectItems value="#{countryController.itemsAvailableSelectOne}"
+                                           var="countryItem"
+                                           itemValue="#{countryItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreatePersonLabel_region}" for="region" />
                         <p:selectOneMenu id="region" value="#{personController.selected.region}" required="true" requiredMessage="#{bundle.EditPersonRequiredMessage_region}">
                             <f:selectItems value="#{regionController.itemsAvailableSelectOne}"
