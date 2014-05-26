@@ -50,6 +50,9 @@ public class SessionController {
     }
 
     public void setRut(String rut) {
+        rut = rut.replace(".", "");
+        rut = rut.replace(",", "");
+        rut = rut.replace("-", "");
         this.rut = rut;
     }
 
