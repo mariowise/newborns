@@ -8,12 +8,15 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
@@ -104,6 +107,9 @@ public class Person implements Serializable {
     
     @Size(min = 1, message = "Debe ingresar una confirmación de diagnóstico")
     private String diagnosticConfirmation;
+    
+    @OneToMany(mappedBy="admissionFile")
+    private List <ServiceAttention> attentions;
     
     public Long getId() {
         return id;
@@ -295,6 +301,14 @@ public class Person implements Serializable {
 
     public void setDiagnosticConfirmation(String diagnosticConfirmation) {
         this.diagnosticConfirmation = diagnosticConfirmation;
+    }
+
+    public List<ServiceAttention> getAttentions() {
+        return attentions;
+    }
+
+    public void setAttentions(List<ServiceAttention> attentions) {
+        this.attentions = attentions;
     }
 
     @Override

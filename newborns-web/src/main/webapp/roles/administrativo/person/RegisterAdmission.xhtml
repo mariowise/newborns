@@ -11,27 +11,26 @@
         <p:dialog id="ServiceAttentionCreateDlg" widgetVar="ServiceAttentionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateServiceAttentionTitle}">
             <h:form id="ServiceAttentionCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{serviceAttentionController.selected != null}">
-                            <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_originHealthService}" for="healthService" />
-                            <p:selectOneListbox id="originHealthService" value="#{serviceAttentionController.selected.originHealthService}" var="originHealthServiceItem" filter="true" filterMatchMode="contains" required="true" requiredMessage="#{bundle.CreateServiceAttentionRequiredMessage_originHealthService}" style="width:100%" >
-                                <f:selectItems value="#{serviceController.itemsAvailableSelectOne}" var="originHealthServiceItem" itemLabel="#{originHealthServiceItem.name}" itemValue="#{originHealthServiceItem}" />
-                                    <p:column>
-                                        <h:outputText value="#{originHealthServiceItem.name}" />
-                                    </p:column>
-                            </p:selectOneListbox>
-                        
-                            <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_healthService}" for="healthService" />
-                            <p:selectOneListbox id="healthService" value="#{serviceAttentionController.selected.healthService}" var="healthServiceItem" filter="true" filterMatchMode="contains" required="true" requiredMessage="#{bundle.CreateServiceAttentionRequiredMessage_healthService}" style="width:100%" >
-                                <f:selectItems value="#{serviceController.itemsAvailableSelectOne}" var="healthServiceItem" itemLabel="#{healthServiceItem.name}" itemValue="#{healthServiceItem}" />
-                                    <p:column>
-                                        <h:outputText value="#{healthServiceItem.name}" />
-                                    </p:column>
-                            </p:selectOneListbox>
-                            <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_registerDate}" for="registerDate" />
-                            <p:calendar id="registerDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{serviceAttentionController.selected.registerDate}" title="#{bundle.EditServiceAttentionTitle_registerDate}"  showOn="button"/>
-                       
+                    <p:panelGrid columns="2" rendered="#{personController.newService != null}">
+                        <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_originHealthService}" for="healthService" />
+                        <p:selectOneListbox id="originHealthService" value="#{personController.newService.originHealthService}" var="originHealthServiceItem" filter="true" filterMatchMode="contains" required="true" requiredMessage="#{bundle.CreateServiceAttentionRequiredMessage_originHealthService}" style="width:100%" >
+                            <f:selectItems value="#{serviceController.itemsAvailableSelectOne}" var="originHealthServiceItem" itemLabel="#{originHealthServiceItem.name}" itemValue="#{originHealthServiceItem}" />
+                                <p:column>
+                                    <h:outputText value="#{originHealthServiceItem.name}" />
+                                </p:column>
+                        </p:selectOneListbox>
+
+                        <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_healthService}" for="healthService" />
+                        <p:selectOneListbox id="healthService" value="#{personController.newService.healthService}" var="healthServiceItem" filter="true" filterMatchMode="contains" required="true" requiredMessage="#{bundle.CreateServiceAttentionRequiredMessage_healthService}" style="width:100%" >
+                            <f:selectItems value="#{serviceController.itemsAvailableSelectOne}" var="healthServiceItem" itemLabel="#{healthServiceItem.name}" itemValue="#{healthServiceItem}" />
+                                <p:column>
+                                    <h:outputText value="#{healthServiceItem.name}" />
+                                </p:column>
+                        </p:selectOneListbox>
+                        <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_registerDate}" for="registerDate" />
+                        <p:calendar id="registerDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{personController.newService.registerDate}" title="#{bundle.EditServiceAttentionTitle_registerDate}"  showOn="button"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{serviceAttentionController.create}" value="#{bundle.Save}" update="display,:PersonListForm:datalist,:growl" oncomplete="handleSubmit(args,'ServiceAttentionCreateForm');"/>
+                    <p:commandButton actionListener="#{personController.update}" value="#{bundle.Save}" update="display,:PersonListForm:datalist,:growl" oncomplete="handleSubmit(args,'ServiceAttentionCreateForm');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ServiceAttentionCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

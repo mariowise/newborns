@@ -57,21 +57,9 @@
                     </p:column>
                     <p:column filterBy="#{item.name}" headerText="Names" filterMatchMode="contains">
                         <f:facet name="header">
-                            <h:outputText value="#{bundle.ListPersonTitle_names}"/>
+                            <h:outputText value="Nombre"/>
                         </f:facet>
-                        <h:outputText value="#{item.name}"/>
-                    </p:column>
-                    <p:column filterBy="#{item.firstLastname}" headerText="FirstLastname" filterMatchMode="contains">
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListPersonTitle_firstLastname}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.firstLastname}"/>
-                    </p:column>
-                    <p:column filterBy="#{item.secondLastname}" headerText="SecondLastname" filterMatchMode="contains">
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListPersonTitle_secondLastname}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.secondLastname}"/>
+                        <h:outputText value="#{item.firstLastname} #{item.secondLastname}, #{item.name}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
@@ -80,11 +68,31 @@
                         <h:outputText value="#{item.forecastHealth.name}"/>
                     </p:column>
                     <f:facet name="footer">
-                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.CreatePersonButton}" actionListener="#{personController.prepareCreate}" update=":PersonCreateForm" oncomplete="PF('PersonCreateDialog').show()"/>
-
-                        <p:commandButton id="createAdmissionButton" icon="ui-icon-plus"   value="#{bundle.CreateAdmissionRegister}" actionListener="#{serviceAttentionController.prepareCreate}" update=":ServiceAttentionCreateForm" oncomplete="PF('ServiceAttentionCreateDialog').show()" disabled="#{empty personController.selected}"/>
-                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PersonViewForm" oncomplete="PF('PersonViewDialog').show()" disabled="#{empty personController.selected}"/>
-                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":PersonEditForm" oncomplete="PF('PersonEditDialog').show()" disabled="#{empty personController.selected}"/>
+                        <p:commandButton id="createButton" 
+                                         icon="ui-icon-plus" 
+                                         value="#{bundle.CreatePersonButton}" 
+                                         actionListener="#{personController.prepareCreate}" 
+                                         update=":PersonCreateForm" 
+                                         oncomplete="PF('PersonCreateDialog').show()"/>
+                        <p:commandButton id="createAdmissionButton" 
+                                         icon="ui-icon-plus" 
+                                         value="#{bundle.CreateAdmissionRegister}" 
+                                         actionListener="#{personController.prepareCreateServiceAttention}" 
+                                         update=":ServiceAttentionCreateForm" 
+                                         oncomplete="PF('ServiceAttentionCreateDialog').show()" 
+                                         disabled="#{empty personController.selected}" />
+                        <p:commandButton id="viewButton"   
+                                         icon="ui-icon-search" 
+                                         value="#{bundle.View}" 
+                                         update=":PersonViewForm" 
+                                         oncomplete="PF('PersonViewDialog').show()" 
+                                         disabled="#{empty personController.selected}"/>
+                        <p:commandButton id="editButton"   
+                                         icon="ui-icon-pencil" 
+                                         value="#{bundle.Edit}" 
+                                         update=":PersonEditForm" 
+                                         oncomplete="PF('PersonEditDialog').show()" 
+                                         disabled="#{empty personController.selected}"/>
                         <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{personController.destroy}" update=":growl,datalist" disabled="#{empty personController.selected}"/>
 
                     </f:facet>

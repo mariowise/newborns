@@ -28,7 +28,7 @@ html, body {
 	min-height: 100%;
 
 	.footer-ghost {
-		height: $footer-height;
+		height: ($footer-height + 70);
 	}
 
 	.footer {

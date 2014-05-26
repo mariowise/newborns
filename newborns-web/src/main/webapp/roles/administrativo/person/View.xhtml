@@ -59,8 +59,9 @@
                         <h:outputText value="#{bundle.ViewPersonLabel_diagnosticConfirmation}"/>
                         <h:outputText value="#{personController.selected.diagnosticConfirmation}" title="#{bundle.ViewPersonTitle_diagnosticConfirmation}"/>
                     </p:panelGrid>
-                    <h4>#{bundle.ViewServiceAttentionTitle_person}</h4>
-                    <p:dataTable var="item" value="#{serviceAttentionController.filteredServiceAttentions}" scrollable="true" scrollHeight="50">
+                    
+                    <h4>#{bundle.ViewServiceAttentionTitle_person} (#{personController.selected.attentions.size()})</h4>
+                    <p:dataTable var="item" value="#{personController.selected.attentions}" scrollable="true" scrollHeight="150" sortBy="registerDate" sortOrder="DESCENDING">
                         <p:column headerText="Fecha admisión">
                             <h:outputText value="#{item.registerDate}" />
                         </p:column>
@@ -71,6 +72,7 @@
                             <h:outputText value="#{item.originHealthService.name}" />
                         </p:column>
                     </p:dataTable>
+                    
                     <p:commandButton value="#{bundle.Close}" onclick="PersonViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

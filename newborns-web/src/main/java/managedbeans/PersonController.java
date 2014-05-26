@@ -21,7 +21,6 @@ import javax.inject.Named;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
 import sessionbeans.PersonFacadeLocal;
-import sessionbeans.ServiceAttentionFacadeLocal;
 
 @Named("personController")
 @SessionScoped
@@ -31,6 +30,7 @@ public class PersonController implements Serializable {
     private PersonFacadeLocal ejbFacadeLocal;
     private List<Person> items = null;
     private Person selected;
+    private ServiceAttention newService;
 
     private List<Person> filteredPersons;
     
@@ -43,6 +43,14 @@ public class PersonController implements Serializable {
 
     public void setSelected(Person selected) {
         this.selected = selected;
+    }
+
+    public ServiceAttention getNewService() {
+        return newService;
+    }
+
+    public void setNewService(ServiceAttention newService) {
+        this.newService = newService;
     }
 
     protected void setEmbeddableKeys() {
@@ -59,6 +67,13 @@ public class PersonController implements Serializable {
         selected = new Person();
         initializeEmbeddableKey();
         return selected;
+    }
+    
+    public ServiceAttention prepareCreateServiceAttention() {
+        newService = new ServiceAttention();
+        newService.setAdmissionFile(selected);
+        selected.getAttentions().add(newService);
+        return newService;
     }
 
     public void create() {
