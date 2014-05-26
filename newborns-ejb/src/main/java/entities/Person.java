@@ -32,26 +32,25 @@ public class Person implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @NotNull
+    @NotNull(message = "Debe ingresar un Run")
     private Long run;
     
-    @NotNull
     @Size(min = 1, max = 1, message = "Deve ingresar un caracter verificador")
     private String dvRun;
     
-    @NotNull
+    @Size(min = 1, message = "Debe ingresar un nombre")
     @Pattern(regexp = "\\D*", message = "El campo Nombres no debe contener números")
     private String name;
     
-    @NotNull
+    @Size(min = 1, message = "Debe ingresar un Apellido paterno")
     @Pattern(regexp = "\\D*", message = "El campo Primer apellido no debe contener números ni tildes")
     private String firstLastname;
     
-    @NotNull
+    @Size(min = 1, message = "Debe ingresar un Apellido materno")
     @Pattern(regexp = "\\D*", message = "El campo Segundo apellido no puede contener números ni tildes")
     private String secondLastname;
 
-    @NotNull(message= "Debe colocar una fecha de nacimiento")
+    @NotNull(message= "Debe ingresar una fecha de nacimiento")
     @Temporal(javax.persistence.TemporalType.DATE)
     @Past(message = "Coloque una fecha de nacimiento anterior al día de hoy")
     private Date birthDate;
@@ -67,14 +66,17 @@ public class Person implements Serializable {
     @NotNull
     private Boolean prais;
     
+    @NotNull(message = "Debe seleccionar una Nacionalidad")
+    private Country country;
+    
     @JoinColumn(nullable = false)
     @ManyToOne
     private Region region;
     
-    @NotNull
+    @Size(min = 1, message = "Debe ingresar una Ciudad")
     private String city;
     
-    @NotNull
+    @Size(min = 1, message = "Debe ingresar una Municipalidad")
     private String municipality;
     
     @NotNull
@@ -93,12 +95,14 @@ public class Person implements Serializable {
     
     private String movilePhoneNumber;
     
+    @Size(min = 1, message = "Debe ingresar un Correo electrónico")
     @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$" , message = "Ingrese un correo valido, e.g.=mail@mail.com")
     private String email;
     
-    @NotNull( message = "Debe ingresar una sospecha de diagnóstico")
+    @Size(min = 1, message = "Debe ingresar una sospecha de diagnóstico")
     private String diagnosticSuspicion;
     
+    @Size(min = 1, message = "Debe ingresar una confirmación de diagnóstico")
     private String diagnosticConfirmation;
     
     public Long getId() {
@@ -179,6 +183,14 @@ public class Person implements Serializable {
 
     public void setPrais(Boolean prais) {
         this.prais = prais;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     public Region getRegion() {

@@ -1,47 +1,41 @@
 package managedbeans;
 
-import entities.Person;
-import entities.Service;
-import entities.ServiceAttention;
+import entities.Country;
+import managedbeans.util.JsfUtil;
+import managedbeans.util.JsfUtil.PersistAction;
+import sessionbeans.CountryFacadeLocal;
+
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.inject.Named;
-import managedbeans.util.JsfUtil;
-import managedbeans.util.JsfUtil.PersistAction;
-import sessionbeans.PersonFacadeLocal;
-import sessionbeans.ServiceAttentionFacadeLocal;
 
-@Named("personController")
+@Named("countryController")
 @SessionScoped
-public class PersonController implements Serializable {
+public class CountryController implements Serializable {
 
     @EJB
-    private PersonFacadeLocal ejbFacadeLocal;
-    private List<Person> items = null;
-    private Person selected;
+    private CountryFacadeLocal ejbFacadeLocal;
+    private List<Country> items = null;
+    private Country selected;
 
-    private List<Person> filteredPersons;
-    
-    public PersonController() {
+    public CountryController() {
     }
 
-    public Person getSelected() {
+    public Country getSelected() {
         return selected;
     }
 
-    public void setSelected(Person selected) {
+    public void setSelected(Country selected) {
         this.selected = selected;
     }
 
@@ -51,36 +45,36 @@ public class PersonController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private PersonFacadeLocal getFacade() {
+    private CountryFacadeLocal getFacade() {
         return ejbFacadeLocal;
     }
 
-    public Person prepareCreate() {
-        selected = new Person();
+    public Country prepareCreate() {
+        selected = new Country();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("PersonCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("CountryCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("PersonUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CountryUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("PersonDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("CountryDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Person> getItems() {
+    public List<Country> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -115,29 +109,29 @@ public class PersonController implements Serializable {
         }
     }
 
-    public Person getPerson(java.lang.Long id) {
+    public Country getCountry(java.lang.Long id) {
         return getFacade().find(id);
     }
 
-    public List<Person> getItemsAvailableSelectMany() {
+    public List<Country> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Person> getItemsAvailableSelectOne() {
+    public List<Country> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Person.class)
-    public static class PersonControllerConverter implements Converter {
+    @FacesConverter(forClass = Country.class)
+    public static class CountryControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            PersonController controller = (PersonController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "personController");
-            return controller.getPerson(getKey(value));
+            CountryController controller = (CountryController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "countryController");
+            return controller.getCountry(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -157,36 +151,15 @@ public class PersonController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Person) {
-                Person o = (Person) object;
+            if (object instanceof Country) {
+                Country o = (Country) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Person.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Country.class.getName()});
                 return null;
             }
         }
 
-    }
-
-    public List<Person> getFilteredPersons() {
-        return filteredPersons;
-    }
-
-    public void setFilteredPersons(List<Person> filteredPersons) {
-        this.filteredPersons = filteredPersons;
-    }
-    
-    public boolean filterByRun(Object value, Object filter, Locale locale) {
-        String filterText = (filter == null) ? null : filter.toString().trim();
-        if(filterText == null||filterText.equals("")) {
-            return true;
-        }
-         
-        if(value == null) {
-            return false;
-        }
-         
-        return ((Comparable) value).compareTo(Integer.valueOf(filterText)) > 0;
     }
 
 }

@@ -6,6 +6,7 @@
 
 package sessionbeans;
 
+import entities.Person;
 import entities.ServiceAttention;
 import java.util.List;
 import javax.ejb.Local;
@@ -31,5 +32,5 @@ public interface ServiceAttentionFacadeLocal {
 
     int count();
     
-    public Boolean registerAdmission(ServiceAttention sa);
+    public List<ServiceAttention> getServiceAttentionByPerson(Person person);
 }

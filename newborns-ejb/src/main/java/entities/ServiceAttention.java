@@ -29,6 +29,10 @@ public class ServiceAttention implements Serializable {
     
     @JoinColumn(nullable = false)
     @ManyToOne
+    private Service originHealthService;
+    
+    @JoinColumn(nullable = false)
+    @ManyToOne
     private Service healthService;
     
     @JoinColumn(nullable = false)
@@ -44,6 +48,14 @@ public class ServiceAttention implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Service getOriginHealthService() {
+        return originHealthService;
+    }
+
+    public void setOriginHealthService(Service originHealthService) {
+        this.originHealthService = originHealthService;
     }
 
     public Service getHealthService() {

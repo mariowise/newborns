@@ -14,6 +14,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
 import javax.inject.Named;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
@@ -28,8 +29,11 @@ public class ServiceAttentionController implements Serializable {
     private List<ServiceAttention> items = null;
     private ServiceAttention selected;
     
-    private Person personSelected;
-
+    @Inject
+    private PersonController personController;
+    
+    private List<ServiceAttention> filteredServiceAttentions = null;
+        
     public ServiceAttentionController() {
     }
 
@@ -88,6 +92,7 @@ public class ServiceAttentionController implements Serializable {
             setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
+                    selected.setAdmissionFile(personController.getSelected());
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);
@@ -164,12 +169,17 @@ public class ServiceAttentionController implements Serializable {
 
     }
 
-    public Person getPersonSelected() {
-        return personSelected;
+    public List<ServiceAttention> getFilteredServiceAttentions() {        
+        filteredServiceAttentions = getFacade().getServiceAttentionByPerson(personController.getSelected());
+        if (filteredServiceAttentions!=null) {
+            return filteredServiceAttentions;
+        }else{
+            return null;
+        }        
     }
 
-    public void setPersonSelected(Person personSelected) {
-        this.personSelected = personSelected;
+    public void setFilteredServiceAttentions(List<ServiceAttention> filteredServiceAttentions) {
+        this.filteredServiceAttentions = filteredServiceAttentions;
     }
-
+    
 }
