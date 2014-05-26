@@ -310,4 +310,8 @@ public class Person implements Serializable {
         return "(" + run + dvRun + ") " + name;
     }
     
+    public String getCompleteName() {
+        return name + " " + firstLastname + " " + secondLastname;
+    }
+    
 }

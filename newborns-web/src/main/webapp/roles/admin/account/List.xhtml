@@ -28,18 +28,12 @@
                              paginator="true"
                              rowKey="#{item.rut}"
                              rows="10"
-                             rowsPerPageTemplate="10,20,30,40,50" sortBy=""
+                             rowsPerPageTemplate="10,20,30,40,50" 
                              >
 
                     <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                     <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="RUT"/>
-                        </f:facet>
-                        <h:outputText value="#{item}"/>
-                    </p:column>
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="RUT"/>

@@ -12,21 +12,19 @@
             <h:form id="FileNewbornCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="4" rendered="#{fileNewbornController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateFileNewbornLabel_dateOfBirth}" for="dateOfBirth" />
-                        <p:calendar id="dateOfBirth" pattern="dd/MM/yyyy" value="#{fileNewbornController.selected.dateOfBirth}" title="#{bundle.EditFileNewbornTitle_dateOfBirth}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateFileNewbornLabel_timeOfBirth}" for="timeOfBirth" />
-                        <p:calendar id="timeOfBirth" pattern="HH:mm:ss" value="#{fileNewbornController.selected.timeOfBirth}" title="#{bundle.EditFileNewbornTitle_timeOfBirth}"  showOn="button"/>
-                        
                         <p:outputLabel value="#{bundle.CreateFileNewbornLabel_motherFile}" for="motherFile"/>
-                        <p:selectOneListbox id="motherFile" value="#{fileNewbornController.selected.motherFile}" var="motherFileItem" filter="true" filterMatchMode="contains">
+                        <p:selectOneListbox id="motherFile" style="width:100%" value="#{fileNewbornController.selected.motherFile}" var="motherFileItem" filter="true" filterMatchMode="contains">
                             <f:selectItems value="#{fileMotherController.itemsAvailableSelectOne}" var="motherFileItem" itemLabel="#{motherFileItem.person.run}" itemValue="#{motherFileItem}" />
-                            <p:column>
-                                <h:outputText value="#{motherFileItem.file.id}" />
-                            </p:column>
                             <p:column>
                                 <h:outputText value="#{motherFileItem.person.run}#{motherFileItem.person.dvRun} - #{motherFileItem.person.name} #{motherFileItem.person.firstLastname} #{motherFileItem.person.secondLastname}" />
                             </p:column>
                         </p:selectOneListbox>
+                    </p:panelGrid>
+                    <p:panelGrid columns="4" rendered="#{fileNewbornController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateFileNewbornLabel_dateOfBirth}" for="dateOfBirth" />
+                        <p:calendar id="dateOfBirth" pattern="dd/MM/yyyy" value="#{fileNewbornController.selected.dateOfBirth}" title="#{bundle.EditFileNewbornTitle_dateOfBirth}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateFileNewbornLabel_timeOfBirth}" for="timeOfBirth" />
+                        <p:calendar id="timeOfBirth" pattern="HH:mm:ss" value="#{fileNewbornController.selected.timeOfBirth}" title="#{bundle.EditFileNewbornTitle_timeOfBirth}"  showOn="button"/>
                         
                         <p:outputLabel value="#{bundle.CreateFileNewbornLabel_deliveryType}" for="deliveryType" />
                         <p:selectOneMenu id="deliveryType" value="#{fileNewbornController.selected.deliveryType}" required="true" requiredMessage="#{bundle.EditFileNewbornRequiredMessage_deliveryType}">

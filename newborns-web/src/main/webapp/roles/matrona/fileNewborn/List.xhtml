@@ -44,13 +44,19 @@
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListFileNewbornTitle_motherFile}"/>
                         </f:facet>
-                        <h:outputText value="#{item.motherFile}"/>
+                        <h:outputText value="#{item.motherFile.file.id}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombre Madre"/>
+                        </f:facet>
+                        <h:outputText value="#{item.motherFile.person.completeName}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListFileNewbornTitle_deliveryType}"/>
                         </f:facet>
-                        <h:outputText value="#{item.deliveryType}"/>
+                        <h:outputText value="#{item.deliveryType.name}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
