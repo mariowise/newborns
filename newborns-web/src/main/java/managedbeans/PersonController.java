@@ -34,10 +34,6 @@ public class PersonController implements Serializable {
 
     private List<Person> filteredPersons;
     
-    private ServiceAttentionController saController = new ServiceAttentionController();
-    private ServiceAttentionFacadeLocal saFacadeLocal;
-    private Service selectedService;    
-        
     public PersonController() {
     }
 
@@ -193,58 +189,4 @@ public class PersonController implements Serializable {
         return ((Comparable) value).compareTo(Integer.valueOf(filterText)) > 0;
     }
 
-    public Service getSelectedService() {
-        return selectedService;
-    }
-
-    public void setSelectedService(Service selectedService) {
-        this.selectedService = selectedService;
-    }
-    
-    public ServiceAttention prepareCreateServiceAttention() {        
-        return saController.prepareCreate();
-    }
-     
-    public void registerAdmission(){
-        //ejbFacadeLocal.registerAdmission(selected, selectedService);
-        ServiceAttention sa = saController.prepareCreate();
-//        sa.setAdmissionFile(selected);
-//        sa.setHealthService(selectedService);
-//        sa.setRegisterDate(new Date());
-        //saController.setSelected(sa);
-        if (sa==null) {
-            System.out.println("SA es nulo");
-        }
-        sa.setAdmissionFile(selected);
-        sa.setHealthService(selectedService);
-        sa.setRegisterDate(new Date());
-        if (sa==null) {
-            System.out.println("SA es nulo - Luego de seteo");
-        }
-        saController.getSelected().setAdmissionFile(selected);
-        saController.getSelected().setHealthService(selectedService);
-        saController.getSelected().setRegisterDate(new Date());
-        
-        System.out.println("Valor de RUN de Persona: "+selected.getRun());
-        System.out.println("Valor del NOMBRE del Servicio de Salud: "+selectedService.getName());
-        System.out.println("Valor del NOMBRE del Servicio de Salud del selected del controlador: "+saController.getSelected().getHealthService().getName());
-        
-        
-//        saFacadeLocal.create(saController.getSelected());
-        
-        System.out.println("Valor de RUN de Persona de SA: "+sa.getAdmissionFile().getRun());
-        System.out.println("Valor del NOMBRE del Servicio de Salud de SA: "+sa.getHealthService().getName());
-        
-        try {
-            if (saFacadeLocal.registerAdmission(sa)) {
-                System.out.println("SA ha persistido");
-            } else {
-                System.out.println("SA es nula");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-                
-//        saController.create();
-    }
 }

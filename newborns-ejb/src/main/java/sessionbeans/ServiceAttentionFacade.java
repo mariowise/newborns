@@ -6,7 +6,10 @@
 
 package sessionbeans;
 
+import entities.Person;
 import entities.ServiceAttention;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,13 +31,17 @@ public class ServiceAttentionFacade extends AbstractFacade<ServiceAttention> imp
     public ServiceAttentionFacade() {
         super(ServiceAttention.class);
     }
-    
-    public Boolean registerAdmission(ServiceAttention sa){
-        if (sa==null) {
-            return false;
-        }else{
-            em.persist(sa);
-            return true;
+     
+    public List<ServiceAttention> getServiceAttentionByPerson(Person person){
+        List<ServiceAttention> serviceAttentions = new ArrayList();
+        List<ServiceAttention> temp = this.findAll();
+        if ((temp != null) && (person != null)) {
+            for (int i = 0; i < temp.size(); i++) {
+                if (temp.get(i).getAdmissionFile().getId()==person.getId()) {
+                    serviceAttentions.add(temp.get(i));
+                }
+            }            
         }
+        return serviceAttentions;
     }
 }

@@ -59,6 +59,18 @@
                         <h:outputText value="#{bundle.ViewPersonLabel_diagnosticConfirmation}"/>
                         <h:outputText value="#{personController.selected.diagnosticConfirmation}" title="#{bundle.ViewPersonTitle_diagnosticConfirmation}"/>
                     </p:panelGrid>
+                    <h4>#{bundle.ViewServiceAttentionTitle_person}</h4>
+                    <p:dataTable var="item" value="#{serviceAttentionController.filteredServiceAttentions}" scrollable="true" scrollHeight="50">
+                        <p:column headerText="Fecha admisión">
+                            <h:outputText value="#{item.registerDate}" />
+                        </p:column>
+                        <p:column headerText="Servicio de salud">
+                            <h:outputText value="#{item.healthService.name}" />
+                        </p:column>
+                        <p:column headerText="Servicio de salud previo">
+                            <h:outputText value="#{item.originHealthService.name}" />
+                        </p:column>
+                    </p:dataTable>
                     <p:commandButton value="#{bundle.Close}" onclick="PersonViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

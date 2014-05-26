@@ -32,8 +32,8 @@ public class ServiceAttentionController implements Serializable {
     @Inject
     private PersonController personController;
     
-    private Person personSelected;
-
+    private List<ServiceAttention> filteredServiceAttentions = null;
+        
     public ServiceAttentionController() {
     }
 
@@ -169,12 +169,17 @@ public class ServiceAttentionController implements Serializable {
 
     }
 
-    public Person getPersonSelected() {
-        return personSelected;
+    public List<ServiceAttention> getFilteredServiceAttentions() {        
+        filteredServiceAttentions = getFacade().getServiceAttentionByPerson(personController.getSelected());
+        if (filteredServiceAttentions!=null) {
+            return filteredServiceAttentions;
+        }else{
+            return null;
+        }        
     }
 
-    public void setPersonSelected(Person personSelected) {
-        this.personSelected = personSelected;
+    public void setFilteredServiceAttentions(List<ServiceAttention> filteredServiceAttentions) {
+        this.filteredServiceAttentions = filteredServiceAttentions;
     }
-
+    
 }
