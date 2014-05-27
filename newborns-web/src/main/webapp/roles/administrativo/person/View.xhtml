@@ -29,15 +29,15 @@
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewPersonLabel_gender}"/>
-                        <h:outputText value="#{personController.selected.gender}" title="#{bundle.ViewPersonTitle_gender}"/>
+                        <h:outputText value="#{personController.selected.gender.name}" title="#{bundle.ViewPersonTitle_gender}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_forecastHealth}"/>
-                        <h:outputText value="#{personController.selected.forecastHealth}" title="#{bundle.ViewPersonTitle_forecastHealth}"/>
+                        <h:outputText value="#{personController.selected.forecastHealth.name}" title="#{bundle.ViewPersonTitle_forecastHealth}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_prais}"/>
                         <p:selectBooleanCheckbox value="#{personController.selected.prais}" disabled="true"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_country}"/>
-                        <h:outputText value="#{personController.selected.country}" title="#{bundle.ViewPersonTitle_country}"/>
+                        <h:outputText value="#{personController.selected.country.name}" title="#{bundle.ViewPersonTitle_country}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_region}"/>
-                        <h:outputText value="#{personController.selected.region}" title="#{bundle.ViewPersonTitle_region}"/>
+                        <h:outputText value="#{personController.selected.region.name}" title="#{bundle.ViewPersonTitle_region}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_city}"/>
                         <h:outputText value="#{personController.selected.city}" title="#{bundle.ViewPersonTitle_city}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_municipality}"/>
@@ -45,7 +45,7 @@
                         <h:outputText value="#{bundle.ViewPersonLabel_ruralResidency}"/>
                         <p:selectBooleanCheckbox value="#{personController.selected.ruralResidency}" disabled="true"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_recidencyType}"/>
-                        <h:outputText value="#{personController.selected.recidencyType}" title="#{bundle.ViewPersonTitle_recidencyType}"/>
+                        <h:outputText value="#{personController.selected.recidencyType.name}" title="#{bundle.ViewPersonTitle_recidencyType}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_streetName}"/>
                         <h:outputText value="#{personController.selected.streetName}" title="#{bundle.ViewPersonTitle_streetName}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_streetNumber}"/>

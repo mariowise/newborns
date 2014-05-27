@@ -69,6 +69,7 @@ public class Person implements Serializable {
     private Boolean prais;
     
     @NotNull(message = "Debe seleccionar una Nacionalidad")
+    @ManyToOne
     private Country country;
     
     @JoinColumn(nullable = false)

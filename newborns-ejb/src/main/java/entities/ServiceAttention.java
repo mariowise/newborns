@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -27,18 +28,22 @@ public class ServiceAttention implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @NotNull(message = "Debe seleccionar un Servicio de Salud de origen")
     @JoinColumn(nullable = false)
     @ManyToOne
     private Service originHealthService;
     
+    @NotNull(message = "Debe seleccionar el Servicio de Salud presente")
     @JoinColumn(nullable = false)
     @ManyToOne
     private Service healthService;
     
+    @NotNull(message = "Debe seleccionar una Persona para registrar")
     @JoinColumn(nullable = false)
     @ManyToOne
     private Person admissionFile;
     
+    @NotNull(message = "Debe indicar la fecha y hora de Admisión")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date registerDate;
 
