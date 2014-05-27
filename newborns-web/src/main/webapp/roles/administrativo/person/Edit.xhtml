@@ -16,8 +16,8 @@
                         <p:inputText id="run" value="#{personController.selected.run}" title="#{bundle.EditPersonTitle_run}" />
                         <p:outputLabel value="#{bundle.EditPersonLabel_dvRun}" for="dvRun" />
                         <p:inputText id="dvRun" value="#{personController.selected.dvRun}" title="#{bundle.EditPersonTitle_dvRun}" />
-                        <p:outputLabel value="#{bundle.EditPersonLabel_names}" for="names" />
-                        <p:inputText id="names" value="#{personController.selected.name}" title="#{bundle.EditPersonTitle_names}" />
+                        <p:outputLabel value="#{bundle.EditPersonLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{personController.selected.name}" title="#{bundle.EditPersonTitle_name}" />
                         <p:outputLabel value="#{bundle.EditPersonLabel_firstLastname}" for="firstLastname" />
                         <p:inputText id="firstLastname" value="#{personController.selected.firstLastname}" title="#{bundle.EditPersonTitle_firstLastname}" />
                         <p:outputLabel value="#{bundle.EditPersonLabel_secondLastname}" for="secondLastname" />
@@ -38,12 +38,10 @@
                                            var="forecastHealthItem"
                                            itemValue="#{forecastHealthItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPersonLabel_prais}" for="prais" />
+                        <p:selectBooleanCheckbox id="prais" value="#{personController.selected.prais}" />
                         <p:outputLabel value="#{bundle.EditPersonLabel_country}" for="country" />
-                        <p:selectOneMenu id="country" value="#{personController.selected.country}" required="true" requiredMessage="#{bundle.EditPersonRequiredMessage_country}">
-                            <f:selectItems value="#{countryController.itemsAvailableSelectOne}"
-                                           var="countryItem"
-                                           itemValue="#{countryItem}"/>
-                        </p:selectOneMenu>
+                        <p:inputText id="country" value="#{personController.selected.country}" title="#{bundle.EditPersonTitle_country}" />
                         <p:outputLabel value="#{bundle.EditPersonLabel_region}" for="region" />
                         <p:selectOneMenu id="region" value="#{personController.selected.region}" required="true" requiredMessage="#{bundle.EditPersonRequiredMessage_region}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
@@ -55,6 +53,8 @@
                         <p:inputText id="city" value="#{personController.selected.city}" title="#{bundle.EditPersonTitle_city}" />
                         <p:outputLabel value="#{bundle.EditPersonLabel_municipality}" for="municipality" />
                         <p:inputText id="municipality" value="#{personController.selected.municipality}" title="#{bundle.EditPersonTitle_municipality}" />
+                        <p:outputLabel value="#{bundle.EditPersonLabel_ruralResidency}" for="ruralResidency" />
+                        <p:selectBooleanCheckbox id="ruralResidency" value="#{personController.selected.ruralResidency}" />
                         <p:outputLabel value="#{bundle.EditPersonLabel_recidencyType}" for="recidencyType" />
                         <p:selectOneMenu id="recidencyType" value="#{personController.selected.recidencyType}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
@@ -77,7 +77,7 @@
                         <p:outputLabel value="#{bundle.EditPersonLabel_diagnosticSuspicion}" for="diagnosticSuspicion" />
                         <p:inputText id="diagnosticSuspicion" value="#{personController.selected.diagnosticSuspicion}" title="#{bundle.EditPersonTitle_diagnosticSuspicion}" />
                         <p:outputLabel value="#{bundle.EditPersonLabel_diagnosticConfirmation}" for="diagnosticConfirmation" />
-                        <p:inputText id="diagnosticConfirmation" value="#{personController.selected.diagnosticConfirmation}" title="#{bundle.EditPersonTitle_diagnosticConfirmation}" />
+                        <p:inputText id="diagnosticConfirmation" value="#{personController.selected.diagnosticConfirmation}" title="#{bundle.EditPersonTitle_diagnosticConfirmation}" />    
                     </p:panelGrid>
                     <p:commandButton actionListener="#{personController.update}" value="#{bundle.Save}" update="display,:PersonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PersonEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="PersonEditDialog.hide()"/>

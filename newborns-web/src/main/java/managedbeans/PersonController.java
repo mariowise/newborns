@@ -1,12 +1,9 @@
 package managedbeans;
 
 import entities.Person;
-import entities.Service;
 import entities.ServiceAttention;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,13 +24,11 @@ import sessionbeans.PersonFacadeLocal;
 public class PersonController implements Serializable {
 
     @EJB
-    private PersonFacadeLocal ejbFacadeLocal;
+    private PersonFacadeLocal ejbFacade;
     private List<Person> items = null;
     private Person selected;
     private ServiceAttention newService;
 
-    private List<Person> filteredPersons;
-    
     public PersonController() {
     }
 
@@ -60,7 +55,7 @@ public class PersonController implements Serializable {
     }
 
     private PersonFacadeLocal getFacade() {
-        return ejbFacadeLocal;
+        return ejbFacade;
     }
 
     public Person prepareCreate() {
@@ -69,7 +64,7 @@ public class PersonController implements Serializable {
         return selected;
     }
     
-    public ServiceAttention prepareCreateServiceAttention() {
+    public ServiceAttention prepareServiceCreate() {
         newService = new ServiceAttention();
         newService.setAdmissionFile(selected);
         selected.getAttentions().add(newService);
@@ -141,7 +136,7 @@ public class PersonController implements Serializable {
     public List<Person> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
-
+    
     @FacesConverter(forClass = Person.class)
     public static class PersonControllerConverter implements Converter {
 
@@ -181,27 +176,6 @@ public class PersonController implements Serializable {
             }
         }
 
-    }
-
-    public List<Person> getFilteredPersons() {
-        return filteredPersons;
-    }
-
-    public void setFilteredPersons(List<Person> filteredPersons) {
-        this.filteredPersons = filteredPersons;
-    }
-    
-    public boolean filterByRun(Object value, Object filter, Locale locale) {
-        String filterText = (filter == null) ? null : filter.toString().trim();
-        if(filterText == null||filterText.equals("")) {
-            return true;
-        }
-         
-        if(value == null) {
-            return false;
-        }
-         
-        return ((Comparable) value).compareTo(Integer.valueOf(filterText)) > 0;
     }
 
 }

@@ -19,7 +19,7 @@
                         <h:outputText value="#{bundle.ViewPersonLabel_dvRun}"/>
                         <h:outputText value="#{personController.selected.dvRun}" title="#{bundle.ViewPersonTitle_dvRun}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_names}"/>
-                        <h:outputText value="#{personController.selected.name}" title="#{bundle.ViewPersonTitle_names}"/>
+                        <h:outputText value="#{personController.selected.name}" title="#{bundle.ViewPersonTitle_name}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_firstLastname}"/>
                         <h:outputText value="#{personController.selected.firstLastname}" title="#{bundle.ViewPersonTitle_firstLastname}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_secondLastname}"/>
@@ -29,19 +29,23 @@
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewPersonLabel_gender}"/>
-                        <h:outputText value="#{personController.selected.gender.name}" title="#{bundle.ViewPersonTitle_gender}"/>
+                        <h:outputText value="#{personController.selected.gender}" title="#{bundle.ViewPersonTitle_gender}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_forecastHealth}"/>
-                        <h:outputText value="#{personController.selected.forecastHealth.name}" title="#{bundle.ViewPersonTitle_forecastHealth}"/>
+                        <h:outputText value="#{personController.selected.forecastHealth}" title="#{bundle.ViewPersonTitle_forecastHealth}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_prais}"/>
+                        <p:selectBooleanCheckbox value="#{personController.selected.prais}" disabled="true"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_country}"/>
-                        <h:outputText value="#{personController.selected.country.name}" title="#{bundle.ViewPersonTitle_country}"/>
+                        <h:outputText value="#{personController.selected.country}" title="#{bundle.ViewPersonTitle_country}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_region}"/>
-                        <h:outputText value="#{personController.selected.region.name}" title="#{bundle.ViewPersonTitle_region}"/>
+                        <h:outputText value="#{personController.selected.region}" title="#{bundle.ViewPersonTitle_region}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_city}"/>
                         <h:outputText value="#{personController.selected.city}" title="#{bundle.ViewPersonTitle_city}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_municipality}"/>
                         <h:outputText value="#{personController.selected.municipality}" title="#{bundle.ViewPersonTitle_municipality}"/>
+                        <h:outputText value="#{bundle.ViewPersonLabel_ruralResidency}"/>
+                        <p:selectBooleanCheckbox value="#{personController.selected.ruralResidency}" disabled="true"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_recidencyType}"/>
-                        <h:outputText value="#{personController.selected.recidencyType.name}" title="#{bundle.ViewPersonTitle_recidencyType}"/>
+                        <h:outputText value="#{personController.selected.recidencyType}" title="#{bundle.ViewPersonTitle_recidencyType}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_streetName}"/>
                         <h:outputText value="#{personController.selected.streetName}" title="#{bundle.ViewPersonTitle_streetName}"/>
                         <h:outputText value="#{bundle.ViewPersonLabel_streetNumber}"/>
@@ -59,22 +63,25 @@
                         <h:outputText value="#{bundle.ViewPersonLabel_diagnosticConfirmation}"/>
                         <h:outputText value="#{personController.selected.diagnosticConfirmation}" title="#{bundle.ViewPersonTitle_diagnosticConfirmation}"/>
                     </p:panelGrid>
-                    
-                    <h4>#{bundle.ViewServiceAttentionTitle_person} (#{personController.selected.attentions.size()})</h4>
-                    <p:dataTable var="item" value="#{personController.selected.attentions}" scrollable="true" scrollHeight="150" sortBy="registerDate" sortOrder="DESCENDING">
-                        <p:column headerText="Fecha admisión">
-                            <h:outputText value="#{item.registerDate}" />
-                        </p:column>
-                        <p:column headerText="Servicio de salud">
-                            <h:outputText value="#{item.healthService.name}" />
-                        </p:column>
-                        <p:column headerText="Servicio de salud previo">
-                            <h:outputText value="#{item.originHealthService.name}" />
-                        </p:column>
-                    </p:dataTable>
-                    
                     <p:commandButton value="#{bundle.Close}" onclick="PersonViewDialog.hide()"/>
                 </h:panelGroup>
+
+                <h4>Registro de admisiones</h4>
+                
+                <p:dataTable var="service" value="#{personController.selected.attentions}"  scrollable="true" scrollHeight="150" sortBy="registerDate" sortOrder="descending">
+                    <p:column headerText="Fecha y hora">
+                        <h:outputText value="#{service.registerDate}" />
+                    </p:column>
+
+                    <p:column headerText="Centro de atención">
+                        <h:outputText value="#{service.healthService.name}" />
+                    </p:column>
+
+                    <p:column headerText="Centro de atención de origen">
+                        <h:outputText value="#{service.originHealthService.name}" />
+                    </p:column>
+                </p:dataTable>
+                
             </h:form>
         </p:dialog>
 

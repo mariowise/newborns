@@ -8,8 +8,8 @@
 
     <ui:composition>
 
-        <p:dialog id="ServiceAttentionCreateDlg" widgetVar="ServiceAttentionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateServiceAttentionTitle}">
-            <h:form id="ServiceAttentionCreateForm">
+            <p:dialog id="ServiceDlg" widgetVar="ServiceDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPersonTitle}">
+            <h:form id="ServiceForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{personController.newService != null}">
                         <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_originHealthService}" for="healthService" />
@@ -30,8 +30,8 @@
                         <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_registerDate}" for="registerDate" />
                         <p:calendar id="registerDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{personController.newService.registerDate}" title="#{bundle.EditServiceAttentionTitle_registerDate}"  showOn="button"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{personController.update}" value="#{bundle.Save}" update="display,:PersonListForm:datalist,:growl" oncomplete="handleSubmit(args,'ServiceAttentionCreateForm');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="ServiceAttentionCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{personController.update}" value="#{bundle.Save}" update="display,:PersonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ServiceDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PersonEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

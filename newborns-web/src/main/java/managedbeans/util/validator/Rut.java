@@ -24,19 +24,33 @@ public class Rut implements Validator, ClientValidator {
     @EJB
     private AccountFacadeLocal ejbFacade;
     
-    private boolean check(String rut) {  
+    public boolean check(String rut) {  
         boolean validacion = false;
         try {  
-            rut =  rut.toUpperCase();
+            rut =  rut.toUpperCase();            
+            System.out.println(rut);
             rut = rut.replace(".", "");
             rut = rut.replace("-", "");
-            int rutAux = Integer.parseInt(rut.substring(0, rut.length() - 1));
-            char dv = rut.charAt(rut.length() - 1);
-            int m = 0, s = 1;
-            for (; rutAux != 0; rutAux /= 10)
-                s = (s + rutAux % 10 * (9 - m++ % 6)) % 11;
-            if (dv == (char) (s != 0 ? s + 47 : 75))
-                validacion = true;
+
+            if(rut.endsWith("K")){
+                rut = rut.replace("K", "11");
+                int rutAux = Integer.parseInt(rut.substring(0, rut.length() - 2));
+                char dv = rut.charAt(rut.length() - 2);
+                int m = 0, s = 1;
+                for (; rutAux != 0; rutAux /= 10)
+                        s = (s + rutAux % 10 * (9 - m++ % 6)) % 11;
+                    if (dv == (char) (s != 0 ? s + 47 : 75))
+                        validacion = true;
+            }
+            else{
+                int rutAux = Integer.parseInt(rut.substring(0, rut.length() - 1));
+                char dv = rut.charAt(rut.length() - 1);
+                int m = 0, s = 1;
+                for (; rutAux != 0; rutAux /= 10)
+                    s = (s + rutAux % 10 * (9 - m++ % 6)) % 11;
+                if (dv == (char) (s != 0 ? s + 47 : 75))
+                    validacion = true;
+            }
         }
         catch (Exception e) {
             System.out.println("managedbeans.util.validator.Rut.validate(): Exception throwed on Rut validation of " + rut);

@@ -17,7 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -108,7 +107,7 @@ public class Person implements Serializable {
     @Size(min = 1, message = "Debe ingresar una confirmación de diagnóstico")
     private String diagnosticConfirmation;
     
-    @OneToMany(mappedBy="admissionFile")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="admissionFile")
     private List <ServiceAttention> attentions;
     
     public Long getId() {
