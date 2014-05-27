@@ -28,6 +28,8 @@ public class PersonController implements Serializable {
     private List<Person> items = null;
     private Person selected;
     private ServiceAttention newService;
+    
+    private List<Person> filteredPersons;
 
     public PersonController() {
     }
@@ -176,6 +178,14 @@ public class PersonController implements Serializable {
             }
         }
 
+    }
+
+    public List<Person> getFilteredPersons() {
+        return filteredPersons;
+    }
+
+    public void setFilteredPersons(List<Person> filteredPersons) {
+        this.filteredPersons = filteredPersons;
     }
 
 }

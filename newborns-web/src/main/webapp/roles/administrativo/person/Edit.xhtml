@@ -41,7 +41,11 @@
                         <p:outputLabel value="#{bundle.EditPersonLabel_prais}" for="prais" />
                         <p:selectBooleanCheckbox id="prais" value="#{personController.selected.prais}" />
                         <p:outputLabel value="#{bundle.EditPersonLabel_country}" for="country" />
-                        <p:inputText id="country" value="#{personController.selected.country}" title="#{bundle.EditPersonTitle_country}" />
+                        <p:selectOneMenu id="country" value="#{personController.selected.country}" required="true" requiredMessage="#{bundle.EditPersonRequiredMessage_country}">
+                            <f:selectItems value="#{countryController.itemsAvailableSelectOne}"
+                                           var="countryItem"
+                                           itemValue="#{countryItem}"/>
+                        </p:selectOneMenu>                        
                         <p:outputLabel value="#{bundle.EditPersonLabel_region}" for="region" />
                         <p:selectOneMenu id="region" value="#{personController.selected.region}" required="true" requiredMessage="#{bundle.EditPersonRequiredMessage_region}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

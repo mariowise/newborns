@@ -30,30 +30,40 @@
                              rows="10"
                              rowsPerPageTemplate="10,20,30,40,50"
                              
+                             widgetVar="datalist"
+                             emptyMessage="No se encontraron resultados para dicho criterio de búsqueda" 
+                             filteredValue="#{personController.filteredPersons}" 
                              >
 
-                    <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                    <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                    <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton serviceButton"/>
+                    <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton serviceButton"/>
                     
-                    <p:column>
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <h:outputText value="Buscar persona:" />
+                            <p:inputText id="globalFilter" onkeyup="PF('datalist').filter()" style="width:150px" placeholder="Ingresar..."/>
+                        </p:outputPanel>
+                    </f:facet>
+
+                    <p:column filterBy="#{item.id}" headerText="Id" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListPersonTitle_id}"/>
                         </f:facet>
                         <h:outputText value="#{item.id}"/>
                     </p:column>
-                    <p:column>
+                    <p:column filterBy="#{item.run}" headerText="Run" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListPersonTitle_run}"/>
                         </f:facet>
                         <h:outputText value="#{item.run}-#{item.dvRun}"/>
                     </p:column>
-                    <p:column>
+                    <p:column filterBy="#{item.name}" headerText="Nombres" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListPersonTitle_names}"/>
                         </f:facet>
                         <h:outputText value="#{item.firstLastname} #{item.secondLastname}, #{item.name}"/>
                     </p:column>
-                    <p:column>
+                    <p:column filterBy="#{item.email}" headerText="Email" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListPersonTitle_email}"/>
                         </f:facet>
