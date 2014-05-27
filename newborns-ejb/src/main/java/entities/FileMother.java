@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  *
@@ -32,16 +34,22 @@ public class FileMother implements Serializable {
     @OneToOne
     private File file;
     
+    @NotNull(message = "Debe seleccionar una Persona para ingresar su ficha médica")
     @JoinColumn(nullable = false)
     @OneToOne
     private Person person;
     
+    @NotNull(message = "Debe ingresar Edad")
+    @Pattern(regexp = "[0-9]+", message = "El campo Edad debe contener solo números")
     private String age;
     
     private String presentation;
     
+    @NotNull(message = "Debe ingresar una Edad gestacional")
+    @Pattern(regexp = "[0-9]+", message = "El campo Edad gestacional debe ser numérico")
     private String gestationalAge;
     
+    @NotNull(message = "Debe seleccionar un Servicio de salud")
     @JoinColumn(nullable = false)
     @ManyToOne
     private Service healthService;

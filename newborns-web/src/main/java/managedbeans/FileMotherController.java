@@ -36,6 +36,7 @@ public class FileMotherController implements Serializable {
     private List<FileMother> items = null;
     private FileMother selected;
     
+    private List<FileMother> filteredFileMothers;
 
     public FileMotherController() {
     }
@@ -132,6 +133,14 @@ public class FileMotherController implements Serializable {
 
     public List<FileMother> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+
+    public List<FileMother> getFilteredFileMothers() {
+        return filteredFileMothers;
+    }
+
+    public void setFilteredFileMothers(List<FileMother> filteredFileMothers) {
+        this.filteredFileMothers = filteredFileMothers;
     }
 
     @FacesConverter(forClass = FileMother.class)
