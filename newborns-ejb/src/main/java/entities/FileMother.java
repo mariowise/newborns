@@ -7,11 +7,14 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -32,7 +35,31 @@ public class FileMother implements Serializable {
     @JoinColumn(nullable = false)
     @OneToOne
     private Person person;
-   
+    
+    private String age;
+    
+    private String presentation;
+    
+    private String gestationalAge;
+    
+    @JoinColumn(nullable = false)
+    @ManyToOne
+    private Service healthService;
+    
+    private String bloodGroup;
+    
+    private Boolean rh;
+    
+    private Boolean coombs;
+    
+    private Boolean fatherEscort;
+    
+    private Boolean otherEscort;
+    
+    @ManyToMany
+    private List<Illness> complications;
+    
+    
     public Long getFileCode() {
         return fileCode;
     }
@@ -55,6 +82,86 @@ public class FileMother implements Serializable {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getPresentation() {
+        return presentation;
+    }
+
+    public void setPresentation(String presentation) {
+        this.presentation = presentation;
+    }
+
+    public String getGestationalAge() {
+        return gestationalAge;
+    }
+
+    public void setGestationalAge(String gestationalAge) {
+        this.gestationalAge = gestationalAge;
+    }
+
+    public Service getHealthService() {
+        return healthService;
+    }
+
+    public void setHealthService(Service healthService) {
+        this.healthService = healthService;
+    }
+
+    public String getBloodGroup() {
+        return bloodGroup;
+    }
+
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
+    }
+
+    public Boolean isRh() {
+        return rh;
+    }
+
+    public void setRh(Boolean rh) {
+        this.rh = rh;
+    }
+
+    public Boolean isCoombs() {
+        return coombs;
+    }
+
+    public void setCoombs(Boolean coombs) {
+        this.coombs = coombs;
+    }
+
+    public Boolean isFatherEscort() {
+        return fatherEscort;
+    }
+
+    public void setFatherEscort(Boolean fatherEscort) {
+        this.fatherEscort = fatherEscort;
+    }
+
+    public Boolean isOtherEscort() {
+        return otherEscort;
+    }
+
+    public void setOtherEscort(Boolean otherEscort) {
+        this.otherEscort = otherEscort;
+    }
+
+    public List<Illness> getComplications() {
+        return complications;
+    }
+
+    public void setComplications(List<Illness> complications) {
+        this.complications = complications;
     }
     
     @Override

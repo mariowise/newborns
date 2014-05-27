@@ -36,21 +36,33 @@
 
                     <p:column>
                         <f:facet name="header">
+                            <h:outputText value="#{bundle.ListFileMotherTitle_fileCode}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fileCode}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
                             <h:outputText value="#{bundle.ListFileMotherTitle_file}"/>
                         </f:facet>
                         <h:outputText value="#{item.file}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Run"/>
+                            <h:outputText value="#{bundle.ListFileMotherTitle_person}"/>
                         </f:facet>
-                        <h:outputText value="#{item.person.run}#{item.person.dvRun}"/>
+                        <h:outputText value="#{item.person}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Nombre"/>
+                            <h:outputText value="#{bundle.ListFileMotherTitle_age}"/>
                         </f:facet>
-                        <h:outputText value="#{item.person.name}"/>
+                        <h:outputText value="#{item.age}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListFileMotherTitle_healthService}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.healthService}"/>
                     </p:column>
                     <f:facet name="footer">
                         <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{fileMotherController.prepareCreate}" update=":FileMotherCreateForm" oncomplete="PF('FileMotherCreateDialog').show()"/>

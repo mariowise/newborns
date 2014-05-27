@@ -15,8 +15,17 @@
                         <h:outputText value="#{bundle.ViewFileMotherLabel_file}"/>
                         <h:outputText value="#{fileMotherController.selected.file}" title="#{bundle.ViewFileMotherTitle_file}"/>
                         <h:outputText value="#{bundle.ViewFileMotherLabel_person}"/>
-                        <h:outputText value="#{fileMotherController.selected.person.run}#{fileMotherController.selected.person.dvRun} - #{fileMotherController.selected.person.name}" 
-                                      title="#{bundle.ViewFileMotherTitle_person}"/>
+                        <h:outputText value="#{fileMotherController.selected.person.completeName}" title="#{bundle.ViewFileMotherTitle_person}"/>
+                        <h:outputText value="#{bundle.ViewFileMotherLabel_age}"/>
+                        <h:outputText value="#{fileMotherController.selected.age}" title="#{bundle.ViewFileMotherTitle_age}"/>
+                        <h:outputText value="#{bundle.ViewFileMotherLabel_presentation}"/>
+                        <h:outputText value="#{fileMotherController.selected.presentation}" title="#{bundle.ViewFileMotherTitle_presentation}"/>
+                        <h:outputText value="#{bundle.ViewFileMotherLabel_gestationalAge}"/>
+                        <h:outputText value="#{fileMotherController.selected.gestationalAge}" title="#{bundle.ViewFileMotherTitle_gestationalAge}"/>
+                        <h:outputText value="#{bundle.ViewFileMotherLabel_healthService}"/>
+                        <h:outputText value="#{fileMotherController.selected.healthService}" title="#{bundle.ViewFileMotherTitle_healthService}"/>
+                        <h:outputText value="#{bundle.ViewFileMotherLabel_bloodGroup}"/>
+                        <h:outputText value="#{fileMotherController.selected.bloodGroup}" title="#{bundle.ViewFileMotherTitle_bloodGroup}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="FileMotherViewDialog.hide()"/>
                 </h:panelGroup>

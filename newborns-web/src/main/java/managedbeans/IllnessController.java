@@ -1,8 +1,8 @@
 package managedbeans;
 
-import entities.File;
-import entities.FileMother;
+import entities.Illness;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -17,25 +17,25 @@ import javax.faces.convert.FacesConverter;
 import javax.inject.Named;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
-import sessionbeans.FileMotherFacadeLocal;
+import sessionbeans.IllnessFacadeLocal;
 
-@Named("fileMotherController")
+@Named("illnessController")
 @SessionScoped
-public class FileMotherController implements Serializable {
+public class IllnessController implements Serializable {
 
     @EJB
-    private FileMotherFacadeLocal ejbFacade;
-    private List<FileMother> items = null;
-    private FileMother selected;
+    private IllnessFacadeLocal ejbFacade;
+    private List<Illness> items = null;
+    private Illness selected;
 
-    public FileMotherController() {
+    public IllnessController() {
     }
 
-    public FileMother getSelected() {
+    public Illness getSelected() {
         return selected;
     }
 
-    public void setSelected(FileMother selected) {
+    public void setSelected(Illness selected) {
         this.selected = selected;
     }
 
@@ -45,37 +45,36 @@ public class FileMotherController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private FileMotherFacadeLocal getFacade() {
+    private IllnessFacadeLocal getFacade() {
         return ejbFacade;
     }
 
-    public FileMother prepareCreate() {
-        selected = new FileMother();
-        selected.setFile(new File());
+    public Illness prepareCreate() {
+        selected = new Illness();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("FileMotherCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("IllnessCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("FileMotherUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("IllnessUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("FileMotherDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("IllnessDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<FileMother> getItems() {
+    public List<Illness> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -110,38 +109,52 @@ public class FileMotherController implements Serializable {
         }
     }
 
-    public FileMother getFileMother(java.lang.Long id) {
+    public Illness getIllness(java.lang.String id) {
         return getFacade().find(id);
     }
 
-    public List<FileMother> getItemsAvailableSelectMany() {
+    public List<Illness> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<FileMother> getItemsAvailableSelectOne() {
+    public List<Illness> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
+    
+    public List<Illness> filterIllness(String query) {
+        List<Illness> allIllness = getFacade().findAll();
+        List<Illness> filteredIllness = new ArrayList<Illness>();
+        
+        for(int i = 0; i < allIllness.size(); i++) {
+            Illness skin = allIllness.get(i);
+            if(skin.getName().toLowerCase().startsWith(query)) {
+                filteredIllness.add(skin);
+            }                
+        }
+        
+        return filteredIllness;
+    }
 
-    @FacesConverter(forClass = FileMother.class)
-    public static class FileMotherControllerConverter implements Converter {
+    @FacesConverter(forClass = Illness.class)
+    public static class IllnessControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            FileMotherController controller = (FileMotherController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "fileMotherController");
-            return controller.getFileMother(getKey(value));
+            IllnessController controller = (IllnessController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "illnessController");
+            return controller.getIllness(getKey(value));
         }
 
-        java.lang.Long getKey(String value) {
-            java.lang.Long key;
-            key = Long.valueOf(value);
+        java.lang.String getKey(String value) {
+            java.lang.String key;
+            key = value;
             return key;
         }
 
-        String getStringKey(java.lang.Long value) {
+        String getStringKey(java.lang.String value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();
@@ -152,11 +165,11 @@ public class FileMotherController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof FileMother) {
-                FileMother o = (FileMother) object;
-                return getStringKey(o.getFileCode());
+            if (object instanceof Illness) {
+                Illness o = (Illness) object;
+                return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), FileMother.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Illness.class.getName()});
                 return null;
             }
         }
