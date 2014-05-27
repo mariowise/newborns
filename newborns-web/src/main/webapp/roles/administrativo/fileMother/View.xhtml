@@ -27,6 +27,15 @@
                         <h:outputText value="#{bundle.ViewFileMotherLabel_bloodGroup}"/>
                         <h:outputText value="#{fileMotherController.selected.bloodGroup}" title="#{bundle.ViewFileMotherTitle_bloodGroup}"/>
                     </p:panelGrid>
+                    <h4>Complicaciones</h4>
+                    <p:dataTable var="complication" value="#{fileMotherController.selected.complications}" style="width: 400px;">
+                        <p:column headerText="Nro">
+                            <h:outputText value="#{complication.id}" />
+                        </p:column>
+                        <p:column headerText="Complicación">
+                            <h:outputText value="#{complication.name}" />
+                        </p:column>
+                    </p:dataTable>
                     <p:commandButton value="#{bundle.Close}" onclick="FileMotherViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

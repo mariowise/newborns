@@ -3,6 +3,7 @@ package managedbeans;
 import entities.File;
 import entities.FileMother;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -14,9 +15,12 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
 import javax.inject.Named;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
+import managedbeans.util.SessionUtil;
+import sessionbeans.FileFacadeLocal;
 import sessionbeans.FileMotherFacadeLocal;
 
 @Named("fileMotherController")
@@ -25,8 +29,13 @@ public class FileMotherController implements Serializable {
 
     @EJB
     private FileMotherFacadeLocal ejbFacade;
+    @EJB 
+    private FileFacadeLocal fileFacade;
+    @Inject
+    private SessionUtil sessionUtil;
     private List<FileMother> items = null;
     private FileMother selected;
+    
 
     public FileMotherController() {
     }
@@ -51,7 +60,10 @@ public class FileMotherController implements Serializable {
 
     public FileMother prepareCreate() {
         selected = new FileMother();
-        selected.setFile(new File());
+        File newFile = new File();
+        newFile.setCreatedAt(new Date());
+        newFile.setCreator(sessionUtil.getCurrentUser());
+        selected.setFile(newFile);
         initializeEmbeddableKey();
         return selected;
     }

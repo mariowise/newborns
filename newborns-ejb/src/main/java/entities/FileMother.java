@@ -48,13 +48,13 @@ public class FileMother implements Serializable {
     
     private String bloodGroup;
     
-    private Boolean rh;
-    
-    private Boolean coombs;
-    
-    private Boolean fatherEscort;
-    
-    private Boolean otherEscort;
+//    private Boolean rh;
+//    
+//    private Boolean coombs;
+//    
+//    private Boolean fatherEscort;
+//    
+//    private Boolean otherEscort;
     
     @ManyToMany
     private List<Illness> complications;
@@ -124,37 +124,37 @@ public class FileMother implements Serializable {
         this.bloodGroup = bloodGroup;
     }
 
-    public Boolean isRh() {
-        return rh;
-    }
-
-    public void setRh(Boolean rh) {
-        this.rh = rh;
-    }
-
-    public Boolean isCoombs() {
-        return coombs;
-    }
-
-    public void setCoombs(Boolean coombs) {
-        this.coombs = coombs;
-    }
-
-    public Boolean isFatherEscort() {
-        return fatherEscort;
-    }
-
-    public void setFatherEscort(Boolean fatherEscort) {
-        this.fatherEscort = fatherEscort;
-    }
-
-    public Boolean isOtherEscort() {
-        return otherEscort;
-    }
-
-    public void setOtherEscort(Boolean otherEscort) {
-        this.otherEscort = otherEscort;
-    }
+//    public Boolean isRh() {
+//        return rh;
+//    }
+//
+//    public void setRh(Boolean rh) {
+//        this.rh = rh;
+//    }
+//
+//    public Boolean isCoombs() {
+//        return coombs;
+//    }
+//
+//    public void setCoombs(Boolean coombs) {
+//        this.coombs = coombs;
+//    }
+//
+//    public Boolean isFatherEscort() {
+//        return fatherEscort;
+//    }
+//
+//    public void setFatherEscort(Boolean fatherEscort) {
+//        this.fatherEscort = fatherEscort;
+//    }
+//
+//    public Boolean isOtherEscort() {
+//        return otherEscort;
+//    }
+//
+//    public void setOtherEscort(Boolean otherEscort) {
+//        this.otherEscort = otherEscort;
+//    }
 
     public List<Illness> getComplications() {
         return complications;

@@ -36,6 +36,19 @@
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditFileMotherLabel_bloodGroup}" for="bloodGroup" />
                         <p:inputText id="bloodGroup" value="#{fileMotherController.selected.bloodGroup}" title="#{bundle.EditFileMotherTitle_bloodGroup}" />
+                        <p:outputLabel value="#{bundle.CreateFileMotherLabel_complications}" for="bloodGroup" />
+                        <p:autoComplete id="complications" multiple="true" 
+                                        value="#{fileMotherController.selected.complications}" 
+                                        completeMethod="#{illnessController.filterIllness}"
+                                        var="illness" itemLabel="#{illness.name}" itemValue="#{illness}"
+                                        converter="illnessConverter" forceSelection="true">
+                            <p:column style="width:10%">
+                                <h:outputText styleClass="ui-theme ui-theme-#{illness.id}" />
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="#{illness.name}" />
+                            </p:column>
+                        </p:autoComplete>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{fileMotherController.update}" value="#{bundle.Save}" update="display,:FileMotherListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FileMotherEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="FileMotherEditDialog.hide()"/>
