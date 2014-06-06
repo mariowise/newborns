@@ -23,7 +23,9 @@
                             <div class="panel-body">
                                 <div class="input-group">
                                     <span class="input-group-addon">RUT</span>
-                                    <h:inputText id="username" class="form-control" autocomplete="off" size="20" value="#{SessionController.rut}" />
+                                    <h:inputText id="username" class="form-control" autocomplete="off" size="20" value="#{SessionController.rut}" >
+                                    <f:validator validatorId="Validator.AccessValidator"/>
+                                    </h:inputText>
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Contraseña</span>

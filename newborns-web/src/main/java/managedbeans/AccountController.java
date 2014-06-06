@@ -39,6 +39,8 @@ public class AccountController implements Serializable {
     private String rut;
     
     private String email;
+    
+    private boolean currentState;
 
     public AccountController() {
     }
@@ -77,6 +79,14 @@ public class AccountController implements Serializable {
         this.email = email;
     }
 
+    public boolean isCurrentState() {
+        return currentState;
+    }
+
+    public void setCurrentState(boolean currentState) {
+        this.currentState = currentState;
+    }
+
     public Account prepareCreate() {
         selected = new Account();
         initializeEmbeddableKey();
@@ -101,7 +111,7 @@ public class AccountController implements Serializable {
 
     public void destroy() {
         if(sessionUtil.getCurrentUser().getRut().compareTo(selected.getRut()) != 0) {
-            persist(PersistAction.DELETE, "El usuario se ha eliminado");
+            persist(PersistAction.DELETE, "El usuario se ha deshabilitado");
             if (!JsfUtil.isValidationFailed()) {
                 selected = null; // Remove selection
                 items = null;    // Invalidate list of items to trigger re-query.
@@ -150,7 +160,12 @@ public class AccountController implements Serializable {
                 if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
-                    getFacade().remove(selected);
+                    if (currentState==false) {
+                        currentState = true;                        
+                    }else{
+                        currentState = false;
+                    }
+                    getFacade().edit(selected);
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {

@@ -29,7 +29,7 @@ public class SessionUtil implements Serializable {
     private AccountFacadeLocal ejbFacade;
     
     private String rut;
-    
+     
     public SessionUtil() {
     
     }
@@ -45,7 +45,7 @@ public class SessionUtil implements Serializable {
     public Account getCurrentUser() {
         return ejbFacade.find(rut);
     }
-    
+ 
     public boolean login(String _rut, String _password) {
 
         FacesContext context = FacesContext.getCurrentInstance();
