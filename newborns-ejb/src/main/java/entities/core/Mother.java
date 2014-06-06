@@ -11,14 +11,17 @@ import entities.Commune;
 import entities.Forecast;
 import entities.Gender;
 import entities.Region;
+import entities.ServiceAttention;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -98,6 +101,9 @@ public class Mother implements Serializable {
     @NotNull
     @ManyToOne
     private Profile profile;
+    
+    @OneToMany(mappedBy = "mother")
+    private List<ServiceAttention> attentions;
 
     public Long getId() {
         return id;
@@ -257,6 +263,14 @@ public class Mother implements Serializable {
 
     public void setProfile(Profile profile) {
         this.profile = profile;
+    }
+
+    public List<ServiceAttention> getAttentions() {
+        return attentions;
+    }
+
+    public void setAttentions(List<ServiceAttention> attentions) {
+        this.attentions = attentions;
     }
 
     @Override

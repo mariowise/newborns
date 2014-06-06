@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ServiceAttentionCreateDlg" widgetVar="ServiceAttentionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateServiceAttentionTitle}">
+            <h:form id="ServiceAttentionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{serviceAttentionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_creator}" for="creator" />
+                        <p:selectOneMenu id="creator" value="#{serviceAttentionController.selected.creator}" >
+                            <f:selectItems value="#{accountController.itemsAvailableSelectOne}"
+                                           var="creatorItem"
+                                           itemValue="#{creatorItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_mother}" for="mother" />
+                        <p:selectOneMenu id="mother" value="#{serviceAttentionController.selected.mother}" >
+                            <f:selectItems value="#{motherController.itemsAvailableSelectOne}"
+                                           var="motherItem"
+                                           itemValue="#{motherItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_service}" for="service" />
+                        <p:selectOneMenu id="service" value="#{serviceAttentionController.selected.service}" >
+                            <f:selectItems value="#{serviceController.itemsAvailableSelectOne}"
+                                           var="serviceItem"
+                                           itemValue="#{serviceItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_originService}" for="originService" />
+                        <p:selectOneMenu id="originService" value="#{serviceAttentionController.selected.originService}" >
+                            <f:selectItems value="#{serviceController.itemsAvailableSelectOne}"
+                                           var="serviceItem"
+                                           itemValue="#{serviceItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_createdAt}" for="createdAt" />
+                        <p:calendar id="createdAt" pattern="MM/dd/yyyy" value="#{serviceAttentionController.selected.createdAt}" title="#{bundle.EditServiceAttentionTitle_createdAt}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{serviceAttentionController.create}" value="#{bundle.Save}" update="display,:ServiceAttentionListForm:datalist,:growl" oncomplete="handleSubmit(args,'ServiceAttentionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ServiceAttentionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

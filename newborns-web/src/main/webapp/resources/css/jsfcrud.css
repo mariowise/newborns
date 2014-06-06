@@ -5242,6 +5242,8 @@ html, body {
     position: absolute;
     width: 100%;
     bottom: 0; }
+  .wrapper .page-body {
+    margin-top: 15px; }
 
 .footer {
   height: 300px;
@@ -5257,10 +5259,18 @@ html, body {
   .footer a {
     color: #2b4a6b; }
 
+.profile-page-header {
+  background-color: #e7e7e7;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #2b3e50; }
+
 .login .input-group {
   margin-bottom: 5px; }
 .login .input-group-addon {
   min-width: 120px; }
+
+.navbar {
+  margin-bottom: 0px; }
 
 .navbar-brand img {
   width: 32px;

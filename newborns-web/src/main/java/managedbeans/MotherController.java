@@ -14,9 +14,11 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
 import javax.inject.Named;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
+import managedbeans.util.SessionUtil;
 import sessionbeans.MotherFacadeLocal;
 
 @Named("motherController")
@@ -27,6 +29,12 @@ public class MotherController implements Serializable {
     private MotherFacadeLocal ejbFacade;
     private List<Mother> items = null;
     private Mother selected;
+    
+    @Inject
+    private ProfileController profileController;
+    
+    @Inject
+    private SessionUtil sessionUtil;
 
     public MotherController() {
     }
@@ -164,6 +172,12 @@ public class MotherController implements Serializable {
             }
         }
 
+    }
+    
+    public void profileView() {
+        profileController.setSelected(selected.getProfile());
+        JsfUtil.redirect("/faces/roles/" + sessionUtil.getCurrentUser().getAccountType().getName() + 
+                "/index-profile.xhtml");
     }
 
 }
