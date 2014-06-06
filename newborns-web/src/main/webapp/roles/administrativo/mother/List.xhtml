@@ -28,30 +28,40 @@
                              rowKey="#{item.id}"
                              rows="10"
                              rowsPerPageTemplate="10,20,30,40,50"
+                             
+                             widgetVar="datalist"
+                             emptyMessage="No se encontraron resultados para dicho criterio de búsqueda" 
+                             filteredValue="#{fileMotherController.filteredFileMothers}" 
                              >
 
                     <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                     <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
-
-                    <p:column>
+                    
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <h:outputText value="Buscar ficha clínica materna:" />
+                            <p:inputText id="globalFilter" onkeyup="PF('datalist').filter()" style="width:150px" placeholder="Ingresar..."/>
+                        </p:outputPanel>
+                    </f:facet>
+                    
+                    <p:column filterBy="#{item.file.id}" headerText="File" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListMotherTitle_run}"/>
                         </f:facet>
-                        <h:outputText value="#{item.run}"/>
                     </p:column>
-                    <p:column>
+                    <p:column filterBy="#{item.person.completeName}" headerText="CompleteName" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="Nombre"/>
                         </f:facet>
                         <h:outputText value="#{item.firstLastname} #{item.secondLastname}, #{item.name}"/>
                     </p:column>
-                    <p:column>
+                    <p:column filterBy="#{item.age}" headerText="Age" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListMotherTitle_forecastHealth}"/>
                         </f:facet>
                         <h:outputText value="#{item.forecastHealth.name}"/>
                     </p:column>
-                    <p:column>
+                    <p:column filterBy="#{item.healthService.name}" headerText="Id" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListMotherTitle_region}"/>
                         </f:facet>
