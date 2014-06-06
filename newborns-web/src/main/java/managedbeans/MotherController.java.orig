@@ -29,14 +29,18 @@ public class MotherController implements Serializable {
     private MotherFacadeLocal ejbFacade;
     private List<Mother> items = null;
     private Mother selected;
-
+    
+<<<<<<< HEAD
     @Inject
     private ProfileController profileController;
     
     @Inject
     private SessionUtil sessionUtil;
-    
+
+	private List<Mother> filteredItems;
+=======
     private List<Mother> filteredItems;
+>>>>>>> 299b68ae045646e3c63eec9b8e5bac5de2404ae9
 
     public MotherController() {
     }
@@ -183,11 +187,14 @@ public class MotherController implements Serializable {
     public void setFilteredItems(List<Mother> filteredItems) {
         this.filteredItems = filteredItems;
     }
+<<<<<<< HEAD
     
     public void profileView() {
         profileController.setSelected(selected.getProfile());
         JsfUtil.redirect("/faces/roles/" + sessionUtil.getCurrentUser().getAccountType().getName() + 
                 "/index-profile.xhtml");
     }
+=======
+>>>>>>> 299b68ae045646e3c63eec9b8e5bac5de2404ae9
 
 }
