@@ -35,12 +35,15 @@ public class ServiceAttention implements Serializable {
     @ManyToOne
     private Mother mother;
     
+    @NotNull(message = "Debe seleccionar el Servicio de salud presente")
     @ManyToOne
     private Service service;
     
+    @NotNull(message = "Debe seleccionar el Servicio de salud de origen")
     @ManyToOne
     private Service originService;
     
+    @NotNull(message = "Debe seleccionar la Fecha de admisión")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date createdAt = new Date();
 

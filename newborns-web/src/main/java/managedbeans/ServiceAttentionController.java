@@ -18,6 +18,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
+import managedbeans.util.SessionUtil;
 
 @Named("serviceAttentionController")
 @SessionScoped
@@ -27,7 +29,15 @@ public class ServiceAttentionController implements Serializable {
     private ServiceAttentionFacadeLocal ejbFacade;
     private List<ServiceAttention> items = null;
     private ServiceAttention selected;
+    
+    private List<ServiceAttention> filteredItems;
 
+    @Inject
+    private SessionUtil sessionUtil;
+    
+    @Inject
+    private MotherController motherController;
+    
     public ServiceAttentionController() {
     }
 
@@ -51,6 +61,8 @@ public class ServiceAttentionController implements Serializable {
 
     public ServiceAttention prepareCreate() {
         selected = new ServiceAttention();
+        selected.setCreator(sessionUtil.getCurrentUser());
+        selected.setMother(motherController.getSelected());
         initializeEmbeddableKey();
         return selected;
     }
@@ -77,6 +89,7 @@ public class ServiceAttentionController implements Serializable {
     public List<ServiceAttention> getItems() {
         if (items == null) {
             items = getFacade().findAll();
+//            items = motherController.getSelected().getAttentions();
         }
         return items;
     }
@@ -160,6 +173,14 @@ public class ServiceAttentionController implements Serializable {
             }
         }
 
+    }
+
+    public List<ServiceAttention> getFilteredItems() {
+        return filteredItems;
+    }
+
+    public void setFilteredItems(List<ServiceAttention> filteredItems) {
+        this.filteredItems = filteredItems;
     }
 
 }
