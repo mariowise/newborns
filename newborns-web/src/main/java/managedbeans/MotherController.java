@@ -36,6 +36,8 @@ public class MotherController implements Serializable {
     @Inject
     private SessionUtil sessionUtil;
 
+	private List<Mother> filteredItems;
+
     public MotherController() {
     }
 
@@ -172,6 +174,14 @@ public class MotherController implements Serializable {
             }
         }
 
+    }
+
+    public List<Mother> getFilteredItems() {
+        return filteredItems;
+    }
+
+    public void setFilteredItems(List<Mother> filteredItems) {
+        this.filteredItems = filteredItems;
     }
     
     public void profileView() {
