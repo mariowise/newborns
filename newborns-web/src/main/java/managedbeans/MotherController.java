@@ -27,6 +27,8 @@ public class MotherController implements Serializable {
     private MotherFacadeLocal ejbFacade;
     private List<Mother> items = null;
     private Mother selected;
+    
+    private List<Mother> filteredItems;
 
     public MotherController() {
     }
@@ -164,6 +166,14 @@ public class MotherController implements Serializable {
             }
         }
 
+    }
+
+    public List<Mother> getFilteredItems() {
+        return filteredItems;
+    }
+
+    public void setFilteredItems(List<Mother> filteredItems) {
+        this.filteredItems = filteredItems;
     }
 
 }

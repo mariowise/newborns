@@ -85,8 +85,7 @@ public class Mother implements Serializable {
     
     private String mobile;
     
-    @Size(min = 1, message = "Debe ingresar un Correo electrónico")
-    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$" , message = "Ingrese un correo valido, e.g.=mail@mail.com")
+    @Pattern(regexp = "[^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$]*" , message = "Ingrese un correo valido, e.g.=mail@mail.com")
     private String email;
     
     @ManyToOne
