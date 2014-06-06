@@ -1,9 +1,9 @@
 package managedbeans;
 
-import entities.Country;
+import entities.BloodGroup;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
-import sessionbeans.CountryFacadeLocal;
+import sessionbeans.BloodGroupFacadeLocal;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("countryController")
+@Named("bloodGroupController")
 @SessionScoped
-public class CountryController implements Serializable {
+public class BloodGroupController implements Serializable {
 
     @EJB
-    private CountryFacadeLocal ejbFacade;
-    private List<Country> items = null;
-    private Country selected;
+    private BloodGroupFacadeLocal ejbFacade;
+    private List<BloodGroup> items = null;
+    private BloodGroup selected;
 
-    public CountryController() {
+    public BloodGroupController() {
     }
 
-    public Country getSelected() {
+    public BloodGroup getSelected() {
         return selected;
     }
 
-    public void setSelected(Country selected) {
+    public void setSelected(BloodGroup selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class CountryController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private CountryFacadeLocal getFacade() {
+    private BloodGroupFacadeLocal getFacade() {
         return ejbFacade;
     }
 
-    public Country prepareCreate() {
-        selected = new Country();
+    public BloodGroup prepareCreate() {
+        selected = new BloodGroup();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("CountryCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("BloodGroupCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CountryUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("BloodGroupUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("CountryDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("BloodGroupDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Country> getItems() {
+    public List<BloodGroup> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,29 +109,29 @@ public class CountryController implements Serializable {
         }
     }
 
-    public Country getCountry(java.lang.Long id) {
+    public BloodGroup getBloodGroup(java.lang.Long id) {
         return getFacade().find(id);
     }
 
-    public List<Country> getItemsAvailableSelectMany() {
+    public List<BloodGroup> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Country> getItemsAvailableSelectOne() {
+    public List<BloodGroup> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Country.class)
-    public static class CountryControllerConverter implements Converter {
+    @FacesConverter(forClass = BloodGroup.class)
+    public static class BloodGroupControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            CountryController controller = (CountryController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "countryController");
-            return controller.getCountry(getKey(value));
+            BloodGroupController controller = (BloodGroupController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "bloodGroupController");
+            return controller.getBloodGroup(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -151,11 +151,11 @@ public class CountryController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Country) {
-                Country o = (Country) object;
+            if (object instanceof BloodGroup) {
+                BloodGroup o = (BloodGroup) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Country.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), BloodGroup.class.getName()});
                 return null;
             }
         }

@@ -1,10 +1,7 @@
 package managedbeans;
 
-import entities.Country;
-import managedbeans.util.JsfUtil;
-import managedbeans.util.JsfUtil.PersistAction;
-import sessionbeans.CountryFacadeLocal;
-
+import entities.core.Mother;
+import entities.core.Profile;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -12,30 +9,33 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Named;
+import managedbeans.util.JsfUtil;
+import managedbeans.util.JsfUtil.PersistAction;
+import sessionbeans.MotherFacadeLocal;
 
-@Named("countryController")
+@Named("motherController")
 @SessionScoped
-public class CountryController implements Serializable {
+public class MotherController implements Serializable {
 
     @EJB
-    private CountryFacadeLocal ejbFacade;
-    private List<Country> items = null;
-    private Country selected;
+    private MotherFacadeLocal ejbFacade;
+    private List<Mother> items = null;
+    private Mother selected;
 
-    public CountryController() {
+    public MotherController() {
     }
 
-    public Country getSelected() {
+    public Mother getSelected() {
         return selected;
     }
 
-    public void setSelected(Country selected) {
+    public void setSelected(Mother selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,37 @@ public class CountryController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private CountryFacadeLocal getFacade() {
+    private MotherFacadeLocal getFacade() {
         return ejbFacade;
     }
 
-    public Country prepareCreate() {
-        selected = new Country();
+    public Mother prepareCreate() {
+        selected = new Mother();
+        selected.setProfile(new Profile());
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("CountryCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("MotherCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CountryUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("MotherUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("CountryDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("MotherDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Country> getItems() {
+    public List<Mother> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -85,7 +86,10 @@ public class CountryController implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if (persistAction != PersistAction.DELETE) {
+                if(persistAction == PersistAction.CREATE) {
+                    getFacade().createWithProfile(selected);
+                }
+                else if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);
@@ -109,29 +113,29 @@ public class CountryController implements Serializable {
         }
     }
 
-    public Country getCountry(java.lang.Long id) {
+    public Mother getMother(java.lang.Long id) {
         return getFacade().find(id);
     }
 
-    public List<Country> getItemsAvailableSelectMany() {
+    public List<Mother> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Country> getItemsAvailableSelectOne() {
+    public List<Mother> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Country.class)
-    public static class CountryControllerConverter implements Converter {
+    @FacesConverter(forClass = Mother.class)
+    public static class MotherControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            CountryController controller = (CountryController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "countryController");
-            return controller.getCountry(getKey(value));
+            MotherController controller = (MotherController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "motherController");
+            return controller.getMother(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -151,11 +155,11 @@ public class CountryController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Country) {
-                Country o = (Country) object;
+            if (object instanceof Mother) {
+                Mother o = (Mother) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Country.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Mother.class.getName()});
                 return null;
             }
         }

@@ -7,29 +7,30 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author sylar
+ * @author pingeso
  */
 @Entity
-public class Region implements Serializable {
+public class Commune implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    
     private String name;
     
-    @OneToMany(mappedBy = "region")
-    private List<Commune> communes;
-    
+    @NotNull
+    @ManyToOne
+    private Region region;
+
     public Long getId() {
         return id;
     }
@@ -46,12 +47,12 @@ public class Region implements Serializable {
         this.name = name;
     }
 
-    public List<Commune> getCommunes() {
-        return communes;
+    public Region getRegion() {
+        return region;
     }
 
-    public void setCommunes(List<Commune> communes) {
-        this.communes = communes;
+    public void setRegion(Region region) {
+        this.region = region;
     }
 
     @Override
@@ -64,10 +65,10 @@ public class Region implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Region)) {
+        if (!(object instanceof Commune)) {
             return false;
         }
-        Region other = (Region) object;
+        Commune other = (Commune) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -76,6 +77,7 @@ public class Region implements Serializable {
 
     @Override
     public String toString() {
+        // return "entities.Commune[ id=" + id + " ]";
         return name;
     }
     

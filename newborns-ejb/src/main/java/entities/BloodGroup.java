@@ -7,29 +7,24 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 /**
  *
- * @author sylar
+ * @author pingeso
  */
 @Entity
-public class Region implements Serializable {
+public class BloodGroup implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    
     private String name;
-    
-    @OneToMany(mappedBy = "region")
-    private List<Commune> communes;
-    
+
     public Long getId() {
         return id;
     }
@@ -46,14 +41,6 @@ public class Region implements Serializable {
         this.name = name;
     }
 
-    public List<Commune> getCommunes() {
-        return communes;
-    }
-
-    public void setCommunes(List<Commune> communes) {
-        this.communes = communes;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -64,10 +51,10 @@ public class Region implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Region)) {
+        if (!(object instanceof BloodGroup)) {
             return false;
         }
-        Region other = (Region) object;
+        BloodGroup other = (BloodGroup) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -76,7 +63,7 @@ public class Region implements Serializable {
 
     @Override
     public String toString() {
-        return name;
+        return "entities.BloodGroup[ id=" + id + " ]";
     }
     
 }

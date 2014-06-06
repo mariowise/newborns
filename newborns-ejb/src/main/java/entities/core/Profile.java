@@ -4,32 +4,32 @@
  * and open the template in the editor.
  */
 
-package entities;
+package entities.core;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author sylar
+ * @author pingeso
  */
 @Entity
-public class Region implements Serializable {
+public class Profile implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @NotNull
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date createdAt = new Date();
 
-    private String name;
-    
-    @OneToMany(mappedBy = "region")
-    private List<Commune> communes;
-    
     public Long getId() {
         return id;
     }
@@ -38,20 +38,12 @@ public class Region implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Commune> getCommunes() {
-        return communes;
-    }
-
-    public void setCommunes(List<Commune> communes) {
-        this.communes = communes;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override
@@ -64,10 +56,10 @@ public class Region implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Region)) {
+        if (!(object instanceof Profile)) {
             return false;
         }
-        Region other = (Region) object;
+        Profile other = (Profile) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -76,7 +68,7 @@ public class Region implements Serializable {
 
     @Override
     public String toString() {
-        return name;
+        return "entities.core.Profile[ id=" + id + " ]";
     }
     
 }

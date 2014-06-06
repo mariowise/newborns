@@ -1,9 +1,9 @@
 package managedbeans;
 
-import entities.Country;
+import entities.Commune;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
-import sessionbeans.CountryFacadeLocal;
+import sessionbeans.CommuneFacadeLocal;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("countryController")
+@Named("communeController")
 @SessionScoped
-public class CountryController implements Serializable {
+public class CommuneController implements Serializable {
 
     @EJB
-    private CountryFacadeLocal ejbFacade;
-    private List<Country> items = null;
-    private Country selected;
+    private CommuneFacadeLocal ejbFacade;
+    private List<Commune> items = null;
+    private Commune selected;
 
-    public CountryController() {
+    public CommuneController() {
     }
 
-    public Country getSelected() {
+    public Commune getSelected() {
         return selected;
     }
 
-    public void setSelected(Country selected) {
+    public void setSelected(Commune selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class CountryController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private CountryFacadeLocal getFacade() {
+    private CommuneFacadeLocal getFacade() {
         return ejbFacade;
     }
 
-    public Country prepareCreate() {
-        selected = new Country();
+    public Commune prepareCreate() {
+        selected = new Commune();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("CountryCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("CommuneCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CountryUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CommuneUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("CountryDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("CommuneDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Country> getItems() {
+    public List<Commune> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,29 +109,29 @@ public class CountryController implements Serializable {
         }
     }
 
-    public Country getCountry(java.lang.Long id) {
+    public Commune getCommune(java.lang.Long id) {
         return getFacade().find(id);
     }
 
-    public List<Country> getItemsAvailableSelectMany() {
+    public List<Commune> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Country> getItemsAvailableSelectOne() {
+    public List<Commune> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Country.class)
-    public static class CountryControllerConverter implements Converter {
+    @FacesConverter(forClass = Commune.class)
+    public static class CommuneControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            CountryController controller = (CountryController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "countryController");
-            return controller.getCountry(getKey(value));
+            CommuneController controller = (CommuneController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "communeController");
+            return controller.getCommune(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -151,11 +151,11 @@ public class CountryController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Country) {
-                Country o = (Country) object;
+            if (object instanceof Commune) {
+                Commune o = (Commune) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Country.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Commune.class.getName()});
                 return null;
             }
         }

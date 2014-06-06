@@ -5212,6 +5212,9 @@ button.close {
 .ui-button {
   margin-top: 10px !important; }
 
+.ui-selectonelistbox.ui-inputfield.ui-widget.ui-widget-content.ui-corner-all.list-100 .ui-selectlistbox-listcontainer {
+  height: 100px !important; }
+
 .float-right {
   float: right; }
 

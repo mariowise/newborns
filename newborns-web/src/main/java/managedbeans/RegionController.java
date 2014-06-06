@@ -24,7 +24,7 @@ import javax.faces.convert.FacesConverter;
 public class RegionController implements Serializable {
 
     @EJB
-    private RegionFacadeLocal ejbFacadeLocal;
+    private RegionFacadeLocal ejbFacade;
     private List<Region> items = null;
     private Region selected;
 
@@ -46,7 +46,7 @@ public class RegionController implements Serializable {
     }
 
     private RegionFacadeLocal getFacade() {
-        return ejbFacadeLocal;
+        return ejbFacade;
     }
 
     public Region prepareCreate() {

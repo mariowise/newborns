@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MotherEditDlg" widgetVar="MotherEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMotherTitle}">
+            <h:form id="MotherEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" rendered="#{motherController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMotherLabel_run}" for="run" />
+                        <p:inputText id="run" value="#{motherController.selected.run}" title="#{bundle.EditMotherTitle_run}" />
+                        <p:outputLabel value="#{bundle.EditMotherLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{motherController.selected.name}" title="#{bundle.EditMotherTitle_name}" />
+                        <p:outputLabel value="#{bundle.EditMotherLabel_firstLastname}" for="firstLastname" />
+                        <p:inputText id="firstLastname" value="#{motherController.selected.firstLastname}" title="#{bundle.EditMotherTitle_firstLastname}" />
+                        <p:outputLabel value="#{bundle.EditMotherLabel_secondLastname}" for="secondLastname" />
+                        <p:inputText id="secondLastname" value="#{motherController.selected.secondLastname}" title="#{bundle.EditMotherTitle_secondLastname}" />
+                        <p:outputLabel value="#{bundle.EditMotherLabel_birthDate}" for="birthDate" />
+                        <p:calendar id="birthDate" pattern="MM/dd/yyyy" value="#{motherController.selected.birthDate}" title="#{bundle.EditMotherTitle_birthDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMotherLabel_forecastHealth}" for="forecastHealth" />
+                        <p:selectOneMenu id="forecastHealth" value="#{motherController.selected.forecastHealth}" required="true" requiredMessage="#{bundle.EditMotherRequiredMessage_forecastHealth}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{forecastController.itemsAvailableSelectOne}"
+                                           var="forecastHealthItem"
+                                           itemValue="#{forecastHealthItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMotherLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{motherController.selected.email}" title="#{bundle.EditMotherTitle_email}" />
+                        <p:outputLabel value="#{bundle.EditMotherLabel_gender}" for="gender" />
+                        <p:selectOneMenu id="gender" value="#{motherController.selected.gender}" required="true" requiredMessage="#{bundle.EditMotherRequiredMessage_gender}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{genderController.itemsAvailableSelectOne}"
+                                           var="genderItem"
+                                           itemValue="#{genderItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMotherLabel_region}" for="region" />
+                        <p:selectOneMenu id="region" value="#{motherController.selected.region}" required="true" requiredMessage="#{bundle.EditMotherRequiredMessage_region}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{regionController.itemsAvailableSelectOne}"
+                                           var="regionItem"
+                                           itemValue="#{regionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMotherLabel_commune}" for="commune" />
+                        <p:selectOneMenu id="commune" value="#{motherController.selected.commune}" required="true" requiredMessage="#{bundle.EditMotherRequiredMessage_commune}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{communeController.itemsAvailableSelectOne}"
+                                           var="communeItem"
+                                           itemValue="#{communeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMotherLabel_city}" for="city" />
+                        <p:inputText id="city" value="#{motherController.selected.city}" title="#{bundle.CreateMotherTitle_city}" />
+                        <p:outputLabel value="#{bundle.EditMotherLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{motherController.selected.phone}" title="#{bundle.EditMotherTitle_phone}" />
+                        <p:outputLabel value="#{bundle.EditMotherLabel_address}" for="address" />
+                        <p:inputText id="address" value="#{motherController.selected.address}" title="#{bundle.EditMotherTitle_address}" />
+                        <p:outputLabel value="#{bundle.EditMotherLabel_mobile}" for="mobile" />
+                        <p:inputText id="mobile" value="#{motherController.selected.mobile}" title="#{bundle.EditMotherTitle_mobile}" />
+                        <p:outputLabel value="#{bundle.EditMotherLabel_addressDetail}" for="addressDetail" />
+                        <p:inputText id="addressDetail" value="#{motherController.selected.addressDetail}" title="#{bundle.EditMotherTitle_addressDetail}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{motherController.update}" value="#{bundle.Save}" update="display,:MotherListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MotherEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MotherEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
