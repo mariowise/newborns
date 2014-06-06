@@ -30,12 +30,12 @@
                              rowsPerPageTemplate="10,20,30,40,50"
                              
                              widgetVar="datalist"
-                             emptyMessage="No se encontraron resultados segun el criterio dado" 
+                             emptyMessage="No se encontraron resultados según el criterio dado" 
                              filteredValue="#{motherController.filteredItems}"
                              >
 
-                    <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                    <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                    <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton profileButton"/>
+                    <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton profileButton"/>
 
                     <f:facet name="header">
                         <p:outputPanel>

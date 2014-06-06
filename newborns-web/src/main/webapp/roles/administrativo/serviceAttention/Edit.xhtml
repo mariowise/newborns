@@ -14,34 +14,21 @@
                     <p:panelGrid columns="2" rendered="#{serviceAttentionController.selected != null}">
                         <p:outputLabel value="#{bundle.EditServiceAttentionLabel_id}" for="id" />
                         <h:outputText id="id" value="#{serviceAttentionController.selected.id}" title="#{bundle.EditServiceAttentionTitle_id}" />
-                        <p:outputLabel value="#{bundle.EditServiceAttentionLabel_creator}" for="creator" />
-                        <p:selectOneMenu id="creator" value="#{serviceAttentionController.selected.creator}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{accountController.itemsAvailableSelectOne}"
-                                           var="creatorItem"
-                                           itemValue="#{creatorItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditServiceAttentionLabel_mother}" for="mother" />
-                        <p:selectOneMenu id="mother" value="#{serviceAttentionController.selected.mother}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{motherController.itemsAvailableSelectOne}"
-                                           var="motherItem"
-                                           itemValue="#{motherItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditServiceAttentionLabel_service}" for="service" />
-                        <p:selectOneMenu id="service" value="#{serviceAttentionController.selected.service}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{serviceController.itemsAvailableSelectOne}"
-                                           var="serviceItem"
-                                           itemValue="#{serviceItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditServiceAttentionLabel_originService}" for="originService" />
-                        <p:selectOneMenu id="originService" value="#{serviceAttentionController.selected.originService}" >
-                            <f:selectItems value="#{serviceController.itemsAvailableSelectOne}"
-                                           var="serviceItem"
-                                           itemValue="#{serviceItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditServiceAttentionLabel_createdAt}" for="createdAt" />
+                        <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_service}" for="service" />
+                        <p:selectOneListbox id="service" value="#{serviceAttentionController.selected.service}" var="t" filter="true" filterMatchMode="contains" style="width: 100%;" styleClass="list-100">
+                            <f:selectItems value="#{serviceController.items}" var="service" itemLabel="#{service.name}" itemValue="#{service}" />
+                            <p:column>
+                                <h:outputText value="#{t.name}" />
+                            </p:column>
+                        </p:selectOneListbox>
+                        <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_originService}" for="originService" />
+                        <p:selectOneListbox id="originService" value="#{serviceAttentionController.selected.originService}" var="t" filter="true" filterMatchMode="contains" style="width: 100%;" styleClass="list-100">
+                            <f:selectItems value="#{serviceController.items}" var="originService" itemLabel="#{originService.name}" itemValue="#{originService}" />
+                            <p:column>
+                                <h:outputText value="#{t.name}" />
+                            </p:column>
+                        </p:selectOneListbox>
+                        <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_createdAt}" for="createdAt" />
                         <p:calendar id="createdAt" pattern="MM/dd/yyyy" value="#{serviceAttentionController.selected.createdAt}" title="#{bundle.EditServiceAttentionTitle_createdAt}"  showOn="button"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{serviceAttentionController.update}" value="#{bundle.Save}" update="display,:ServiceAttentionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ServiceAttentionEditDialog');"/>

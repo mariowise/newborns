@@ -1,23 +1,23 @@
 package managedbeans;
 
 import entities.Service;
-import managedbeans.util.JsfUtil;
-import managedbeans.util.JsfUtil.PersistAction;
-import sessionbeans.ServiceFacadeLocal;
-
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Named;
+import managedbeans.util.JsfUtil;
+import managedbeans.util.JsfUtil.PersistAction;
+import sessionbeans.ServiceFacadeLocal;
 
 @Named("serviceController")
 @SessionScoped
@@ -173,4 +173,17 @@ public class ServiceController implements Serializable {
         this.filteredHealthServices = filteredHealthServices;
     }
     
+    public List<Service> filterService(String query) {
+        List<Service> allServices = getFacade().findAll();
+        List<Service> filteredServices = new ArrayList<Service>();
+        
+        for(int i = 0; i < allServices.size(); i++) {
+            Service skin = allServices.get(i);
+            if(skin.getName().toLowerCase().startsWith(query)) {
+                filteredServices.add(skin);
+            }                
+        }
+        
+        return filteredServices;
+    }
 }

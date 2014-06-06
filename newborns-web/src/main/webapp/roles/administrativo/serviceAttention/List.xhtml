@@ -28,42 +28,53 @@
                              rowKey="#{item.id}"
                              rows="10"
                              rowsPerPageTemplate="10,20,30,40,50"
+                             
+                             widgetVar="datalist"
+                             emptyMessage="No se encontraron resultados según el criterio dado" 
+                             filteredValue="#{serviceAttentionController.filteredItems}"
                              >
 
                     <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                     <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
-
-                    <p:column>
+                    
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <h:outputText value="Buscar:" />
+                            <p:inputText id="globalFilter" onkeyup="PF('datalist').filter()" style="width:150px" placeholder="Ingresar..."/>
+                        </p:outputPanel>
+                    </f:facet>
+                    
+                    <p:column filterBy="#{item.id}" headerText="Id" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListServiceAttentionTitle_id}"/>
                         </f:facet>
                         <h:outputText value="#{item.id}"/>
                     </p:column>
-                    <p:column>
+<!--                    <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{bundle.ListServiceAttentionTitle_creator}"/>
+                            <h:outputText value="{bundle.ListServiceAttentionTitle_creator}"/>
                         </f:facet>
-                        <h:outputText value="#{item.creator}"/>
-                    </p:column>
-                    <p:column>
+                        <h:outputText value="{item.creator.rut}"/>
+                    </p:column>-->
+<!--                    <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{bundle.ListServiceAttentionTitle_mother}"/>
+                            <h:outputText value="{bundle.ListServiceAttentionTitle_mother}"/>
                         </f:facet>
-                        <h:outputText value="#{item.mother}"/>
-                    </p:column>
-                    <p:column>
+                        <h:outputText value="{item.mother.name}"/>
+                    </p:column>-->
+                    <p:column filterBy="#{item.service.name}" headerText="Service" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListServiceAttentionTitle_service}"/>
                         </f:facet>
-                        <h:outputText value="#{item.service}"/>
+                        <h:outputText value="#{item.service.name}"/>
                     </p:column>
-                    <p:column>
+                    <p:column filterBy="#{item.originService.name}" headerText="OriginService" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListServiceAttentionTitle_originService}"/>
                         </f:facet>
-                        <h:outputText value="#{item.originService}"/>
+                        <h:outputText value="#{item.originService.name}"/>
                     </p:column>
-                    <p:column>
+                    <p:column filterBy="#{item.createdAt}" headerText="CreatedAt" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListServiceAttentionTitle_createdAt}"/>
                         </f:facet>

@@ -12,20 +12,19 @@
             <h:form id="ServiceAttentionViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{serviceAttentionController.selected != null}">
-                        <h:outputText value="#{bundle.ViewServiceAttentionLabel_id}"/>
-                        <h:outputText value="#{serviceAttentionController.selected.id}" title="#{bundle.ViewServiceAttentionTitle_id}"/>
                         <h:outputText value="#{bundle.ViewServiceAttentionLabel_creator}"/>
-                        <h:outputText value="#{serviceAttentionController.selected.creator}" title="#{bundle.ViewServiceAttentionTitle_creator}"/>
+                        <h:outputText value="#{serviceAttentionController.selected.creator.rut}" title="#{bundle.ViewServiceAttentionTitle_creator}"/>
                         <h:outputText value="#{bundle.ViewServiceAttentionLabel_mother}"/>
-                        <h:outputText value="#{serviceAttentionController.selected.mother}" title="#{bundle.ViewServiceAttentionTitle_mother}"/>
+                        <h:outputText value="#{serviceAttentionController.selected.mother.run}" title="#{bundle.ViewServiceAttentionTitle_mother}"/>
                         <h:outputText value="#{bundle.ViewServiceAttentionLabel_createdAt}"/>
                         <h:outputText value="#{serviceAttentionController.selected.createdAt}" title="#{bundle.ViewServiceAttentionTitle_createdAt}">
-                        <h:outputText value="#{bundle.ViewServiceAttentionLabel_service}"/>
-                        <h:outputText value="#{serviceAttentionController.selected.service}" title="#{bundle.ViewServiceAttentionTitle_service}"/>
-                        <h:outputText value="#{bundle.ViewServiceAttentionLabel_originServie}"/>
-                        <h:outputText value="#{serviceAttentionController.selected.originService}" title="#{bundle.ViewServiceAttentionTitle_originService}"/>
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewServiceAttentionLabel_service}"/>
+                        <h:outputText value="#{serviceAttentionController.selected.service.name}" title="#{bundle.ViewServiceAttentionTitle_service}"/>
+                        <h:outputText value="#{bundle.ViewServiceAttentionLabel_originService}"/>
+                        <h:outputText value="#{serviceAttentionController.selected.originService.name}" title="#{bundle.ViewServiceAttentionTitle_originService}"/>
+                            
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ServiceAttentionViewDialog.hide()"/>
                 </h:panelGroup>
