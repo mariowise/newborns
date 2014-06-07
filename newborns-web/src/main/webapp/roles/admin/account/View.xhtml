@@ -22,6 +22,8 @@
                         <h:outputText value="#{accountController.selected.email}" title="Correo electrónico"/>
                         <h:outputText value="Tipo"/>
                         <h:outputText value="#{accountController.selected.accountType.name}" title="Tipo de usuario"/>
+                        <h:outputText value="Estado Cuenta"/>
+                        <h:outputText value="#{accountController.selected.currentState}" title="Estado Cuenta"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="AccountViewDialog.hide()"/>
                 </h:panelGroup>

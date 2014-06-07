@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -36,6 +37,9 @@ public class Account implements Serializable {
     private AccountType accountType;
     
     private String phone;
+    
+    @NotNull
+    private boolean currentState;
     
     public String getRut() {
         // return rut.substring(0, rut.length()-1) + "-" + rut.substring(rut.length()-1, rut.length());
@@ -88,6 +92,14 @@ public class Account implements Serializable {
 
     public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
+    }
+
+    public boolean isCurrentState() {
+        return currentState;
+    }
+
+    public void setCurrentState(boolean currentState) {
+        this.currentState = currentState;
     }
     
     @Override
