@@ -6,11 +6,12 @@ INSERT INTO accounttype(
     (4, 'fonoaudiologo'),(5, 'administrativo');
 
 INSERT INTO account(
-            rut, email, password, phone, accounttype_id, name)
-    VALUES ('104717888', 'admin@usach.cl', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '21234567', 1, 'Maria'),
-         ('164377377', 'matrona@usach.cl', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '21321321', 2, 'Jorge'),
-         ('62089237', 'medico@usach.cl', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '23897231', 3, 'Juana'),
-         ('126432631', 'fonoaudiologo@usach.cl', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '24658920', 4, 'Esteban');
+            rut, email, password, phone, accounttype_id, name, currentstate)
+    VALUES ('104717888', 'admin@usach.cl', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '21234567', 1, 'Maria', true),
+         ('164377377', 'matrona@usach.cl', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '21321321', 2, 'Jorge', true),
+         ('62089237', 'medico@usach.cl', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '23897231', 3, 'Juana', true),
+         ('126432631', 'fonoaudiologo@usach.cl', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '24658920', 4, 'Esteban', true),
+         ('19', 'administrativo@usach.cl', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '21234567', 5, 'Mosheman', true);
 
 INSERT INTO deliverytype(id, name)
     VALUES (1, 'Normal'), (2, 'Cesarea'), (3, 'Forceps'), (4, 'Podálico'), (5, 'Fuera del Servicio');
