@@ -126,6 +126,10 @@ public class MotherController implements Serializable {
     public Mother getMother(java.lang.Long id) {
         return getFacade().find(id);
     }
+    
+    public void refreshSelected() {
+        selected = getMother(selected.getId());
+    }
 
     public List<Mother> getItemsAvailableSelectMany() {
         return getFacade().findAll();
@@ -189,5 +193,5 @@ public class MotherController implements Serializable {
         JsfUtil.redirect("/faces/roles/" + sessionUtil.getCurrentUser().getAccountType().getName() + 
                 "/index-profile.xhtml");
     }
-
+    
 }

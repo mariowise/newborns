@@ -13,6 +13,7 @@ import entities.Gender;
 import entities.Region;
 import entities.ServiceAttention;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -265,6 +266,8 @@ public class Mother implements Serializable {
     }
 
     public List<ServiceAttention> getAttentions() {
+        if(attentions == null)
+            attentions = new ArrayList<ServiceAttention>();
         return attentions;
     }
 

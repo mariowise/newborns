@@ -87,10 +87,8 @@ public class ServiceAttentionController implements Serializable {
     }
 
     public List<ServiceAttention> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-//            items = motherController.getSelected().getAttentions();
-        }
+        motherController.refreshSelected();
+        items = motherController.getSelected().getAttentions();
         return items;
     }
 
@@ -98,7 +96,9 @@ public class ServiceAttentionController implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if (persistAction != PersistAction.DELETE) {
+                if(persistAction == PersistAction.CREATE) {
+                    getFacade().create(selected);
+                } else if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);

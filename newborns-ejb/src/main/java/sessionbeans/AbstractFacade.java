@@ -24,6 +24,8 @@ public abstract class AbstractFacade<T> {
 
     public void create(T entity) {
         getEntityManager().persist(entity);
+        getEntityManager().flush();
+        getEntityManager().refresh(entity);
     }
 
     public void edit(T entity) {
@@ -35,7 +37,9 @@ public abstract class AbstractFacade<T> {
     }
 
     public T find(Object id) {
-        return getEntityManager().find(entityClass, id);
+        Object obj = getEntityManager().find(entityClass, id);
+        getEntityManager().refresh(obj);
+        return (T) obj;
     }
 
     public List<T> findAll() {
