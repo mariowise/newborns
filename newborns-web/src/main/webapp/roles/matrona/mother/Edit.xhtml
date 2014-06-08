@@ -21,7 +21,7 @@
                         <p:outputLabel value="#{bundle.EditMotherLabel_secondLastname}" for="secondLastname" />
                         <p:inputText id="secondLastname" value="#{motherController.selected.secondLastname}" title="#{bundle.EditMotherTitle_secondLastname}" />
                         <p:outputLabel value="#{bundle.EditMotherLabel_birthDate}" for="birthDate" />
-                        <p:calendar id="birthDate" pattern="MM/dd/yyyy" value="#{motherController.selected.birthDate}" title="#{bundle.EditMotherTitle_birthDate}"  showOn="button"/>
+                        <p:calendar id="birthDate" pattern="dd/MM/yyyy" value="#{motherController.selected.birthDate}" title="#{bundle.EditMotherTitle_birthDate}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditMotherLabel_forecastHealth}" for="forecastHealth" />
                         <p:selectOneMenu id="forecastHealth" value="#{motherController.selected.forecastHealth}" required="true" requiredMessage="#{bundle.EditMotherRequiredMessage_forecastHealth}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

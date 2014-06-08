@@ -8,12 +8,14 @@
 
     <ui:composition>
         
-        <h4>Herramientas Administrativo</h4>
+        <h4>Herramientas Matrona</h4>
         
         <h:form>
                  
             <p:menu style="width: 100%">
                 <p:menuitem value="Inicio" outcome="/roles/matrona/index.xhtml" update="messages" />
+                <p:menuitem value="Datos clínicos" outcome="/roles/matrona/mother/ViewClinical.xhtml" update="messages" />
+                <p:menuitem value="Partos" outcome="/roles/matrona/delivery/List.xhtml" update="messages" />
             </p:menu>
 
         </h:form>
