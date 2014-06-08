@@ -109,6 +109,9 @@ public class Mother implements Serializable {
     
     @OneToMany(mappedBy = "mother")
     private List<ServiceAttention> attentions;
+    
+    @OneToMany(mappedBy = "mother")
+    private List<Delivery> deliveries;
 
     public Long getId() {
         return id;
@@ -286,6 +289,14 @@ public class Mother implements Serializable {
 
     public void setHealthService(Service healthService) {
         this.healthService = healthService;
+    }
+
+    public List<Delivery> getDeliveries() {
+        return deliveries;
+    }
+
+    public void setDeliveries(List<Delivery> deliveries) {
+        this.deliveries = deliveries;
     }
 
     @Override

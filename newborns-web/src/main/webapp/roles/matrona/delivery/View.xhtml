@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DeliveryViewDlg" widgetVar="DeliveryViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDeliveryTitle}">
+            <h:form id="DeliveryViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{deliveryController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDeliveryLabel_id}"/>
+                        <h:outputText value="#{deliveryController.selected.id}" title="#{bundle.ViewDeliveryTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewDeliveryLabel_date}"/>
+                        <h:outputText value="#{deliveryController.selected.date}" title="#{bundle.ViewDeliveryTitle_date}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDeliveryLabel_time}"/>
+                        <h:outputText value="#{deliveryController.selected.time}" title="#{bundle.ViewDeliveryTitle_time}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDeliveryLabel_mother}"/>
+                        <h:outputText value="#{deliveryController.selected.mother}" title="#{bundle.ViewDeliveryTitle_mother}"/>
+                        <h:outputText value="#{bundle.ViewDeliveryLabel_deliveryType}"/>
+                        <h:outputText value="#{deliveryController.selected.deliveryType}" title="#{bundle.ViewDeliveryTitle_deliveryType}"/>
+                        <h:outputText value="#{bundle.ViewDeliveryLabel_createdBy}"/>
+                        <h:outputText value="#{deliveryController.selected.createdBy}" title="#{bundle.ViewDeliveryTitle_createdBy}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DeliveryViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MotherEditClinicalDlg" widgetVar="MotherEditClinicalDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMotherTitle}">
+            <h:form id="MotherEditClinicalForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{motherController.selected != null}">
+                        
+                        <h:outputLabel for="bloodGroup" value="#{bundle.ViewMotherLabel_bloodGroup}"/>
+                        <p:selectOneMenu id="bloodGroup" value="#{motherController.selected.bloodGroup}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{bloodGroupController.itemsAvailableSelectOne}"
+                                           var="bloodGroupItem"
+                                           itemValue="#{bloodGroupItem}"/>
+                        </p:selectOneMenu>
+                        
+                        <h:outputLabel for="coombs" value="#{bundle.ViewMotherLabel_coombs}"/>
+                        <h:selectBooleanCheckbox id="coombs" value="#{motherController.selected.coombs}"/>                     
+                        
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{motherController.update}" value="#{bundle.Save}" update="display,:MotherEditForm:display,:growl" oncomplete="handleSubmit(args, 'MotherEditClinicalDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MotherEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

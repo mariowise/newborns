@@ -63,7 +63,8 @@ public class BloodGroup implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.BloodGroup[ id=" + id + " ]";
+        // return "entities.BloodGroup[ id=" + id + " ]";
+        return name;
     }
     
 }

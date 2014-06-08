@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="/layout/profile/2columns-left.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMotherTitle}"></h:outputText>
+        </ui:define>
+        
+        <ui:define name="sidebar-left">
+            <ui:include src="../sidebar-left-profile.xhtml"/>
+        </ui:define>
+
+        <ui:define name="body">
+            
+            <h4>Datos clínicos</h4>
+        
+            <h:form id="MotherEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{motherController.selected != null}">
+                        
+                        <h:outputText value="#{bundle.ViewMotherLabel_bloodGroup}"/>
+                        <c:if test="#{motherController.selected.bloodGroup != null}">
+                            <h:outputText value="#{motherController.selected.bloodGroup.name}"  title="#{bundle.ViewMotherTitle_bloodGroup}"/>
+                        </c:if>
+                        <c:if test="#{motherController.selected.bloodGroup == null}">
+                            <h:outputText value="No definido"  title="#{bundle.ViewMotherTitle_bloodGroup}"/>
+                        </c:if>
+                                                
+                        <h:outputText value="#{bundle.ViewMotherLabel_coombs}"/>
+                        <c:if test="#{motherController.selected.coombs}">
+                            <h:outputText value="Sí"  title="#{bundle.ViewMotherTitle_coombs}"/>
+                        </c:if>
+                        <c:if test="#{!motherController.selected.coombs}">
+                            <h:outputText value="No"  title="#{bundle.ViewMotherTitle_coombs}"/>
+                        </c:if>
+                        
+                    </p:panelGrid>
+                </h:panelGroup>
+                
+                <p:commandButton id="editButton" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MotherEditClinicalForm" oncomplete="PF('MotherEditClinicalDialog').show()"/>
+                
+            </h:form>
+            
+            <ui:include src="EditClinical.xhtml"/>
+        
+        </ui:define>
+    </ui:composition>
+</html>
+
