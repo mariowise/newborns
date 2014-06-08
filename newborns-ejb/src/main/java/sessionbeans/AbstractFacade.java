@@ -10,6 +10,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
+//        getEntityManager().flush();
+//        getEntityManager().refresh(entity);
  *
  * @author mario
  */

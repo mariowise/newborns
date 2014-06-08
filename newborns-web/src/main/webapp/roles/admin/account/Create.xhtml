@@ -38,13 +38,8 @@
                         <p:outputLabel value="Tipo" for="accountType" />
                         <p:selectOneMenu id="accountType" value="#{accountController.selected.accountType}" required="true" requiredMessage="Es necesario registrar un tipo de usuario">
                             <f:selectItems value="#{accountTypeController.itemsAvailableSelectOne}"
-                                var="accountTypeItem"
-                                itemValue="#{accountTypeItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="Estado Cuenta" for="currentState" />
-                        <p:selectOneMenu id="currentState" value="#{accountController.selected.currentState}" required="true">
-                            <f:selectItem itemLabel="Activado" itemValue="true" />
-                            <f:selectItem itemLabel="Desactivado" itemValue="false" />
+                                           var="accountTypeItem"
+                                           itemValue="#{accountTypeItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{accountController.create}" value="Guardar" update="display,:AccountListForm:datalist,:growl" oncomplete="handleSubmit(args,'AccountCreateDialog');"/>

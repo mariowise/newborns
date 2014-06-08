@@ -29,17 +29,17 @@ public class AccountController implements Serializable {
     private AccountFacadeLocal ejbFacade;
     private List<Account> items = null;
     private Account selected;
-    
+
     @Inject
     private SessionUtil sessionUtil;
-    
-    @Inject 
+
+    @Inject
     private Mailer sendMail;
-    
+
     private String rut;
-    
+
     private String email;
-    
+
     private boolean currentState;
 
     public AccountController() {
@@ -89,6 +89,7 @@ public class AccountController implements Serializable {
 
     public Account prepareCreate() {
         selected = new Account();
+        selected.setCurrentState(Boolean.TRUE);
         initializeEmbeddableKey();
         return selected;
     }
@@ -103,15 +104,19 @@ public class AccountController implements Serializable {
     public void update() {
         persist(PersistAction.UPDATE, "El usuario ha sido actualizado");
     }
-    
+
     public void updateAndGo(String destiny) {
         persist(PersistAction.UPDATE, "El usuario ha sido actualizado");
         JsfUtil.redirect(destiny);
     }
 
     public void destroy() {
-        if(sessionUtil.getCurrentUser().getRut().compareTo(selected.getRut()) != 0) {
-            persist(PersistAction.DELETE, "El usuario se ha deshabilitado");
+        if (sessionUtil.getCurrentUser().getRut().compareTo(selected.getRut()) != 0) {
+            if (selected.isCurrentState()) {
+                persist(PersistAction.DELETE, "El usuario se ha deshabilitado");
+            } else {
+                persist(PersistAction.DELETE, "El usuario se ha habilitado");
+            }
             if (!JsfUtil.isValidationFailed()) {
                 selected = null; // Remove selection
                 items = null;    // Invalidate list of items to trigger re-query.
@@ -120,7 +125,7 @@ public class AccountController implements Serializable {
             JsfUtil.addErrorMessage("No puede eliminar su propia cuenta.");
         }
     }
-    
+
     public void restorePassword() {
         System.out.println("AccountController: restore password triggered for user " + selected.getRut());
         String newPassword;
@@ -133,11 +138,11 @@ public class AccountController implements Serializable {
             JsfUtil.addErrorMessage("No ha sido posible reestablecer la contraseña, inténtelo mas tarde.");
         }
     }
-    
+
     public void recoverPassword() {
         System.out.println("AccountController: recover password triggered for user " + rut);
         selected = getAccount(rut);
-        if(selected.getEmail().compareTo(email) == 0) {
+        if (selected.getEmail().compareTo(email) == 0) {
             restorePassword();
         } else {
             JsfUtil.addErrorMessage("Los datos no coinciden con ningún usuario registrado.");
@@ -157,13 +162,17 @@ public class AccountController implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if (persistAction != PersistAction.DELETE) {
+                if (persistAction == PersistAction.CREATE) {
+                    getFacade().create(selected);
+                } else if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
-                    if (currentState==false) {
-                        currentState = true;                        
-                    }else{
+                    if (selected.isCurrentState() == true) {
                         currentState = false;
+                        selected.setCurrentState(currentState);
+                    } else {
+                        currentState = true;
+                        selected.setCurrentState(currentState);
                     }
                     getFacade().edit(selected);
                 }

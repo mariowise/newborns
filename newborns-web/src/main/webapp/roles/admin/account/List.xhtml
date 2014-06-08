@@ -68,13 +68,14 @@
                         <f:facet name="header">
                             <h:outputText value="Estado cuenta"/>
                         </f:facet>
-                        <h:outputText value="#{item.currentState}"/>
+                        <h:outputText value="Habilitado" rendered="#{item.currentState}"/>
+                        <h:outputText value="Deshabilitado" rendered="#{!item.currentState}"/>
                     </p:column>
                     <f:facet name="footer">
                         <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{accountController.prepareCreate}" update=":AccountCreateForm" oncomplete="PF('AccountCreateDialog').show()"/>
                         <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":AccountViewForm" oncomplete="PF('AccountViewDialog').show()" disabled="#{empty accountController.selected}"/>
                         <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AccountEditForm" oncomplete="PF('AccountEditDialog').show()" disabled="#{empty accountController.selected}"/>
-                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{accountController.destroy}" update=":growl,datalist" disabled="#{empty accountController.selected}"/>
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.LockUnlock}" actionListener="#{accountController.destroy}" update=":growl,datalist" disabled="#{empty accountController.selected}"/>
                     </f:facet>
                 </p:dataTable>
 
