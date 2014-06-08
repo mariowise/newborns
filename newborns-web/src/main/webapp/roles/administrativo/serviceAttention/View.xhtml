@@ -13,7 +13,7 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{serviceAttentionController.selected != null}">
                         <h:outputText value="#{bundle.ViewServiceAttentionLabel_creator}"/>
-                        <h:outputText value="#{serviceAttentionController.selected.creator.rut}" title="#{bundle.ViewServiceAttentionTitle_creator}"/>
+                        <h:outputText value="#{serviceAttentionController.selected.creator.name}" title="#{bundle.ViewServiceAttentionTitle_creator}"/>
                         <h:outputText value="#{bundle.ViewServiceAttentionLabel_mother}"/>
                         <h:outputText value="#{serviceAttentionController.selected.mother.run}" title="#{bundle.ViewServiceAttentionTitle_mother}"/>
                         <h:outputText value="#{bundle.ViewServiceAttentionLabel_createdAt}"/>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/layout/2columns-left.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMotherTitle}"></h:outputText>
+        </ui:define>
+        
+        <ui:define name="sidebar-left">
+            <ui:include src="../sidebar-left.xhtml"/>
+        </ui:define>
+
+        <ui:define name="body">
+            
+            <h4>#{bundle.ListMotherTitle}</h4>
+            
+            <h:form id="MotherListForm">
+                <p:dataTable id="datalist" value="#{motherController.items}" var="item"
+                             selectionMode="single" selection="#{motherController.selected}"
+                             paginator="true"
+                             rowKey="#{item.id}"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             
+                             widgetVar="datalist"
+                             emptyMessage="No se encontraron resultados según el criterio dado" 
+                             filteredValue="#{motherController.filteredItems}"
+                             >
+
+                    <p:ajax event="rowSelect"   update="viewButton editButton deleteButton profileButton"/>
+                    <p:ajax event="rowUnselect" update="viewButton editButton deleteButton profileButton"/>
+
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <h:outputText value="Buscar:" />
+                            <p:inputText id="globalFilter" onkeyup="PF('datalist').filter()" style="width:150px" placeholder="Ingresar..."/>
+                        </p:outputPanel>
+                    </f:facet>
+                    
+                    <p:column filterBy="#{item.run}" headerText="RUN" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMotherTitle_run}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.run}"/>
+                    </p:column>
+                    <p:column filterBy="#{item.firstLastname}" headerText="FirstLastname" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="Nombre"/>
+                        </f:facet>
+                        <h:outputText value="#{item.firstLastname} #{item.secondLastname}, #{item.name}"/>
+                    </p:column>
+                    <p:column filterBy="#{item.forecastHealth.name}" headerText="ForecastHealth" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMotherTitle_forecastHealth}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.forecastHealth.name}"/>
+                    </p:column>
+                    <p:column filterBy="#{item.region.name}" headerText="Region" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMotherTitle_region}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.region.name}"/>
+                    </p:column>
+                    <f:facet name="footer">
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MotherViewForm" oncomplete="PF('MotherViewDialog').show()" disabled="#{empty motherController.selected}"/>
+                        <p:commandButton id="profileButton" icon="ui-icon-person" value="Ver perfil" actionListener="#{motherController.profileView}" disabled="#{empty motherController.selected}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MotherEditForm" oncomplete="PF('MotherEditDialog').show()" disabled="#{empty motherController.selected}"/>
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{motherController.destroy}" update=":growl,datalist" disabled="#{empty motherController.selected}"/>
+                    </f:facet>
+                </p:dataTable>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

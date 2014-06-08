@@ -11,6 +11,7 @@ import entities.Commune;
 import entities.Forecast;
 import entities.Gender;
 import entities.Region;
+import entities.Service;
 import entities.ServiceAttention;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -89,7 +90,7 @@ public class Mother implements Serializable {
     
     private String mobile;
     
-    @Pattern(regexp = "[^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$]*" , message = "Ingrese un correo valido, e.g.=mail@mail.com")
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$" , message = "Ingrese un correo valido, e.g.=mail@mail.com")
     private String email;
     
     @ManyToOne
@@ -97,6 +98,10 @@ public class Mother implements Serializable {
     private BloodGroup bloodGroup;
     
     private Boolean coombs = false;
+    
+    @ManyToOne
+    @JoinColumn(nullable = true)
+    private Service healthService;
     
     @NotNull
     @ManyToOne
@@ -273,6 +278,14 @@ public class Mother implements Serializable {
 
     public void setAttentions(List<ServiceAttention> attentions) {
         this.attentions = attentions;
+    }
+
+    public Service getHealthService() {
+        return healthService;
+    }
+
+    public void setHealthService(Service healthService) {
+        this.healthService = healthService;
     }
 
     @Override

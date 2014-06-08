@@ -1,16 +1,15 @@
-INSERT INTO accounttype(
-            id, name)
-    VALUES (1, 'admin'),
+INSERT INTO accounttype(id, name) VALUES 
+    (1, 'admin'),
     (2, 'matrona'),
     (3, 'medico'),
     (4, 'fonoaudiologo'),(5, 'administrativo');
 
-INSERT INTO account(
-            rut, email, password, phone, accounttype_id, name)
-    VALUES ('104717888', 'admin@usach.cl', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '21234567', 1, 'Maria'),
-         ('164377377', 'matrona@usach.cl', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '21321321', 2, 'Jorge'),
-         ('62089237', 'medico@usach.cl', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '23897231', 3, 'Juana'),
-         ('126432631', 'fonoaudiologo@usach.cl', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '24658920', 4, 'Esteban');
+INSERT INTO account (rut, email, "name", password, phone, accounttype_id, currentstate) VALUES
+    ('171885701', 'mariolopezlandes@gmail.com', 'Mario López', '18496197305510df22af763507c99219ea08e08414383ae1abf1cb156d961a03', '56197696', 1, true),
+    ('164377377', 'matrona@usach.cl', 'Arya Stark', '18496197305510df22af763507c99219ea08e08414383ae1abf1cb156d961a03', '21321321', 2, true),
+    ('62089237', 'medico@usach.cl', 'Petyr Baelish', '18496197305510df22af763507c99219ea08e08414383ae1abf1cb156d961a03', '23897231', 3, true),
+    ('126432631', 'fonoaudiologo@usach.cl', 'John Snow', '18496197305510df22af763507c99219ea08e08414383ae1abf1cb156d961a03', '24658920', 4, true),
+    ('173098413', 'mario@requies.cl', 'Moshe Landaeta', '18496197305510df22af763507c99219ea08e08414383ae1abf1cb156d961a03', '12345678', 5, true);
 
 INSERT INTO deliverytype(id, name)
     VALUES (1, 'Normal'), (2, 'Cesarea'), (3, 'Forceps'), (4, 'Podálico'), (5, 'Fuera del Servicio');
@@ -391,9 +390,8 @@ INSERT INTO commune(id, name, region_id) VALUES
 (294,'PUTRE',15);
 
 CREATE OR REPLACE VIEW accounts AS 
- SELECT account.rut,
+SELECT account.rut,
     account.password,
     accounttype.name AS rolename
-   FROM account
-   JOIN accounttype ON account.accounttype_id = accounttype.id;
-
+FROM account
+    JOIN accounttype ON account.accounttype_id = accounttype.id;
