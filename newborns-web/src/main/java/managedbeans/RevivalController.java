@@ -56,10 +56,10 @@ public class RevivalController implements Serializable {
     }
 
     public Revival prepareCreate() {
-            selected = new Revival();
-            selected.setProfile(profileController.getSelected());
-            selected.setDelivery(deliveryController.getSelected());
-            initializeEmbeddableKey();
+        selected = new Revival();
+        selected.setProfile(profileController.getSelected());
+        selected.setDelivery(deliveryController.getSelected());
+        initializeEmbeddableKey();
         return selected;
     }
 
@@ -93,8 +93,9 @@ public class RevivalController implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if (persistAction != PersistAction.DELETE) {
-//                    getFacade().createWithDelivery(selected);
+                if(persistAction == PersistAction.CREATE) {
+                    getFacade().create(selected);
+                } else if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);

@@ -34,7 +34,7 @@ public class DeliveryController implements Serializable {
     
     @Inject
     private MotherController motherController;
-
+    
     public DeliveryController() {
     }
 
@@ -84,7 +84,9 @@ public class DeliveryController implements Serializable {
     }
 
     public List<Delivery> getItems() {
+        System.out.println("Actualizando deliveries desde la base de datos");
         motherController.refreshSelected();
+        refreshSelected();
         items = motherController.getSelected().getDeliveries();
         return items;
     }
@@ -95,8 +97,7 @@ public class DeliveryController implements Serializable {
             try {
                 if(persistAction == PersistAction.CREATE) {
                     getFacade().create(selected);
-                }
-                else if (persistAction != PersistAction.DELETE) {
+                } else if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);
