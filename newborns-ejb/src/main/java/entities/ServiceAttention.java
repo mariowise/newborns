@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -42,6 +43,9 @@ public class ServiceAttention implements Serializable {
     @NotNull(message = "Debe seleccionar el Servicio de salud de origen")
     @ManyToOne
     private Service originService;
+    
+    @ManyToOne
+    private Forecast forecast;
     
     @NotNull(message = "Debe seleccionar la Fecha de admisión")
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -93,6 +97,14 @@ public class ServiceAttention implements Serializable {
 
     public void setOriginService(Service originService) {
         this.originService = originService;
+    }
+
+    public Forecast getForecast() {
+        return forecast;
+    }
+
+    public void setForecast(Forecast forecast) {
+        this.forecast = forecast;
     }
 
     @Override
