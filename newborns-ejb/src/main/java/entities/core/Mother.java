@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entities.core;
 
 import entities.BloodGroup;
@@ -36,80 +35,81 @@ import javax.validation.constraints.Size;
  */
 @Entity
 public class Mother implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @Size(min = 1, message = "Debe ingresar un Run")
     @Pattern(regexp = "^[0-9kK]+", message = "El Run debe estar formado solo por números y si es necesario la letra K")
     private String run;
-    
+
     @Size(min = 1, message = "Debe ingresar un nombre")
     @Pattern(regexp = "\\D*", message = "El campo Nombres no debe contener números")
     private String name;
-    
+
     @Size(min = 1, message = "Debe ingresar un Apellido paterno")
     @Pattern(regexp = "\\D*", message = "El campo Primer apellido no debe contener números ni tildes")
     private String firstLastname;
-    
+
     @Size(min = 1, message = "Debe ingresar un Apellido materno")
     @Pattern(regexp = "\\D*", message = "El campo Segundo apellido no puede contener números ni tildes")
     private String secondLastname;
 
-    @NotNull(message= "Debe ingresar una fecha de nacimiento")
+    @NotNull(message = "Debe ingresar una fecha de nacimiento")
     @Temporal(javax.persistence.TemporalType.DATE)
     @Past(message = "Coloque una fecha de nacimiento anterior al día de hoy")
     private Date birthDate;
-    
+
     @JoinColumn(nullable = false)
     @ManyToOne
     private Gender gender;
-    
+
     @JoinColumn(nullable = false)
     @ManyToOne
     private Forecast forecastHealth;
-    
+
     @JoinColumn(nullable = false)
     @ManyToOne
     private Region region;
-    
+
     private String city;
-    
+
     @JoinColumn(nullable = false)
     @ManyToOne
     private Commune commune;
-    
+
     private Boolean ruralAddress = false;
-    
+
     private String address;
-    
+
     private String addressDetail;
-    
+
     private String phone;
-    
+
     private String mobile;
-    
-    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$" , message = "Ingrese un correo valido, e.g.=mail@mail.com")
+
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$", message = "Ingrese un correo valido, e.g.=mail@mail.com")
     private String email;
-    
+
     @ManyToOne
     @JoinColumn(nullable = true)
     private BloodGroup bloodGroup;
-    
+
     private Boolean coombs = false;
-    
+
     @ManyToOne
     @JoinColumn(nullable = true)
     private Service healthService;
-    
+
     @NotNull
     @ManyToOne
     private Profile profile;
-    
+
     @OneToMany(mappedBy = "mother")
     private List<ServiceAttention> attentions;
-    
+
     @OneToMany(mappedBy = "mother")
     private List<Delivery> deliveries;
 
@@ -274,8 +274,9 @@ public class Mother implements Serializable {
     }
 
     public List<ServiceAttention> getAttentions() {
-        if(attentions == null)
+        if (attentions == null) {
             attentions = new ArrayList<ServiceAttention>();
+        }
         return attentions;
     }
 
@@ -292,6 +293,9 @@ public class Mother implements Serializable {
     }
 
     public List<Delivery> getDeliveries() {
+        if (deliveries == null) {
+            deliveries = new ArrayList<Delivery>();
+        }
         return deliveries;
     }
 
@@ -323,5 +327,5 @@ public class Mother implements Serializable {
     public String toString() {
         return "entities.core.Mother[ id=" + id + " ]";
     }
-    
+
 }

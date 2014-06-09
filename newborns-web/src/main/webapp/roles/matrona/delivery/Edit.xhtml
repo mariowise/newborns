@@ -11,7 +11,38 @@
         <p:dialog id="DeliveryEditDlg" widgetVar="DeliveryEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDeliveryTitle}">
             <h:form id="DeliveryEditForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{deliveryController.selected != null}">
+                    <p:panelGrid columns="4" rendered="#{deliveryController.selected != null}">
+                        <p:outputLabel value="Diabetes" for="diabetes"/>
+                        <p:selectBooleanCheckbox id="diabetes" value="#{deliveryController.selected.diabetes}"/>
+                        <p:outputLabel value="Hipertensión" for="hypertension"/>
+                        <p:selectBooleanCheckbox id="hypertension" value="#{deliveryController.selected.hypertension}"/>
+                        <p:outputLabel value="RH sensible" for="rhSensibility"/>
+                        <p:selectBooleanCheckbox id="rhSensibility" value="#{deliveryController.selected.rhSensibility}"/>
+                        <p:outputLabel value="Rompimiento de membrana" for="brokenMembrane"/>
+                        <p:selectBooleanCheckbox id="brokenMembrane" value="#{deliveryController.selected.brokenMembrane}"/>
+                        <p:outputLabel value="Infección ovular" for="ovularInfection"/>
+                        <p:selectBooleanCheckbox id="ovularInfection" value="#{deliveryController.selected.ovularInfection}"/>
+                        <p:outputLabel value="DPPNI" for="dppni"/>
+                        <p:selectBooleanCheckbox id="dppni" value="#{deliveryController.selected.dppni}"/>
+                        <p:outputLabel value="Placenta previa" for="earlyPlacenta"/>
+                        <p:selectBooleanCheckbox id="earlyPlacenta" value="#{deliveryController.selected.earlyPlacenta}"/>
+                        <p:outputLabel value="Rotura uterina" for="brokenUterus"/>
+                        <p:selectBooleanCheckbox id="brokenUterus" value="#{deliveryController.selected.brokenUterus}"/>
+                        <p:outputLabel value="Sufrimiento fetal" for="fetusPain"/>
+                        <p:selectBooleanCheckbox id="fetusPain" value="#{deliveryController.selected.fetusPain}"/>
+                        <p:outputLabel value="Accidente de cordón" for="laceAccident"/>
+                        <p:selectBooleanCheckbox id="laceAccident" value="#{deliveryController.selected.laceAccident}"/>
+                        <p:outputLabel value="RCIU" for="rciu"/>
+                        <p:selectBooleanCheckbox id="rciu" value="#{deliveryController.selected.rciu}"/>
+                        <p:outputLabel value="Otra patología" for="anotherPathology"/>
+                        <p:selectBooleanCheckbox id="anotherPathology" value="#{deliveryController.selected.anotherPathology}"/>
+                        <p:outputLabel value="VDLR" for="vdlr"/>
+                        <p:selectBooleanCheckbox id="vdlr" value="#{deliveryController.selected.vdrl}"/>
+                        <p:outputLabel value="Polidependencia" for="polidependencia"/>
+                        <p:selectBooleanCheckbox id="polidependencia" value="#{deliveryController.selected.polidependencia}"/>
+                        <p:outputLabel value="Embarazo de alto riesgo" for="risk"/>
+                        <p:selectBooleanCheckbox id="risk" value="#{deliveryController.selected.risk}"/>
+                        
                         <p:outputLabel value="#{bundle.EditDeliveryLabel_id}" for="id" />
                         <h:outputText id="id" value="#{deliveryController.selected.id}" title="#{bundle.EditDeliveryTitle_id}" />
                         <p:outputLabel value="#{bundle.EditDeliveryLabel_date}" for="date" />

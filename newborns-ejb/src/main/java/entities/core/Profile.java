@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entities.core;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -23,18 +23,22 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 public class Profile implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @NotNull
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date createdAt = new Date();
 
     @OneToMany(mappedBy = "profile")
     private List<Revival> revivals;
-    
+
+    @OneToMany(mappedBy = "profile")
+    private List<Party> party;
+
     public Long getId() {
         return id;
     }
@@ -52,11 +56,25 @@ public class Profile implements Serializable {
     }
 
     public List<Revival> getRevivals() {
+        if (revivals == null) {
+            revivals = new ArrayList<Revival>();
+        }
         return revivals;
     }
 
     public void setRevivals(List<Revival> revivals) {
         this.revivals = revivals;
+    }
+
+    public List<Party> getParty() {
+        if (party == null) {
+            party = new ArrayList<Party>();
+        }
+        return party;
+    }
+
+    public void setParty(List<Party> party) {
+        this.party = party;
     }
 
     @Override
@@ -83,5 +101,5 @@ public class Profile implements Serializable {
     public String toString() {
         return "entities.core.Profile[ id=" + id + " ]";
     }
-    
+
 }

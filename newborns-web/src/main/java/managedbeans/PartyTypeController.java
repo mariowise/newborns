@@ -1,6 +1,10 @@
 package managedbeans;
 
-import entities.core.Delivery;
+import entities.PartyType;
+import managedbeans.util.JsfUtil;
+import managedbeans.util.JsfUtil.PersistAction;
+import sessionbeans.PartyTypeFacadeLocal;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -8,41 +12,30 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.inject.Inject;
-import javax.inject.Named;
-import managedbeans.util.JsfUtil;
-import managedbeans.util.JsfUtil.PersistAction;
-import managedbeans.util.SessionUtil;
-import sessionbeans.DeliveryFacadeLocal;
 
-@Named("deliveryController")
+@Named("partyTypeController")
 @SessionScoped
-public class DeliveryController implements Serializable {
+public class PartyTypeController implements Serializable {
 
     @EJB
-    private DeliveryFacadeLocal ejbFacade;
-    private List<Delivery> items = null;
-    private Delivery selected;
+    private PartyTypeFacadeLocal ejbFacade;
+    private List<PartyType> items = null;
+    private PartyType selected;
 
-    @Inject
-    private SessionUtil sessionUtil;
-
-    @Inject
-    private MotherController motherController;
-
-    public DeliveryController() {
+    public PartyTypeController() {
     }
 
-    public Delivery getSelected() {
+    public PartyType getSelected() {
         return selected;
     }
 
-    public void setSelected(Delivery selected) {
+    public void setSelected(PartyType selected) {
         this.selected = selected;
     }
 
@@ -52,45 +45,39 @@ public class DeliveryController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private DeliveryFacadeLocal getFacade() {
+    private PartyTypeFacadeLocal getFacade() {
         return ejbFacade;
     }
 
-    public Delivery prepareCreate() {
-        selected = new Delivery();
-        selected.setMother(motherController.getSelected());
-        selected.setCreatedBy(sessionUtil.getCurrentUser());
+    public PartyType prepareCreate() {
+        selected = new PartyType();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("DeliveryCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("PartyTypeCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("DeliveryUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("PartyTypeUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("DeliveryDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("PartyTypeDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Delivery> getItems() {
-        System.out.println("Actualizando deliveries desde la base de datos");
+    public List<PartyType> getItems() {
         if (items == null) {
-            motherController.refreshSelected();
-            
-            items = motherController.getSelected().getDeliveries();
+            items = getFacade().findAll();
         }
-        refreshSelected();
         return items;
     }
 
@@ -98,9 +85,7 @@ public class DeliveryController implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if (persistAction == PersistAction.CREATE) {
-                    getFacade().create(selected);
-                } else if (persistAction != PersistAction.DELETE) {
+                if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);
@@ -124,35 +109,29 @@ public class DeliveryController implements Serializable {
         }
     }
 
-    public Delivery getDelivery(java.lang.Long id) {
+    public PartyType getPartyType(java.lang.Long id) {
         return getFacade().find(id);
     }
 
-    public void refreshSelected() {
-        if (selected != null) {
-            selected = getDelivery(selected.getId());
-        }
-    }
-
-    public List<Delivery> getItemsAvailableSelectMany() {
+    public List<PartyType> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Delivery> getItemsAvailableSelectOne() {
+    public List<PartyType> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Delivery.class)
-    public static class DeliveryControllerConverter implements Converter {
+    @FacesConverter(forClass = PartyType.class)
+    public static class PartyTypeControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            DeliveryController controller = (DeliveryController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "deliveryController");
-            return controller.getDelivery(getKey(value));
+            PartyTypeController controller = (PartyTypeController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "partyTypeController");
+            return controller.getPartyType(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -172,11 +151,11 @@ public class DeliveryController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Delivery) {
-                Delivery o = (Delivery) object;
+            if (object instanceof PartyType) {
+                PartyType o = (PartyType) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Delivery.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), PartyType.class.getName()});
                 return null;
             }
         }

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entities.core;
 
 import entities.Account;
@@ -28,60 +27,64 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 public class Delivery implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @NotNull
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date date = new Date();
-    
+
     @NotNull
-    @Temporal(TemporalType.TIME) 
+    @Temporal(TemporalType.TIME)
     private Date time = new Date();
-    
+
     private Boolean diabetes;
-    
+
     private Boolean hypertension;
-    
+
     private Boolean rhSensibility;
-    
+
     private Boolean brokenMembrane;
-    
+
     private Boolean ovularInfection;
-    
+
     private Boolean dppni;
-    
+
     private Boolean earlyPlacenta;
-    
+
     private Boolean brokenUterus;
-    
+
     private Boolean fetusPain;
-    
+
     private Boolean laceAccident;
-    
+
     private Boolean rciu;
-    
+
     private Boolean anotherPathology;
-    
+
     private Boolean vdrl;
-    
+
     private Boolean polidependencia;
-    
+
     private Boolean risk;
-    
+
     @ManyToOne
     private Mother mother;
-    
+
     @ManyToOne
     private DeliveryType deliveryType;
-    
+
     @ManyToOne
     private Account createdBy;
-    
+
     @OneToMany(mappedBy = "delivery")
     private List<Revival> revivals;
+
+    @OneToMany(mappedBy = "delivery")
+    private List<Party> party;
 
     public Long getId() {
         return id;
@@ -107,7 +110,7 @@ public class Delivery implements Serializable {
         this.time = time;
     }
 
-    public Boolean isDiabetes() {
+    public Boolean getDiabetes() {
         return diabetes;
     }
 
@@ -115,7 +118,7 @@ public class Delivery implements Serializable {
         this.diabetes = diabetes;
     }
 
-    public Boolean isHypertension() {
+    public Boolean getHypertension() {
         return hypertension;
     }
 
@@ -123,7 +126,7 @@ public class Delivery implements Serializable {
         this.hypertension = hypertension;
     }
 
-    public Boolean isRhSensibility() {
+    public Boolean getRhSensibility() {
         return rhSensibility;
     }
 
@@ -131,7 +134,7 @@ public class Delivery implements Serializable {
         this.rhSensibility = rhSensibility;
     }
 
-    public Boolean isBrokenMembrane() {
+    public Boolean getBrokenMembrane() {
         return brokenMembrane;
     }
 
@@ -139,7 +142,7 @@ public class Delivery implements Serializable {
         this.brokenMembrane = brokenMembrane;
     }
 
-    public Boolean isOvularInfection() {
+    public Boolean getOvularInfection() {
         return ovularInfection;
     }
 
@@ -147,7 +150,7 @@ public class Delivery implements Serializable {
         this.ovularInfection = ovularInfection;
     }
 
-    public Boolean isDppni() {
+    public Boolean getDppni() {
         return dppni;
     }
 
@@ -155,7 +158,7 @@ public class Delivery implements Serializable {
         this.dppni = dppni;
     }
 
-    public Boolean isEarlyPlacenta() {
+    public Boolean getEarlyPlacenta() {
         return earlyPlacenta;
     }
 
@@ -163,7 +166,7 @@ public class Delivery implements Serializable {
         this.earlyPlacenta = earlyPlacenta;
     }
 
-    public Boolean isBrokenUterus() {
+    public Boolean getBrokenUterus() {
         return brokenUterus;
     }
 
@@ -171,7 +174,7 @@ public class Delivery implements Serializable {
         this.brokenUterus = brokenUterus;
     }
 
-    public Boolean isFetusPain() {
+    public Boolean getFetusPain() {
         return fetusPain;
     }
 
@@ -179,7 +182,7 @@ public class Delivery implements Serializable {
         this.fetusPain = fetusPain;
     }
 
-    public Boolean isLaceAccident() {
+    public Boolean getLaceAccident() {
         return laceAccident;
     }
 
@@ -187,7 +190,7 @@ public class Delivery implements Serializable {
         this.laceAccident = laceAccident;
     }
 
-    public Boolean isRciu() {
+    public Boolean getRciu() {
         return rciu;
     }
 
@@ -195,7 +198,7 @@ public class Delivery implements Serializable {
         this.rciu = rciu;
     }
 
-    public Boolean isAnotherPathology() {
+    public Boolean getAnotherPathology() {
         return anotherPathology;
     }
 
@@ -203,7 +206,7 @@ public class Delivery implements Serializable {
         this.anotherPathology = anotherPathology;
     }
 
-    public Boolean isVdrl() {
+    public Boolean getVdrl() {
         return vdrl;
     }
 
@@ -211,7 +214,7 @@ public class Delivery implements Serializable {
         this.vdrl = vdrl;
     }
 
-    public Boolean isPolidependencia() {
+    public Boolean getPolidependencia() {
         return polidependencia;
     }
 
@@ -243,12 +246,28 @@ public class Delivery implements Serializable {
         this.createdBy = createdBy;
     }
 
+    public Boolean getRisk() {
+        return risk;
+    }
+
+    public void setRisk(Boolean risk) {
+        this.risk = risk;
+    }
+
     public List<Revival> getRevivals() {
         return revivals;
     }
 
     public void setRevivals(List<Revival> revivals) {
         this.revivals = revivals;
+    }
+
+    public List<Party> getParty() {
+        return party;
+    }
+
+    public void setParty(List<Party> party) {
+        this.party = party;
     }
 
     @Override
@@ -275,5 +294,5 @@ public class Delivery implements Serializable {
     public String toString() {
         return "entities.core.Delivery[ id=" + id + " ]";
     }
-    
+
 }

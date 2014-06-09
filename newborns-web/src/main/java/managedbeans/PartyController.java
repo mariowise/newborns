@@ -1,6 +1,10 @@
 package managedbeans;
 
-import entities.core.Delivery;
+import entities.core.Party;
+import managedbeans.util.JsfUtil;
+import managedbeans.util.JsfUtil.PersistAction;
+import sessionbeans.PartyFacadeLocal;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -8,41 +12,37 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
-import javax.inject.Named;
-import managedbeans.util.JsfUtil;
-import managedbeans.util.JsfUtil.PersistAction;
-import managedbeans.util.SessionUtil;
-import sessionbeans.DeliveryFacadeLocal;
 
-@Named("deliveryController")
+@Named("partyController")
 @SessionScoped
-public class DeliveryController implements Serializable {
+public class PartyController implements Serializable {
 
     @EJB
-    private DeliveryFacadeLocal ejbFacade;
-    private List<Delivery> items = null;
-    private Delivery selected;
+    private PartyFacadeLocal ejbFacade;
+    private List<Party> items = null;
+    private Party selected;
 
     @Inject
-    private SessionUtil sessionUtil;
+    private ProfileController profileController;
 
     @Inject
-    private MotherController motherController;
+    private DeliveryController deliveryController;
 
-    public DeliveryController() {
+    public PartyController() {
     }
 
-    public Delivery getSelected() {
+    public Party getSelected() {
         return selected;
     }
 
-    public void setSelected(Delivery selected) {
+    public void setSelected(Party selected) {
         this.selected = selected;
     }
 
@@ -52,45 +52,41 @@ public class DeliveryController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private DeliveryFacadeLocal getFacade() {
+    private PartyFacadeLocal getFacade() {
         return ejbFacade;
     }
 
-    public Delivery prepareCreate() {
-        selected = new Delivery();
-        selected.setMother(motherController.getSelected());
-        selected.setCreatedBy(sessionUtil.getCurrentUser());
+    public Party prepareCreate() {
+        selected = new Party();
+        selected.setProfile(profileController.getSelected());
+        selected.setDelivery(deliveryController.getSelected());
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("DeliveryCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("PartyCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("DeliveryUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("PartyUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("DeliveryDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("PartyDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Delivery> getItems() {
-        System.out.println("Actualizando deliveries desde la base de datos");
-        if (items == null) {
-            motherController.refreshSelected();
-            
-            items = motherController.getSelected().getDeliveries();
-        }
+    public List<Party> getItems() {
+        deliveryController.refreshSelected();
         refreshSelected();
+        items = deliveryController.getSelected().getParty();
         return items;
     }
 
@@ -124,35 +120,33 @@ public class DeliveryController implements Serializable {
         }
     }
 
-    public Delivery getDelivery(java.lang.Long id) {
+    public Party getParty(java.lang.Long id) {
         return getFacade().find(id);
     }
 
     public void refreshSelected() {
-        if (selected != null) {
-            selected = getDelivery(selected.getId());
-        }
+        selected = getParty(selected.getId());
     }
 
-    public List<Delivery> getItemsAvailableSelectMany() {
+    public List<Party> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Delivery> getItemsAvailableSelectOne() {
+    public List<Party> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Delivery.class)
-    public static class DeliveryControllerConverter implements Converter {
+    @FacesConverter(forClass = Party.class)
+    public static class PartyControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            DeliveryController controller = (DeliveryController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "deliveryController");
-            return controller.getDelivery(getKey(value));
+            PartyController controller = (PartyController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "partyController");
+            return controller.getParty(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -172,11 +166,11 @@ public class DeliveryController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Delivery) {
-                Delivery o = (Delivery) object;
+            if (object instanceof Party) {
+                Party o = (Party) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Delivery.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Party.class.getName()});
                 return null;
             }
         }
