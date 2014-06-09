@@ -61,7 +61,6 @@
                         <h:outputText value="#{deliveryController.selected.deliveryType}" title="#{bundle.ViewDeliveryTitle_deliveryType}"/>
                         <h:outputText value="#{bundle.ViewDeliveryLabel_createdBy}"/>
                         <h:outputText value="#{deliveryController.selected.createdBy}" title="#{bundle.ViewDeliveryTitle_createdBy}"/>
-
                     </p:panelGrid>
 
                     <h4>Reanimaciones</h4>
@@ -81,10 +80,10 @@
                         <p:column headerText="Ventilación Presión Positiva">
                             <h:outputText value="#{item.positivePressureVentilation}" />
                         </p:column>
-                        <p:column headerText="cardiacMassage">
+                        <p:column headerText="Masaje cardiaco">
                             <h:outputText value="#{item.cardiacMassage}" />
                         </p:column>
-                        <p:column headerText="adrenalin">
+                        <p:column headerText="Adrenalina">
                             <h:outputText value="#{item.adrenalin}" />
                         </p:column>
                     </p:dataTable>
