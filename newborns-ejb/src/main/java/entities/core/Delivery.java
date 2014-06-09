@@ -251,6 +251,14 @@ public class Delivery implements Serializable {
         this.risk = risk;
     }
 
+    public List<Revival> getRevivals() {
+        return revivals;
+    }
+
+    public void setRevivals(List<Revival> revivals) {
+        this.revivals = revivals;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
