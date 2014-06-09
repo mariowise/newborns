@@ -11,22 +11,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author pingeso
  */
 @Entity
-public class DeliveryType implements Serializable {
+public class PartyType implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    @NotNull
-    private String name;
 
+    private String name;
+    
     public Long getId() {
         return id;
     }
@@ -53,10 +51,10 @@ public class DeliveryType implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DeliveryType)) {
+        if (!(object instanceof PartyType)) {
             return false;
         }
-        DeliveryType other = (DeliveryType) object;
+        PartyType other = (PartyType) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -64,7 +62,7 @@ public class DeliveryType implements Serializable {
     }
 
     @Override
-    public java.lang.String toString() {
+    public String toString() {
         return name;
     }
     

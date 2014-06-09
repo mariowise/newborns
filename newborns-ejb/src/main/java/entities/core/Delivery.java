@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entities.core;
 
 import entities.Account;
@@ -28,60 +27,64 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 public class Delivery implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @NotNull
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date date = new Date();
-    
+
     @NotNull
-    @Temporal(TemporalType.TIME) 
+    @Temporal(TemporalType.TIME)
     private Date time = new Date();
-    
+
     private Boolean diabetes;
-    
+
     private Boolean hypertension;
-    
+
     private Boolean rhSensibility;
-    
+
     private Boolean brokenMembrane;
-    
+
     private Boolean ovularInfection;
-    
+
     private Boolean dppni;
-    
+
     private Boolean earlyPlacenta;
-    
+
     private Boolean brokenUterus;
-    
+
     private Boolean fetusPain;
-    
+
     private Boolean laceAccident;
-    
+
     private Boolean rciu;
-    
+
     private Boolean anotherPathology;
-    
+
     private Boolean vdrl;
-    
+
     private Boolean polidependencia;
-    
+
     private Boolean risk;
-    
+
     @ManyToOne
     private Mother mother;
-    
+
     @ManyToOne
     private DeliveryType deliveryType;
-    
+
     @ManyToOne
     private Account createdBy;
-    
+
     @OneToMany(mappedBy = "delivery")
     private List<Revival> revivals;
+
+    @OneToMany(mappedBy = "delivery")
+    private List<Party> party;
 
     public Long getId() {
         return id;
@@ -259,6 +262,14 @@ public class Delivery implements Serializable {
         this.revivals = revivals;
     }
 
+    public List<Party> getParty() {
+        return party;
+    }
+
+    public void setParty(List<Party> party) {
+        this.party = party;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -283,5 +294,5 @@ public class Delivery implements Serializable {
     public String toString() {
         return "entities.core.Delivery[ id=" + id + " ]";
     }
-    
+
 }

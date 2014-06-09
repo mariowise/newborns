@@ -7,9 +7,11 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-
+        
         <p:dialog id="DeliveryViewDlg" widgetVar="DeliveryViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDeliveryTitle}">
+            
             <h:form id="DeliveryViewForm">
+                <p:scrollPanel mode="native" style="width:850px;height:500px">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="6" rendered="#{deliveryController.selected != null}">
                         <p:outputLabel value="Diabetes" for="diabetes"/>
@@ -42,7 +44,7 @@
                         <p:selectBooleanCheckbox disabled="true" id="polidependencia" value="#{deliveryController.selected.polidependencia}"/>
                         <p:outputLabel value="Embarazo de alto riesgo" for="risk"/>
                         <p:selectBooleanCheckbox disabled="true" id="risk" value="#{deliveryController.selected.risk}"/>
-                        
+
                         <h:outputText value="#{bundle.ViewDeliveryLabel_id}"/>
                         <h:outputText value="#{deliveryController.selected.id}" title="#{bundle.ViewDeliveryTitle_id}"/>
                         <h:outputText value="#{bundle.ViewDeliveryLabel_date}"/>
@@ -59,9 +61,9 @@
                         <h:outputText value="#{deliveryController.selected.deliveryType}" title="#{bundle.ViewDeliveryTitle_deliveryType}"/>
                         <h:outputText value="#{bundle.ViewDeliveryLabel_createdBy}"/>
                         <h:outputText value="#{deliveryController.selected.createdBy}" title="#{bundle.ViewDeliveryTitle_createdBy}"/>
-                        
+
                     </p:panelGrid>
-                    
+
                     <h4>Reanimaciones</h4>
                     <p:dataTable var="item" value="#{deliveryController.selected.revivals}" style="width: 750px">
                         <p:column headerText="Id">
@@ -86,11 +88,21 @@
                             <h:outputText value="#{item.adrenalin}" />
                         </p:column>
                     </p:dataTable>
+
+                    <h4>Participantes</h4>
+                    <p:dataTable var="item" value="#{deliveryController.selected.party}" style="width: 750px">
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{item.name}" />
+                        </p:column>
+                        <p:column headerText="Tipo de Participante">
+                            <h:outputText value="#{item.partyType}" />
+                        </p:column>
+                    </p:dataTable>
                     
-                    <p:commandButton value="#{bundle.Close}" onclick="DeliveryViewDialog.hide()"/>
                 </h:panelGroup>
+                </p:scrollPanel>
+            <p:commandButton value="#{bundle.Close}" onclick="DeliveryViewDialog.hide()"/>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>
