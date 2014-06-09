@@ -31,8 +31,8 @@
                         
                     </p:panelGrid>
                     <p:panel>
-                        <h4>Reanimación</h4>
-                        <p:dataTable var="item" value="#{revivalController.items}">
+                        <h4>Reanimaciones</h4>
+                        <p:dataTable var="item" value="#{deliveryController.selected.revivals}">
                             <p:column headerText="Id">
                                 <h:outputText value="#{item.id}" />
                             </p:column>

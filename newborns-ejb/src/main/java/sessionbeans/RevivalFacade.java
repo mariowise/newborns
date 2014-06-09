@@ -6,8 +6,11 @@
 
 package sessionbeans;
 
+import entities.core.Delivery;
 import entities.core.Revival;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import static javax.ejb.TransactionAttributeType.REQUIRED;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -24,7 +27,13 @@ public class RevivalFacade extends AbstractFacade<Revival> implements RevivalFac
     protected EntityManager getEntityManager() {
         return em;
     }
-
+    
+    @Override
+    @TransactionAttribute(REQUIRED)
+    public void createWithDelivery(Revival revival) {
+        em.persist(revival.getDelivery());
+        em.persist(revival);
+    }
     public RevivalFacade() {
         super(Revival.class);
     }

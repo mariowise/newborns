@@ -6,6 +6,7 @@
 
 package sessionbeans;
 
+import entities.core.Delivery;
 import entities.core.Revival;
 import java.util.List;
 import javax.ejb.Local;
@@ -31,4 +32,5 @@ public interface RevivalFacadeLocal {
 
     int count();
     
+    public void createWithDelivery(Revival revival);
 }

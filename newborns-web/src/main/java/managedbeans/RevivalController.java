@@ -84,8 +84,7 @@ public class RevivalController implements Serializable {
 
     public List<Revival> getItems() {
         if (items == null) {
-//            items = deliveryController.getSelected().getRevivals();
-            items = getFacade().findAll();
+            items = deliveryController.getSelected().getRevivals();
         }
         return items;
     }
