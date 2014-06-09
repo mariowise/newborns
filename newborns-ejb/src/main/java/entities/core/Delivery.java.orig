@@ -243,12 +243,21 @@ public class Delivery implements Serializable {
         this.createdBy = createdBy;
     }
 
+<<<<<<< HEAD
     public Boolean getRisk() {
         return risk;
     }
 
     public void setRisk(Boolean risk) {
         this.risk = risk;
+=======
+    public List<Revival> getRevivals() {
+        return revivals;
+    }
+
+    public void setRevivals(List<Revival> revivals) {
+        this.revivals = revivals;
+>>>>>>> 85b44ebe2899843acea83e780b5e0afbce26fc4e
     }
 
     @Override

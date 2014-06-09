@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RevivalEditDlg" widgetVar="RevivalEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRevivalTitle}">
+            <h:form id="RevivalEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{revivalController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRevivalLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{revivalController.selected.id}" title="#{bundle.EditRevivalTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditRevivalLabel_profile}" for="profile" />
+                        <p:selectOneMenu id="profile" value="#{revivalController.selected.profile}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{profileController.itemsAvailableSelectOne}"
+                                           var="profileItem"
+                                           itemValue="#{profileItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{revivalController.update}" value="#{bundle.Save}" update="display,:RevivalListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RevivalEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RevivalEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

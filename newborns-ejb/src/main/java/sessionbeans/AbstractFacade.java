@@ -10,6 +10,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
+//        getEntityManager().flush();
+//        getEntityManager().refresh(entity);
  *
  * @author mario
  */
@@ -38,7 +40,9 @@ public abstract class AbstractFacade<T> {
 
     public T find(Object id) {
         Object obj = getEntityManager().find(entityClass, id);
-        getEntityManager().refresh(obj);
+        if(obj!=null){
+            getEntityManager().refresh(obj);
+        }
         return (T) obj;
     }
 

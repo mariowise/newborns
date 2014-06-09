@@ -38,7 +38,6 @@ public class Account implements Serializable {
     
     private String phone;
     
-    @NotNull
     private boolean currentState;
     
     public String getRut() {

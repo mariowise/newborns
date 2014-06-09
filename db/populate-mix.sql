@@ -9,7 +9,7 @@ INSERT INTO account (rut, email, "name", password, phone, accounttype_id, curren
     ('164377377', 'matrona@usach.cl', 'Arya Stark', '18496197305510df22af763507c99219ea08e08414383ae1abf1cb156d961a03', '21321321', 2, true),
     ('62089237', 'medico@usach.cl', 'Petyr Baelish', '18496197305510df22af763507c99219ea08e08414383ae1abf1cb156d961a03', '23897231', 3, true),
     ('126432631', 'fonoaudiologo@usach.cl', 'John Snow', '18496197305510df22af763507c99219ea08e08414383ae1abf1cb156d961a03', '24658920', 4, true),
-    ('173098413', 'mario@requies.cl', 'Moshe Landaeta', '18496197305510df22af763507c99219ea08e08414383ae1abf1cb156d961a03', '12345678', 5, true);
+    ('173098413', 'mosheman@usach.cl', 'Moshe Landaeta', '18496197305510df22af763507c99219ea08e08414383ae1abf1cb156d961a03', '12345678', 5, true);
 
 INSERT INTO deliverytype(id, name)
     VALUES (1, 'Normal'), (2, 'Cesarea'), (3, 'Forceps'), (4, 'Podálico'), (5, 'Fuera del Servicio');

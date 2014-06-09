@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RevivalCreateDlg" widgetVar="RevivalCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateRevivalTitle}">
+            <h:form id="RevivalCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{revivalController.selected != null}">
+    
+                        <h:outputLabel for="oxygen" value="#{bundle.CreateRevivalLabel_oxygen}"/>
+                        <h:selectBooleanCheckbox id="oxygen" value="#{revivalController.selected.oxygen}"/>                     
+                        
+                        <h:outputLabel for="intubation" value="#{bundle.CreateRevivalLabel_intubation}"/>
+                        <h:selectBooleanCheckbox id="intubation" value="#{revivalController.selected.intubation}"/>                     
+                        
+                        <h:outputLabel for="bicarbonate" value="#{bundle.CreateRevivalLabel_bicarbonate}"/>
+                        <h:selectBooleanCheckbox id="bicarbonate" value="#{revivalController.selected.bicarbonate}"/>                     
+                        
+                        <h:outputLabel for="positivePressureVentilation" value="#{bundle.CreateRevivalLabel_positivePressureVentilation}"/>
+                        <h:selectBooleanCheckbox id="positivePressureVentilation" value="#{revivalController.selected.positivePressureVentilation}"/>                     
+                        
+                        <h:outputLabel for="cardiacMassage" value="#{bundle.CreateRevivalLabel_cardiacMassage}"/>
+                        <h:selectBooleanCheckbox id="cardiacMassage" value="#{revivalController.selected.cardiacMassage}"/>                     
+                        
+                        <h:outputLabel for="naloxone" value="#{bundle.CreateRevivalLabel_naloxone}"/>
+                        <h:selectBooleanCheckbox id="naloxone" value="#{revivalController.selected.naloxone}"/>                     
+                        
+                        <h:outputLabel for="adrenalin" value="#{bundle.CreateRevivalLabel_adrenalin}"/>
+                        <h:selectBooleanCheckbox id="adrenalin" value="#{revivalController.selected.adrenalin}"/>                     
+                        
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{revivalController.create}" value="#{bundle.Save}" update="display,:DeliveryListForm:datalist,:growl" oncomplete="handleSubmit(args,'RevivalCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RevivalCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

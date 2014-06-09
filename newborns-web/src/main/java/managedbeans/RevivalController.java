@@ -1,6 +1,6 @@
 package managedbeans;
 
-import entities.core.Delivery;
+import entities.core.Revival;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -17,32 +17,31 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
-import managedbeans.util.SessionUtil;
-import sessionbeans.DeliveryFacadeLocal;
+import sessionbeans.RevivalFacadeLocal;
 
-@Named("deliveryController")
+@Named("revivalController")
 @SessionScoped
-public class DeliveryController implements Serializable {
+public class RevivalController implements Serializable {
 
     @EJB
-    private DeliveryFacadeLocal ejbFacade;
-    private List<Delivery> items = null;
-    private Delivery selected;
-    
-    @Inject
-    private SessionUtil sessionUtil;
-    
-    @Inject
-    private MotherController motherController;
+    private RevivalFacadeLocal ejbFacade;
+    private List<Revival> items = null;
+    private Revival selected;
 
-    public DeliveryController() {
+    @Inject
+    private ProfileController profileController;
+    
+    @Inject
+    private DeliveryController deliveryController;
+    
+    public RevivalController() {
     }
 
-    public Delivery getSelected() {
+    public Revival getSelected() {
         return selected;
     }
 
-    public void setSelected(Delivery selected) {
+    public void setSelected(Revival selected) {
         this.selected = selected;
     }
 
@@ -52,40 +51,41 @@ public class DeliveryController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private DeliveryFacadeLocal getFacade() {
+    private RevivalFacadeLocal getFacade() {
         return ejbFacade;
     }
 
-    public Delivery prepareCreate() {
-        selected = new Delivery();
-        selected.setMother(motherController.getSelected());
-        selected.setCreatedBy(sessionUtil.getCurrentUser());
-        initializeEmbeddableKey();
+    public Revival prepareCreate() {
+            selected = new Revival();
+            selected.setProfile(profileController.getSelected());
+            selected.setDelivery(deliveryController.getSelected());
+            initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("DeliveryCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("RevivalCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("DeliveryUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("RevivalUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("DeliveryDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("RevivalDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Delivery> getItems() {
-        motherController.refreshSelected();
-        items = motherController.getSelected().getDeliveries();
+    public List<Revival> getItems() {
+        deliveryController.refreshSelected();
+        items = deliveryController.getSelected().getRevivals();
+        
         return items;
     }
 
@@ -93,10 +93,8 @@ public class DeliveryController implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if(persistAction == PersistAction.CREATE) {
-                    getFacade().create(selected);
-                }
-                else if (persistAction != PersistAction.DELETE) {
+                if (persistAction != PersistAction.DELETE) {
+//                    getFacade().createWithDelivery(selected);
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);
@@ -120,33 +118,33 @@ public class DeliveryController implements Serializable {
         }
     }
 
-    public Delivery getDelivery(java.lang.Long id) {
+    public Revival getRevival(java.lang.Long id) {
         return getFacade().find(id);
     }
     
     public void refreshSelected() {
-        selected = getDelivery(selected.getId());
+        selected = getRevival(selected.getId());
     }
 
-    public List<Delivery> getItemsAvailableSelectMany() {
+    public List<Revival> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Delivery> getItemsAvailableSelectOne() {
+    public List<Revival> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Delivery.class)
-    public static class DeliveryControllerConverter implements Converter {
+    @FacesConverter(forClass = Revival.class)
+    public static class RevivalControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            DeliveryController controller = (DeliveryController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "deliveryController");
-            return controller.getDelivery(getKey(value));
+            RevivalController controller = (RevivalController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "revivalController");
+            return controller.getRevival(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -166,11 +164,11 @@ public class DeliveryController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Delivery) {
-                Delivery o = (Delivery) object;
+            if (object instanceof Revival) {
+                Revival o = (Revival) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Delivery.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Revival.class.getName()});
                 return null;
             }
         }

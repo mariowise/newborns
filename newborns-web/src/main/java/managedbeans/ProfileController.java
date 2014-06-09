@@ -113,6 +113,10 @@ public class ProfileController implements Serializable {
         return getFacade().find(id);
     }
 
+    public void refreshSelected() {
+        selected = getProfile(selected.getId());
+    }
+    
     public List<Profile> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
