@@ -8,10 +8,12 @@ package entities.core;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 
@@ -30,6 +32,9 @@ public class Profile implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date createdAt = new Date();
 
+    @OneToMany(mappedBy = "profile")
+    private List<Revival> revivals;
+    
     public Long getId() {
         return id;
     }
@@ -44,6 +49,14 @@ public class Profile implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public List<Revival> getRevivals() {
+        return revivals;
+    }
+
+    public void setRevivals(List<Revival> revivals) {
+        this.revivals = revivals;
     }
 
     @Override

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RevivalViewDlg" widgetVar="RevivalViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewRevivalTitle}">
+            <h:form id="RevivalViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{revivalController.selected != null}">
+                        <h:outputText value="#{bundle.ViewRevivalLabel_id}"/>
+                        <h:outputText value="#{revivalController.selected.id}" title="#{bundle.ViewRevivalTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewRevivalLabel_profile}"/>
+                        <h:outputText value="#{revivalController.selected.profile}" title="#{bundle.ViewRevivalTitle_profile}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="RevivalViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

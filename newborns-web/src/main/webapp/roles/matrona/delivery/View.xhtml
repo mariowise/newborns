@@ -28,7 +28,34 @@
                         <h:outputText value="#{deliveryController.selected.deliveryType}" title="#{bundle.ViewDeliveryTitle_deliveryType}"/>
                         <h:outputText value="#{bundle.ViewDeliveryLabel_createdBy}"/>
                         <h:outputText value="#{deliveryController.selected.createdBy}" title="#{bundle.ViewDeliveryTitle_createdBy}"/>
+                        
                     </p:panelGrid>
+                    <p:panel>
+                        <h4>Reanimación</h4>
+                        <p:dataTable var="item" value="#{revivalController.items}">
+                            <p:column headerText="Id">
+                                <h:outputText value="#{item.id}" />
+                            </p:column>
+                            <p:column headerText="Oxígeno">
+                                <h:outputText value="#{item.oxygen}" />
+                            </p:column>
+                            <p:column headerText="Intubación">
+                                <h:outputText value="#{item.intubation}" />
+                            </p:column>
+                            <p:column headerText="Bicarbonato">
+                                <h:outputText value="#{item.bicarbonate}" />
+                            </p:column>
+                            <p:column headerText="Ventilación Presión Positiva">
+                                <h:outputText value="#{item.positivePressureVentilation}" />
+                            </p:column>
+                            <p:column headerText="cardiacMassage">
+                                <h:outputText value="#{item.cardiacMassage}" />
+                            </p:column>
+                            <p:column headerText="adrenalin">
+                                <h:outputText value="#{item.adrenalin}" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
                     <p:commandButton value="#{bundle.Close}" onclick="DeliveryViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

@@ -10,11 +10,14 @@ import entities.Account;
 import entities.DeliveryType;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -76,6 +79,9 @@ public class Delivery implements Serializable {
     
     @ManyToOne
     private Account createdBy;
+    
+    @OneToMany(mappedBy = "delivery")
+    private List<Revival> revivals;
 
     public Long getId() {
         return id;
@@ -235,6 +241,14 @@ public class Delivery implements Serializable {
 
     public void setCreatedBy(Account createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public List<Revival> getRevivals() {
+        return revivals;
+    }
+
+    public void setRevivals(List<Revival> revivals) {
+        this.revivals = revivals;
     }
 
     @Override
