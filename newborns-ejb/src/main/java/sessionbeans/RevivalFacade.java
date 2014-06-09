@@ -32,6 +32,7 @@ public class RevivalFacade extends AbstractFacade<Revival> implements RevivalFac
     @TransactionAttribute(REQUIRED)
     public void createWithDelivery(Revival revival) {
         em.persist(revival.getDelivery());
+        em.persist(revival.getProfile());
         em.persist(revival);
     }
     public RevivalFacade() {

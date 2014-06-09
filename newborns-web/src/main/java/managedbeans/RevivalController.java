@@ -83,9 +83,9 @@ public class RevivalController implements Serializable {
     }
 
     public List<Revival> getItems() {
-        if (items == null) {
-            items = deliveryController.getSelected().getRevivals();
-        }
+        deliveryController.refreshSelected();
+        items = deliveryController.getSelected().getRevivals();
+        
         return items;
     }
 
@@ -94,6 +94,7 @@ public class RevivalController implements Serializable {
             setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
+//                    getFacade().createWithDelivery(selected);
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);
@@ -119,6 +120,10 @@ public class RevivalController implements Serializable {
 
     public Revival getRevival(java.lang.Long id) {
         return getFacade().find(id);
+    }
+    
+    public void refreshSelected() {
+        selected = getRevival(selected.getId());
     }
 
     public List<Revival> getItemsAvailableSelectMany() {

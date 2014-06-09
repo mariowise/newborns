@@ -123,6 +123,10 @@ public class DeliveryController implements Serializable {
     public Delivery getDelivery(java.lang.Long id) {
         return getFacade().find(id);
     }
+    
+    public void refreshSelected() {
+        selected = getDelivery(selected.getId());
+    }
 
     public List<Delivery> getItemsAvailableSelectMany() {
         return getFacade().findAll();
