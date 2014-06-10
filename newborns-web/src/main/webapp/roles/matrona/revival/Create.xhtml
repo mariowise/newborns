@@ -34,6 +34,12 @@
                         <h:outputLabel for="adrenalin" value="#{bundle.CreateRevivalLabel_adrenalin}"/>
                         <h:selectBooleanCheckbox id="adrenalin" value="#{revivalController.selected.adrenalin}"/>                     
                         
+                        <h:outputLabel for="cretedAtDate" value="#{bundle.CreateRevivalLabel_createdAtDate}"/>
+                        <p:calendar id="cretedAtDate" value="#{revivalController.selected.createdAtDate}" showOn="button" />
+ 
+                        <h:outputLabel for="cretedAtTime" value="#{bundle.CreateRevivalLabel_createdAtTime}"/>
+                        <p:calendar id="cretedAtTime" value="#{revivalController.selected.createdAtTime}" showOn="button"  pattern="HH:mm a" timeOnly="true" />
+ 
                     </p:panelGrid>
                     <p:commandButton actionListener="#{revivalController.create}" value="#{bundle.Save}" update="display,:DeliveryListForm:datalist,:growl" oncomplete="handleSubmit(args,'RevivalCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="RevivalCreateDialog.hide()"/>

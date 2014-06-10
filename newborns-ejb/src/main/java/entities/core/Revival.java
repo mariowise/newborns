@@ -7,12 +7,16 @@
 package entities.core;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -43,7 +47,15 @@ public class Revival implements Serializable {
     private Profile profile;
         
     @ManyToOne
-    private Delivery delivery;
+    private Delivery delivery;    
+    
+    @NotNull
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date createdAtDate = new Date();
+
+    @NotNull
+    @Temporal(javax.persistence.TemporalType.TIME)
+    private Date createdAtTime = new Date();
     
     public Long getId() {
         return id;
@@ -123,6 +135,22 @@ public class Revival implements Serializable {
 
     public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
+    }
+
+    public Date getCreatedAtDate() {
+        return createdAtDate;
+    }
+
+    public void setCreatedAtDate(Date createdAtDate) {
+        this.createdAtDate = createdAtDate;
+    }
+
+    public Date getCreatedAtTime() {
+        return createdAtTime;
+    }
+
+    public void setCreatedAtTime(Date createdAtTime) {
+        this.createdAtTime = createdAtTime;
     }
 
     @Override

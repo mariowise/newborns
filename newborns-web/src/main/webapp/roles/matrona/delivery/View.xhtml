@@ -64,32 +64,48 @@
                     </p:panelGrid>
 
                     <h4>Reanimaciones</h4>
-                    <p:dataTable var="item" value="#{deliveryController.selected.revivals}" style="width: 750px">
-                        <p:column headerText="Id">
+                    <p:dataTable var="item" value="#{deliveryController.selected.revivals}" scrollable="true" scrollHeight="150" scrollWidth="760" sortBy="#{item.createdAtDate}" sortOrder="DESCENDING">
+                        <p:column headerText="Id" width="150">
                             <h:outputText value="#{item.id}" />
                         </p:column>
-                        <p:column headerText="Oxígeno">
-                            <h:outputText value="#{item.oxygen}" />
+                        <p:column headerText="Oxígeno" width="150">
+                            <h:outputText value="Sí" rendered="#{item.oxygen}" />
+                            <h:outputText value="No" rendered="#{!item.oxygen}" />                            
                         </p:column>
-                        <p:column headerText="Intubación">
-                            <h:outputText value="#{item.intubation}" />
+                        <p:column headerText="Intubación" width="150">
+                            <h:outputText value="Sí" rendered="#{item.intubation}" />
+                            <h:outputText value="No" rendered="#{!item.intubation}" />
                         </p:column>
-                        <p:column headerText="Bicarbonato">
-                            <h:outputText value="#{item.bicarbonate}" />
+                        <p:column headerText="Bicarbonato" width="150">
+                            <h:outputText value="Sí" rendered="#{item.bicarbonate}" />
+                            <h:outputText value="No" rendered="#{!item.bicarbonate}" />
                         </p:column>
-                        <p:column headerText="Ventilación Presión Positiva">
-                            <h:outputText value="#{item.positivePressureVentilation}" />
+                        <p:column headerText="Ventilación Presión Positiva" width="150">
+                            <h:outputText value="Sí" rendered="#{item.positivePressureVentilation}" />
+                            <h:outputText value="No" rendered="#{!item.positivePressureVentilation}" />
                         </p:column>
-                        <p:column headerText="Masaje cardiaco">
-                            <h:outputText value="#{item.cardiacMassage}" />
+                        <p:column headerText="Masaje cardiaco" width="150">
+                            <h:outputText value="Sí" rendered="#{item.cardiacMassage}" />
+                            <h:outputText value="No" rendered="#{!item.cardiacMassage}" />
                         </p:column>
-                        <p:column headerText="Adrenalina">
-                            <h:outputText value="#{item.adrenalin}" />
+                        <p:column headerText="Adrenalina" width="150">
+                            <h:outputText value="Sí" rendered="#{item.adrenalin}" />
+                            <h:outputText value="No" rendered="#{!item.adrenalin}" />
                         </p:column>
+                        <p:column headerText="Fecha reanimación" width="150">
+                            <h:outputText value="#{item.createdAtDate}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>  
+                        </p:column>
+                        <p:column headerText="Hora reanimación" width="150">
+                            <h:outputText value="#{item.createdAtTime}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>                        
                     </p:dataTable>
 
                     <h4>Participantes</h4>
-                    <p:dataTable var="item" value="#{deliveryController.selected.party}" style="width: 750px">
+                    <p:dataTable var="item" value="#{deliveryController.selected.party}" scrollable="true" scrollHeight="150" scrollWidth="760">
                         <p:column headerText="Nombre">
                             <h:outputText value="#{item.name}" />
                         </p:column>
