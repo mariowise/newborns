@@ -292,6 +292,9 @@ public class Mother implements Serializable {
     }
 
     public List<Delivery> getDeliveries() {
+        if(deliveries == null) {
+            deliveries = new ArrayList<Delivery>();
+        }
         return deliveries;
     }
 

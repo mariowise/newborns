@@ -1,6 +1,7 @@
 package managedbeans;
 
-import entities.core.Delivery;
+import entities.core.Profile;
+import entities.core.Son;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -17,32 +18,28 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
-import managedbeans.util.SessionUtil;
-import sessionbeans.DeliveryFacadeLocal;
+import sessionbeans.SonFacadeLocal;
 
-@Named("deliveryController")
+@Named("sonController")
 @SessionScoped
-public class DeliveryController implements Serializable {
+public class SonController implements Serializable {
 
     @EJB
-    private DeliveryFacadeLocal ejbFacade;
-    private List<Delivery> items = null;
-    private Delivery selected;
-    
-    @Inject
-    private SessionUtil sessionUtil;
+    private SonFacadeLocal ejbFacade;
+    private List<Son> items = null;
+    private Son selected;
     
     @Inject
     private MotherController motherController;
-    
-    public DeliveryController() {
+
+    public SonController() {
     }
 
-    public Delivery getSelected() {
+    public Son getSelected() {
         return selected;
     }
 
-    public void setSelected(Delivery selected) {
+    public void setSelected(Son selected) {
         this.selected = selected;
     }
 
@@ -52,42 +49,41 @@ public class DeliveryController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private DeliveryFacadeLocal getFacade() {
+    private SonFacadeLocal getFacade() {
         return ejbFacade;
     }
 
-    public Delivery prepareCreate() {
-        selected = new Delivery();
+    public Son prepareCreate() {
+        selected = new Son();
+        selected.setProfile(new Profile());
         selected.setMother(motherController.getSelected());
-        selected.setCreatedBy(sessionUtil.getCurrentUser());
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("DeliveryCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("SonCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("DeliveryUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("SonUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("DeliveryDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("SonDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Delivery> getItems() {
-        motherController.refreshSelected();
-        if(selected != null)
-            refreshSelected();
-        items = motherController.getSelected().getDeliveries();
+    public List<Son> getItems() {
+        if (items == null) {
+            items = getFacade().findAll();
+        }
         return items;
     }
 
@@ -95,9 +91,7 @@ public class DeliveryController implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if(persistAction == PersistAction.CREATE) {
-                    getFacade().create(selected);
-                } else if (persistAction != PersistAction.DELETE) {
+                if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);
@@ -121,33 +115,29 @@ public class DeliveryController implements Serializable {
         }
     }
 
-    public Delivery getDelivery(java.lang.Long id) {
+    public Son getSon(java.lang.Long id) {
         return getFacade().find(id);
     }
-    
-    public void refreshSelected() {
-        selected = getDelivery(selected.getId());
-    }
 
-    public List<Delivery> getItemsAvailableSelectMany() {
+    public List<Son> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Delivery> getItemsAvailableSelectOne() {
+    public List<Son> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Delivery.class)
-    public static class DeliveryControllerConverter implements Converter {
+    @FacesConverter(forClass = Son.class)
+    public static class SonControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            DeliveryController controller = (DeliveryController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "deliveryController");
-            return controller.getDelivery(getKey(value));
+            SonController controller = (SonController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "sonController");
+            return controller.getSon(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -167,11 +157,11 @@ public class DeliveryController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Delivery) {
-                Delivery o = (Delivery) object;
+            if (object instanceof Son) {
+                Son o = (Son) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Delivery.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Son.class.getName()});
                 return null;
             }
         }
