@@ -84,13 +84,11 @@ public class DeliveryController implements Serializable {
     }
 
     public List<Delivery> getItems() {
-        System.out.println("Actualizando deliveries desde la base de datos");
-        if (items == null) {
-            motherController.refreshSelected();
-            
-            items = motherController.getSelected().getDeliveries();
+        motherController.refreshSelected();            
+        items = motherController.getSelected().getDeliveries();        
+        if(selected!=null){
+            refreshSelected();
         }
-        refreshSelected();
         return items;
     }
 
