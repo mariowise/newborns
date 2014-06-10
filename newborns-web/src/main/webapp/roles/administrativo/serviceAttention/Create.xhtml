@@ -12,6 +12,12 @@
             <h:form id="ServiceAttentionCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{serviceAttentionController.selected != null}">
+                        <p:outputLabel for="forecast" value="#{bundle.CreateServiceAttentionLabel_forecast}"/>
+                        <p:selectOneMenu id="forecast" value="#{serviceAttentionController.selected.forecast}" >
+                            <f:selectItems value="#{forecastController.itemsAvailableSelectOne}"
+                                           var="forecastItem"
+                                           itemValue="#{forecastItem}"/>
+                        </p:selectOneMenu>                        
                         <p:outputLabel value="#{bundle.CreateServiceAttentionLabel_service}" for="service" />
                         <p:selectOneListbox id="service" value="#{serviceAttentionController.selected.service}" var="t" filter="true" filterMatchMode="contains" style="width: 100%;" styleClass="list-100">
                             <f:selectItems value="#{serviceController.items}" var="service" itemLabel="#{service.name}" itemValue="#{service}" />

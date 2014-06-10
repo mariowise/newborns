@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PartyViewDlg" widgetVar="PartyViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPartyTitle}">
+            <h:form id="PartyViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{partyController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPartyLabel_id}"/>
+                        <h:outputText value="#{partyController.selected.id}" title="#{bundle.ViewPartyTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewPartyLabel_name}"/>
+                        <h:outputText value="#{partyController.selected.name}" title="#{bundle.ViewPartyTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewPartyLabel_partyType}"/>
+                        <h:outputText value="#{partyController.selected.partyType}" title="#{bundle.ViewPartyTitle_partyType}"/>
+                        <h:outputText value="#{bundle.ViewPartyLabel_delivery}"/>
+                        <h:outputText value="#{partyController.selected.delivery}" title="#{bundle.ViewPartyTitle_delivery}"/>
+                        <h:outputText value="#{bundle.ViewPartyLabel_profile}"/>
+                        <h:outputText value="#{partyController.selected.profile}" title="#{bundle.ViewPartyTitle_profile}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PartyViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

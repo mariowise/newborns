@@ -4,29 +4,41 @@
  * and open the template in the editor.
  */
 
-package entities;
+package entities.core;
 
+import entities.PartyType;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author pingeso
  */
 @Entity
-public class DeliveryType implements Serializable {
+public class Party implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @NotNull
     private String name;
+    
+    @JoinColumn (nullable = false)
+    @ManyToOne
+    private PartyType partyType;
 
+    @ManyToOne
+    private Delivery delivery;
+    
+    @ManyToOne
+    private Profile profile;
+    
+    
     public Long getId() {
         return id;
     }
@@ -43,6 +55,30 @@ public class DeliveryType implements Serializable {
         this.name = name;
     }
 
+    public PartyType getPartyType() {
+        return partyType;
+    }
+
+    public void setPartyType(PartyType partyType) {
+        this.partyType = partyType;
+    }
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -53,10 +89,10 @@ public class DeliveryType implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DeliveryType)) {
+        if (!(object instanceof Party)) {
             return false;
         }
-        DeliveryType other = (DeliveryType) object;
+        Party other = (Party) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -64,8 +100,8 @@ public class DeliveryType implements Serializable {
     }
 
     @Override
-    public java.lang.String toString() {
-        return name;
+    public String toString() {
+        return "entities.core.Party[ id=" + id + " ]";
     }
     
 }

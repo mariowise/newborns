@@ -274,8 +274,9 @@ public class Mother implements Serializable {
     }
 
     public List<ServiceAttention> getAttentions() {
-        if(attentions == null)
+        if (attentions == null) {
             attentions = new ArrayList<ServiceAttention>();
+        }
         return attentions;
     }
 

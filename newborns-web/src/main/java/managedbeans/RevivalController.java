@@ -84,6 +84,7 @@ public class RevivalController implements Serializable {
 
     public List<Revival> getItems() {
         deliveryController.refreshSelected();
+        profileController.refreshSelected();
         items = deliveryController.getSelected().getRevivals();
         
         return items;
