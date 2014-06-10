@@ -31,8 +31,8 @@
                              rowsPerPageTemplate="10,20,30,40,50"
                              >
 
-                    <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton createRevivalButton createPartyButton"/>
-                    <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton createRevivalButton createPartyButton"/>
+                    <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton createRevivalButton createPartyButton createSonButton"/>
+                    <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton createRevivalButton createPartyButton createSonButton"/>
 
                     <p:column>
                         <f:facet name="header">
@@ -74,7 +74,7 @@
                             <p:commandButton id="createPartyButton" icon="ui-icon-plus"   value="#{bundle.CreateParty}" actionListener="#{partyController.prepareCreate}" update=":PartyCreateForm" oncomplete="PF('PartyCreateDialog').show()" disabled="#{empty deliveryController.selected}"/>
                         </div>
                         <div class="row">
-                            <p:commandButton id="createSonButton" icon="ui-icon-plus" value="#{bundle.Create}" actionListener="#{sonController.prepareCreate}" update=":SonCreateForm" oncomplete="PF('SonCreateDialog').show()"/>
+                            <p:commandButton id="createSonButton" icon="ui-icon-plus" value="Nuevo Recién Nacido" actionListener="#{sonController.prepareCreate}" update=":SonCreateForm" oncomplete="PF('SonCreateDialog').show()"  disabled="#{empty deliveryController.selected}"/>
                         </div>
                     </f:facet>
                 </p:dataTable>
