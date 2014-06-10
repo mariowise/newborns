@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SonEditDlg" widgetVar="SonEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSonTitle}">
+            <h:form id="SonEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="6" rendered="#{sonController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSonLabel_gender}" for="gender" />
+                        <p:selectOneMenu id="gender" value="#{sonController.selected.gender}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{genderController.itemsAvailableSelectOne}"
+                                           var="genderItem"
+                                           itemValue="#{genderItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSonLabel_weight}" for="weight" />
+                        <p:inputText id="weight" value="#{sonController.selected.weight}" title="#{bundle.EditSonTitle_weight}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_size}" for="size" />
+                        <p:inputText id="size" value="#{sonController.selected.size}" title="#{bundle.EditSonTitle_size}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_skullPerimeter}" for="skullPerimeter" />
+                        <p:inputText id="skullPerimeter" value="#{sonController.selected.skullPerimeter}" title="#{bundle.EditSonTitle_skullPerimeter}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_apgar1}" for="apgar1" />
+                        <p:inputText id="apgar1" value="#{sonController.selected.apgar1}" title="#{bundle.EditSonTitle_apgar1}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_apgar5}" for="apgar5" />
+                        <p:inputText id="apgar5" value="#{sonController.selected.apgar5}" title="#{bundle.EditSonTitle_apgar5}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_apgar10}" for="apgar10" />
+                        <p:inputText id="apgar10" value="#{sonController.selected.apgar10}" title="#{bundle.EditSonTitle_apgar10}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_vitk}" for="vitk" />
+                        <p:selectBooleanCheckbox id="vitk" value="#{sonController.selected.vitk}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_bcg}" for="bcg" />
+                        <p:selectBooleanCheckbox id="bcg" value="#{sonController.selected.bcg}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_weightPlacenta}" for="weightPlacenta" />
+                        <p:inputText id="weightPlacenta" value="#{sonController.selected.weightPlacenta}" title="#{bundle.EditSonTitle_weightPlacenta}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_cry}" for="cry" />
+                        <p:selectBooleanCheckbox id="cry" value="#{sonController.selected.cry}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_attachedTime}" for="attachedTime" />
+                        <p:inputText id="attachedTime" value="#{sonController.selected.attachedTime}" title="#{bundle.EditSonTitle_attachedTime}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_tempAxilar}" for="tempAxilar" />
+                        <p:inputText id="tempAxilar" value="#{sonController.selected.tempAxilar}" title="#{bundle.EditSonTitle_tempAxilar}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_tempRectal}" for="tempRectal" />
+                        <p:inputText id="tempRectal" value="#{sonController.selected.tempRectal}" title="#{bundle.EditSonTitle_tempRectal}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_of}" for="of" />
+                        <p:selectBooleanCheckbox id="of" value="#{sonController.selected.of}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_og}" for="og" />
+                        <p:selectBooleanCheckbox id="og" value="#{sonController.selected.og}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_ot}" for="ot" />
+                        <p:selectBooleanCheckbox id="ot" value="#{sonController.selected.ot}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_secretion}" for="secretion" />
+                        <p:inputText id="secretion" value="#{sonController.selected.secretion}" title="#{bundle.EditSonTitle_secretion}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_secretionColour}" for="secretionColour" />
+                        <p:inputText id="secretionColour" value="#{sonController.selected.secretionColour}" title="#{bundle.EditSonTitle_secretionColour}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_consistency}" for="consistency" />
+                        <p:inputText id="consistency" value="#{sonController.selected.consistency}" title="#{bundle.EditSonTitle_consistency}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_gas}" for="gas" />
+                        <p:selectBooleanCheckbox id="gas" value="#{sonController.selected.gas}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_extremePremature}" for="extremePremature" />
+                        <p:selectBooleanCheckbox id="extremePremature" value="#{sonController.selected.extremePremature}" />
+                        <p:outputLabel value="#{bundle.EditSonLabel_profile}" for="profile" />
+                        <h:outputText id="profile" value="#{sonController.selected.profile}" title="#{bundle.ViewSonTitle_profile}"/>
+                        <p:outputLabel value="#{bundle.EditSonLabel_mother}" for="mother" />
+                        <h:outputText id="mother" value="#{sonController.selected.mother.run}" title="#{bundle.ViewSonTitle_mother}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sonController.update}" value="#{bundle.Save}" update="display,:SonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SonEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SonEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

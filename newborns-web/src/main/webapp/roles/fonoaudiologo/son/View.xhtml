@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SonViewDlg" widgetVar="SonViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSonTitle}">
+            <h:form id="SonViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="6" rendered="#{sonController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSonLabel_id}"/>
+                        <h:outputText value="#{sonController.selected.id}" title="#{bundle.ViewSonTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_gender}"/>
+                        <h:outputText value="#{sonController.selected.gender.name}" title="#{bundle.ViewSonTitle_gender}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_weight}"/>
+                        <h:outputText value="#{sonController.selected.weight}" title="#{bundle.ViewSonTitle_weight}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_size}"/>
+                        <h:outputText value="#{sonController.selected.size}" title="#{bundle.ViewSonTitle_size}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_skullPerimeter}"/>
+                        <h:outputText value="#{sonController.selected.skullPerimeter}" title="#{bundle.ViewSonTitle_skullPerimeter}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_apgar1}"/>
+                        <h:outputText value="#{sonController.selected.apgar1}" title="#{bundle.ViewSonTitle_apgar1}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_apgar5}"/>
+                        <h:outputText value="#{sonController.selected.apgar5}" title="#{bundle.ViewSonTitle_apgar5}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_apgar10}"/>
+                        <h:outputText value="#{sonController.selected.apgar10}" title="#{bundle.ViewSonTitle_apgar10}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_vitk}"/>
+                        <p:selectBooleanCheckbox value="#{sonController.selected.vitk}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_bcg}"/>
+                        <p:selectBooleanCheckbox value="#{sonController.selected.bcg}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_weightPlacenta}"/>
+                        <h:outputText value="#{sonController.selected.weightPlacenta}" title="#{bundle.ViewSonTitle_weightPlacenta}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_cry}"/>
+                        <p:selectBooleanCheckbox value="#{sonController.selected.cry}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_attachedTime}"/>
+                        <h:outputText value="#{sonController.selected.attachedTime}" title="#{bundle.ViewSonTitle_attachedTime}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_tempAxilar}"/>
+                        <h:outputText value="#{sonController.selected.tempAxilar}" title="#{bundle.ViewSonTitle_tempAxilar}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_tempRectal}"/>
+                        <h:outputText value="#{sonController.selected.tempRectal}" title="#{bundle.ViewSonTitle_tempRectal}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_of}"/>
+                        <p:selectBooleanCheckbox value="#{sonController.selected.of}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_og}"/>
+                        <p:selectBooleanCheckbox value="#{sonController.selected.og}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_ot}"/>
+                        <p:selectBooleanCheckbox value="#{sonController.selected.ot}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_secretion}"/>
+                        <h:outputText value="#{sonController.selected.secretion}" title="#{bundle.ViewSonTitle_secretion}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_secretionColour}"/>
+                        <h:outputText value="#{sonController.selected.secretionColour}" title="#{bundle.ViewSonTitle_secretionColour}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_consistency}"/>
+                        <h:outputText value="#{sonController.selected.consistency}" title="#{bundle.ViewSonTitle_consistency}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_gas}"/>
+                        <p:selectBooleanCheckbox value="#{sonController.selected.gas}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_extremePremature}"/>
+                        <p:selectBooleanCheckbox value="#{sonController.selected.extremePremature}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_profile}"/>
+                        <h:outputText value="#{sonController.selected.profile}" title="#{bundle.ViewSonTitle_profile}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_mother}"/>
+                        <h:outputText value="#{sonController.selected.mother.profile}" title="#{bundle.ViewSonTitle_mother}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_delivery}"/>
+                        <h:outputText value="#{sonController.selected.delivery}" title="#{bundle.ViewSonTitle_delivery}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SonViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

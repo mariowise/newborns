@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/layout/2columns-left.xhtml">
+    <ui:composition template="/layout/profile/2columns-left.xhtml">
 
 
         <ui:define name="title">
@@ -14,7 +14,7 @@
         </ui:define>
         
         <ui:define name="sidebar-left">
-            <ui:include src="../sidebar-left.xhtml" />
+            <ui:include src="../sidebar-left-profile.xhtml" />
         </ui:define>
 
         <ui:define name="body">
@@ -23,59 +23,42 @@
             
             <h:form id="SonListForm">
                 
-                <p:dataTable id="datalist" value="#{sonController.allItems}" var="item"
+                <p:dataTable id="datalist" value="#{sonController.items}" var="item"
                              selectionMode="single" selection="#{sonController.selected}"
                              paginator="true"
                              rowKey="#{item.id}"
                              rows="10"
                              rowsPerPageTemplate="10,20,30,40,50"
-                             
-                             widgetVar="datalist"
-                             emptyMessage="No se encontraron resultados según el criterio dado" 
-                             filteredValue="#{sonController.filteredItems}"
                              >
 
-                    <p:ajax event="rowSelect"   update="viewButton editButton"/>
-                    <p:ajax event="rowUnselect" update="viewButton editButton"/>
+                    <p:ajax event="rowSelect"   update="viewButton editButton deleteButton"/>
+                    <p:ajax event="rowUnselect" update="viewButton editButton deleteButton"/>
 
-                    <f:facet name="header">
-                        <p:outputPanel>
-                            <h:outputText value="Buscar:" />
-                            <p:inputText id="globalFilter" onkeyup="PF('datalist').filter()" style="width:150px" placeholder="Ingresar..."/>
-                        </p:outputPanel>
-                    </f:facet>
-                    
-                    <p:column filterBy="#{item.ticket}" headerText="CODIGO" filterMatchMode="contains">
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="Código"/>
                         </f:facet>
                         <h:outputText value="#{item.year.id}-#{item.ticket}"/>
                     </p:column>
-                    <p:column filterBy="#{item.profile}" headerText="PERFIL" filterMatchMode="contains">
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListSonTitle_profile}"/>
                         </f:facet>
                         <h:outputText value="#{item.profile}"/>
                     </p:column>
-                    <p:column filterBy="#{item.mother.run}" headerText="RUNMOTHER" filterMatchMode="contains">
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="RUN Madre"/>
                         </f:facet>
                         <h:outputText value="#{item.mother.run}"/>
                     </p:column>
-                    <p:column filterBy="#{item.mother.firstLastname}" headerText="FIRSTLASTNAME" filterMatchMode="contains">
-                        <f:facet name="header">
-                            <h:outputText value="Apellido Madre"/>
-                        </f:facet>
-                        <h:outputText value="#{item.mother.firstLastname}"/>
-                    </p:column>
-                    <p:column filterBy="#{item.delivery}" headerText="DELIVERY" filterMatchMode="contains">
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListSonTitle_delivery}"/>
                         </f:facet>
                         <h:outputText value="#{item.delivery}"/>
                     </p:column>
-                    <p:column filterBy="#{item.gender.name}" headerText="GENDER" filterMatchMode="contains">
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListSonTitle_gender}"/>
                         </f:facet>
@@ -90,6 +73,7 @@
                     <f:facet name="footer">
                         <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SonViewForm" oncomplete="PF('SonViewDialog').show()" disabled="#{empty sonController.selected}"/>
                         <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SonEditForm" oncomplete="PF('SonEditDialog').show()" disabled="#{empty sonController.selected}"/>
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{sonController.destroy}" update=":growl,datalist" disabled="#{empty sonController.selected}"/>
                     </f:facet>
                 </p:dataTable>
                 
