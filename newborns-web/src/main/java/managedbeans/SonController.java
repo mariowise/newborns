@@ -27,6 +27,7 @@ public class SonController implements Serializable {
     @EJB
     private SonFacadeLocal ejbFacade;
     private List<Son> items = null;
+    private List<Son> allItems = null;
     private Son selected;
     
     @Inject
@@ -34,7 +35,9 @@ public class SonController implements Serializable {
     
     @Inject
     private DeliveryController deliveryController;
-
+    
+    private List<Son> filteredItems;
+    
     public SonController() {
     }
 
@@ -69,6 +72,7 @@ public class SonController implements Serializable {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("SonCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
+            allItems = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
@@ -81,13 +85,20 @@ public class SonController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
+            allItems = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public List<Son> getItems() {
         motherController.refreshSelected();
         items = motherController.getSelected().getSons();
+        refreshSelected();
         return items;
+    }
+    
+    public List<Son> getAllItems() {
+        allItems = getFacade().findAll();
+        return allItems;
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
@@ -122,6 +133,15 @@ public class SonController implements Serializable {
 
     public Son getSon(java.lang.Long id) {
         return getFacade().find(id);
+    }
+    
+    public void refreshSelected() {
+        if (selected != null) {
+            Long id = selected.getId();
+            if(id!=null){
+                selected = getSon(id);
+            }
+        }
     }
 
     public List<Son> getItemsAvailableSelectMany() {
@@ -171,6 +191,14 @@ public class SonController implements Serializable {
             }
         }
 
+    }
+
+    public List<Son> getFilteredItems() {
+        return filteredItems;
+    }
+
+    public void setFilteredItems(List<Son> filteredItems) {
+        this.filteredItems = filteredItems;
     }
 
 }

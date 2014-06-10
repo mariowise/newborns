@@ -308,6 +308,9 @@ public class Mother implements Serializable {
     }
 
     public List<Son> getSons() {
+        if (sons == null) {
+            sons = new ArrayList<Son>();
+        }
         return sons;
     }
 

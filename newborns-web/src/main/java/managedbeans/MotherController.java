@@ -128,7 +128,12 @@ public class MotherController implements Serializable {
     }
     
     public void refreshSelected() {
-        selected = getMother(selected.getId());
+        if (selected != null) {
+            Long id = selected.getId();
+            if(id!=null){
+                selected = getMother(selected.getId());
+            }
+        }
     }
 
     public List<Mother> getItemsAvailableSelectMany() {
