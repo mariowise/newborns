@@ -15,6 +15,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -35,31 +40,43 @@ public class Son implements Serializable {
     @ManyToOne
     private Gender gender;
     
-    private int weight;
+    @Size(min = 1, message = "Debe ingresar un Peso")
+    @Pattern(regexp = "^(\\d*\\.?\\d*)$", message = "Debe ingresar un Peso válido")
+    private String weight;
     
-    private int size;
+    @Size(min = 1, message = "Debe ingresar una Tamaño")
+    @Pattern(regexp = "^(\\d*\\.?\\d*)$", message = "Debe ingresar un Tamaño válido")
+    private String size;
     
-    private int skullPerimeter;
+    @Size(min = 1, message = "Debe ingresar un Perímetro de cabeza")
+    @Pattern(regexp = "^(\\d*\\.?\\d*)$", message = "Debe ingresar un Perímetro de cabeza válido")
+    private String skullPerimeter;
     
-    private int apgar1;
+    private String apgar1;
     
-    private int apgar5;
+    private String apgar5;
     
-    private int apgar10;
+    private String apgar10;
     
     private Boolean vitk;
     
     private Boolean bcg;
     
-    private int weightPlacenta;
+    @Size(min = 1, message = "Debe ingresar un Peso de placenta")
+    @Pattern(regexp = "^(\\d*\\.?\\d*)$", message = "Debe ingresar un Peso de placenta válido")
+    private String weightPlacenta;
     
     private Boolean cry;
     
-    private int attachedTime;
+    private String attachedTime;
     
-    private int tempAxilar;
+    @Size(min = 1, message = "Debe ingresar una Temperatura axilar")
+    @Pattern(regexp = "^(\\d*\\.?\\d*)$", message = "Debe ingresar una Temperatura axilar válida")
+    private String tempAxilar;
     
-    private int tempRectal;
+    @Size(min = 1, message = "Debe ingresar una Temperatura rectal")
+    @Pattern(regexp = "^(\\d*\\.?\\d*)$", message = "Debe ingresar una Temperatura rectal válida")
+    private String tempRectal;
     
     private Boolean of;
     
@@ -67,10 +84,12 @@ public class Son implements Serializable {
     
     private Boolean ot;
     
-    private int secretion;
+    private String secretion;
     
+    @Size(min = 1, message = "Debe ingresar un Color de secreción")
     private String secretionColour;
     
+    @Size(min = 1, message = "Debe ingresar una Consistencia")
     private String consistency;
     
     private Boolean gas;
@@ -119,51 +138,51 @@ public class Son implements Serializable {
         this.gender = gender;
     }
 
-    public int getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
-    public int getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
-    public int getSkullPerimeter() {
+    public String getSkullPerimeter() {
         return skullPerimeter;
     }
 
-    public void setSkullPerimeter(int skullPerimeter) {
+    public void setSkullPerimeter(String skullPerimeter) {
         this.skullPerimeter = skullPerimeter;
     }
 
-    public int getApgar1() {
+    public String getApgar1() {
         return apgar1;
     }
 
-    public void setApgar1(int apgar1) {
+    public void setApgar1(String apgar1) {
         this.apgar1 = apgar1;
     }
 
-    public int getApgar5() {
+    public String getApgar5() {
         return apgar5;
     }
 
-    public void setApgar5(int apgar5) {
+    public void setApgar5(String apgar5) {
         this.apgar5 = apgar5;
     }
 
-    public int getApgar10() {
+    public String getApgar10() {
         return apgar10;
     }
 
-    public void setApgar10(int apgar10) {
+    public void setApgar10(String apgar10) {
         this.apgar10 = apgar10;
     }
 
@@ -183,11 +202,11 @@ public class Son implements Serializable {
         this.bcg = bcg;
     }
 
-    public int getWeightPlacenta() {
+    public String getWeightPlacenta() {
         return weightPlacenta;
     }
 
-    public void setWeightPlacenta(int weightPlacenta) {
+    public void setWeightPlacenta(String weightPlacenta) {
         this.weightPlacenta = weightPlacenta;
     }
 
@@ -199,27 +218,27 @@ public class Son implements Serializable {
         this.cry = cry;
     }
 
-    public int getAttachedTime() {
+    public String getAttachedTime() {
         return attachedTime;
     }
 
-    public void setAttachedTime(int attachedTime) {
+    public void setAttachedTime(String attachedTime) {
         this.attachedTime = attachedTime;
     }
 
-    public int getTempAxilar() {
+    public String getTempAxilar() {
         return tempAxilar;
     }
 
-    public void setTempAxilar(int tempAxilar) {
+    public void setTempAxilar(String tempAxilar) {
         this.tempAxilar = tempAxilar;
     }
 
-    public int getTempRectal() {
+    public String getTempRectal() {
         return tempRectal;
     }
 
-    public void setTempRectal(int tempRectal) {
+    public void setTempRectal(String tempRectal) {
         this.tempRectal = tempRectal;
     }
 
@@ -247,11 +266,11 @@ public class Son implements Serializable {
         this.ot = ot;
     }
 
-    public int getSecretion() {
+    public String getSecretion() {
         return secretion;
     }
 
-    public void setSecretion(int secretion) {
+    public void setSecretion(String secretion) {
         this.secretion = secretion;
     }
 
