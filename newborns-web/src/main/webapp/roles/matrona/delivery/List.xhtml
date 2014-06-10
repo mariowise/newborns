@@ -63,12 +63,19 @@
                         <h:outputText value="#{item.deliveryType.name}"/>
                     </p:column>
                     <f:facet name="footer">
-                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{deliveryController.prepareCreate}" update=":DeliveryCreateForm" oncomplete="PF('DeliveryCreateDialog').show()"/>
-                        <p:commandButton id="createRevivalButton" icon="ui-icon-plus"   value="#{bundle.CreateRevival}" actionListener="#{revivalController.prepareCreate}" update=":RevivalCreateForm" oncomplete="PF('RevivalCreateDialog').show()" disabled="#{empty deliveryController.selected}"/>                       
-                        <p:commandButton id="createPartyButton" icon="ui-icon-plus"   value="#{bundle.CreateParty}" actionListener="#{partyController.prepareCreate}" update=":PartyCreateForm" oncomplete="PF('PartyCreateDialog').show()" disabled="#{empty deliveryController.selected}"/>
-                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":DeliveryViewForm" oncomplete="PF('DeliveryViewDialog').show()" disabled="#{empty deliveryController.selected}"/>
-                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DeliveryEditForm" oncomplete="PF('DeliveryEditDialog').show()" disabled="#{empty deliveryController.selected}"/>
-                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{deliveryController.destroy}" update=":growl,datalist" disabled="#{empty deliveryController.selected}"/>
+                        <div class="row">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{deliveryController.prepareCreate}" update=":DeliveryCreateForm" oncomplete="PF('DeliveryCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":DeliveryViewForm" oncomplete="PF('DeliveryViewDialog').show()" disabled="#{empty deliveryController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DeliveryEditForm" oncomplete="PF('DeliveryEditDialog').show()" disabled="#{empty deliveryController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{deliveryController.destroy}" update=":growl,datalist" disabled="#{empty deliveryController.selected}"/>
+                        </div>
+                        <div class="row">
+                            <p:commandButton id="createRevivalButton" icon="ui-icon-plus"   value="#{bundle.CreateRevival}" actionListener="#{revivalController.prepareCreate}" update=":RevivalCreateForm" oncomplete="PF('RevivalCreateDialog').show()" disabled="#{empty deliveryController.selected}"/>                       
+                            <p:commandButton id="createPartyButton" icon="ui-icon-plus"   value="#{bundle.CreateParty}" actionListener="#{partyController.prepareCreate}" update=":PartyCreateForm" oncomplete="PF('PartyCreateDialog').show()" disabled="#{empty deliveryController.selected}"/>
+                        </div>
+                        <div class="row">
+                            
+                        </div>
                     </f:facet>
                 </p:dataTable>
 

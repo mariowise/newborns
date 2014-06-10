@@ -7,7 +7,7 @@
 package entities.core;
 
 import entities.Gender;
-import entities.SonId;
+import entities.YearsCount;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +25,11 @@ public class Son implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @ManyToOne
+    private YearsCount year;
+    
+    private int ticket;
     
     @ManyToOne
     private Gender gender;
@@ -87,6 +92,22 @@ public class Son implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public YearsCount getYear() {
+        return year;
+    }
+
+    public void setYear(YearsCount year) {
+        this.year = year;
+    }
+
+    public int getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(int ticket) {
+        this.ticket = ticket;
     }
 
     public Gender getGender() {

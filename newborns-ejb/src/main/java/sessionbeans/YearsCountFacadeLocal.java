@@ -6,7 +6,7 @@
 
 package sessionbeans;
 
-import entities.SonId;
+import entities.YearsCount;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -15,19 +15,19 @@ import javax.ejb.Local;
  * @author pingeso
  */
 @Local
-public interface SonIdFacadeLocal {
+public interface YearsCountFacadeLocal {
 
-    void create(SonId sonId);
+    void create(YearsCount yearsCount);
 
-    void edit(SonId sonId);
+    void edit(YearsCount yearsCount);
 
-    void remove(SonId sonId);
+    void remove(YearsCount yearsCount);
 
-    SonId find(Object id);
+    YearsCount find(Object id);
 
-    List<SonId> findAll();
+    List<YearsCount> findAll();
 
-    List<SonId> findRange(int[] range);
+    List<YearsCount> findRange(int[] range);
 
     int count();
     

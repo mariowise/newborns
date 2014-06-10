@@ -6,7 +6,7 @@
 
 package sessionbeans;
 
-import entities.SonId;
+import entities.YearsCount;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
  * @author pingeso
  */
 @Stateless
-public class SonIdFacade extends AbstractFacade<SonId> implements SonIdFacadeLocal {
+public class YearsCountFacade extends AbstractFacade<YearsCount> implements YearsCountFacadeLocal {
     @PersistenceContext(unitName = "cl.diinf.newborns-ejb.PU")
     private EntityManager em;
 
@@ -25,8 +25,8 @@ public class SonIdFacade extends AbstractFacade<SonId> implements SonIdFacadeLoc
         return em;
     }
 
-    public SonIdFacade() {
-        super(SonId.class);
+    public YearsCountFacade() {
+        super(YearsCount.class);
     }
     
 }

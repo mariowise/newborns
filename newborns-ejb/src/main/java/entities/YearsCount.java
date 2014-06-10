@@ -17,13 +17,11 @@ import javax.persistence.Id;
  * @author pingeso
  */
 @Entity
-public class SonId implements Serializable {
+public class YearsCount implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
-    private int year;
+    private Long id; // Year
     
     private int count;
 
@@ -33,14 +31,6 @@ public class SonId implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
     }
 
     public int getCount() {
@@ -61,10 +51,10 @@ public class SonId implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SonId)) {
+        if (!(object instanceof YearsCount)) {
             return false;
         }
-        SonId other = (SonId) object;
+        YearsCount other = (YearsCount) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -73,7 +63,7 @@ public class SonId implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.SonId[ id=" + id + " ]";
+        return "entities.YearsCount[ id=" + id + " ]";
     }
     
 }
