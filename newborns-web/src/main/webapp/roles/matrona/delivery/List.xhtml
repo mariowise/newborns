@@ -74,7 +74,7 @@
                             <p:commandButton id="createPartyButton" icon="ui-icon-plus"   value="#{bundle.CreateParty}" actionListener="#{partyController.prepareCreate}" update=":PartyCreateForm" oncomplete="PF('PartyCreateDialog').show()" disabled="#{empty deliveryController.selected}"/>
                         </div>
                         <div class="row">
-                            
+                            <p:commandButton id="createSonButton" icon="ui-icon-plus" value="#{bundle.Create}" actionListener="#{sonController.prepareCreate}" update=":SonCreateForm" oncomplete="PF('SonCreateDialog').show()"/>
                         </div>
                     </f:facet>
                 </p:dataTable>
@@ -83,7 +83,8 @@
 
             <ui:include src="Create.xhtml"/>
             <ui:include src="../revival/Create.xhtml"/>
-            <ui:include src="../party/Create.xhtml"/>   
+            <ui:include src="../party/Create.xhtml"/>
+            <ui:include src="../son/Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
         </ui:define>

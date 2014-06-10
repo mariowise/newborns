@@ -8,6 +8,7 @@ package entities.core;
 import entities.Account;
 import entities.DeliveryType;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -255,6 +256,8 @@ public class Delivery implements Serializable {
     }
 
     public List<Revival> getRevivals() {
+        if(revivals == null)
+            revivals = new ArrayList<Revival>();
         return revivals;
     }
 
@@ -263,6 +266,8 @@ public class Delivery implements Serializable {
     }
 
     public List<Party> getParty() {
+        if(party == null)
+            party = new ArrayList<Party>();
         return party;
     }
 
