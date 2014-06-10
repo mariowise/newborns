@@ -36,11 +36,13 @@ public class SonFacade extends AbstractFacade<Son> implements SonFacadeLocal {
         int year = currentDate.getYear();
         int offset;
         
-        YearsCount yc = yearsCountFacade.find(year);
+        System.out.println("Buscando el año " + year);
+        YearsCount yc = yearsCountFacade.find(new Long(year));
         if(yc == null) {
             yc = new YearsCount();
             yc.setId(new Long(year));
             yc.setCount(0);
+            System.out.println("Creando Year" + yc.toString());
             yearsCountFacade.create(yc);
         }
         yc.setCount(yc.getCount()+1);
@@ -49,8 +51,6 @@ public class SonFacade extends AbstractFacade<Son> implements SonFacadeLocal {
         son.setTicket(yc.getCount());
 
         getEntityManager().persist(son);
-        getEntityManager().flush();
-        getEntityManager().refresh(son);        
     }
     
     @Override

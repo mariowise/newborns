@@ -9,6 +9,7 @@ package entities.core;
 import entities.Gender;
 import entities.YearsCount;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -76,7 +77,7 @@ public class Son implements Serializable {
     
     private Boolean extremePremature;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Profile profile;
     
     @ManyToOne
