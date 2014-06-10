@@ -86,9 +86,7 @@ public class DeliveryController implements Serializable {
     public List<Delivery> getItems() {
         motherController.refreshSelected();            
         items = motherController.getSelected().getDeliveries();        
-        if(selected!=null){
-            refreshSelected();
-        }
+        refreshSelected();
         return items;
     }
 
@@ -128,7 +126,10 @@ public class DeliveryController implements Serializable {
 
     public void refreshSelected() {
         if (selected != null) {
-            selected = getDelivery(selected.getId());
+            Long id = selected.getId();
+            if(id!=null){
+                selected = getDelivery(id);
+            }
         }
     }
 
