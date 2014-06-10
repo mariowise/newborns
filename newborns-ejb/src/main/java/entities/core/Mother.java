@@ -112,7 +112,11 @@ public class Mother implements Serializable {
 
     @OneToMany(mappedBy = "mother")
     private List<Delivery> deliveries;
+    
+    @OneToMany(mappedBy = "mother")
+    private List<Son> sons;
 
+    
     public Long getId() {
         return id;
     }
@@ -301,6 +305,14 @@ public class Mother implements Serializable {
 
     public void setDeliveries(List<Delivery> deliveries) {
         this.deliveries = deliveries;
+    }
+
+    public List<Son> getSons() {
+        return sons;
+    }
+
+    public void setSons(List<Son> sons) {
+        this.sons = sons;
     }
 
     @Override

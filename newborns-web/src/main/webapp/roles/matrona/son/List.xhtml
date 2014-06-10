@@ -31,146 +31,14 @@
                              rowsPerPageTemplate="10,20,30,40,50"
                              >
 
-                    <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                    <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                    <p:ajax event="rowSelect"   update="viewButton editButton deleteButton"/>
+                    <p:ajax event="rowUnselect" update="viewButton editButton deleteButton"/>
 
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_id}"/>
+                            <h:outputText value="Código"/>
                         </f:facet>
-                        <h:outputText value="#{item.id}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_gender}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.gender}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_weight}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.weight}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_size}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.size}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_skullPerimeter}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.skullPerimeter}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_apgar1}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.apgar1}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_apgar5}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.apgar5}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_apgar10}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.apgar10}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_vitk}"/>
-                        </f:facet>
-                        <p:selectBooleanCheckbox value="#{item.vitk}" disabled="true"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_bcg}"/>
-                        </f:facet>
-                        <p:selectBooleanCheckbox value="#{item.bcg}" disabled="true"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_weightPlacenta}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.weightPlacenta}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_cry}"/>
-                        </f:facet>
-                        <p:selectBooleanCheckbox value="#{item.cry}" disabled="true"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_attachedTime}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.attachedTime}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_tempAxilar}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.tempAxilar}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_tempRectal}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.tempRectal}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_of}"/>
-                        </f:facet>
-                        <p:selectBooleanCheckbox value="#{item.of}" disabled="true"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_og}"/>
-                        </f:facet>
-                        <p:selectBooleanCheckbox value="#{item.og}" disabled="true"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_ot}"/>
-                        </f:facet>
-                        <p:selectBooleanCheckbox value="#{item.ot}" disabled="true"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_secretion}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.secretion}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_secretionColour}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.secretionColour}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_consistency}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.consistency}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_gas}"/>
-                        </f:facet>
-                        <p:selectBooleanCheckbox value="#{item.gas}" disabled="true"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_extremePremature}"/>
-                        </f:facet>
-                        <p:selectBooleanCheckbox value="#{item.extremePremature}" disabled="true"/>
+                        <h:outputText value="#{item.year.id}-#{item.ticket}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
@@ -180,9 +48,9 @@
                     </p:column>
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_mother}"/>
+                            <h:outputText value="RUN Madre"/>
                         </f:facet>
-                        <h:outputText value="#{item.mother}"/>
+                        <h:outputText value="#{item.mother.run}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
@@ -190,8 +58,19 @@
                         </f:facet>
                         <h:outputText value="#{item.delivery}"/>
                     </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSonTitle_gender}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.gender.name}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSonTitle_extremePremature}"/>
+                        </f:facet>
+                        <p:selectBooleanCheckbox value="#{item.extremePremature}" disabled="true"/>
+                    </p:column>
                     <f:facet name="footer">
-                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sonController.prepareCreate}" update=":SonCreateForm" oncomplete="PF('SonCreateDialog').show()"/>
                         <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SonViewForm" oncomplete="PF('SonViewDialog').show()" disabled="#{empty sonController.selected}"/>
                         <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SonEditForm" oncomplete="PF('SonEditDialog').show()" disabled="#{empty sonController.selected}"/>
                         <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{sonController.destroy}" update=":growl,datalist" disabled="#{empty sonController.selected}"/>
@@ -200,7 +79,6 @@
                 
             </h:form>
 
-            <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
         </ui:define>

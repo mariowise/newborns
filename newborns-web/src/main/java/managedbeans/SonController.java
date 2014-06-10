@@ -31,6 +31,9 @@ public class SonController implements Serializable {
     
     @Inject
     private MotherController motherController;
+    
+    @Inject
+    private DeliveryController deliveryController;
 
     public SonController() {
     }
@@ -57,6 +60,7 @@ public class SonController implements Serializable {
         selected = new Son();
         selected.setProfile(new Profile());
         selected.setMother(motherController.getSelected());
+        selected.setDelivery(deliveryController.getSelected());
         initializeEmbeddableKey();
         return selected;
     }
@@ -81,9 +85,8 @@ public class SonController implements Serializable {
     }
 
     public List<Son> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
+        motherController.refreshSelected();
+        items = motherController.getSelected().getSons();
         return items;
     }
 
@@ -91,7 +94,9 @@ public class SonController implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if (persistAction != PersistAction.DELETE) {
+                if(persistAction == PersistAction.CREATE) {
+                    getFacade().create(selected);
+                } else if(persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);

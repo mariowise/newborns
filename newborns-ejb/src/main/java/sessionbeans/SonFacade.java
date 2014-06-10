@@ -8,7 +8,9 @@ package sessionbeans;
 
 import entities.YearsCount;
 import entities.core.Son;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -32,15 +34,17 @@ public class SonFacade extends AbstractFacade<Son> implements SonFacadeLocal {
     public void create(Son son) {
         System.out.println("SonFacade::create (overrride)");
         
-        Date currentDate = new Date();
-        int year = currentDate.getYear();
+        Calendar currentDate = new GregorianCalendar();
+        int year = currentDate.get(Calendar.YEAR);
         int offset;
         
-        YearsCount yc = yearsCountFacade.find(year);
+        System.out.println("Buscando el año " + year);
+        YearsCount yc = yearsCountFacade.find(new Long(year));
         if(yc == null) {
             yc = new YearsCount();
             yc.setId(new Long(year));
             yc.setCount(0);
+            System.out.println("Creando Year" + yc.toString());
             yearsCountFacade.create(yc);
         }
         yc.setCount(yc.getCount()+1);
@@ -49,8 +53,6 @@ public class SonFacade extends AbstractFacade<Son> implements SonFacadeLocal {
         son.setTicket(yc.getCount());
 
         getEntityManager().persist(son);
-        getEntityManager().flush();
-        getEntityManager().refresh(son);        
     }
     
     @Override
