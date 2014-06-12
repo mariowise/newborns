@@ -51,7 +51,7 @@
         top: 4px;
     }
     .ui-state-default {
-        background-color: transparent!important;
+        // background-color: transparent!important;
         background-image: none!important;
     }
     .ui-widget-header {
@@ -76,6 +76,7 @@
 .ui-button {
     border-radius: 0px!important;
     margin-right: 6px;
+    background-color: white!important;
 }
 
 .ui-scrollpanel {
@@ -86,6 +87,7 @@
     border-radius: 0px;
     border:0px;
     padding-top:0px;
+    padding-bottom:0px;
 
     .ui-menuitem {
         border-bottom: 1px solid #ccc!important;
