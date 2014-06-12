@@ -24,3 +24,92 @@
 		height: 100px!important;
 	}
 }
+
+// Tables
+.ui-datatable {
+    .ui-paginator.ui-paginator-top {
+        display: none!important;
+    }
+    .ui-datatable-header {
+        .ui-outputpanel {
+            text-align: right!important;
+            padding-top: 1px!important;
+            padding-bottom: 1px!important;
+
+            .ui-inputfield {
+                width: 300px!important;
+                float: right!important;
+                margin-left: 6px!important;
+                margin-top: -1px!important;
+                margin-right: -5px!important;
+                height: 25px!important;
+            }
+        }
+
+        position: absolute;
+        right: 9px;
+        top: 4px;
+    }
+    .ui-state-default {
+        background-color: transparent!important;
+        background-image: none!important;
+    }
+    .ui-widget-header {
+        border: 0px!important;
+        background: transparent!important;
+        color:transparent!important;
+    }
+    thead {
+        font-size: 12px;
+    }
+    .ui-column-filter {
+        width: 100%!important;
+    }
+    .ui-datatable-footer .ui-button {
+        margin-top: 6px!important;
+        min-width: 146px;
+    }
+
+    font-size:16px;
+}
+
+.ui-button {
+    border-radius: 0px!important;
+    margin-right: 6px;
+}
+
+.ui-scrollpanel {
+    padding: 20px!important;
+}
+
+.ui-menu.ui-widget {
+    border-radius: 0px;
+    border:0px;
+    padding-top:0px;
+
+    .ui-menuitem {
+        border-bottom: 1px solid #ccc!important;
+        border-left: 1px solid #ccc !important;
+        border-right: 1px solid #ccc !important;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        
+        &:first-child {
+            border-top: 1px solid #ccc!important;
+        }
+        .ui-menuitem-link {
+            line-height: 33px;
+            padding-left: 8px;            
+        }
+    }
+}
+
+.ui-dialog.ui-widget {
+    border-radius: 0px!important;
+
+    .ui-dialog-titlebar {
+        background-color: #ccc!important;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+}

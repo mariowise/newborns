@@ -5215,6 +5215,70 @@ button.close {
 .ui-selectonelistbox.ui-inputfield.ui-widget.ui-widget-content.ui-corner-all.list-100 .ui-selectlistbox-listcontainer {
   height: 100px !important; }
 
+.ui-datatable {
+  font-size: 16px; }
+  .ui-datatable .ui-paginator.ui-paginator-top {
+    display: none !important; }
+  .ui-datatable .ui-datatable-header {
+    position: absolute;
+    right: 9px;
+    top: 4px; }
+    .ui-datatable .ui-datatable-header .ui-outputpanel {
+      text-align: right !important;
+      padding-top: 1px !important;
+      padding-bottom: 1px !important; }
+      .ui-datatable .ui-datatable-header .ui-outputpanel .ui-inputfield {
+        width: 300px !important;
+        float: right !important;
+        margin-left: 6px !important;
+        margin-top: -1px !important;
+        margin-right: -5px !important;
+        height: 25px !important; }
+  .ui-datatable .ui-state-default {
+    background-color: transparent !important;
+    background-image: none !important; }
+  .ui-datatable .ui-widget-header {
+    border: 0px !important;
+    background: transparent !important;
+    color: transparent !important; }
+  .ui-datatable thead {
+    font-size: 12px; }
+  .ui-datatable .ui-column-filter {
+    width: 100% !important; }
+  .ui-datatable .ui-datatable-footer .ui-button {
+    margin-top: 6px !important;
+    min-width: 146px; }
+
+.ui-button {
+  border-radius: 0px !important;
+  margin-right: 6px; }
+
+.ui-scrollpanel {
+  padding: 20px !important; }
+
+.ui-menu.ui-widget {
+  border-radius: 0px;
+  border: 0px;
+  padding-top: 0px; }
+  .ui-menu.ui-widget .ui-menuitem {
+    border-bottom: 1px solid #cccccc !important;
+    border-left: 1px solid #ccc !important;
+    border-right: 1px solid #ccc !important;
+    margin-top: 0px;
+    margin-bottom: 0px; }
+    .ui-menu.ui-widget .ui-menuitem:first-child {
+      border-top: 1px solid #cccccc !important; }
+    .ui-menu.ui-widget .ui-menuitem .ui-menuitem-link {
+      line-height: 33px;
+      padding-left: 8px; }
+
+.ui-dialog.ui-widget {
+  border-radius: 0px !important; }
+  .ui-dialog.ui-widget .ui-dialog-titlebar {
+    background-color: #cccccc !important;
+    padding-top: 2px;
+    padding-bottom: 2px; }
+
 .float-right {
   float: right; }
 
