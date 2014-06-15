@@ -26,36 +26,42 @@ public class Rut implements Validator, ClientValidator {
     
     public boolean check(String rut) {  
         boolean validacion = false;
-        try {  
-            rut =  rut.toUpperCase();            
+        try {
+            rut = rut.toUpperCase();
             System.out.println(rut);
             rut = rut.replace(".", "");
             rut = rut.replace("-", "");
 
-            if(rut.endsWith("K")){
+            if (rut.endsWith("K")) {
                 rut = rut.replace("K", "11");
+                System.out.println("Entre y el rut queda en: " + rut);
                 int rutAux = Integer.parseInt(rut.substring(0, rut.length() - 2));
-                char dv = rut.charAt(rut.length() - 2);
+                System.out.println("Rut auxiliar: " + rutAux);
+                int dv = Integer.parseInt(rut.substring(rut.length() - 2, rut.length()));
+                System.out.println("Con digito verificador: " + dv);
                 int m = 0, s = 1;
-                for (; rutAux != 0; rutAux /= 10)
-                        s = (s + rutAux % 10 * (9 - m++ % 6)) % 11;
-                    if (dv == (char) (s != 0 ? s + 47 : 75))
-                        validacion = true;
-            }
-            else{
+                for (; rutAux != 0; rutAux /= 10) {
+                    s = (s + rutAux % 10 * (9 - m++ % 6)) % 11;
+                }
+                if (dv == 11) {
+                    validacion = true;
+                }
+            } else {
                 int rutAux = Integer.parseInt(rut.substring(0, rut.length() - 1));
                 char dv = rut.charAt(rut.length() - 1);
                 int m = 0, s = 1;
-                for (; rutAux != 0; rutAux /= 10)
+                for (; rutAux != 0; rutAux /= 10) {
                     s = (s + rutAux % 10 * (9 - m++ % 6)) % 11;
-                if (dv == (char) (s != 0 ? s + 47 : 75))
+                }
+                if (dv == (char) (s != 0 ? s + 47 : 75)) {
                     validacion = true;
+                }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("managedbeans.util.validator.Rut.validate(): Exception throwed on Rut validation of " + rut);
         }
         return validacion;
+    }
     }
     
     private boolean checkExistence(String rut) {
