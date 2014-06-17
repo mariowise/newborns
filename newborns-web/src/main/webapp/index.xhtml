@@ -32,7 +32,7 @@
                                     <h:inputSecret id="password" class="form-control" autocomplete="off" size="20" value="#{SessionController.password}" />
                                 </div>
                                 <a href="/newborns-web/faces/passwordRecovery.xhtml" class="btn btn-link" style="margin-top: 10px">¿Olvidó su contraseña?</a>
-                                <p:commandButton styleClass="btn btn-default float-right" type="submit" value="Ingresar" action="#{SessionController.login()}" update=":growl"/>
+                                <p:commandButton styleClass="float-right" type="submit" value="Ingresar" action="#{SessionController.login()}" update=":growl"/>
                             </div>
                         </div>
                     </div>

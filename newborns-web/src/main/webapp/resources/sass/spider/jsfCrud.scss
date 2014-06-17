@@ -80,6 +80,7 @@
 
     &.ui-state-hover {
         border-bottom: 3px solid yellowgreen;
+        background-position: 0px 0px!important;
     }
 }
 
@@ -124,4 +125,14 @@
     border-radius: 14px!important;
     padding: 4px!important;
     background-color: yellowgreen!important;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    background-color: $brand-primary !important;
+    background-image: none;
+}
+
+.ui-menuitem-link.ui-corner-all.ui-state-hover {
+    background-color: $brand-primary !important;
+    background-image: none!important;   
 }
