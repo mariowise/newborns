@@ -62,10 +62,7 @@ public class Rut implements Validator, ClientValidator {
         }
         return validacion;
     }
-<<<<<<< HEAD
-    
-=======
->>>>>>> 464bae3fe735f101642e8e5252b9806c3a444e31
+
     
     private boolean checkExistence(String rut) {
         rut =  rut.toUpperCase();
