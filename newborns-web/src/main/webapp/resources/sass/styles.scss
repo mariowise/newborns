@@ -2,6 +2,8 @@
 @import "bootstrap/bootstrap";
 @import "spider/spider";
 
+@import url("http://fonts.googleapis.com/css?family=Oswald:400,700");
+
 body {
 background: rgb(255,255,255); /* Old browsers */
 background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(241,241,241,1) 50%, rgba(225,225,225,1) 94%, rgba(246,246,246,1) 100%); /* FF3.6+ */
@@ -25,6 +27,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
 .navbar {
 	margin-bottom: 0px;
+	border-bottom: 5px solid $line-color;
 }
 
 .navbar-brand {

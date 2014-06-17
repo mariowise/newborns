@@ -1,8 +1,9 @@
 
 .footer {
-	height: $footer-height;
+	min-height: $footer-height;
 	background-color: $footer-back;
 	border-top: 30px solid $brand-primary;
+	color: $footer-text-color;
 
 	.links {
 		padding-top: 15px;
@@ -11,6 +12,11 @@
 			padding-left: 0px;
 			list-style: none;
 		}
+	}
+
+	.logo-usach {
+		width: 127px;
+		margin-top: 15px;
 	}
 
 	.about-us {

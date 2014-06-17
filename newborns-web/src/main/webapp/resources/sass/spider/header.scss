@@ -1,0 +1,14 @@
+
+.navbar {
+	.navbar-brand {
+		font-family: 'Oswald', sans-serif;
+		font-size: 23px;
+
+		span:last-child {
+			color: $line-color;
+			font-weight: bold;
+		}
+		&:hover span:first-child { color: $line-color; }
+		&:hover span:last-child { color: white; }		
+	}
+}

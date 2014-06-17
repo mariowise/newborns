@@ -20,15 +20,11 @@
         
         <ui:define name="body">
             
-            <h4>Bienvenido <b>#{SessionUtil.currentUser.name}</b></h4>
-            
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <p>El rol de administración contempla la creación de nuevas <b>cuentas</b> 
-                       dentro del sistema.
-                    </p>    
-                </div>
-            </div>
+            <h1>Bienvenido <b>#{SessionUtil.currentUser.name}</b></h1>
+            <p>El rol de administración contempla la creación de nuevas <b>cuentas</b> 
+               dentro del sistema.
+            </p>
+            <hr/>
             
         </ui:define>
 

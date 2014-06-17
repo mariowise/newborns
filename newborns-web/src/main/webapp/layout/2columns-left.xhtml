@@ -17,27 +17,57 @@
 
         <p:growl id="growl" life="3000" />
         
-        <div class="wrapper">
-        
-            <ui:include src="header.xhtml"/>
-
-            <div class="container page-body">
-
-                <div class="row">
-                    <div class="col-md-3">
-                        <ui:insert name="sidebar-left"/>
-                    </div>
-                    <div class="col-md-9">
-                        <ui:insert name="body"/>
-                    </div>
-                </div>
-
+        <ui:include src="header.xhtml"/>
+         <div id="wrapper">
+             
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ui:insert name="sidebar-left"/>
+                <!--
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand"><a href="#">fonoaudiología</a>
+                    </li>
+                    <li><a href="#">Dashboard</a>
+                    </li>
+                    <li><a href="#">Shortcuts</a>
+                    </li>
+                    <li><a href="#">Overview</a>
+                    </li>
+                    <li><a href="#">Events</a>
+                    </li>
+                    <li><a href="#">About</a>
+                    </li>
+                    <li><a href="#">Services</a>
+                    </li>
+                    <li><a href="#">Contact</a>
+                    </li>
+                </ul>
+                -->
             </div>
 
-            <ui:include src="footer.xhtml"/>
-        
-        </div>
-        
+            <!-- Page content -->
+            <div id="page-content-wrapper">
+                <!--
+                <div class="content-header">
+                    <h1>
+                        <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
+                        Simple Sidebar
+                    </h1>
+                </div>
+                -->
+                <!-- Keep all page content within the page-content inset div! -->
+                <div class="page-content inset">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ui:insert name="body"/>
+                        </div>
+                    </div>
+                </div>
+                <ui:include src="footer.xhtml"/>
+            </div>
+
+        </div>   
+
     </h:body>
     
 </html>

@@ -7,18 +7,13 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        
-        <h4>Herramientas Administrador</h4>
-        
-        <h:form>
-                 
-            <p:menu style="width: 100%">
-                <p:menuitem value="Inicio" outcome="/roles/admin/index.xhtml" update="messages" />
-                <p:menuitem value="Usuarios del sistema" outcome="/roles/admin/account/List.xhtml" update="messages" />
-            </p:menu>
 
-        </h:form>
-        
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand"><a href="">Herramientas administrador</a></li>
+            <li><a href="/newborns-web/faces/roles/admin/index.xhtml">Inicio</a></li>
+            <li><a href="/newborns-web/faces/roles/admin/account/List.xhtml">Usuarios</a></li>
+        </ul>
+
     </ui:composition>
 </html>
 

@@ -67,7 +67,7 @@
     }
     .ui-datatable-footer .ui-button {
         margin-top: 6px!important;
-        min-width: 146px;
+        padding: 8px 10px;
     }
 
     font-size:16px;
@@ -77,6 +77,10 @@
     border-radius: 0px!important;
     margin-right: 6px;
     background-color: white!important;
+
+    &.ui-state-hover {
+        border-bottom: 3px solid yellowgreen;
+    }
 }
 
 .ui-scrollpanel {
@@ -114,4 +118,10 @@
         padding-top: 2px;
         padding-bottom: 2px;
     }
+}
+
+.ui-datatable-tablewrapper {
+    border-radius: 14px!important;
+    padding: 4px!important;
+    background-color: yellowgreen!important;
 }
