@@ -19,7 +19,10 @@
 
         <ui:define name="body">
             
-            <h4>#{bundle.ListMotherTitle}</h4>
+            <h1>#{bundle.ListMotherTitle}</h1>
+            <p>A continuación se muestran las <span class="label label-default">fichas de las madres</span> del sistema. Desde este menú puedes ver el detalle del perfil de fichas madres,
+            modificar y visualizar los detalles de cada una.</p>
+            <hr/>
             
             <h:form id="MotherListForm">
                 <p:dataTable id="datalist" value="#{motherController.items}" var="item"

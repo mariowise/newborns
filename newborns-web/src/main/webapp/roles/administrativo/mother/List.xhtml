@@ -12,15 +12,19 @@
         <ui:define name="title">
             <h:outputText value="#{bundle.ListMotherTitle}"></h:outputText>
         </ui:define>
-        
+
         <ui:define name="sidebar-left">
             <ui:include src="../sidebar-left.xhtml"/>
         </ui:define>
 
         <ui:define name="body">
-            
+
             <h4>#{bundle.ListMotherTitle}</h4>
-            
+            <p>A continuación se muestra el listado de las <span class="label label-default">fichas de la madre</span> 
+                del sistema. Desde este menú puedes agregar nuevas fichas, visualizarlas y modificarlas. Además se 
+                puede ver el detalle del perfil.</p>
+            <hr/>
+
             <h:form id="MotherListForm">
                 <p:dataTable id="datalist" value="#{motherController.items}" var="item"
                              selectionMode="single" selection="#{motherController.selected}"
@@ -28,14 +32,14 @@
                              rowKey="#{item.id}"
                              rows="10"
                              rowsPerPageTemplate="10,20,30,40,50"
-                             
+
                              widgetVar="datalist"
                              emptyMessage="No se encontraron resultados según el criterio dado" 
                              filteredValue="#{motherController.filteredItems}"
                              >
 
-                    <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton profileButton"/>
-                    <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton profileButton"/>
+                    <p:ajax event="rowSelect"   update="createButton viewButton editButton profileButton"/>
+                    <p:ajax event="rowUnselect" update="createButton viewButton editButton profileButton"/>
 
                     <f:facet name="header">
                         <p:outputPanel>
@@ -43,7 +47,7 @@
                             <p:inputText id="globalFilter" onkeyup="PF('datalist').filter()" style="width:150px" placeholder="Buscar..."/>
                         </p:outputPanel>
                     </f:facet>
-                    
+
                     <p:column filterBy="#{item.run}" headerText="RUN" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListMotherTitle_run}"/>
@@ -74,8 +78,7 @@
                         <p:commandButton id="profileButton" icon="ui-icon-person" value="Ver perfil" actionListener="#{motherController.profileView}" disabled="#{empty motherController.selected}"/>
                         <!--<p:button id="profileButton" icon="ui-icon-person" value="Ver perfil" outcome="/roles/administrativo/index-profile.xhtml" />-->
                         <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MotherEditForm" oncomplete="PF('MotherEditDialog').show()" disabled="#{empty motherController.selected}"/>
-                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{motherController.destroy}" update=":growl,datalist" disabled="#{empty motherController.selected}"/>
-                    </f:facet>
+                       </f:facet>
                 </p:dataTable>
             </h:form>
 

@@ -12,18 +12,18 @@
         <ui:define name="title">
             <h:outputText value="Usuarios registrados en el sistema"></h:outputText>
         </ui:define>
-        
+
         <ui:define name="sidebar-left">
             <ui:include src="../sidebar-left.xhtml"/>
         </ui:define>
 
         <ui:define name="body">
-            
+
             <h1>Usuarios del sistema</h1>
             <p>A continuación se muestran los <span class="label label-default">usuarios</span> del sistema. Desde este menú puedes agregar nuevos usuarios
-            deshabilitar cuentas y visualizar los detalles de cada una.</p>
+                deshabilitar cuentas y visualizar los detalles de cada una.</p>
             <hr/>
-            
+
             <h:form id="AccountListForm">
 
                 <p:dataTable id="datalist" value="#{accountController.items}" var="item"
@@ -31,43 +31,59 @@
                              paginator="true"
                              rowKey="#{item.rut}"
                              rows="10"
-                             rowsPerPageTemplate="10,20,30,40,50" 
+                             rowsPerPageTemplate="10,20,30,40,50"
+
+                             widgetVar="datalist"
+                             emptyMessage="No se encontraron resultados según el criterio dado" 
+                             filteredValue="#{accountController.filteredItems}"
                              >
 
                     <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                     <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                    <p:column>
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <h:outputText value="Buscar:" />
+                            <p:inputText id="globalFilter" onkeyup="PF('datalist').filter()" style="width:150px" placeholder="Buscar..."/>
+                        </p:outputPanel>
+                    </f:facet>
+
+                    <p:column filterBy="#{item.rut}" headerText="RUT" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="RUT"/>
                         </f:facet>
                         <h:outputText value="#{item.rut}"/>
                     </p:column>
-                    <p:column>
+
+                    <p:column filterBy="#{item.name}" headerText="Nombre" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="Nombre"/>
                         </f:facet>
                         <h:outputText value="#{item.name}"/>
                     </p:column>
-                    <p:column>
+
+                    <p:column filterBy="#{item.phone}" headerText="Telefono" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="Teléfono"/>
                         </f:facet>
                         <h:outputText value="#{item.phone}"/>
                     </p:column>
-                    <p:column>
+
+                    <p:column filterBy="#{item.email}" headerText="Correo" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="Email"/>
                         </f:facet>
                         <h:outputText value="#{item.email}"/>
                     </p:column>
-                    <p:column>
+
+                    <p:column filterBy="#{item.accountType}" headerText="Tipo de Cuenta" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="Tipo"/>
                         </f:facet>
                         <h:outputText value="#{item.accountType.name}"/>
-                    </p:column>                    
-                    <p:column>
+                    </p:column>             
+
+                    <p:column filterBy="#{item.currentState}" headerText="Estado de Cuenta" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="Estado cuenta"/>
                         </f:facet>
@@ -87,9 +103,9 @@
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
-            
+
         </ui:define>
-        
+
     </ui:composition>
 
 </html>

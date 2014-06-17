@@ -7,20 +7,15 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        
-        <h4>Herramientas Matrona</h4>
-        
-        <h:form>
-                 
-            <p:menu style="width: 100%">
-                <p:menuitem value="Inicio" outcome="/roles/matrona/index.xhtml" update="messages" />
-                <p:menuitem value="Datos clínicos" outcome="/roles/matrona/mother/ViewClinical.xhtml" update="messages" />
-                <p:menuitem value="Partos" outcome="/roles/matrona/delivery/List.xhtml" update="messages" />
-                <p:menuitem value="Hijos" outcome="/roles/matrona/son/List.xhtml" update="messages" />
-            </p:menu>
 
-        </h:form>
-        
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand"><a href="">Herramientas matrona</a></li>
+            <li><a href="/newborns-web/faces/roles/matrona/index.xhtml">Inicio</a></li>
+            <li><a href="/newborns-web/faces/roles/matrona/mother/ViewClinical.xhtml">Datos Clínicos</a></li>
+            <li><a href="/newborns-web/faces/roles/matrona/delivery/List.xhtml">Partos</a></li>
+            <li><a href="/newborns-web/faces/roles/matrona/son/List.xhtml">Hijos</a></li>
+        </ul>
+
     </ui:composition>
 </html>
 

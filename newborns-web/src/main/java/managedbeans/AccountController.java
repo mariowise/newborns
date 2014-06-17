@@ -41,6 +41,8 @@ public class AccountController implements Serializable {
     private String email;
 
     private boolean currentState;
+    
+    private List<Account> filteredItems;
 
     public AccountController() {
     }
@@ -205,6 +207,14 @@ public class AccountController implements Serializable {
 
     public List<Account> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+
+    public List<Account> getFilteredItems() {
+        return filteredItems;
+    }
+
+    public void setFilteredItems(List<Account> filteredItems) {
+        this.filteredItems = filteredItems;
     }
 
     @FacesConverter(forClass = Account.class)

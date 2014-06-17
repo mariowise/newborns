@@ -19,7 +19,11 @@
 
         <ui:define name="body">
 
-            <h4>#{bundle.ListDeliveryTitle}</h4>
+            <h1>#{bundle.ListDeliveryTitle}</h1>
+            <p>A continuación se muestran el listado de los <span class="label label-default">partos</span> asociados
+                al paciente <b>#{motherController.selected.name}</b>. Desde este menú puedes agregar, ver el detalle y editar los datos 
+                de la ficha seleccionada. Además se pueden registrar reanimaciones, ingresar participantes y recién nacidos asociados al parto seleccionado.</p>
+            <hr/>
 
             <h:form id="DeliveryListForm">
 
@@ -31,8 +35,8 @@
                              rowsPerPageTemplate="10,20,30,40,50"
                              >
 
-                    <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton createRevivalButton createPartyButton createSonButton"/>
-                    <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton createRevivalButton createPartyButton createSonButton"/>
+                    <p:ajax event="rowSelect"   update="createButton viewButton editButton createRevivalButton createPartyButton createSonButton"/>
+                    <p:ajax event="rowUnselect" update="createButton viewButton editButton createRevivalButton createPartyButton createSonButton"/>
 
                     <p:column>
                         <f:facet name="header">
