@@ -26,3 +26,9 @@
 		color: $footer-link-color;
 	}
 }
+
+@media (max-width: $screen-sm-max) {
+	.footer-ghost { display: none; } 
+	.footer { position: relative!important; margin-top: 50px; }
+	
+}

@@ -59,6 +59,12 @@
         <h:outputScript library="js/bootstrap" name="tab.js"/>
         <h:outputScript library="js/bootstrap" name="tooltip.js"/>
         <h:outputScript library="js/bootstrap" name="transition.js"/>
+        <script>
+            $("#menu-toggle").click(function(e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("active");
+            });
+        </script>
         
     </ui:composition>
     
