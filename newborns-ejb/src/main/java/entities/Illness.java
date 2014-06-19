@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Illness implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     
+    @Size(min = 1, message = "Debe ingresar el Nombre de una enfermedad")
     private String name;
 
     public String getId() {

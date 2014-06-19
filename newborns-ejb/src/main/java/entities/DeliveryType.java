@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -24,7 +25,7 @@ public class DeliveryType implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @NotNull
+    @Size(min = 1, message = "Debe ingresar el Nombre de un tipo de parto")
     private String name;
 
     public Long getId() {
