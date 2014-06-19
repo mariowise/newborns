@@ -30,56 +30,109 @@
             <div id="page-content-wrapper">
                 
                 <div class="profile-page-header">
-                    <div class="container">
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h3>
-                                    Ficha Nro. #{motherController.selected.profile.id} - 
-                                    #{motherController.selected.name}
-                                    #{motherController.selected.firstLastname} 
-                                    #{motherController.selected.secondLastname}
-                                </h3>
-                                <h:form>
-                                    <p:panelGrid columns="6" rendered="#{motherController.selected != null}" style="width: 100%">
-                                        <h:outputText value="#{bundle.ViewMotherLabel_run}"/>
-                                        <h:outputText value="#{motherController.selected.run}" title="#{bundle.ViewMotherTitle_run}"/>
-                                        <h:outputText value="#{bundle.ViewMotherLabel_name}"/>
-                                        <h:outputText value="#{motherController.selected.name}" title="#{bundle.ViewMotherTitle_name}"/>
-                                        <h:outputText value="#{bundle.ViewMotherLabel_firstLastname}"/>
-                                        <h:outputText value="#{motherController.selected.firstLastname}" title="#{bundle.ViewMotherTitle_firstLastname}"/>
-                                        <h:outputText value="#{bundle.ViewMotherLabel_secondLastname}"/>
-                                        <h:outputText value="#{motherController.selected.secondLastname}" title="#{bundle.ViewMotherTitle_secondLastname}"/>
-                                        <h:outputText value="#{bundle.ViewMotherLabel_birthDate}"/>
-                                        <h:outputText value="#{motherController.selected.birthDate}" title="#{bundle.ViewMotherTitle_birthDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
-                                        </h:outputText>
-                                        <h:outputText value="#{bundle.ViewMotherLabel_forecastHealth}"/>
-                                        <h:outputText value="#{motherController.selected.forecastHealth.name}" title="#{bundle.ViewMotherTitle_forecastHealth}"/>
-                                        <h:outputText value="#{bundle.ViewMotherLabel_email}"/>
-                                        <h:outputText value="#{motherController.selected.email}" title="#{bundle.ViewMotherTitle_email}"/>
-                                        <h:outputText value="#{bundle.ViewMotherLabel_gender}"/>
-                                        <h:outputText value="#{motherController.selected.gender.name}" title="#{bundle.ViewMotherTitle_gender}"/>
-                                        <h:outputText value="#{bundle.ViewMotherLabel_region}"/>
-                                        <h:outputText value="#{motherController.selected.region.name}" title="#{bundle.ViewMotherTitle_region}"/>
-                                        <h:outputText value="#{bundle.ViewMotherLabel_commune}"/>
-                                        <h:outputText value="#{motherController.selected.commune.name}" title="#{bundle.ViewMotherTitle_commune}"/>
-                                        <h:outputText value="#{bundle.ViewMotherLabel_city}"/>
-                                        <h:outputText value="#{motherController.selected.city}" title="#{bundle.ViewMotherTitle_city}"/>
-                                        <h:outputText value="#{bundle.ViewMotherLabel_phone}"/>
-                                        <h:outputText value="#{motherController.selected.phone}" title="#{bundle.ViewMotherTitle_phone}"/>
-                                        <h:outputText value="#{bundle.ViewMotherLabel_address}"/>
-                                        <h:outputText value="#{motherController.selected.address}" title="#{bundle.ViewMotherTitle_address}"/>
-                                        <h:outputText value="#{bundle.ViewMotherLabel_mobile}"/>
-                                        <h:outputText value="#{motherController.selected.mobile}" title="#{bundle.ViewMotherTitle_mobile}"/>
-                                        <h:outputText value="#{bundle.ViewMotherLabel_addressDetail}"/>
-                                        <h:outputText value="#{motherController.selected.addressDetail}" title="#{bundle.ViewMotherTitle_addressDetail}"/>
-                                    </p:panelGrid>
-                                </h:form>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1>
+                                <h:graphicImage class="profile-icon" library="images" name="mother.png" />
+                                <b>Ficha Nro. #{motherController.selected.profile.id}</b> - 
+                                #{motherController.selected.name}
+                                #{motherController.selected.firstLastname} 
+                                #{motherController.selected.secondLastname}
+                            </h1>
+                            <hr/>
+                            <div id="profile-info">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <table class="profile-table">
+                                            <tr>
+                                                <td class="align-right"><div class="label label-default">RUN</div></td>
+                                                <td>#{motherController.selected.run}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-right"><div class="label label-default">Nombre</div></td>
+                                                <td>#{motherController.selected.name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-right"><div class="label label-default">Primer apellido</div></td>
+                                                <td>#{motherController.selected.firstLastname}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-right"><div class="label label-default">Segundo apellido</div></td>
+                                                <td>#{motherController.selected.secondLastname}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <table class="profile-table">
+                                            <tr>
+                                                <td class="align-right"><div class="label label-default">Región</div></td>
+                                                <td>#{motherController.selected.region.name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-right"><div class="label label-default">Comuna</div></td>
+                                                <td>#{motherController.selected.commune.name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-right"><div class="label label-default">Ciudad</div></td>
+                                                <td>#{motherController.selected.city}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-right"><div class="label label-default">Dirección</div></td>
+                                                <td>
+                                                    <div>#{motherController.selected.address}</div>
+                                                    <div>#{motherController.selected.addressDetail}</div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <table class="profile-table">
+                                            <tr>
+                                                <td class="align-right"><div class="label label-default">Fecha de nacimiento</div></td>
+                                                <td>
+                                                    <h:outputText value="#{motherController.selected.birthDate}" title="#{bundle.ViewMotherTitle_birthDate}">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                    </h:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-right"><div class="label label-default">Género</div></td>
+                                                <td>#{motherController.selected.gender.name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-right"><div class="label label-default">Previsión</div></td>
+                                                <td>#{motherController.selected.forecastHealth.name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-right"><div class="label label-default">Email</div></td>
+                                                <td>#{motherController.selected.email}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <table class="profile-table">
+                                            <tr>
+                                                <td class="align-right"><div class="label label-default">Teléfono</div></td>
+                                                <td>#{motherController.selected.phone}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-right"><div class="label label-default">Celular</div></td>
+                                                <td>#{motherController.selected.mobile}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
                             </div>
+                            
                         </div>
                     </div>
-
+                    
+                    <div class="colapser">
+                        <span class="glyphicon glyphicon-chevron-up"></span>
+                    </div>
+                    
                 </div>
                 
                 <div class="page-content inset">

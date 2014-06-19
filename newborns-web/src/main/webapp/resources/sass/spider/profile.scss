@@ -3,4 +3,46 @@
 	background-color: $body-second;
 	padding-bottom: 15px;
 	border-bottom: 2px solid $back-color;
+	padding: 0px 20px 20px;
+	position: relative;
+}
+
+.profile-icon {
+	width: 50px;
+}
+
+.profile-table {
+	
+	td {
+		vertical-align: top;
+		padding-bottom: 5px;
+
+		&:not(.align-right) {
+			padding-left: 10px;
+		}
+	}
+}
+
+.colapser {
+	position: absolute;
+	bottom: -23px;
+	text-align: center;
+	width: 100%;
+	left: 0px;
+
+	&:hover {
+		cursor: pointer;
+		background-color: #ccc;
+	}
+}
+
+@media (max-width: $screen-lg-min) {
+	.profile-table {
+		td {
+
+			&.align-right {
+				min-width: 150px;
+			}
+		}
+	}
 }

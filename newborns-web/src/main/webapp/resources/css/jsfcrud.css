@@ -5345,7 +5345,7 @@ html, body {
   margin-left: -250px;
   left: 250px;
   width: 250px;
-  background: #000;
+  background: #242424;
   position: fixed;
   height: 100%;
   overflow-y: auto;
@@ -5491,8 +5491,32 @@ html, body {
 .profile-page-header {
   background-color: #e7e7e7;
   padding-bottom: 15px;
-  border-bottom: 2px solid #2b3e50; }
+  border-bottom: 2px solid #2b3e50;
+  padding: 0px 20px 20px;
+  position: relative; }
 
+.profile-icon {
+  width: 50px; }
+
+.profile-table td {
+  vertical-align: top;
+  padding-bottom: 5px; }
+  .profile-table td:not(.align-right) {
+    padding-left: 10px; }
+
+.colapser {
+  position: absolute;
+  bottom: -23px;
+  text-align: center;
+  width: 100%;
+  left: 0px; }
+  .colapser:hover {
+    cursor: pointer;
+    background-color: #ccc; }
+
+@media (max-width: 1200px) {
+  .profile-table td.align-right {
+    min-width: 150px; } }
 .login {
   margin-top: 25px; }
   .login .input-group {
@@ -5523,3 +5547,8 @@ body {
 
 hr {
   border-top: 1px solid #D0D6D8; }
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url("#{resource['fonts:glyphicons-halflings-regular.eot']}");
+  src: url("#{resource['fonts:glyphicons-halflings-regular.eot?#iefix']}") format("embedded-opentype"), url("#{resource['fonts:glyphicons-halflings-regular.woff']}") format("woff"), url("#{resource['fonts:glyphicons-halflings-regular.ttf']}") format("truetype"), url("#{resource['fonts:glyphicons-halflings-regular.svg#glyphicons_halflingsregular']}") format("svg"); }

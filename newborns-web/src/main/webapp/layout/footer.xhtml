@@ -60,10 +60,29 @@
         <h:outputScript library="js/bootstrap" name="tooltip.js"/>
         <h:outputScript library="js/bootstrap" name="transition.js"/>
         <script>
+            // Sidebar left
             $("#menu-toggle").click(function(e) {
                 e.preventDefault();
                 $("#wrapper").toggleClass("active");
             });
+            
+            // Profile colapser
+            $(".colapser").click(function () {
+                var obj = $("#profile-info")
+                var status = $(obj).css('display')
+                var icon = $(this).children(".glyphicon")
+                
+                if(status == 'none') {
+                    $(icon).removeClass("glyphicon-chevron-down")
+                    $(icon).addClass("glyphicon-chevron-up")
+                    $("#profile-info").slideDown(800)
+                } else {
+                    $(icon).removeClass("glyphicon-chevron-up")
+                    $(icon).addClass("glyphicon-chevron-down")
+                    $("#profile-info").slideUp(800)
+                }
+                    
+            })
         </script>
         
     </ui:composition>
