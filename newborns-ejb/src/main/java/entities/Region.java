@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -25,6 +26,7 @@ public class Region implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Size(min = 1, message = "Debe ingresar el Nombre de una región")
     private String name;
     
     @OneToMany(mappedBy = "region")

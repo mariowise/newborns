@@ -9,6 +9,7 @@ package entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Service implements Serializable {
     @Id
     private String id;
     
+    @Size(min = 1, message = "Debe ingresar el Nombre de un servicio de salud")
     private String name;
 
     public String getId() {

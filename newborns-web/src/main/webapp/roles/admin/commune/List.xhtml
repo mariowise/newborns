@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/layout/2columns-left.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCommuneTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="sidebar-left">
+            <ui:include src="../sidebar-left.xhtml"/>
+        </ui:define>
+
+        <ui:define name="body">
+            
+            <h1>Comunas</h1>
+            <p>A continuación se muestran las <span class="label label-default">comunas</span> del sistema. 
+                Desde este menú puedes mantener las comunas correspondientes a las regiones del sistema.</p>
+            <hr/>
+            
+            <h:form id="CommuneListForm">
+                
+                    <p:dataTable id="datalist" value="#{communeController.items}" var="item"
+                                 selectionMode="single" selection="#{communeController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCommuneTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCommuneTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCommuneTitle_region}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.region.name}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{communeController.prepareCreate}" update=":CommuneCreateForm" oncomplete="PF('CommuneCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CommuneViewForm" oncomplete="PF('CommuneViewDialog').show()" disabled="#{empty communeController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CommuneEditForm" oncomplete="PF('CommuneEditDialog').show()" disabled="#{empty communeController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{communeController.destroy}" update=":growl,datalist" disabled="#{empty communeController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

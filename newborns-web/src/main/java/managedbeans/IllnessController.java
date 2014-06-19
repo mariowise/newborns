@@ -120,7 +120,7 @@ public class IllnessController implements Serializable {
     public List<Illness> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
-    
+
     public List<Illness> filterIllness(String query) {
         List<Illness> allIllness = getFacade().findAll();
         List<Illness> filteredIllness = new ArrayList<Illness>();
