@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CommuneCreateDlg" widgetVar="CommuneCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCommuneTitle}">
+            <h:form id="CommuneCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{communeController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCommuneLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{communeController.selected.id}" title="#{bundle.CreateCommuneTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateCommuneLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{communeController.selected.name}" title="#{bundle.CreateCommuneTitle_name}" />
+                        <p:outputLabel value="#{bundle.CreateCommuneLabel_region}" for="region" />
+                        <p:selectOneMenu id="region" value="#{communeController.selected.region}" >
+                            <f:selectItems value="#{regionController.itemsAvailableSelectOne}"
+                                           var="regionItem"
+                                           itemValue="#{regionItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{communeController.create}" value="#{bundle.Save}" update="display,:CommuneListForm:datalist,:growl" oncomplete="handleSubmit(args,'CommuneCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CommuneCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
