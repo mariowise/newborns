@@ -5,35 +5,33 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-    
+
     <ui:composition template="/layout/2columns-left.xhtml">
-        
+
         <ui:define name="title">
             <h:outputText value="#{bundle.fonoaudiologoIndexPageTitle}"></h:outputText>
         </ui:define>
-        
+
         <ui:define name="sidebar-left">
-            
+
             <ui:include src="sidebar-left.xhtml"/>
-            
+
         </ui:define>
-        
+
         <ui:define name="body">
-            
-            <h4>Bienvenido <b>#{SessionUtil.currentUser.name}</b></h4>
-            
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <p>El rol de fonoaudiología contempla la administración de 
-                        <b>fichas de recién nacidos</b> y <b>Agendamiento</b> de citas
-                        dentro del sistema.
-                    </p>    
-                </div>
-            </div>
-            
+
+            <h1>
+                <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
+                Bienvenido <b>#{SessionUtil.currentUser.name}</b></h1>
+            <p>El rol de fonoaudiología contempla la administración de 
+                <b>Fichas de recién nacidos </b> y <b>Agendamiento</b> de citas
+                dentro del sistema.
+            </p>
+            <hr/>
+
         </ui:define>
 
     </ui:composition>
-    
+
 </html>
 

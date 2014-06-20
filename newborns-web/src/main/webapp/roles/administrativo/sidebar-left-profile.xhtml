@@ -7,18 +7,13 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        
-        <h4>Herramientas Administrativo</h4>
-        
-        <h:form>
-                 
-            <p:menu style="width: 100%">
-                <p:menuitem value="Inicio" outcome="/roles/administrativo/index.xhtml" update="messages" />
-                <p:menuitem value="Registros de admisión" outcome="/roles/administrativo/serviceAttention/List.xhtml" update="messages" />
-            </p:menu>
 
-        </h:form>
-        
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand"><a href="">Herramientas administrativo</a></li>
+            <li><a href="/newborns-web/faces/roles/administrativo/index.xhtml">Inicio</a></li>
+            <li><a href="/newborns-web/faces/roles/administrativo/serviceAttention/List.xhtml">Registros de admisión</a></li>
+        </ul>
+
     </ui:composition>
 </html>
 

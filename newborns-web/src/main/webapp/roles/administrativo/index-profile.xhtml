@@ -5,26 +5,30 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-    
+
     <ui:composition template="/layout/profile/2columns-left.xhtml">
-        
+
         <ui:define name="title">
             <h:outputText value="Ficha Nro. #{profileController.selected.id}"></h:outputText>
         </ui:define>
-        
+
         <ui:define name="sidebar-left">
-            
+
             <ui:include src="sidebar-left-profile.xhtml"/>
-            
+
         </ui:define>
-        
+
         <ui:define name="body">
-            
-            
-            
+
+            <h1>Bienvenido <b>#{SessionUtil.currentUser.name}</b></h1>
+            <p>A continuación se muestra el <b>perfil</b> del usuario seleccionado para poder
+                registrar su ficha en el sistema.
+            </p>
+            <hr/>
+
         </ui:define>
 
     </ui:composition>
-    
+
 </html>
 

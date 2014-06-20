@@ -8,20 +8,11 @@
 
     <ui:composition>
         
-        <h4>Herramientas Fonoaudiología</h4>
-        
-        <h:form>
-                 
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <p:menu style="width: 100%">
-                        <p:menuitem value="Inicio" outcome="/roles/fonoaudiologo/index.xhtml" update="messages" />
-                        <p:menuitem value="Ficha Recién Nacido" outcome="/roles/fonoaudiologo/son/ListIndex.xhtml" update="messages"/>
-                    </p:menu>
-                </div>
-            </div>
-
-        </h:form>
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand"><a href="">Herramientas fonoaudiología</a></li>
+            <li><a href="/newborns-web/faces/roles/fonoaudiologo/index.xhtml">Inicio</a></li>
+            <li><a href="/newborns-web/faces/roles/fonoaudiologo/son/ListIndex.xhtml">Ficha Recién Nacido</a></li>
+        </ul>
         
     </ui:composition>
 </html>
