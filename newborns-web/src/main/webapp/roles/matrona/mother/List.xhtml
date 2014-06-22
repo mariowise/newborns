@@ -65,11 +65,11 @@
                         </f:facet>
                         <h:outputText value="#{item.forecastHealth.name}"/>
                     </p:column>
-                    <p:column filterBy="#{item.region.name}" headerText="Region" filterMatchMode="contains">
+                    <p:column filterBy="#{item.healthService.name}" headerText="Servicio de Salud" filterMatchMode="contains">
                         <f:facet name="header">
-                            <h:outputText value="#{bundle.ListMotherTitle_region}"/>
+                            <h:outputText value="#{bundle.ListFileMotherTitle_healthService}"/>
                         </f:facet>
-                        <h:outputText value="#{item.region.name}"/>
+                        <h:outputText value="#{item.healthService.name}"/>
                     </p:column>
                     <f:facet name="footer">
                         <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MotherViewForm" oncomplete="PF('MotherViewDialog').show()" disabled="#{empty motherController.selected}"/>

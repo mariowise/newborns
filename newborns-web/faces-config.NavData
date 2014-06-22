@@ -2,104 +2,32 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="roles/matrona/deliveryType/View.xhtml" x="650" y="150" zoom="true"/>
-        <Node id="roles/matrona/residencyType/View.xhtml" x="900" y="2550" zoom="true"/>
-        <Node id="roles/fonoaudiologo/deliveryType/Edit.xhtml" x="650" y="2400" zoom="true"/>
+        <Node id="roles/administrativo/sidebar-left.xhtml" x="400" y="2850" zoom="true"/>
+        <Node id="roles/matrona/sidebar-left.xhtml" x="650" y="2550" zoom="true"/>
+        <Node id="roles/admin/account/List.xhtml" x="1650" y="450" zoom="true"/>
+        <Node id="index.xhtml" x="1400" y="450" zoom="false"/>
         <Node id="roles/fonoaudiologo/sidebar-left.xhtml" x="1900" y="1950" zoom="true"/>
         <Node id="layout/2columns-left.xhtml" x="1150" y="150" zoom="true"/>
-        <Node id="layout/3columns.xhtml" x="2400" y="1200" zoom="true"/>
-        <Node id="roles/medico/residencyType/View.xhtml" x="2150" y="1950" zoom="true"/>
-        <Node id="roles/medico/deliveryType/View.xhtml" x="1400" y="150" zoom="true"/>
-        <Node id="roles/administrativo/residencyType/Edit.xhtml" x="400" y="1800" zoom="true"/>
-        <Node id="roles/administrativo/forecast/Edit.xhtml" x="2150" y="300" zoom="true"/>
-        <Node id="roles/matrona/gender/Create.xhtml" x="1400" y="1950" zoom="true"/>
-        <Node id="roles/administrativo/forecast/List.xhtml" x="900" y="300" zoom="true"/>
-        <Node id="roles/admin/sidebar-left.xhtml" x="1150" y="600" zoom="true"/>
-        <Node id="roles/fonoaudiologo/index.xhtml" x="150" y="900" zoom="true"/>
-        <Node id="roles/admin/account/View.xhtml" x="1400" y="1500" zoom="true"/>
-        <Node id="roles/Profile.xhtml" x="1650" y="1200" zoom="true"/>
-        <Node id="roles/medico/gender/Edit.xhtml" x="4400" y="600" zoom="true"/>
-        <Node id="roles/fonoaudiologo/deliveryType/Create.xhtml" x="900" y="750" zoom="true"/>
-        <Node id="roles/administrativo/forecast/Create.xhtml" x="650" y="750" zoom="true"/>
-        <Node id="roles/administrativo/region/View.xhtml" x="150" y="150" zoom="true"/>
-        <Node id="roles/matrona/residencyType/Edit.xhtml" x="2900" y="1050" zoom="true"/>
-        <Node id="roles/matrona/deliveryType/List.xhtml" x="3400" y="300" zoom="true"/>
-        <Node id="roles/matrona/forecastHealth/Edit.xhtml" x="400" y="2550" zoom="true"/>
-        <Node id="roles/administrativo/account/Create.xhtml" x="400" y="150" zoom="true"/>
-        <Node id="roles/administrativo/file/List.xhtml" x="1400" y="300" zoom="true"/>
-        <Node id="template.xhtml" x="2150" y="1200" zoom="true"/>
-        <Node id="roles/matrona/region/View.xhtml" x="789" y="423" zoom="true"/>
-        <Node id="roles/administrativo/region/Edit.xhtml" x="2150" y="750" zoom="true"/>
-        <Node id="roles/matrona/forecastHealth/View.xhtml" x="1650" y="1500" zoom="true"/>
-        <Node id="roles/administrativo/residencyType/View.xhtml" x="4400" y="150" zoom="true"/>
-        <Node id="roles/matrona/forecastHealth/Create.xhtml" x="1150" y="1050" zoom="true"/>
-        <Node id="roles/medico/residencyType/List.xhtml" x="3650" y="900" zoom="true"/>
-        <Node id="passwordRecovery.xhtml" x="2150" y="600" zoom="true"/>
-        <Node id="roles/medico/deliveryType/Create.xhtml" x="2150" y="450" zoom="true"/>
-        <Node id="roles/administrativo/account/View.xhtml" x="400" y="600" zoom="true"/>
-        <Node id="roles/administrativo/accountType/Edit.xhtml" x="150" y="1200" zoom="true"/>
-        <Node id="roles/medico/gender/Create.xhtml" x="1400" y="2100" zoom="true"/>
-        <Node id="roles/medico/gender/List.xhtml" x="900" y="1650" zoom="true"/>
-        <Node id="roles/admin/index.xhtml" x="2900" y="150" zoom="true"/>
-        <Node id="roles/administrativo/account/Edit.xhtml" x="1650" y="300" zoom="true"/>
-        <Node id="roles/ProfileChangePassword.xhtml" x="3150" y="300" zoom="true"/>
-        <Node id="roles/medico/residencyType/Edit.xhtml" x="900" y="150" zoom="true"/>
-        <Node id="roles/admin/account/Create.xhtml" x="3400" y="150" zoom="true"/>
-        <Node id="roles/matrona/deliveryType/Edit.xhtml" x="150" y="3000" zoom="true"/>
-        <Node id="roles/matrona/deliveryType/Create.xhtml" x="1150" y="900" zoom="true"/>
-        <Node id="roles/medico/deliveryType/Edit.xhtml" x="400" y="1650" zoom="true"/>
-        <Node id="roles/administrativo/forecast/View.xhtml" x="1150" y="750" zoom="true"/>
-        <Node id="roles/matrona/region/List.xhtml" x="2150" y="900" zoom="true"/>
-        <Node id="roles/matrona/forecastHealth/List.xhtml" x="2400" y="300" zoom="true"/>
-        <Node id="roles/matrona/gender/Edit.xhtml" x="150" y="600" zoom="true"/>
-        <Node id="roles/administrativo/gender/View.xhtml" x="150" y="300" zoom="true"/>
-        <Node id="roles/administrativo/file/Edit.xhtml" x="650" y="1200" zoom="true"/>
-        <Node id="roles/administrativo/region/List.xhtml" x="4650" y="300" zoom="true"/>
-        <Node id="roles/medico/deliveryType/List.xhtml" x="2900" y="600" zoom="true"/>
-        <Node id="roles/administrativo/accountType/List.xhtml" x="1900" y="150" zoom="true"/>
-        <Node id="roles/matrona/gender/View.xhtml" x="1150" y="1200" zoom="true"/>
-        <Node id="roles/matrona/residencyType/List.xhtml" x="150" y="1800" zoom="true"/>
-        <Node id="account/View.xhtml" x="1400" y="750" zoom="true"/>
-        <Node id="roles/matrona/region/Edit.xhtml" x="900" y="1350" zoom="true"/>
-        <Node id="roles/ProfileEdit.xhtml" x="400" y="1500" zoom="true"/>
-        <Node id="roles/matrona/gender/List.xhtml" x="400" y="750" zoom="true"/>
-        <Node id="roles/medico/region/Create.xhtml" x="1900" y="750" zoom="true"/>
-        <Node id="roles/matrona/residencyType/Create.xhtml" x="3900" y="750" zoom="true"/>
-        <Node id="roles/administrativo/file/View.xhtml" x="1900" y="450" zoom="true"/>
-        <Node id="roles/medico/region/View.xhtml" x="400" y="1350" zoom="true"/>
-        <Node id="account/List.xhtml" x="1900" y="1800" zoom="false"/>
-        <Node id="layout/1column.xhtml" x="150" y="2550" zoom="true"/>
-        <Node id="roles/administrativo/region/Create.xhtml" x="1150" y="300" zoom="true"/>
-        <Node id="roles/fonoaudiologo/deliveryType/List.xhtml" x="150" y="2700" zoom="true"/>
-        <Node id="roles/administrativo/account/List.xhtml" x="2650" y="150" zoom="true"/>
-        <Node id="roles/administrativo/accountType/Create.xhtml" x="901" y="629" zoom="true"/>
-        <Node id="roles/administrativo/gender/Create.xhtml" x="150" y="2850" zoom="true"/>
-        <Node id="roles/matrona/region/Create.xhtml" x="1400" y="900" zoom="true"/>
-        <Node id="roles/fonoaudiologo/deliveryType/View.xhtml" x="400" y="450" zoom="true"/>
-        <Node id="roles/medico/region/List.xhtml" x="1650" y="1350" zoom="true"/>
-        <Node id="roles/matrona/sidebar-left.xhtml" x="650" y="2550" zoom="true"/>
-        <Node id="roles/administrativo/residencyType/List.xhtml" x="1150" y="1500" zoom="true"/>
-        <Node id="roles/medico/sidebar-left.xhtml" x="1150" y="1650" zoom="true"/>
-        <Node id="roles/administrativo/residencyType/Create.xhtml" x="1150" y="2400" zoom="true"/>
-        <Node id="roles/admin/account/Edit.xhtml" x="650" y="1950" zoom="true"/>
-        <Node id="roles/medico/gender/View.xhtml" x="1150" y="450" zoom="true"/>
-        <Node id="roles/medico/residencyType/Create.xhtml" x="1650" y="2100" zoom="true"/>
-        <Node id="layout/2columns-right.xhtml" x="1150" y="1800" zoom="true"/>
-        <Node id="account/Create.xhtml" x="2400" y="1650" zoom="true"/>
-        <Node id="roles/medico/index.xhtml" x="1900" y="1200" zoom="true"/>
-        <Node id="roles/administrativo/index.xhtml" x="1330" y="679" zoom="true"/>
         <Node id="layout/footer.xhtml" x="3400" y="900" zoom="true"/>
+        <Node id="roles/fonoaudiologo/index.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="layout/3columns.xhtml" x="2400" y="1200" zoom="true"/>
+        <Node id="roles/admin/account/Create.xhtml" x="3400" y="150" zoom="true"/>
+        <Node id="roles/administrativo/index.xhtml" x="1330" y="679" zoom="true"/>
+        <Node id="template.xhtml" x="2150" y="1200" zoom="true"/>
         <Node id="layout/header.xhtml" x="2900" y="1200" zoom="true"/>
-        <Node id="account/Edit.xhtml" x="3150" y="750" zoom="true"/>
-        <Node id="roles/admin/account/List.xhtml" x="1650" y="450" zoom="true"/>
-        <Node id="roles/administrativo/gender/Edit.xhtml" x="1650" y="600" zoom="true"/>
-        <Node id="roles/administrativo/sidebar-left.xhtml" x="400" y="2850" zoom="true"/>
-        <Node id="index.xhtml" x="1400" y="450" zoom="false"/>
-        <Node id="roles/medico/region/Edit.xhtml" x="150" y="2400" zoom="true"/>
-        <Node id="roles/administrativo/file/Create.xhtml" x="400" y="1050" zoom="true"/>
-        <Node id="roles/administrativo/gender/List.xhtml" x="3900" y="600" zoom="true"/>
-        <Node id="roles/administrativo/accountType/View.xhtml" x="2400" y="150" zoom="true"/>
+        <Node id="roles/ProfileEdit.xhtml" x="400" y="1500" zoom="true"/>
+        <Node id="roles/admin/account/Edit.xhtml" x="650" y="1950" zoom="true"/>
+        <Node id="roles/admin/account/View.xhtml" x="1400" y="1500" zoom="true"/>
+        <Node id="layout/1column.xhtml" x="150" y="2550" zoom="true"/>
+        <Node id="passwordRecovery.xhtml" x="2150" y="600" zoom="true"/>
+        <Node id="roles/medico/index.xhtml" x="1900" y="1200" zoom="true"/>
+        <Node id="roles/medico/sidebar-left.xhtml" x="1150" y="1650" zoom="true"/>
+        <Node id="roles/admin/sidebar-left.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="layout/2columns-right.xhtml" x="1150" y="1800" zoom="true"/>
         <Node id="roles/matrona/index.xhtml" x="3150" y="150" zoom="true"/>
+        <Node id="roles/admin/index.xhtml" x="2900" y="150" zoom="true"/>
+        <Node id="roles/Profile.xhtml" x="1650" y="1200" zoom="true"/>
+        <Node id="roles/ProfileChangePassword.xhtml" x="3150" y="300" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>
