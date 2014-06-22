@@ -14,72 +14,71 @@
                 <p:scrollPanel mode="native" style="width:850px;height:500px">
                     <h:panelGroup id="display">
                         <p:panelGrid columns="6" rendered="#{deliveryController.selected != null}">
-                        <p:outputLabel value="Diabetes" for="diabetes"/>
-                        <p:selectBooleanCheckbox disabled="true" id="diabetes" value="#{deliveryController.selected.diabetes}"/>
-                        <p:outputLabel value="Hipertensión" for="hypertension"/>
-                        <p:selectBooleanCheckbox disabled="true" id="hypertension" value="#{deliveryController.selected.hypertension}"/>
-                        <p:outputLabel value="RH sensible" for="rhSensibility"/>
-                        <p:selectBooleanCheckbox disabled="true" id="rhSensibility" value="#{deliveryController.selected.rhSensibility}"/>
-                        <p:outputLabel value="Rompimiento de membrana" for="brokenMembrane"/>
-                        <p:selectBooleanCheckbox disabled="true" id="brokenMembrane" value="#{deliveryController.selected.brokenMembrane}"/>
-                        <p:outputLabel value="Infección ovular" for="ovularInfection"/>
-                        <p:selectBooleanCheckbox disabled="true" id="ovularInfection" value="#{deliveryController.selected.ovularInfection}"/>
-                        <p:outputLabel value="DPPNI" for="dppni"/>
-                        <p:selectBooleanCheckbox disabled="true" id="dppni" value="#{deliveryController.selected.dppni}"/>
-                        <p:outputLabel value="Placenta previa" for="earlyPlacenta"/>
-                        <p:selectBooleanCheckbox disabled="true" id="earlyPlacenta" value="#{deliveryController.selected.earlyPlacenta}"/>
-                        <p:outputLabel value="Rotura uterina" for="brokenUterus"/>
-                        <p:selectBooleanCheckbox disabled="true" id="brokenUterus" value="#{deliveryController.selected.brokenUterus}"/>
-                        <p:outputLabel value="Sufrimiento fetal" for="fetusPain"/>
-                        <p:selectBooleanCheckbox disabled="true" id="fetusPain" value="#{deliveryController.selected.fetusPain}"/>
-                        <p:outputLabel value="Accidente de cordón" for="laceAccident"/>
-                        <p:selectBooleanCheckbox disabled="true" id="laceAccident" value="#{deliveryController.selected.laceAccident}"/>
-                        <p:outputLabel value="RCIU" for="rciu"/>
-                        <p:selectBooleanCheckbox disabled="true" id="rciu" value="#{deliveryController.selected.rciu}"/>
-                        <p:outputLabel value="Otra patología" for="anotherPathologyDescription"/>
-                        <h:outputText id="anotherPathologyDescription" value="#{deliveryController.selected.anotherPathologyDescription}"/>
-                        <p:outputLabel value="VDLR" for="vdlr"/>
-                        <p:selectBooleanCheckbox disabled="true" id="vdlr" value="#{deliveryController.selected.vdrl}"/>
-                        <p:outputLabel value="Polidependencia" for="polidependencia"/>
-                        <p:selectBooleanCheckbox disabled="true" id="polidependencia" value="#{deliveryController.selected.polidependencia}"/>
-                        <p:outputLabel value="Embarazo de alto riesgo" for="risk"/>
-                        <p:selectBooleanCheckbox disabled="true" id="risk" value="#{deliveryController.selected.risk}"/>
-                        <h:outputText value="#{bundle.ViewDeliveryLabel_id}"/>
-                        <h:outputText value="#{deliveryController.selected.id}" title="#{bundle.ViewDeliveryTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewDeliveryLabel_date}"/>
-                        <h:outputText value="#{deliveryController.selected.date}" title="#{bundle.ViewDeliveryTitle_date}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewDeliveryLabel_time}"/>
-                        <h:outputText value="#{deliveryController.selected.time}" title="#{bundle.ViewDeliveryTitle_time}">
-                            <f:convertDateTime pattern="HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewDeliveryLabel_mother}"/>
-                        <h:outputText value="#{deliveryController.selected.mother}" title="#{bundle.ViewDeliveryTitle_mother}"/>
-                        <h:outputText value="#{bundle.ViewDeliveryLabel_deliveryType}"/>
-                        <h:outputText value="#{deliveryController.selected.deliveryType.name}" title="#{bundle.ViewDeliveryTitle_deliveryType}"/>
-                        <h:outputText value="#{bundle.ViewDeliveryLabel_createdBy}"/>
-                        <h:outputText value="#{deliveryController.selected.createdBy.name}" title="#{bundle.ViewDeliveryTitle_createdBy}"/>
-                        <h:outputText value="#{bundle.ViewDeliveryLabel_weeksGestation}"/>
-                        <h:outputText value="#{deliveryController.selected.weeksGestation}" title="#{bundle.ViewDeliveryTitle_weeksGestation}"/>
-                                              
-                    </p:panelGrid>
+                            <p:outputLabel value="Diabetes" for="diabetes"/>
+                            <p:selectBooleanCheckbox disabled="true" id="diabetes" value="#{deliveryController.selected.diabetes}"/>
+                            <p:outputLabel value="Hipertensión" for="hypertension"/>
+                            <p:selectBooleanCheckbox disabled="true" id="hypertension" value="#{deliveryController.selected.hypertension}"/>
+                            <p:outputLabel value="RH sensible" for="rhSensibility"/>
+                            <p:selectBooleanCheckbox disabled="true" id="rhSensibility" value="#{deliveryController.selected.rhSensibility}"/>
+                            <p:outputLabel value="Rompimiento de membrana" for="brokenMembrane"/>
+                            <p:selectBooleanCheckbox disabled="true" id="brokenMembrane" value="#{deliveryController.selected.brokenMembrane}"/>
+                            <p:outputLabel value="Infección ovular" for="ovularInfection"/>
+                            <p:selectBooleanCheckbox disabled="true" id="ovularInfection" value="#{deliveryController.selected.ovularInfection}"/>
+                            <p:outputLabel value="DPPNI" for="dppni"/>
+                            <p:selectBooleanCheckbox disabled="true" id="dppni" value="#{deliveryController.selected.dppni}"/>
+                            <p:outputLabel value="Placenta previa" for="earlyPlacenta"/>
+                            <p:selectBooleanCheckbox disabled="true" id="earlyPlacenta" value="#{deliveryController.selected.earlyPlacenta}"/>
+                            <p:outputLabel value="Rotura uterina" for="brokenUterus"/>
+                            <p:selectBooleanCheckbox disabled="true" id="brokenUterus" value="#{deliveryController.selected.brokenUterus}"/>
+                            <p:outputLabel value="Sufrimiento fetal" for="fetusPain"/>
+                            <p:selectBooleanCheckbox disabled="true" id="fetusPain" value="#{deliveryController.selected.fetusPain}"/>
+                            <p:outputLabel value="Accidente de cordón" for="laceAccident"/>
+                            <p:selectBooleanCheckbox disabled="true" id="laceAccident" value="#{deliveryController.selected.laceAccident}"/>
+                            <p:outputLabel value="RCIU" for="rciu"/>
+                            <p:selectBooleanCheckbox disabled="true" id="rciu" value="#{deliveryController.selected.rciu}"/>
+                            <p:outputLabel value="Otra patología" for="anotherPathologyDescription"/>
+                            <h:outputText id="anotherPathologyDescription" value="#{deliveryController.selected.anotherPathologyDescription}"/>
+                            <p:outputLabel value="VDLR" for="vdlr"/>
+                            <p:selectBooleanCheckbox disabled="true" id="vdlr" value="#{deliveryController.selected.vdrl}"/>
+                            <p:outputLabel value="Polidependencia" for="polidependencia"/>
+                            <p:selectBooleanCheckbox disabled="true" id="polidependencia" value="#{deliveryController.selected.polidependencia}"/>
+                            <p:outputLabel value="Embarazo de alto riesgo" for="risk"/>
+                            <p:selectBooleanCheckbox disabled="true" id="risk" value="#{deliveryController.selected.risk}"/>
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_id}"/>
+                            <h:outputText value="#{deliveryController.selected.id}" title="#{bundle.ViewDeliveryTitle_id}"/>
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_date}"/>
+                            <h:outputText value="#{deliveryController.selected.date}" title="#{bundle.ViewDeliveryTitle_date}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_time}"/>
+                            <h:outputText value="#{deliveryController.selected.time}" title="#{bundle.ViewDeliveryTitle_time}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_mother}"/>
+                            <h:outputText value="#{deliveryController.selected.mother}" title="#{bundle.ViewDeliveryTitle_mother}"/>
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_deliveryType}"/>
+                            <h:outputText value="#{deliveryController.selected.deliveryType.name}" title="#{bundle.ViewDeliveryTitle_deliveryType}"/>
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_createdBy}"/>
+                            <h:outputText value="#{deliveryController.selected.createdBy.name}" title="#{bundle.ViewDeliveryTitle_createdBy}"/>
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_weeksGestation}"/>
+                            <h:outputText value="#{deliveryController.selected.weeksGestation}" title="#{bundle.ViewDeliveryTitle_weeksGestation}"/>
+                        </p:panelGrid>
                     
-                    <h4>Listado de adicciones</h4>
-                    <p:dataTable var="addiction" value="#{addictionController.items}" scrollable="true" scrollHeight="150" scrollWidth="760" sortBy="#{addiction.recordDate}" sortOrder="DESCENDING">
-                        <p:column headerText="Código">
-                            <h:outputText value="#{addiction.id}" />
-                        </p:column>
-                        <p:column headerText="Tipo Adicción">
-                            <h:outputText value="#{addiction.type.name}" />
-                        </p:column>
-                        <p:column headerText="Detalle Adicción">
-                            <h:outputText value="#{addiction.detail}" />
-                        </p:column>
-                        <p:column headerText="Fecha Registro">
-                            <h:outputText value="#{addiction.recordDate}" />
-                        </p:column>
-                    </p:dataTable>
+                        <h4>Listado de adicciones</h4>
+                        <p:dataTable var="addiction" value="#{addictionController.items}" scrollable="true" scrollHeight="150" scrollWidth="760" sortBy="#{addiction.recordDate}" sortOrder="DESCENDING">
+                            <p:column headerText="Código">
+                                <h:outputText value="#{addiction.id}" />
+                            </p:column>
+                            <p:column headerText="Tipo Adicción">
+                                <h:outputText value="#{addiction.type.name}" />
+                            </p:column>
+                            <p:column headerText="Detalle Adicción">
+                                <h:outputText value="#{addiction.detail}" />
+                            </p:column>
+                            <p:column headerText="Fecha Registro">
+                                <h:outputText value="#{addiction.recordDate}" />
+                            </p:column>
+                        </p:dataTable>
 
 
                         <h4>Reanimaciones</h4>
