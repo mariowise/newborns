@@ -50,7 +50,7 @@
                     
                     <p:column filterBy="#{item.ticket}" headerText="CODIGO" filterMatchMode="contains">
                         <f:facet name="header">
-                            <h:outputText value="Código"/>
+                            <h:outputText value="Código RN"/>
                         </f:facet>
                         <h:outputText value="#{item.year.id}-#{item.ticket}"/>
                     </p:column>
@@ -60,35 +60,35 @@
                         </f:facet>
                         <h:outputText value="#{item.profile}"/>
                     </p:column>
+                    <p:column filterBy="#{item.name}" headerText="Nombres RN" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSonTitle_name}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.name}"/>
+                    </p:column>
+                    <p:column filterBy="#{item.mother.profile.id}" headerText="PROFILE MOTHER" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="N° Ficha Madre"/>
+                        </f:facet>
+                        <h:outputText value="#{item.mother.profile.id}"/>
+                    </p:column>
                     <p:column filterBy="#{item.mother.run}" headerText="RUNMOTHER" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="RUN Madre"/>
                         </f:facet>
                         <h:outputText value="#{item.mother.run}"/>
                     </p:column>
+                    <p:column filterBy="#{item.mother.name}" headerText="NAME MOTHER" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="Nombre Madre"/>
+                        </f:facet>
+                        <h:outputText value="#{item.mother.name}"/>
+                    </p:column> 
                     <p:column filterBy="#{item.mother.firstLastname}" headerText="FIRSTLASTNAME" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="Apellido Madre"/>
                         </f:facet>
                         <h:outputText value="#{item.mother.firstLastname}"/>
-                    </p:column>
-                    <p:column filterBy="#{item.delivery}" headerText="DELIVERY" filterMatchMode="contains">
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_delivery}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.delivery}"/>
-                    </p:column>
-                    <p:column filterBy="#{item.gender.name}" headerText="GENDER" filterMatchMode="contains">
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_gender}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.gender.name}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSonTitle_extremePremature}"/>
-                        </f:facet>
-                        <p:selectBooleanCheckbox value="#{item.extremePremature}" disabled="true"/>
                     </p:column>
                     <f:facet name="footer">
                         <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SonViewForm" oncomplete="PF('SonViewDialog').show()" disabled="#{empty sonController.selected}"/>

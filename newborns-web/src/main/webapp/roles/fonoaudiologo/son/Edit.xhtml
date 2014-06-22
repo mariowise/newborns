@@ -12,6 +12,8 @@
             <h:form id="SonEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="6" rendered="#{sonController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSonLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{sonController.selected.name}" title="#{bundle.EditSonTitle_name}" />
                         <p:outputLabel value="#{bundle.EditSonLabel_gender}" for="gender" />
                         <p:selectOneMenu id="gender" value="#{sonController.selected.gender}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
@@ -65,6 +67,9 @@
                         <h:outputText id="profile" value="#{sonController.selected.profile}" title="#{bundle.ViewSonTitle_profile}"/>
                         <p:outputLabel value="#{bundle.EditSonLabel_mother}" for="mother" />
                         <h:outputText id="mother" value="#{sonController.selected.mother.run}" title="#{bundle.ViewSonTitle_mother}"/>
+                        <h:outputLabel for="deafRelatives" value="#{bundle.EditMotherLabel_DeafRelativesDescription}" />
+                        <p:inputTextarea value="#{sonController.selected.mother.deafRelatives}" />
+                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{sonController.update}" value="#{bundle.Save}" update="display,:SonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SonEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SonEditDialog.hide()"/>

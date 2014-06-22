@@ -92,6 +92,10 @@ public class Mother implements Serializable {
 
     @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$", message = "Ingrese un correo valido, e.g.=mail@mail.com")
     private String email;
+    
+    private Boolean hasDeafRelatives = false;
+    
+    private String DeafRelatives;
 
     @ManyToOne
     @JoinColumn(nullable = true)
@@ -312,6 +316,22 @@ public class Mother implements Serializable {
             sons = new ArrayList<Son>();
         }
         return sons;
+    }
+
+    public Boolean getHasDeafRelatives() {
+        return hasDeafRelatives;
+    }
+
+    public void setHasDeafRelatives(Boolean hasDeafRelatives) {
+        this.hasDeafRelatives = hasDeafRelatives;
+    }
+
+    public String getDeafRelatives() {
+        return DeafRelatives;
+    }
+
+    public void setDeafRelatives(String DeafRelatives) {
+        this.DeafRelatives = DeafRelatives;
     }
 
     public void setSons(List<Son> sons) {
