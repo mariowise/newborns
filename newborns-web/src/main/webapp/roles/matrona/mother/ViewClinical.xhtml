@@ -35,7 +35,16 @@
                         <c:if test="#{motherController.selected.bloodGroup == null}">
                             <h:outputText value="No definido"  title="#{bundle.ViewMotherTitle_bloodGroup}"/>
                         </c:if>
-                                                
+                        
+                        <c:if test="#{motherController.selected.deafRelatives != null and motherController.selected.deafRelatives != ''}" >
+                            <h:outputText value="#{bundle.ViewMotherLabel_DeafRelativesDescription}" />
+                            <h:outputText value="#{motherController.selected.deafRelatives}" />
+                        </c:if>
+                        <c:if test="#{motherController.selected.deafRelatives == null || motherController.selected.deafRelatives == ''}" >
+                            <h:outputText value="#{bundle.ViewMotherLabel_DeafRelativesDescription}" />
+                            <h:outputText value="No presenta" />
+                        </c:if>
+                        
                         <h:outputText value="#{bundle.ViewMotherLabel_coombs}"/>
                         <c:if test="#{motherController.selected.coombs}">
                             <h:outputText value="Sí"  title="#{bundle.ViewMotherTitle_coombs}"/>

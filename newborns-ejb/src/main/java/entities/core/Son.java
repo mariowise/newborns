@@ -32,6 +32,8 @@ public class Son implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    private String name;
+    
     @ManyToOne
     private YearsCount year;
     
@@ -93,6 +95,8 @@ public class Son implements Serializable {
     private String consistency;
     
     private Boolean gas;
+    
+    private Boolean asphyxiaDelivery;
     
     private Boolean extremePremature;
     
@@ -299,6 +303,14 @@ public class Son implements Serializable {
         this.gas = gas;
     }
 
+    public Boolean getAsphyxiaDelivery() {
+        return asphyxiaDelivery;
+    }
+
+    public void setAsphyxiaDelivery(Boolean asphyxiaDelivery) {
+        this.asphyxiaDelivery = asphyxiaDelivery;
+    }
+
     public Boolean getExtremePremature() {
         return extremePremature;
     }
@@ -337,6 +349,14 @@ public class Son implements Serializable {
 
     public void setBornAlive(Boolean bornAlive) {
         this.bornAlive = bornAlive;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

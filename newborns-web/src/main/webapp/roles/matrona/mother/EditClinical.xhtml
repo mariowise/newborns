@@ -21,6 +21,9 @@
                                            itemValue="#{bloodGroupItem}"/>
                         </p:selectOneMenu>
                         
+                        <h:outputLabel for="deafRelatives" value="#{bundle.EditMotherLabel_DeafRelativesDescription}" />
+                        <p:inputTextarea value="#{motherController.selected.deafRelatives}" />
+                        
                         <h:outputLabel for="coombs" value="#{bundle.ViewMotherLabel_coombs}"/>
                         <h:selectBooleanCheckbox id="coombs" value="#{motherController.selected.coombs}"/>                     
                         

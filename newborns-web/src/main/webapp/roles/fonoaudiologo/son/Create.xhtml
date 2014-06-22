@@ -12,6 +12,8 @@
             <h:form id="SonCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="6" rendered="#{sonController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSonLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{sonController.selected.name}" title="#{bundle.CreateSonTitle_name}" />
                         <p:outputLabel value="#{bundle.CreateSonLabel_gender}" for="gender" />
                         <p:selectOneMenu id="gender" value="#{sonController.selected.gender}" >
                             <f:selectItems value="#{genderController.itemsAvailableSelectOne}"
