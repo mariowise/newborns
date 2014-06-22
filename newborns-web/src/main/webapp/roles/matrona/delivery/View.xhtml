@@ -44,7 +44,7 @@
                             <p:selectBooleanCheckbox disabled="true" id="polidependencia" value="#{deliveryController.selected.polidependencia}"/>
                             <p:outputLabel value="Embarazo de alto riesgo" for="risk"/>
                             <p:selectBooleanCheckbox disabled="true" id="risk" value="#{deliveryController.selected.risk}"/>
-                            <h:outputText value="#{bundle.ViewDeliveryLabel_id}"/>
+							<h:outputText value="#{bundle.ViewDeliveryLabel_id}"/>
                             <h:outputText value="#{deliveryController.selected.id}" title="#{bundle.ViewDeliveryTitle_id}"/>
                             <h:outputText value="#{bundle.ViewDeliveryLabel_date}"/>
                             <h:outputText value="#{deliveryController.selected.date}" title="#{bundle.ViewDeliveryTitle_date}">
@@ -63,8 +63,8 @@
                             <h:outputText value="#{bundle.ViewDeliveryLabel_weeksGestation}"/>
                             <h:outputText value="#{deliveryController.selected.weeksGestation}" title="#{bundle.ViewDeliveryTitle_weeksGestation}"/>
                         </p:panelGrid>
-                    
-                        <h4>Listado de adicciones</h4>
+
+						<h4>Listado de adicciones</h4>
                         <p:dataTable var="addiction" value="#{addictionController.items}" scrollable="true" scrollHeight="150" scrollWidth="760" sortBy="#{addiction.recordDate}" sortOrder="DESCENDING">
                             <p:column headerText="Código">
                                 <h:outputText value="#{addiction.id}" />
@@ -78,8 +78,7 @@
                             <p:column headerText="Fecha Registro">
                                 <h:outputText value="#{addiction.recordDate}" />
                             </p:column>
-                        </p:dataTable>
-
+                        </p:dataTable>	
 
                         <h4>Reanimaciones</h4>
                         <p:dataTable var="item" value="#{deliveryController.selected.revivals}" scrollable="true" scrollHeight="150" scrollWidth="760" sortBy="#{item.createdAtDate}" sortOrder="DESCENDING">
