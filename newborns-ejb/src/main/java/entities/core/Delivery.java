@@ -71,6 +71,8 @@ public class Delivery implements Serializable {
     private Boolean risk;
 
     private String anotherPathologyDescription;
+    
+    private int weeksGestation;
        
     @ManyToOne
     private Mother mother;
@@ -272,6 +274,14 @@ public class Delivery implements Serializable {
 
     public void setAnotherPathologyDescription(String anotherPathologyDescription) {
         this.anotherPathologyDescription = anotherPathologyDescription;
+    }
+
+    public int getWeeksGestation() {
+        return weeksGestation;
+    }
+
+    public void setWeeksGestation(int weeksGestation) {
+        this.weeksGestation = weeksGestation;
     }
     
     @Override
