@@ -34,7 +34,7 @@
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{addictionController.update}" value="#{bundle.Save}" update="display,:AddictionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AddictionEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="AddictionEditDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AddictionEditDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -18,7 +18,7 @@
                         <p:inputText id="name" value="#{addictionTypeController.selected.name}" title="#{bundle.CreateAddictionTypeTitle_name}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{addictionTypeController.create}" value="#{bundle.Save}" update="display,:AddictionTypeListForm:datalist,:growl" oncomplete="handleSubmit(args,'AddictionTypeCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="AddictionTypeCreateDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AddictionTypeCreateDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
