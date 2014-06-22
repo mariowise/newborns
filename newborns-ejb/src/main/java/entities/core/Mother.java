@@ -95,7 +95,7 @@ public class Mother implements Serializable {
     
     private Boolean hasDeafRelatives = false;
     
-    private String DeafRelatives;
+    private String deafRelatives;
 
     @ManyToOne
     @JoinColumn(nullable = true)
@@ -327,11 +327,11 @@ public class Mother implements Serializable {
     }
 
     public String getDeafRelatives() {
-        return DeafRelatives;
+        return deafRelatives;
     }
 
     public void setDeafRelatives(String DeafRelatives) {
-        this.DeafRelatives = DeafRelatives;
+        this.deafRelatives = DeafRelatives;
     }
 
     public void setSons(List<Son> sons) {
