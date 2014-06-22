@@ -16,7 +16,7 @@
                         <p:inputText id="name" value="#{genderController.selected.name}" title="#{bundle.CreateGenderTitle_name}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{genderController.create}" value="#{bundle.Save}" update="display,:GenderListForm:datalist,:growl" oncomplete="handleSubmit(args,'GenderCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="GenderCreateDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="GenderCreateDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

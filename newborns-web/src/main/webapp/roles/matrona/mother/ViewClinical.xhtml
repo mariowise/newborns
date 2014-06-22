@@ -54,14 +54,31 @@
                         </c:if>
                         
                     </p:panelGrid>
+                    
+                    <h3>Listado de adicciones</h3>
+                    <p:dataTable var="item" value="#{addictionController.items}" scrollable="true" scrollHeight="150">
+                        <p:column headerText="Código">
+                            <h:outputText value="#{item.id}" />
+                        </p:column>
+                        <p:column headerText="Tipo Adicción">
+                            <h:outputText value="#{item.type.name}" />
+                        </p:column>
+                        <p:column headerText="Detalle Adicción">
+                            <h:outputText value="#{item.detail}" />
+                        </p:column>
+                        <p:column headerText="Fecha Registro">
+                            <h:outputText value="#{item.recordDate}" />
+                        </p:column>
+                    </p:dataTable>
                 </h:panelGroup>
                 
                 <p:commandButton id="editButton" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MotherEditClinicalForm" oncomplete="PF('MotherEditClinicalDialog').show()"/>
-                
+                <p:commandButton id="registerAddictionButton" icon="ui-icon-plus" value="#{bundle.registerAddiction}" actionListener="#{addictionController.prepareCreate}" update=":AddictionCreateForm" oncomplete="PF('AddictionCreateDialog').show()"/>
             </h:form>
             
             <ui:include src="EditClinical.xhtml"/>
-        
+            <ui:include src="../addiction/Create.xhtml"/>
+            
         </ui:define>
     </ui:composition>
 </html>

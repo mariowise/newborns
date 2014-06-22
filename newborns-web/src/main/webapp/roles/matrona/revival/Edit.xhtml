@@ -23,7 +23,7 @@
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{revivalController.update}" value="#{bundle.Save}" update="display,:RevivalListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RevivalEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="RevivalEditDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RevivalEditDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

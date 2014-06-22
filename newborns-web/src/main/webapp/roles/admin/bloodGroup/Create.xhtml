@@ -16,7 +16,7 @@
                         <p:inputText id="name" value="#{bloodGroupController.selected.name}" title="#{bundle.CreateBloodGroupTitle_name}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{bloodGroupController.create}" value="#{bundle.Save}" update="display,:BloodGroupListForm:datalist,:growl" oncomplete="handleSubmit(args,'BloodGroupCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="BloodGroupCreateDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BloodGroupCreateDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

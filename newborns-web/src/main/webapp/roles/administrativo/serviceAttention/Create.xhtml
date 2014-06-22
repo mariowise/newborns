@@ -36,7 +36,7 @@
                         <p:calendar id="createdAt" pattern="dd/MM/yyyy" value="#{serviceAttentionController.selected.createdAt}" title="#{bundle.EditServiceAttentionTitle_createdAt}"  showOn="button"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{serviceAttentionController.create}" value="#{bundle.Save}" update="display,:ServiceAttentionListForm:datalist,:growl" oncomplete="handleSubmit(args,'ServiceAttentionCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="ServiceAttentionCreateDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ServiceAttentionCreateDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

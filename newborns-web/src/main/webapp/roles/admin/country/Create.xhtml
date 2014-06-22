@@ -16,7 +16,7 @@
                         <p:inputText id="name" value="#{countryController.selected.name}" title="#{bundle.CreateCountryTitle_name}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{countryController.create}" value="#{bundle.Save}" update="display,:CountryListForm:datalist,:growl" oncomplete="handleSubmit(args,'CountryCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="CountryCreateDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CountryCreateDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

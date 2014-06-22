@@ -18,7 +18,7 @@
                         <p:inputText id="name" value="#{illnessController.selected.name}" title="#{bundle.CreateIllnessTitle_name}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{illnessController.create}" value="#{bundle.Save}" update="display,:IllnessListForm:datalist,:growl" oncomplete="handleSubmit(args,'IllnessCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="IllnessCreateDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="IllnessCreateDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

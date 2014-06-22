@@ -70,7 +70,7 @@
                         <p:selectBooleanCheckbox id="mechanicalVentilation" value="#{sonController.selected.mechanicalVentilation}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{sonController.create}" value="#{bundle.Save}" update="display,:DeliveryListForm:datalist,:growl" oncomplete="handleSubmit(args,'SonCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="SonCreateDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SonCreateDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
