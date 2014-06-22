@@ -96,6 +96,8 @@ public class Son implements Serializable {
     
     private Boolean gas;
     
+    private Boolean asphyxiaDelivery;
+    
     private Boolean extremePremature;
     
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -298,6 +300,14 @@ public class Son implements Serializable {
 
     public void setGas(Boolean gas) {
         this.gas = gas;
+    }
+
+    public Boolean getAsphyxiaDelivery() {
+        return asphyxiaDelivery;
+    }
+
+    public void setAsphyxiaDelivery(Boolean asphyxiaDelivery) {
+        this.asphyxiaDelivery = asphyxiaDelivery;
     }
 
     public Boolean getExtremePremature() {

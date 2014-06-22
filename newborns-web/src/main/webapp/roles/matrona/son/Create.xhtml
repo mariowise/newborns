@@ -60,6 +60,8 @@
                         <p:inputText id="consistency" value="#{sonController.selected.consistency}" title="#{bundle.CreateSonTitle_consistency}" />
                         <p:outputLabel value="#{bundle.CreateSonLabel_gas}" for="gas" />
                         <p:selectBooleanCheckbox id="gas" value="#{sonController.selected.gas}" />
+                        <p:outputLabel value="#{bundle.CreateSonLabel_asphyxiaDelivery}" for="asphyxiaDelivery" />
+                        <p:selectBooleanCheckbox id="asphyxiaDelivery" value="#{sonController.selected.asphyxiaDelivery}" />                        
                         <p:outputLabel value="#{bundle.CreateSonLabel_extremePremature}" for="extremePremature" />
                         <p:selectBooleanCheckbox id="extremePremature" value="#{sonController.selected.extremePremature}" />
                     </p:panelGrid>
