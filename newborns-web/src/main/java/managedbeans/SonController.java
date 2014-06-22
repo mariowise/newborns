@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
+import managedbeans.util.SessionUtil;
 import sessionbeans.SonFacadeLocal;
 
 @Named("sonController")
@@ -36,6 +37,12 @@ public class SonController implements Serializable {
     
     @Inject
     private DeliveryController deliveryController;
+    
+    @Inject
+    private ProfileController profileController;
+    
+    @Inject
+    private SessionUtil sessionUtil;
     
     private List<Son> filteredItems;
     
@@ -209,6 +216,12 @@ public class SonController implements Serializable {
 
     public void setFilteredItems(List<Son> filteredItems) {
         this.filteredItems = filteredItems;
+    }
+    
+    public void profileView() {
+        profileController.setSelected(selected.getProfile());
+        JsfUtil.redirect("/faces/roles/" + sessionUtil.getCurrentUser().getAccountType().getName() + 
+                "/index-profile.xhtml");
     }
 
 }

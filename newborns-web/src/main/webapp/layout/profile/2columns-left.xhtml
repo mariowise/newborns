@@ -30,8 +30,14 @@
             <div id="page-content-wrapper">
                 
                 <div class="profile-page-header">
+                    
+                    <c:if test="#{profileController.selected.mother != null}">
+                        <ui:include src="header-mother.xhtml"/>
+                    </c:if>
 
-                    <ui:include src="header.xhtml"/>
+                    <c:if test="#{profileController.selected.son != null}">
+                        <ui:include src="header-son.xhtml"/>
+                    </c:if>
                     
                     <div class="colapser">
                         <span class="glyphicon glyphicon-chevron-up"></span>
