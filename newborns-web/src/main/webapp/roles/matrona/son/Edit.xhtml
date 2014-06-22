@@ -65,6 +65,8 @@
                         <h:outputText id="profile" value="#{sonController.selected.profile}" title="#{bundle.ViewSonTitle_profile}"/>
                         <p:outputLabel value="#{bundle.EditSonLabel_mother}" for="mother" />
                         <h:outputText id="mother" value="#{sonController.selected.mother.run}" title="#{bundle.ViewSonTitle_mother}"/>
+                        <p:outputLabel value="#{bundle.EditSonLabel_bornAlive}" for="bornAlive" />
+                        <p:selectBooleanCheckbox id="bornAlive" value="#{sonController.selected.bornAlive}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{sonController.update}" value="#{bundle.Save}" update="display,:SonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SonEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SonEditDialog.hide()"/>

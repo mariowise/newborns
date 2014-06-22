@@ -60,6 +60,8 @@
                         <p:selectBooleanCheckbox id="gas" value="#{sonController.selected.gas}" />
                         <p:outputLabel value="#{bundle.CreateSonLabel_extremePremature}" for="extremePremature" />
                         <p:selectBooleanCheckbox id="extremePremature" value="#{sonController.selected.extremePremature}" />
+                        <p:outputLabel value="#{bundle.CreateSonLabel_bornAlive}" for="bornAlive" />
+                        <p:selectBooleanCheckbox id="bornAlive" value="#{sonController.selected.bornAlive}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{sonController.create}" value="#{bundle.Save}" update="display,:DeliveryListForm:datalist,:growl" oncomplete="handleSubmit(args,'SonCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SonCreateDialog.hide()"/>

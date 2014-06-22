@@ -12,8 +12,6 @@
             <h:form id="CommuneCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{communeController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateCommuneLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{communeController.selected.id}" title="#{bundle.CreateCommuneTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateCommuneLabel_name}" for="name" />
                         <p:inputText id="name" value="#{communeController.selected.name}" title="#{bundle.CreateCommuneTitle_name}" />
                         <p:outputLabel value="#{bundle.CreateCommuneLabel_region}" for="region" />

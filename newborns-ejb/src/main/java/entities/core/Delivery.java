@@ -64,14 +64,14 @@ public class Delivery implements Serializable {
 
     private Boolean rciu;
 
-    private Boolean anotherPathology;
-
     private Boolean vdrl;
 
     private Boolean polidependencia;
 
     private Boolean risk;
 
+    private String anotherPathologyDescription;
+       
     @ManyToOne
     private Mother mother;
 
@@ -198,15 +198,6 @@ public class Delivery implements Serializable {
     public void setRciu(Boolean rciu) {
         this.rciu = rciu;
     }
-
-    public Boolean getAnotherPathology() {
-        return anotherPathology;
-    }
-
-    public void setAnotherPathology(Boolean anotherPathology) {
-        this.anotherPathology = anotherPathology;
-    }
-
     public Boolean getVdrl() {
         return vdrl;
     }
@@ -275,6 +266,14 @@ public class Delivery implements Serializable {
         this.party = party;
     }
 
+    public String getAnotherPathologyDescription() {
+        return anotherPathologyDescription;
+    }
+
+    public void setAnotherPathologyDescription(String anotherPathologyDescription) {
+        this.anotherPathologyDescription = anotherPathologyDescription;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

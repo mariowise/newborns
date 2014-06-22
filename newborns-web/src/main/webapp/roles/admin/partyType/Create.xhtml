@@ -12,9 +12,7 @@
             <h:form id="PartyTypeCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{partyTypeController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreatePartyTypeLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{partyTypeController.selected.id}" title="#{bundle.CreatePartyTypeTitle_id}" />
-                        <p:outputLabel value="#{bundle.CreatePartyTypeLabel_name}" for="name" />
+                       <p:outputLabel value="#{bundle.CreatePartyTypeLabel_name}" for="name" />
                         <p:inputText id="name" value="#{partyTypeController.selected.name}" title="#{bundle.CreatePartyTypeTitle_name}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{partyTypeController.create}" value="#{bundle.Save}" update="display,:PartyTypeListForm:datalist,:growl" oncomplete="handleSubmit(args,'PartyTypeCreateDialog');"/>

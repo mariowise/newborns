@@ -12,8 +12,6 @@
             <h:form id="PartyTypeEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{partyTypeController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditPartyTypeLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{partyTypeController.selected.id}" title="#{bundle.EditPartyTypeTitle_id}" />
                         <p:outputLabel value="#{bundle.EditPartyTypeLabel_name}" for="name" />
                         <p:inputText id="name" value="#{partyTypeController.selected.name}" title="#{bundle.EditPartyTypeTitle_name}" />
                     </p:panelGrid>

@@ -105,6 +105,7 @@ public class Son implements Serializable {
     @ManyToOne
     private Delivery delivery;
     
+    private Boolean bornAlive=true;    
     
     public Long getId() {
         return id;
@@ -328,6 +329,14 @@ public class Son implements Serializable {
 
     public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
+    }
+    
+    public Boolean getBornAlive() {
+        return bornAlive;
+    }
+
+    public void setBornAlive(Boolean bornAlive) {
+        this.bornAlive = bornAlive;
     }
 
     @Override

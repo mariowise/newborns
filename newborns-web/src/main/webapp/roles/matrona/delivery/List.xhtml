@@ -66,6 +66,13 @@
                         </f:facet>
                         <h:outputText value="#{item.deliveryType.name}"/>
                     </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Número de hijos"/>
+                        </f:facet>
+                        <h:outputText value="#{deliveryController.numberSons}"/>
+                    </p:column>
+                    
                     <f:facet name="footer">
                         <div class="row">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{deliveryController.prepareCreate}" update=":DeliveryCreateForm" oncomplete="PF('DeliveryCreateDialog').show()"/>
