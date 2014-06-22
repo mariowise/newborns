@@ -23,7 +23,7 @@
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{communeController.update}" value="#{bundle.Save}" update="display,:CommuneListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CommuneEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="CommuneEditDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CommuneEditDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

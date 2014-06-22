@@ -37,7 +37,7 @@
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{partyController.update}" value="#{bundle.Save}" update="display,:PartyListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PartyEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="PartyEditDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PartyEditDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

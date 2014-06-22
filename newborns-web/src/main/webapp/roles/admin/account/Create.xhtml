@@ -43,7 +43,7 @@
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{accountController.create}" value="Guardar" update="display,:AccountListForm:datalist,:growl" oncomplete="handleSubmit(args,'AccountCreateDialog');"/>
-                    <p:commandButton value="Cancelar" onclick="AccountCreateDialog.hide()"/>
+                    <p:commandButton value="Cancelar" onclick="AccountCreateDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

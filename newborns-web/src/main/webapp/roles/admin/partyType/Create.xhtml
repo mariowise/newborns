@@ -16,7 +16,7 @@
                         <p:inputText id="name" value="#{partyTypeController.selected.name}" title="#{bundle.CreatePartyTypeTitle_name}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{partyTypeController.create}" value="#{bundle.Save}" update="display,:PartyTypeListForm:datalist,:growl" oncomplete="handleSubmit(args,'PartyTypeCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="PartyTypeCreateDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PartyTypeCreateDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -16,7 +16,7 @@
                         <p:inputText id="name" value="#{residencyTypeController.selected.name}" title="#{bundle.EditResidencyTypeTitle_name}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{residencyTypeController.update}" value="#{bundle.Save}" update="display,:ResidencyTypeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ResidencyTypeEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="ResidencyTypeEditDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ResidencyTypeEditDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

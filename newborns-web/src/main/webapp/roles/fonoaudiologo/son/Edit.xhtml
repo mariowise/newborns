@@ -74,7 +74,7 @@
                         
                     </p:panelGrid>
                     <p:commandButton actionListener="#{sonController.update}" value="#{bundle.Save}" update="display,:SonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SonEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="SonEditDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SonEditDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

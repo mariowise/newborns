@@ -16,7 +16,7 @@
                         <p:inputText id="name" value="#{regionController.selected.name}" title="#{bundle.EditRegionTitle_name}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{regionController.update}" value="#{bundle.Save}" update="display,:RegionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RegionEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="RegionEditDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RegionEditDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
