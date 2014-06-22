@@ -24,7 +24,7 @@
                         
                     </p:panelGrid>
                     <p:commandButton actionListener="#{addictionController.create}" value="#{bundle.Save}" update="display,:MotherEditForm:display,:growl" oncomplete="handleSubmit(args,'AddictionCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="AddictionCreateDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AddictionCreateDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

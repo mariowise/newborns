@@ -144,8 +144,7 @@ public class SonController implements Serializable {
         return getFacade().find(id);
     }
     
-    public void Premature(){
-        if (selected.getPediatricExamination()>32){
+    public void Premature(){if (selected.getPediatricExamination()<32){
             extremePremature=true;            
         } else {
             extremePremature=false;            
