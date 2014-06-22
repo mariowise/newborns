@@ -103,6 +103,22 @@
                             </h:outputText>
                         </p:column>                        
                     </p:dataTable>
+                    
+                    <h4>Listado de adicciones</h4>
+                    <p:dataTable var="addiction" value="#{addictionController.items}" scrollable="true" scrollHeight="150" scrollWidth="760" sortBy="#{addiction.recordDate}" sortOrder="DESCENDING">
+                        <p:column headerText="Código">
+                            <h:outputText value="#{addiction.id}" />
+                        </p:column>
+                        <p:column headerText="Tipo Adicción">
+                            <h:outputText value="#{addiction.type.name}" />
+                        </p:column>
+                        <p:column headerText="Detalle Adicción">
+                            <h:outputText value="#{addiction.detail}" />
+                        </p:column>
+                        <p:column headerText="Fecha Registro">
+                            <h:outputText value="#{addiction.recordDate}" />
+                        </p:column>
+                    </p:dataTable>
 
                     <h4>Participantes</h4>
                     <p:dataTable var="item" value="#{deliveryController.selected.party}" scrollable="true" scrollHeight="150" scrollWidth="760">

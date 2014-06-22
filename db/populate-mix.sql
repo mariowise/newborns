@@ -32,6 +32,13 @@ INSERT INTO bloodgroup(id, name)
 INSERT INTO partytype(id, name) 
 	VALUES (1, 'Medico'), (2, 'Matrona'), (3, 'Técnico'), (4, 'Alumno interno o Becado'), (5, 'Padre'), (6, 'Otro familiar');
 
+INSERT INTO addictiontype (id, "name") 
+    VALUES (1, 'Alcohol');
+INSERT INTO addictiontype (id, "name") 
+    VALUES (2, 'Droga');
+INSERT INTO addictiontype (id, "name") 
+    VALUES (3, 'Cigarro');
+
 INSERT INTO region(id, name) VALUES
 (14,'Región de Los Ríos'),
 (13,'Región Metropolitana'),

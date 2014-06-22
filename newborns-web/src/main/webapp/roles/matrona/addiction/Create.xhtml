@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AddictionCreateDlg" widgetVar="AddictionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAddictionTitle}">
+            <h:form id="AddictionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{addictionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAddictionLabel_type}" for="type" />
+                        <p:selectOneMenu id="type" value="#{addictionController.selected.type}" >
+                            <f:selectItem itemLabel="Seleccione Uno..." itemValue="#{null}" />
+                            <f:selectItems value="#{addictionTypeController.itemsAvailableSelectOne}"
+                                           var="typeItem"
+                                           itemValue="#{typeItem}" />                            
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAddictionLabel_detail}" for="detail" />
+                        <p:inputTextarea id="detail" value="#{addictionController.selected.detail}" title="#{bundle.CreateAddictionTitle_detail}" />
+                        
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{addictionController.create}" value="#{bundle.Save}" update="display,:MotherEditForm:display,:growl" oncomplete="handleSubmit(args,'AddictionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AddictionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -120,6 +120,8 @@ public class Mother implements Serializable {
     @OneToMany(mappedBy = "mother")
     private List<Son> sons;
 
+    @OneToMany(mappedBy = "mother") 
+    private List<Addiction> addictions;
     
     public Long getId() {
         return id;
@@ -336,6 +338,17 @@ public class Mother implements Serializable {
 
     public void setSons(List<Son> sons) {
         this.sons = sons;
+    }
+
+    public List<Addiction> getAddictions() {
+        if(addictions == null) {
+            addictions = new ArrayList<Addiction>();
+        }
+        return addictions;
+    }
+
+    public void setAddictions(List<Addiction> addictions) {
+        this.addictions = addictions;
     }
 
     @Override

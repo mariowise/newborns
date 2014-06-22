@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AddictionViewDlg" widgetVar="AddictionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAddictionTitle}">
+            <h:form id="AddictionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{addictionController.selected != null}">
+                        <h:outputText value="#{bundle.ViewAddictionLabel_id}"/>
+                        <h:outputText value="#{addictionController.selected.id}" title="#{bundle.ViewAddictionTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewAddictionLabel_recordDate}"/>
+                        <h:outputText value="#{addictionController.selected.recordDate}" title="#{bundle.ViewAddictionTitle_recordDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAddictionLabel_detail}"/>
+                        <h:outputText value="#{addictionController.selected.detail}" title="#{bundle.ViewAddictionTitle_detail}"/>
+                        <h:outputText value="#{bundle.ViewAddictionLabel_mother}"/>
+                        <h:outputText value="#{addictionController.selected.mother}" title="#{bundle.ViewAddictionTitle_mother}"/>
+                        <h:outputText value="#{bundle.ViewAddictionLabel_type}"/>
+                        <h:outputText value="#{addictionController.selected.type}" title="#{bundle.ViewAddictionTitle_type}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="AddictionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

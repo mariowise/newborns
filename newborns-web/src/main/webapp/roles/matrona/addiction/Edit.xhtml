@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AddictionEditDlg" widgetVar="AddictionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAddictionTitle}">
+            <h:form id="AddictionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{addictionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAddictionLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{addictionController.selected.id}" title="#{bundle.EditAddictionTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditAddictionLabel_recordDate}" for="recordDate" />
+                        <p:calendar id="recordTime" pattern="HH:mm:ss" value="#{addictionController.selected.recordTime}" title="#{bundle.EditAddictionTitle_recordTime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditAddictionLabel_detail}" for="detail" />
+                        <p:inputText id="detail" value="#{addictionController.selected.detail}" title="#{bundle.EditAddictionTitle_detail}" />
+                        <p:outputLabel value="#{bundle.EditAddictionLabel_mother}" for="mother" />
+                        <p:selectOneMenu id="mother" value="#{addictionController.selected.mother}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{motherController.itemsAvailableSelectOne}"
+                                           var="motherItem"
+                                           itemValue="#{motherItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditAddictionLabel_type}" for="type" />
+                        <p:selectOneMenu id="type" value="#{addictionController.selected.type}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{addictionTypeController.itemsAvailableSelectOne}"
+                                           var="typeItem"
+                                           itemValue="#{typeItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{addictionController.update}" value="#{bundle.Save}" update="display,:AddictionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AddictionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AddictionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
