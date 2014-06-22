@@ -65,7 +65,7 @@
                         </p:panelGrid>
 
                         <h4>Listado de adicciones</h4>
-                        </<p:dataTable var="addiction" value="#{addictionController.items}" scrollable="true" scrollHeight="150" scrollWidth="760" sortBy="#{addiction.recordDate}" sortOrder="DESCENDING">
+                        <p:dataTable var="addiction" value="#{addictionController.items}" scrollable="true" scrollHeight="150" scrollWidth="760" sortBy="#{addiction.recordDate}" sortOrder="DESCENDING">
                             <p:column headerText="Código">
                                 <h:outputText value="#{addiction.id}" />
                             </p:column>
