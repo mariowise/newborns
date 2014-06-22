@@ -29,7 +29,7 @@
                         
                     </p:panelGrid>
                     <p:commandButton actionListener="#{motherController.update}" value="#{bundle.Save}" update="display,:MotherEditForm:display,:growl" oncomplete="handleSubmit(args, 'MotherEditClinicalDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="MotherEditDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MotherEditDialog.hide()" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

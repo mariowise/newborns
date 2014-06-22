@@ -41,8 +41,8 @@
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{accountController.update}" value="#{bundle.Save}" update="display,:AccountListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AccountEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="AccountEditDialog.hide()"/>
-                    <p:commandButton actionListener="#{accountController.restorePassword}" value="Reestablecer contraseña" update=":growl" />
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AccountEditDialog.close()"/>
+                    <p:commandButton actionListener="#{accountController.restorePassword}" value="Reestablecer contraseña" update=":growl" immediate="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
