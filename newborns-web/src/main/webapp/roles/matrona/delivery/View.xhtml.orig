@@ -44,6 +44,27 @@
                             <p:selectBooleanCheckbox disabled="true" id="polidependencia" value="#{deliveryController.selected.polidependencia}"/>
                             <p:outputLabel value="Embarazo de alto riesgo" for="risk"/>
                             <p:selectBooleanCheckbox disabled="true" id="risk" value="#{deliveryController.selected.risk}"/>
+<<<<<<< HEAD
+
+                        <h:outputText value="#{bundle.ViewDeliveryLabel_id}"/>
+                        <h:outputText value="#{deliveryController.selected.id}" title="#{bundle.ViewDeliveryTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewDeliveryLabel_date}"/>
+                        <h:outputText value="#{deliveryController.selected.date}" title="#{bundle.ViewDeliveryTitle_date}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDeliveryLabel_time}"/>
+                        <h:outputText value="#{deliveryController.selected.time}" title="#{bundle.ViewDeliveryTitle_time}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDeliveryLabel_mother}"/>
+                        <h:outputText value="#{deliveryController.selected.mother}" title="#{bundle.ViewDeliveryTitle_mother}"/>
+                        <h:outputText value="#{bundle.ViewDeliveryLabel_deliveryType}"/>
+                        <h:outputText value="#{deliveryController.selected.deliveryType}" title="#{bundle.ViewDeliveryTitle_deliveryType}"/>
+                        <h:outputText value="#{bundle.ViewDeliveryLabel_createdBy}"/>
+                        <h:outputText value="#{deliveryController.selected.createdBy}" title="#{bundle.ViewDeliveryTitle_createdBy}"/>
+                    </p:panelGrid>
+=======
+>>>>>>> 579c9f730f9e97881a80cd9fe646799e9895d562
 
                             <h:outputText value="#{bundle.ViewDeliveryLabel_id}"/>
                             <h:outputText value="#{deliveryController.selected.id}" title="#{bundle.ViewDeliveryTitle_id}"/>
@@ -55,6 +76,14 @@
                             <h:outputText value="#{deliveryController.selected.time}" title="#{bundle.ViewDeliveryTitle_time}">
                                 <f:convertDateTime pattern="HH:mm:ss" />
                             </h:outputText>
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_mother}"/>
+                            <h:outputText value="#{deliveryController.selected.mother}" title="#{bundle.ViewDeliveryTitle_mother}"/>
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_deliveryType}"/>
+                            <h:outputText value="#{deliveryController.selected.deliveryType.name}" title="#{bundle.ViewDeliveryTitle_deliveryType}"/>
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_createdBy}"/>
+                            <h:outputText value="#{deliveryController.selected.createdBy.name}" title="#{bundle.ViewDeliveryTitle_createdBy}"/>
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_weeksGestation}"/>
+                            <h:outputText value="#{deliveryController.selected.weeksGestation}" title="#{bundle.ViewDeliveryTitle_weeksGestation}"/>
 <<<<<<< HEAD
                         </p:column>                        
                     </p:dataTable>
@@ -75,15 +104,8 @@
                         </p:column>
                     </p:dataTable>
 =======
-                            <h:outputText value="#{bundle.ViewDeliveryLabel_mother}"/>
-                            <h:outputText value="#{deliveryController.selected.mother}" title="#{bundle.ViewDeliveryTitle_mother}"/>
-                            <h:outputText value="#{bundle.ViewDeliveryLabel_deliveryType}"/>
-                            <h:outputText value="#{deliveryController.selected.deliveryType.name}" title="#{bundle.ViewDeliveryTitle_deliveryType}"/>
-                            <h:outputText value="#{bundle.ViewDeliveryLabel_createdBy}"/>
-                            <h:outputText value="#{deliveryController.selected.createdBy.name}" title="#{bundle.ViewDeliveryTitle_createdBy}"/>
-                            <h:outputText value="#{bundle.ViewDeliveryLabel_weeksGestation}"/>
-                            <h:outputText value="#{deliveryController.selected.weeksGestation}" title="#{bundle.ViewDeliveryTitle_weeksGestation}"/>
                         </p:panelGrid>
+>>>>>>> 579c9f730f9e97881a80cd9fe646799e9895d562
 
                         <h4>Reanimaciones</h4>
                         <p:dataTable var="item" value="#{deliveryController.selected.revivals}" scrollable="true" scrollHeight="150" scrollWidth="760" sortBy="#{item.createdAtDate}" sortOrder="DESCENDING">
@@ -135,7 +157,6 @@
                                 <h:outputText value="#{item.partyType.name}" />
                             </p:column>
                         </p:dataTable>
->>>>>>> 05e83b19746cef04a6e9f74ca8c6ab8a0583fa25
 
                     </h:panelGroup>
                 </p:scrollPanel>

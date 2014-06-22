@@ -5297,6 +5297,9 @@ button.close {
   background-color: #2b3e50 !important;
   background-image: none !important; }
 
+.ui-growl {
+  top: 70px !important; }
+
 .float-right {
   float: right; }
 

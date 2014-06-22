@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 
@@ -38,6 +39,12 @@ public class Profile implements Serializable {
 
     @OneToMany(mappedBy = "profile")
     private List<Party> party;
+    
+    @OneToOne(mappedBy = "profile")
+    private Mother mother;
+    
+    @OneToOne(mappedBy = "profile")
+    private Son son;
 
     public Long getId() {
         return id;
@@ -75,6 +82,22 @@ public class Profile implements Serializable {
 
     public void setParty(List<Party> party) {
         this.party = party;
+    }
+
+    public Mother getMother() {
+        return mother;
+    }
+
+    public void setMother(Mother mother) {
+        this.mother = mother;
+    }
+
+    public Son getSon() {
+        return son;
+    }
+
+    public void setSon(Son son) {
+        this.son = son;
     }
 
     @Override
