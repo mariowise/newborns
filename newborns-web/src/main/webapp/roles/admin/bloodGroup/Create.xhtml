@@ -12,8 +12,6 @@
             <h:form id="BloodGroupCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{bloodGroupController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateBloodGroupLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{bloodGroupController.selected.id}" title="#{bundle.CreateBloodGroupTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateBloodGroupLabel_name}" for="name" />
                         <p:inputText id="name" value="#{bloodGroupController.selected.name}" title="#{bundle.CreateBloodGroupTitle_name}" />
                     </p:panelGrid>

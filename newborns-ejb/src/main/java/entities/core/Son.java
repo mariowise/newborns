@@ -109,6 +109,11 @@ public class Son implements Serializable {
     @ManyToOne
     private Delivery delivery;
     
+    private Boolean bornAlive=true;
+    
+    private Boolean mechanicalVentilation;
+    
+    private int pediatricExamination;
     
     public Long getId() {
         return id;
@@ -341,6 +346,14 @@ public class Son implements Serializable {
     public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
     }
+    
+    public Boolean getBornAlive() {
+        return bornAlive;
+    }
+
+    public void setBornAlive(Boolean bornAlive) {
+        this.bornAlive = bornAlive;
+    }
 
     public String getName() {
         return name;
@@ -348,6 +361,22 @@ public class Son implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean getMechanicalVentilation() {
+        return mechanicalVentilation;
+    }
+
+    public void setMechanicalVentilation(Boolean mechanicalVentilation) {
+        this.mechanicalVentilation = mechanicalVentilation;
+    }
+
+    public int getPediatricExamination() {
+        return pediatricExamination;
+    }
+
+    public void setPediatricExamination(int pediatricExamination) {
+        this.pediatricExamination = pediatricExamination;
     }
 
     @Override

@@ -12,8 +12,6 @@
             <h:form id="DeliveryTypeEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{deliveryTypeController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditDeliveryTypeLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{deliveryTypeController.selected.id}" title="#{bundle.EditDeliveryTypeTitle_id}" />
                         <p:outputLabel value="#{bundle.EditDeliveryTypeLabel_name}" for="name" />
                         <p:inputText id="name" value="#{deliveryTypeController.selected.name}" title="#{bundle.EditDeliveryTypeTitle_name}" />
                     </p:panelGrid>

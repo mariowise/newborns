@@ -12,8 +12,6 @@
             <h:form id="GenderCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{genderController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateGenderLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{genderController.selected.id}" title="#{bundle.CreateGenderTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateGenderLabel_name}" for="name" />
                         <p:inputText id="name" value="#{genderController.selected.name}" title="#{bundle.CreateGenderTitle_name}" />
                     </p:panelGrid>

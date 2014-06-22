@@ -12,8 +12,6 @@
             <h:form id="GenderEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{genderController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditGenderLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{genderController.selected.id}" title="#{bundle.EditGenderTitle_id}" />
                         <p:outputLabel value="#{bundle.EditGenderLabel_name}" for="name" />
                         <p:inputText id="name" value="#{genderController.selected.name}" title="#{bundle.EditGenderTitle_name}" />
                     </p:panelGrid>

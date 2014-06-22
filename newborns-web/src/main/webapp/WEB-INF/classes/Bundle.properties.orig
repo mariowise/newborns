@@ -1927,48 +1927,8 @@ ListBloodGroupEditLink=Modificar
 ListBloodGroupViewLink=Ver
 ListBloodGroupCreateLink=Agregar nuevos grupos sangu\u00edneos
 ListBloodGroupIndexLink=Index
-ListBloodGroupTitle_id=Id
-ListBloodGroupTitle_name=Name
-
-IllnessCreated=Illness was successfully created.
-IllnessUpdated=Illness was successfully updated.
-IllnessDeleted=Illness was successfully deleted.
-CreateIllnessTitle=Create New Illness
-CreateIllnessSaveLink=Save
-CreateIllnessShowAllLink=Show All Illness Items
-CreateIllnessIndexLink=Index
-CreateIllnessLabel_id=Id:
-CreateIllnessTitle_id=Id
-CreateIllnessLabel_name=Name:
-CreateIllnessTitle_name=Name
-EditIllnessTitle=Edit Illness
-EditIllnessSaveLink=Save
-EditIllnessViewLink=View
-EditIllnessShowAllLink=Show All Illness Items
-EditIllnessIndexLink=Index
-EditIllnessLabel_id=Id:
-EditIllnessTitle_id=Id
-EditIllnessLabel_name=Name:
-EditIllnessTitle_name=Name
-ViewIllnessTitle=View
-ViewIllnessDestroyLink=Destroy
-ViewIllnessEditLink=Edit
-ViewIllnessCreateLink=Create New Illness
-ViewIllnessShowAllLink=Show All Illness Items
-ViewIllnessIndexLink=Index
-ViewIllnessLabel_id=Id:
-ViewIllnessTitle_id=Id
-ViewIllnessLabel_name=Name:
-ViewIllnessTitle_name=Name
-ListIllnessTitle=List
-ListIllnessEmpty=(No Illness Items Found)
-ListIllnessDestroyLink=Destroy
-ListIllnessEditLink=Edit
-ListIllnessViewLink=View
-ListIllnessCreateLink=Create New Illness
-ListIllnessIndexLink=Index
-ListIllnessTitle_id=Id
-ListIllnessTitle_name=Name
+ListBloodGroupTitle_id=C\u00f3digo
+ListBloodGroupTitle_name=Nombre
 
 CreateSonLabel_name=Nombres RN:
 CreateSonTitle_name=Nombres RN
@@ -1986,6 +1946,7 @@ CreateSonLabel_asphyxiaDelivery=Asfixia en el parto:
 EditSonLabel_asphyxiaDelivery=Asfixia en el parto:
 ViewSonLabel_asphyxiaDelivery=Asfixia en el parto:
 
+<<<<<<< HEAD
 AddictionTypeCreated=AddictionType was successfully created.
 AddictionTypeUpdated=AddictionType was successfully updated.
 AddictionTypeDeleted=AddictionType was successfully deleted.
@@ -2094,3 +2055,5 @@ ListAddictionTitle_mother=Mother
 ListAddictionTitle_type=Type
 
 registerAddiction=Registrar adicci\u00f3n
+=======
+>>>>>>> 05e83b19746cef04a6e9f74ca8c6ab8a0583fa25

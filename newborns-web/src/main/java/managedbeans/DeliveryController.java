@@ -28,7 +28,8 @@ public class DeliveryController implements Serializable {
     private DeliveryFacadeLocal ejbFacade;
     private List<Delivery> items = null;
     private Delivery selected;
-
+    private int numberSons;
+    
     @Inject
     private SessionUtil sessionUtil;
 
@@ -57,7 +58,7 @@ public class DeliveryController implements Serializable {
     }
 
     public Delivery prepareCreate() {
-        selected = new Delivery();
+        selected = new Delivery();        
         selected.setMother(motherController.getSelected());
         selected.setCreatedBy(sessionUtil.getCurrentUser());
         initializeEmbeddableKey();
@@ -84,8 +85,8 @@ public class DeliveryController implements Serializable {
     }
 
     public List<Delivery> getItems() {
-        motherController.refreshSelected();            
-        items = motherController.getSelected().getDeliveries();        
+        motherController.refreshSelected();
+        items = motherController.getSelected().getDeliveries();
         refreshSelected();
         return items;
     }
@@ -127,10 +128,18 @@ public class DeliveryController implements Serializable {
     public void refreshSelected() {
         if (selected != null) {
             Long id = selected.getId();
-            if(id!=null){
+            if (id != null) {
                 selected = getDelivery(id);
             }
         }
+    }
+
+    public int getNumberSons() {
+        return numberSons = motherController.getSelected().getSons().size();
+    }
+
+    public void setNumberSons(int numberSons) {
+        this.numberSons = motherController.getSelected().getSons().size();
     }
 
     public List<Delivery> getItemsAvailableSelectMany() {

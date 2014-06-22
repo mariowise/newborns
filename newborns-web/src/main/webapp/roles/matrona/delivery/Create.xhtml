@@ -34,15 +34,18 @@
                         <p:selectBooleanCheckbox id="laceAccident" value="#{deliveryController.selected.laceAccident}"/>
                         <p:outputLabel value="RCIU" for="rciu"/>
                         <p:selectBooleanCheckbox id="rciu" value="#{deliveryController.selected.rciu}"/>
-                        <p:outputLabel value="Otra patología" for="anotherPathology"/>
-                        <p:selectBooleanCheckbox id="anotherPathology" value="#{deliveryController.selected.anotherPathology}"/>
                         <p:outputLabel value="VDLR" for="vdlr"/>
                         <p:selectBooleanCheckbox id="vdlr" value="#{deliveryController.selected.vdrl}"/>
+                        <p:outputLabel value="Otra patología" for="anotherPathologyDescription"/>
+                        <p:inputText id="anotherPathologyDescription" value="#{deliveryController.selected.anotherPathologyDescription}"/>
+                        <p:outputLabel value="Semanas de gestación" for="weeksGestation"/>
+                        <p:inputText id="weeksGestation" value="#{deliveryController.selected.weeksGestation}"/>
+                        
                         <p:outputLabel value="Polidependencia" for="polidependencia"/>
                         <p:selectBooleanCheckbox id="polidependencia" value="#{deliveryController.selected.polidependencia}"/>
                         <p:outputLabel value="Embarazo de alto riesgo" for="risk"/>
                         <p:selectBooleanCheckbox id="risk" value="#{deliveryController.selected.risk}"/>
-                        
+
                         <p:outputLabel value="#{bundle.CreateDeliveryLabel_date}" for="date" />
                         <p:calendar id="date" pattern="MM/dd/yyyy" value="#{deliveryController.selected.date}" title="#{bundle.EditDeliveryTitle_date}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateDeliveryLabel_time}" for="time" />

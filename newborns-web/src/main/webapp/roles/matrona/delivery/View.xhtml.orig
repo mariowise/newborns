@@ -7,9 +7,9 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        
+
         <p:dialog id="DeliveryViewDlg" widgetVar="DeliveryViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDeliveryTitle}">
-            
+
             <h:form id="DeliveryViewForm">
                 <p:scrollPanel mode="native" style="width:850px;height:500px">
                     <h:panelGroup id="display">
@@ -45,70 +45,17 @@
                             <p:outputLabel value="Embarazo de alto riesgo" for="risk"/>
                             <p:selectBooleanCheckbox disabled="true" id="risk" value="#{deliveryController.selected.risk}"/>
 
-                        <h:outputText value="#{bundle.ViewDeliveryLabel_id}"/>
-                        <h:outputText value="#{deliveryController.selected.id}" title="#{bundle.ViewDeliveryTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewDeliveryLabel_date}"/>
-                        <h:outputText value="#{deliveryController.selected.date}" title="#{bundle.ViewDeliveryTitle_date}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewDeliveryLabel_time}"/>
-                        <h:outputText value="#{deliveryController.selected.time}" title="#{bundle.ViewDeliveryTitle_time}">
-                            <f:convertDateTime pattern="HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewDeliveryLabel_mother}"/>
-                        <h:outputText value="#{deliveryController.selected.mother}" title="#{bundle.ViewDeliveryTitle_mother}"/>
-                        <h:outputText value="#{bundle.ViewDeliveryLabel_deliveryType}"/>
-                        <h:outputText value="#{deliveryController.selected.deliveryType}" title="#{bundle.ViewDeliveryTitle_deliveryType}"/>
-                        <h:outputText value="#{bundle.ViewDeliveryLabel_createdBy}"/>
-                        <h:outputText value="#{deliveryController.selected.createdBy}" title="#{bundle.ViewDeliveryTitle_createdBy}"/>
-                    </p:panelGrid>
-
-                    <h4>Reanimaciones</h4>
-                    <p:dataTable var="item" value="#{deliveryController.selected.revivals}" scrollable="true" scrollHeight="150" scrollWidth="760" sortBy="#{item.createdAtDate}" sortOrder="DESCENDING">
-                        <p:column headerText="Id" width="150">
-                            <h:outputText value="#{item.id}" />
-                        </p:column>
-                        <p:column headerText="Oxígeno" width="150">
-                            <h:outputText value="Sí" rendered="#{item.oxygen}" />
-                            <h:outputText value="No" rendered="#{!item.oxygen}" />                            
-                        </p:column>
-                        <p:column headerText="Intubación" width="150">
-                            <h:outputText value="Sí" rendered="#{item.intubation}" />
-                            <h:outputText value="No" rendered="#{!item.intubation}" />
-                        </p:column>
-                        <p:column headerText="Bicarbonato" width="150">
-                            <h:outputText value="Sí" rendered="#{item.bicarbonate}" />
-                            <h:outputText value="No" rendered="#{!item.bicarbonate}" />
-                        </p:column>
-                        <p:column headerText="Ventilación Presión Positiva" width="150">
-                            <h:outputText value="Sí" rendered="#{item.positivePressureVentilation}" />
-                            <h:outputText value="No" rendered="#{!item.positivePressureVentilation}" />
-                        </p:column>
-                        <p:column headerText="Masaje cardiaco" width="150">
-                            <h:outputText value="Sí" rendered="#{item.cardiacMassage}" />
-                            <h:outputText value="No" rendered="#{!item.cardiacMassage}" />
-                        </p:column>
-                        <p:column headerText="Adrenalina" width="150">
-                            <h:outputText value="Sí" rendered="#{item.adrenalin}" />
-                            <h:outputText value="No" rendered="#{!item.adrenalin}" />
-                        </p:column>
-                        <p:column headerText="Fecha reanimación" width="150">
-                            <h:outputText value="#{item.createdAtDate}">
-                                <f:convertDateTime pattern="dd/MM/yyyy" />
-                            </h:outputText>  
-                        </p:column>
-                        <p:column headerText="Hora reanimación" width="150">
-                            <h:outputText value="#{item.createdAtTime}">
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_id}"/>
+                            <h:outputText value="#{deliveryController.selected.id}" title="#{bundle.ViewDeliveryTitle_id}"/>
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_date}"/>
+                            <h:outputText value="#{deliveryController.selected.date}" title="#{bundle.ViewDeliveryTitle_date}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_time}"/>
+                            <h:outputText value="#{deliveryController.selected.time}" title="#{bundle.ViewDeliveryTitle_time}">
                                 <f:convertDateTime pattern="HH:mm:ss" />
                             </h:outputText>
-                            <h:outputText value="#{bundle.ViewDeliveryLabel_mother}"/>
-                            <h:outputText value="#{deliveryController.selected.mother}" title="#{bundle.ViewDeliveryTitle_mother}"/>
-                            <h:outputText value="#{bundle.ViewDeliveryLabel_deliveryType}"/>
-                            <h:outputText value="#{deliveryController.selected.deliveryType.name}" title="#{bundle.ViewDeliveryTitle_deliveryType}"/>
-                            <h:outputText value="#{bundle.ViewDeliveryLabel_createdBy}"/>
-                            <h:outputText value="#{deliveryController.selected.createdBy.name}" title="#{bundle.ViewDeliveryTitle_createdBy}"/>
-                            <h:outputText value="#{bundle.ViewDeliveryLabel_weeksGestation}"/>
-                            <h:outputText value="#{deliveryController.selected.weeksGestation}" title="#{bundle.ViewDeliveryTitle_weeksGestation}"/>
+<<<<<<< HEAD
                         </p:column>                        
                     </p:dataTable>
                     
@@ -127,6 +74,16 @@
                             <h:outputText value="#{addiction.recordDate}" />
                         </p:column>
                     </p:dataTable>
+=======
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_mother}"/>
+                            <h:outputText value="#{deliveryController.selected.mother}" title="#{bundle.ViewDeliveryTitle_mother}"/>
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_deliveryType}"/>
+                            <h:outputText value="#{deliveryController.selected.deliveryType.name}" title="#{bundle.ViewDeliveryTitle_deliveryType}"/>
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_createdBy}"/>
+                            <h:outputText value="#{deliveryController.selected.createdBy.name}" title="#{bundle.ViewDeliveryTitle_createdBy}"/>
+                            <h:outputText value="#{bundle.ViewDeliveryLabel_weeksGestation}"/>
+                            <h:outputText value="#{deliveryController.selected.weeksGestation}" title="#{bundle.ViewDeliveryTitle_weeksGestation}"/>
+                        </p:panelGrid>
 
                         <h4>Reanimaciones</h4>
                         <p:dataTable var="item" value="#{deliveryController.selected.revivals}" scrollable="true" scrollHeight="150" scrollWidth="760" sortBy="#{item.createdAtDate}" sortOrder="DESCENDING">
@@ -178,6 +135,7 @@
                                 <h:outputText value="#{item.partyType.name}" />
                             </p:column>
                         </p:dataTable>
+>>>>>>> 05e83b19746cef04a6e9f74ca8c6ab8a0583fa25
 
                     </h:panelGroup>
                 </p:scrollPanel>

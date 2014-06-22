@@ -58,12 +58,16 @@
                         <p:inputText id="secretionColour" value="#{sonController.selected.secretionColour}" title="#{bundle.CreateSonTitle_secretionColour}" />
                         <p:outputLabel value="#{bundle.CreateSonLabel_consistency}" for="consistency" />
                         <p:inputText id="consistency" value="#{sonController.selected.consistency}" title="#{bundle.CreateSonTitle_consistency}" />
+                        <p:outputLabel value="#{bundle.CreateSonLabel_pediatricExamination}" for="pediatricExamination" />
+                        <p:inputText id="pediatricExamination" value="#{sonController.selected.pediatricExamination}" title="#{bundle.CreateSonTitle_pediatricExamination}" />
                         <p:outputLabel value="#{bundle.CreateSonLabel_gas}" for="gas" />
                         <p:selectBooleanCheckbox id="gas" value="#{sonController.selected.gas}" />
                         <p:outputLabel value="#{bundle.CreateSonLabel_asphyxiaDelivery}" for="asphyxiaDelivery" />
                         <p:selectBooleanCheckbox id="asphyxiaDelivery" value="#{sonController.selected.asphyxiaDelivery}" />                        
-                        <p:outputLabel value="#{bundle.CreateSonLabel_extremePremature}" for="extremePremature" />
-                        <p:selectBooleanCheckbox id="extremePremature" value="#{sonController.selected.extremePremature}" />
+                        <p:outputLabel value="#{bundle.CreateSonLabel_bornAlive}" for="bornAlive" />
+                        <p:selectBooleanCheckbox id="bornAlive" value="#{sonController.selected.bornAlive}" />
+                        <p:outputLabel value="#{bundle.CreateSonLabel_mechanicalVentilation}" for="mechanicalVentilation" />
+                        <p:selectBooleanCheckbox id="mechanicalVentilation" value="#{sonController.selected.mechanicalVentilation}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{sonController.create}" value="#{bundle.Save}" update="display,:DeliveryListForm:datalist,:growl" oncomplete="handleSubmit(args,'SonCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SonCreateDialog.hide()"/>

@@ -12,8 +12,6 @@
             <h:form id="RegionEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{regionController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditRegionLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{regionController.selected.id}" title="#{bundle.EditRegionTitle_id}" />
                         <p:outputLabel value="#{bundle.EditRegionLabel_name}" for="name" />
                         <p:inputText id="name" value="#{regionController.selected.name}" title="#{bundle.EditRegionTitle_name}" />
                     </p:panelGrid>

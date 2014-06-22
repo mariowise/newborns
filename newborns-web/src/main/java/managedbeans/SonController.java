@@ -29,6 +29,7 @@ public class SonController implements Serializable {
     private List<Son> items = null;
     private List<Son> allItems = null;
     private Son selected;
+    private boolean extremePremature;
     
     @Inject
     private MotherController motherController;
@@ -102,6 +103,7 @@ public class SonController implements Serializable {
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
+        Premature();
         if (selected != null) {
             setEmbeddableKeys();
             try {
@@ -135,6 +137,14 @@ public class SonController implements Serializable {
         return getFacade().find(id);
     }
     
+    public void Premature(){
+        if (selected.getPediatricExamination()>32){
+            extremePremature=true;            
+        } else {
+            extremePremature=false;            
+        }
+        selected.setExtremePremature(extremePremature);
+    }
     public void refreshSelected() {
         if (selected != null) {
             Long id = selected.getId();

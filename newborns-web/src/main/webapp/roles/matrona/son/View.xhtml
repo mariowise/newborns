@@ -68,6 +68,12 @@
                         <h:outputText value="#{sonController.selected.mother.profile}" title="#{bundle.ViewSonTitle_mother}"/>
                         <h:outputText value="#{bundle.ViewSonLabel_delivery}"/>
                         <h:outputText value="#{sonController.selected.delivery}" title="#{bundle.ViewSonTitle_delivery}"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_bornAlive}"/>
+                        <p:selectBooleanCheckbox value="#{sonController.selected.bornAlive}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_mechanicalVentilation}"/>
+                        <p:selectBooleanCheckbox value="#{sonController.selected.mechanicalVentilation}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_pediatricExamination}"/>
+                        <h:outputText value="#{sonController.selected.pediatricExamination}" title="#{bundle.ViewSonTitle_pediatricExamination}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SonViewDialog.hide()"/>
                 </h:panelGroup>
