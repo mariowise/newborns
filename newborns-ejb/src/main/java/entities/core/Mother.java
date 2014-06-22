@@ -23,6 +23,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -108,7 +109,7 @@ public class Mother implements Serializable {
     private Service healthService;
 
     @NotNull
-    @ManyToOne
+    @OneToOne
     private Profile profile;
 
     @OneToMany(mappedBy = "mother")
