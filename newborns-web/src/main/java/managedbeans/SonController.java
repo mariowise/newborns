@@ -135,20 +135,20 @@ public class SonController implements Serializable {
         return amount;
     }
     
-    public Map getRegisteredSons() {
+    public Map getRegisteredItems() {
         
-        List<Son> allItems = getAllItems();
-        Map registeredSons = new HashMap<>();
+        getAllItems();
+        Map registeredItems = new HashMap<>();
         
-        for(Son son : allItems) {            
-            String key = son.getYear().getId().toString();
+        for(Son item : allItems) {            
+            String key = item.getYear().getId().toString();
             int value = 0;
-            if (registeredSons.get(key) != null) {
-                value = (int) registeredSons.get(key);
+            if (registeredItems.get(key) != null) {
+                value = (int) registeredItems.get(key);
             }
-            registeredSons.put(key , value + 1);            
+            registeredItems.put(key , value + 1);            
         }
-        return registeredSons;
+        return registeredItems;
     }
 
     private void persist(PersistAction persistAction, String successMessage) {

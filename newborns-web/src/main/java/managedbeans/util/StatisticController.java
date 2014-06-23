@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import managedbeans.AddictionController;
 import managedbeans.MotherController;
+import managedbeans.ServiceAttentionController;
 import managedbeans.SonController;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
@@ -28,11 +29,13 @@ import org.primefaces.model.chart.PieChartModel;
 @Named(value = "statisticController")
 @RequestScoped
 public class StatisticController {
-    
+
+    private BarChartModel recordNewbornBarModel;    
     private PieChartModel prematureNewbornPieModel;
+    
+    private BarChartModel recordMotherBarModel;
     private PieChartModel addictedMotherPieModel;
     private BarChartModel addictionMotherBarModel;
-    private BarChartModel recordNewbornBarModel;
     
     @Inject
     private SonController sonController;
@@ -42,6 +45,9 @@ public class StatisticController {
     
     @Inject
     private AddictionController addictionController;
+    
+    @Inject
+    private ServiceAttentionController serviceAttentionController;
  
     public StatisticController() {
     }
@@ -54,12 +60,15 @@ public class StatisticController {
      
     private void createPieModels() {
         createPrematureNewbornPieModel();
+        
         createAddictedMotherPieModel();
     }
  
     private void createBarModels() {
-        createAddictionMotherBarModel();
         createRecordNewbornBarModel();
+        
+        createRecordMotherBarModel();
+        createAddictionMotherBarModel();
     }
  
     public PieChartModel getPrematureNewbornPieModel() {
@@ -76,6 +85,10 @@ public class StatisticController {
     
     public BarChartModel getRecordNewbornBarModel() {
         return recordNewbornBarModel;
+    }
+    
+    public BarChartModel getRecordMotherBarModel() {
+        return recordMotherBarModel;
     }
     
     private void createPrematureNewbornPieModel() {
@@ -157,7 +170,7 @@ public class StatisticController {
     
     private BarChartModel initRecordNewbornBarModel() {
         
-        Map registeredSons = sonController.getRegisteredSons();
+        Map registeredSons = sonController.getRegisteredItems();
         
         BarChartModel model = new BarChartModel();
  
@@ -183,5 +196,35 @@ public class StatisticController {
         yAxis.setLabel("N° Neonatos");
         yAxis.setMin(0);
         yAxis.setMax(sonController.getAllItems().size());
+    }
+    
+    private BarChartModel initRecordMotherBarModel() {
+        
+        Map registeredMothers = serviceAttentionController.getRegisteredItems("Mother");
+        
+        BarChartModel model = new BarChartModel();
+ 
+        ChartSeries register = new ChartSeries();
+        register.setLabel("Madres Registradas");        
+        register.setData(registeredMothers);
+         
+        model.addSeries(register);
+         
+        return model;
+    }
+     
+    private void createRecordMotherBarModel() {
+        recordMotherBarModel = initRecordMotherBarModel();
+         
+        recordMotherBarModel.setTitle("Registro de madres");
+        recordMotherBarModel.setLegendPosition("ne");
+         
+        Axis xAxis = recordMotherBarModel.getAxis(AxisType.X);
+        xAxis.setLabel("Años de registro");
+         
+        Axis yAxis = recordMotherBarModel.getAxis(AxisType.Y);
+        yAxis.setLabel("N° Madres");
+        yAxis.setMin(0);
+        yAxis.setMax(motherController.getAllItems().size());
     }
 }

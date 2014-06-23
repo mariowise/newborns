@@ -32,6 +32,7 @@ public class AddictionController implements Serializable {
     @EJB
     private AddictionFacadeLocal ejbFacade;
     private List<Addiction> items = null;
+    private List<Addiction> allItems = null;
     private Addiction selected;
     
     @Inject
@@ -92,15 +93,15 @@ public class AddictionController implements Serializable {
     }
     
     public List<Addiction> getAllItems() {           
-        items = getFacade().findAll();
-        if (items == null) {
-            items = new ArrayList<Addiction>();
+        allItems = getFacade().findAll();
+        if (allItems == null) {
+            allItems = new ArrayList<Addiction>();
         }
-        return items;
+        return allItems;
     }
     
     public Map getAddictionsByType(String addictionType) {
-        List<Addiction> allItems = getAllItems();
+        getAllItems();
         Map mapSelectedAddictions = new HashMap<>();
         
         for(Addiction addiction : allItems) {

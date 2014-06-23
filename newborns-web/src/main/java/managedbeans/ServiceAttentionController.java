@@ -1,25 +1,28 @@
 package managedbeans;
 
 import entities.ServiceAttention;
-import managedbeans.util.JsfUtil;
-import managedbeans.util.JsfUtil.PersistAction;
-import sessionbeans.ServiceAttentionFacadeLocal;
-
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
+import javax.inject.Named;
+import managedbeans.util.JsfUtil;
+import managedbeans.util.JsfUtil.PersistAction;
 import managedbeans.util.SessionUtil;
+import sessionbeans.ServiceAttentionFacadeLocal;
 
 @Named("serviceAttentionController")
 @SessionScoped
@@ -28,6 +31,7 @@ public class ServiceAttentionController implements Serializable {
     @EJB
     private ServiceAttentionFacadeLocal ejbFacade;
     private List<ServiceAttention> items = null;
+    private List<ServiceAttention> allItems = null;
     private ServiceAttention selected;
     
     private List<ServiceAttention> filteredItems;
@@ -90,6 +94,43 @@ public class ServiceAttentionController implements Serializable {
         motherController.refreshSelected();
         items = motherController.getSelected().getAttentions();
         return items;
+    }
+    
+    public List<ServiceAttention> getAllItems() {
+        allItems = getFacade().findAll();
+        return allItems;
+    }
+    
+    public Map getRegisteredItems(String attentionType) {
+        
+        getAllItems();
+        Map registeredItems = new HashMap<>();
+        if (attentionType.contentEquals("Mother")) {
+            for(ServiceAttention item : allItems) {
+                if (item.getMother() != null) {
+                    Calendar myCal = new GregorianCalendar();
+                    myCal.setTime(item.getCreatedAt());
+                    String key = String.valueOf(myCal.get(Calendar.YEAR));
+                    int value = 0;
+                    if (registeredItems.get(key) != null) {
+                        value = (int) registeredItems.get(key);
+                    }
+                    registeredItems.put(key , value + 1);            
+                } 
+            }                        
+        } else {
+            for(ServiceAttention item : allItems) {                
+                Calendar myCal = new GregorianCalendar();
+                myCal.setTime(item.getCreatedAt());
+                String key = String.valueOf(myCal.get(Calendar.YEAR));
+                int value = 0;
+                if (registeredItems.get(key) != null) {
+                    value = (int) registeredItems.get(key);
+                }
+                registeredItems.put(key , value + 1); 
+            }
+        }
+        return registeredItems;
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
