@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="/layout/1column.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="FaQ Admin"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h1 id="Home">FAQ Administrador</h1>
+            <hr></hr>
+
+            <div class="row">
+                <div class="col-md-9" role="main">
+                    <div class="bs-docs-section">
+                        <h1 id="dataPersonal" class="page-header">¿Puedo modificar mis datos personales?</h1>
+                        <!--estos pueden ser (nombre, teléfono, mail)--> 
+                        <p class="lead">Si, para esto debe acceder a su perfil. El perfil es lo referente a los datos 
+                            de cualquier usuario, del cual constan cuatro elementos identificables:
+                            <ul>
+                                <li>RUT</li>
+                                <li>Tipo</li>
+                                <li>Nombre</li>
+                                <li>Teléfono</li>
+                                <li>Correo Eléctronico</li>
+                            </ul>
+                            Para acceder a este debe ir al <a href="/newborns-web/faces/roles/Profile.xhtml">siguiente enlace</a> o bien ingresar desde
+                            el menú que se muestra a continuación y seleccionar la opción <b>Ver Perfil</b></p>
+                        <h:graphicImage class="profile-icon" library="images/adminFAQ/" width="300px" height="200px" name="HomeAdmin.png" />
+                    </div>
+
+                    <div class="bs-docs-section">
+                        <h1 id="passwordChange" class="page-header">¿Puedo modificar mi contraseña?</h1>
+                        <!--estos pueden ser (nombre, teléfono, mail)--> 
+                        <p class="lead">Si, para esto debe acceder a Cambiar contraseña. En este panel se le permite realizar
+                            el cambio de su contraseña actual por una nueva.
+                            Para acceder a este debe ir al <a href="/newborns-web/faces/roles/ProfileChangePassword.xhtml">siguiente enlace</a> o bien ingresar desde
+                            el menú que se muestra a continuación.</p>
+                        <h:graphicImage class="profile-icon" library="images/adminFAQ/" width="300px" height="200px" name="PasswordRecovery.png" />
+                    </div>
+
+                    <div class="bs-docs-section">
+                        <h1 id="userMaintainer" class="page-header">Mantenedor de usuarios</h1>
+
+                        <p class="lead">El usuario administrador puede agregar, modificar y ver el detalle de los
+                            usuarios del sistema. También puede dar o quitar acceso a los usuarios ya registrados.
+                            Para realizar esto debe inregsar a la sección de 
+                            <a href="roles/admin/account/List.xhtml">Usuarios</a> 
+                            en el menú que se muestra a continuación.</p>
+                        <h:graphicImage class="profile-icon" library="images/adminFAQ/" width="300px" height="200px" name="userMaintainer.png" />
+                        <p class="lead">   Lista de las acciones mencionadas de mantenedor de usuarios:
+                        </p>
+
+
+                        <h2 id="newUser">a) Agregar nuevos usuarios al sistema</h2>
+                        <p>Para agregar un usuario debe seleccionar la opción <b>Nuevo</b> y llenar los datos en la 
+                            ventana emergente y luego seleccionar la opción de <b>Guardar</b>
+                        </p>
+
+                        <h2 id="editUser">b) Modificar usuarios del sistema</h2>
+                        <p>Para modificar un usuario, debe seleccionar uno de la lista, a continuación debe elegir
+                            la opción <b>Editar</b> y modificar los datos que estime
+                            necesarios en la ventana emergente. Finalmente debe seleccionar la opción de <b>Guardar</b>
+                        </p>
+
+                        <h2 id="viewUser">c) Ver el detalle de los usuarios del sistema</h2>
+                        <p>Para ver los detalles de un usuario, debe seleccionar uno de la lista, a continuación debe elegir
+                            la opción <b>Ver Detalle</b> donde se desplegará una ventana con los datos del usuario seleccionado.
+                            Una vez que termine, debe presionar la opción <b>Cerrar</b> para salir de la ventana emergente.
+                        </p>
+
+                        <h2 id="accesUser">d) Dar/Quitar acceso a usuarios del sistema</h2>
+                        <p>Para dar o quitar el acceso de un usuario, debe seleccionar uno de la lista, a continuación debe 
+                            elegir la opción <b>Habilitar/Deshabilitar</b> con lo que se le cambiará el acceso al usuario.
+                            Este será deshabilitado si se encontraba habilitado y habilitado en caso contrario.
+                        </p>
+
+                    </div>
+
+                    <div class="bs-docs-section">
+                        <h1 id="maintainer" class="page-header">Mantenedores</h1>
+                        <!--estos pueden ser (nombre, teléfono, mail)--> 
+                        <p class="lead">En la sección <b>Mantenedores</b> se le permite realizar el ingreso y modificación 
+                            de distintos datos requeridos por el sistema. Estos datos pueden ser:
+                            <ul>
+                                <li> <a href="roles/admin/illness/List.xhtml"> Enfermedades </a></li>
+                                <li> <a href="roles/admin/bloodGroup/List.xhtml"> Grupos Sanguíneos </a></li>
+                                <li> <a href="roles/admin/deliveryType/List.xhtml"> Tipos de Parto </a></li>
+                                <li> <a href="roles/admin/forecast/List.xhtml"> Previsiones </a></li>
+                                <li> <a href="roles/admin/gender/List.xhtml"> Géneros </a></li>
+                                <li> <a href="roles/admin/partyType/List.xhtml"> Tipos de Acompañante </a></li>
+                                <li> <a href="roles/admin/residencyType/List.xhtml"> Tipos de Residencia </a></li>
+                                <li> <a href="roles/admin/country/List.xhtml"> Países </a></li>
+                                <li> <a href="roles/admin/region/List.xhtml"> Regiones </a></li>
+                                <li> <a href="roles/admin/commune/List.xhtml"> Comunas </a></li>
+                            </ul>
+                            Para acceder a este debe hacer click sobre cada uno de estos en el menú que se muestra a continuación.</p>
+                        <h:graphicImage class="profile-icon" library="images/adminFAQ/" width="300px" height="200px" name="Maintainer.png" />
+                    </div>
+
+                </div>
+
+                <!--Columna de la derecha xD-->
+                <div class="col-md-3">
+                    <div class="bs-docs-sidebar hidden-print affix" role="complementary" style="">
+                        <ul class="nav bs-docs-sidenav">
+                            <li class="">
+                                <a href="#dataPersonal">Datos Personales</a>
+                            </li>
+
+                            <li class="">
+                                <a href="#passwordChange">Cambio Contraseña</a>
+                            </li>
+
+                            <li class="">
+                                <a href="#userMaintainer">Mantenedor de Usuarios</a>
+                                <ul class="nav">
+                                    <li class=""><a href="#newUser">Nuevo usuario</a></li>
+                                    <li class=""><a href="#editUser">Modificar usuario</a></li>
+                                    <li class=""><a href="#viewUser">Ver Detalle usuario</a></li>
+                                    <li class=""><a href="#accesUser">Acceso usuario</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="">
+                                <a href="#maintainer">Mantenedores</a>
+                            </li>
+                        </ul>
+                        <a class="Home" href="#Home">
+                            Volver al inicio
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
+
