@@ -3,6 +3,7 @@ package managedbeans;
 import entities.core.Profile;
 import entities.core.Son;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -107,6 +108,28 @@ public class SonController implements Serializable {
     public List<Son> getAllItems() {
         allItems = getFacade().findAll();
         return allItems;
+    }
+    
+    public List<Son> getPrematureItems() {
+        List<Son> allSons = getAllItems();
+        List<Son> selectedSons = new ArrayList<Son>();
+        for(Son son : allSons) {
+            if (son.getExtremePremature()) {
+                selectedSons.add(son);
+            }
+        }
+        return selectedSons;
+    }
+    
+    public int countPrematureItems() {
+        List<Son> allSons = getAllItems();
+        int amount = 0;
+        for(Son son : allSons) {
+            if (son.getExtremePremature()) {
+                amount++;
+            }
+        }
+        return amount;
     }
 
     private void persist(PersistAction persistAction, String successMessage) {

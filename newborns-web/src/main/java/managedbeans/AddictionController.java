@@ -2,10 +2,17 @@ package managedbeans;
 
 import entities.core.Addiction;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.binding.MapExpression;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
@@ -83,6 +90,34 @@ public class AddictionController implements Serializable {
         items = motherController.getSelected().getAddictions();        
         refreshSelected();
         return items;
+    }
+    
+    public List<Addiction> getAllItems() {           
+        items = getFacade().findAll();
+        if (items == null) {
+            items = new ArrayList<Addiction>();
+        }
+        return items;
+    }
+    
+    public Map getAddictionsByType(String addictionType) {
+        List<Addiction> allAddictions = getAllItems();
+        Map mapSelectedAddictions = new HashMap<>();
+        
+        for(Addiction addiction : allAddictions) {
+            if (addictionType.equals(addiction.getType().getName())) {
+                Calendar myCal = new GregorianCalendar();
+                myCal.setTime(addiction.getRecordDate());
+                String key = String.valueOf(myCal.get(Calendar.YEAR));
+                int value = 0;
+                if (mapSelectedAddictions.get(key) != null) {
+                    value = (int) mapSelectedAddictions.get(key);
+                }
+                mapSelectedAddictions.put(key , value + 1);
+            }
+        }
+        
+        return mapSelectedAddictions;
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
