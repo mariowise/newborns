@@ -1,10 +1,10 @@
 package managedbeans;
 
 import entities.core.Addiction;
+import entities.core.Mother;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.binding.MapExpression;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
@@ -101,10 +100,10 @@ public class AddictionController implements Serializable {
     }
     
     public Map getAddictionsByType(String addictionType) {
-        List<Addiction> allAddictions = getAllItems();
+        List<Addiction> allItems = getAllItems();
         Map mapSelectedAddictions = new HashMap<>();
         
-        for(Addiction addiction : allAddictions) {
+        for(Addiction addiction : allItems) {
             if (addictionType.equals(addiction.getType().getName())) {
                 Calendar myCal = new GregorianCalendar();
                 myCal.setTime(addiction.getRecordDate());
@@ -118,6 +117,17 @@ public class AddictionController implements Serializable {
         }
         
         return mapSelectedAddictions;
+    }
+    
+    public int countAddictedMothers() {
+        List<Addiction> allAddictions = getAllItems();
+        List<Mother> addictedMothers = new ArrayList<Mother>();
+        for (Addiction addiction : allAddictions) {
+            if (!addictedMothers.contains(addiction)) {
+                addictedMothers.add(addiction.getMother());
+            }
+        }
+        return addictedMothers.size();
     }
 
     private void persist(PersistAction persistAction, String successMessage) {

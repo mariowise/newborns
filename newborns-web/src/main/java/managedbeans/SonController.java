@@ -4,7 +4,10 @@ import entities.core.Profile;
 import entities.core.Son;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -130,6 +133,22 @@ public class SonController implements Serializable {
             }
         }
         return amount;
+    }
+    
+    public Map getRegisteredSons() {
+        
+        List<Son> allItems = getAllItems();
+        Map registeredSons = new HashMap<>();
+        
+        for(Son son : allItems) {            
+            String key = son.getYear().getId().toString();
+            int value = 0;
+            if (registeredSons.get(key) != null) {
+                value = (int) registeredSons.get(key);
+            }
+            registeredSons.put(key , value + 1);            
+        }
+        return registeredSons;
     }
 
     private void persist(PersistAction persistAction, String successMessage) {

@@ -3,6 +3,7 @@ package managedbeans;
 import entities.core.Mother;
 import entities.core.Profile;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -88,6 +89,14 @@ public class MotherController implements Serializable {
     public List<Mother> getItems() {
         if (items == null) {
             items = getFacade().findAll();
+        }
+        return items;
+    }
+         
+    public List<Mother> getAllItems() {           
+        items = getFacade().findAll();
+        if (items == null) {
+            items = new ArrayList<Mother>();
         }
         return items;
     }

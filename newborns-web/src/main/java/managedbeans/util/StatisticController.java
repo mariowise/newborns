@@ -6,8 +6,6 @@
 
 package managedbeans.util;
 
-import entities.core.Addiction;
-import entities.core.Son;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
@@ -30,22 +28,24 @@ import org.primefaces.model.chart.PieChartModel;
 @Named(value = "statisticController")
 @RequestScoped
 public class StatisticController {
-
-    /**
-     * Creates a new instance of StatisticController
-     */
-    public StatisticController() {
-    }
     
     private PieChartModel prematureNewbornPieModel;
+    private PieChartModel addictedMotherPieModel;
     private BarChartModel addictionMotherBarModel;
+    private BarChartModel recordNewbornBarModel;
     
     @Inject
     private SonController sonController;
     
     @Inject
+    private MotherController motherController;
+    
+    @Inject
     private AddictionController addictionController;
  
+    public StatisticController() {
+    }
+    
     @PostConstruct
     public void init() {
         createPieModels();
@@ -54,34 +54,60 @@ public class StatisticController {
      
     private void createPieModels() {
         createPrematureNewbornPieModel();
+        createAddictedMotherPieModel();
     }
  
     private void createBarModels() {
         createAddictionMotherBarModel();
+        createRecordNewbornBarModel();
     }
  
     public PieChartModel getPrematureNewbornPieModel() {
         return prematureNewbornPieModel;
+    }
+ 
+    public PieChartModel getAddictedMotherPieModel() {
+        return addictedMotherPieModel;
     }
      
     public BarChartModel getAddictionMotherBarModel() {
         return addictionMotherBarModel;
     }
     
+    public BarChartModel getRecordNewbornBarModel() {
+        return recordNewbornBarModel;
+    }
+    
     private void createPrematureNewbornPieModel() {
-        int allSons = sonController.getAllItems().size();
-        int prematureSons = sonController.countPrematureItems();
+        int amountSons = sonController.getAllItems().size();
+        int amountPrematureSons = sonController.countPrematureItems();
         
         prematureNewbornPieModel = new PieChartModel();
          
-        prematureNewbornPieModel.set("Prematuros Extremos", prematureSons);
-        prematureNewbornPieModel.set("No Prematuros Extremos", (allSons - prematureSons));
+        prematureNewbornPieModel.set("Prematuros Extremos", amountPrematureSons);
+        prematureNewbornPieModel.set("No Prematuros Extremos", (amountSons - amountPrematureSons));
          
-        prematureNewbornPieModel.setTitle("Prematuros Extremos");
+        prematureNewbornPieModel.setTitle("Prematuridad extrema en neonatos");
         prematureNewbornPieModel.setLegendPosition("e");
         prematureNewbornPieModel.setFill(false);
         prematureNewbornPieModel.setShowDataLabels(true);
         prematureNewbornPieModel.setDiameter(200);
+    }
+    
+    private void createAddictedMotherPieModel() {
+        int amountMothers = motherController.getAllItems().size();
+        int amountAddictedMothers = addictionController.countAddictedMothers();
+        
+        addictedMotherPieModel = new PieChartModel();
+         
+        addictedMotherPieModel.set("Madres Adictas", amountAddictedMothers);
+        addictedMotherPieModel.set("Madres No Adictas", (amountMothers - amountAddictedMothers));
+         
+        addictedMotherPieModel.setTitle("Madres adictas");
+        addictedMotherPieModel.setLegendPosition("e");
+        addictedMotherPieModel.setFill(false);
+        addictedMotherPieModel.setShowDataLabels(true);
+        addictedMotherPieModel.setDiameter(200);
     }
      
     private BarChartModel initAddictionMotherBarModel() {
@@ -117,15 +143,45 @@ public class StatisticController {
     private void createAddictionMotherBarModel() {
         addictionMotherBarModel = initAddictionMotherBarModel();
          
-        addictionMotherBarModel.setTitle("Adicciones de Madres");
+        addictionMotherBarModel.setTitle("Adicción en madres");
         addictionMotherBarModel.setLegendPosition("ne");
          
         Axis xAxis = addictionMotherBarModel.getAxis(AxisType.X);
-        xAxis.setLabel("Adicciones");
+        xAxis.setLabel("Tipo de adicciones por año");
          
         Axis yAxis = addictionMotherBarModel.getAxis(AxisType.Y);
-        yAxis.setLabel("Madres");
+        yAxis.setLabel("N° Madres");
         yAxis.setMin(0);
         yAxis.setMax(addictionController.getAllItems().size());
+    }
+    
+    private BarChartModel initRecordNewbornBarModel() {
+        
+        Map registeredSons = sonController.getRegisteredSons();
+        
+        BarChartModel model = new BarChartModel();
+ 
+        ChartSeries register = new ChartSeries();
+        register.setLabel("Neonatos Registrados");        
+        register.setData(registeredSons);
+         
+        model.addSeries(register);
+         
+        return model;
+    }
+     
+    private void createRecordNewbornBarModel() {
+        recordNewbornBarModel = initRecordNewbornBarModel();
+         
+        recordNewbornBarModel.setTitle("Registro de neonatos");
+        recordNewbornBarModel.setLegendPosition("ne");
+         
+        Axis xAxis = recordNewbornBarModel.getAxis(AxisType.X);
+        xAxis.setLabel("Años de registro");
+         
+        Axis yAxis = recordNewbornBarModel.getAxis(AxisType.Y);
+        yAxis.setLabel("N° Neonatos");
+        yAxis.setMin(0);
+        yAxis.setMax(sonController.getAllItems().size());
     }
 }
