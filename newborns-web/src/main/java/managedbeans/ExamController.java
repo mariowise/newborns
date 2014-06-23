@@ -1,7 +1,10 @@
 package managedbeans;
 
-import entities.core.Mother;
-import entities.core.Profile;
+import entities.tau.Exam;
+import managedbeans.util.JsfUtil;
+import managedbeans.util.JsfUtil.PersistAction;
+import sessionbeans.ExamFacadeLocal;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -9,43 +12,30 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.inject.Inject;
-import javax.inject.Named;
-import managedbeans.util.JsfUtil;
-import managedbeans.util.JsfUtil.PersistAction;
-import managedbeans.util.SessionUtil;
-import sessionbeans.MotherFacadeLocal;
 
-@Named("motherController")
+@Named("examController")
 @SessionScoped
-public class MotherController implements Serializable {
+public class ExamController implements Serializable {
 
     @EJB
-    private MotherFacadeLocal ejbFacade;
-    private List<Mother> items = null;
-    private Mother selected;
+    private ExamFacadeLocal ejbFacade;
+    private List<Exam> items = null;
+    private Exam selected;
 
-    @Inject
-    private ProfileController profileController;
-    
-    @Inject
-    private SessionUtil sessionUtil;
-    
-    private List<Mother> filteredItems;
-
-    public MotherController() {
+    public ExamController() {
     }
 
-    public Mother getSelected() {
+    public Exam getSelected() {
         return selected;
     }
 
-    public void setSelected(Mother selected) {
+    public void setSelected(Exam selected) {
         this.selected = selected;
     }
 
@@ -55,37 +45,36 @@ public class MotherController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private MotherFacadeLocal getFacade() {
+    private ExamFacadeLocal getFacade() {
         return ejbFacade;
     }
 
-    public Mother prepareCreate() {
-        selected = new Mother();
-        selected.setProfile(new Profile());
+    public Exam prepareCreate() {
+        selected = new Exam();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("MotherCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ExamCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("MotherUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ExamUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("MotherDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ExamDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Mother> getItems() {
+    public List<Exam> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -96,10 +85,7 @@ public class MotherController implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if(persistAction == PersistAction.CREATE) {
-                    getFacade().createWithProfile(selected);
-                }
-                else if (persistAction != PersistAction.DELETE) {
+                if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);
@@ -123,38 +109,29 @@ public class MotherController implements Serializable {
         }
     }
 
-    public Mother getMother(java.lang.Long id) {
+    public Exam getExam(java.lang.Long id) {
         return getFacade().find(id);
     }
-    
-    public void refreshSelected() {
-        if (selected != null) {
-            Long id = selected.getId();
-            if(id!=null){
-                selected = getMother(selected.getId());
-            }
-        }
-    }
 
-    public List<Mother> getItemsAvailableSelectMany() {
+    public List<Exam> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Mother> getItemsAvailableSelectOne() {
+    public List<Exam> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Mother.class)
-    public static class MotherControllerConverter implements Converter {
+    @FacesConverter(forClass = Exam.class)
+    public static class ExamControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            MotherController controller = (MotherController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "motherController");
-            return controller.getMother(getKey(value));
+            ExamController controller = (ExamController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "examController");
+            return controller.getExam(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -174,30 +151,15 @@ public class MotherController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Mother) {
-                Mother o = (Mother) object;
+            if (object instanceof Exam) {
+                Exam o = (Exam) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Mother.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Exam.class.getName()});
                 return null;
             }
         }
 
     }
 
-    public List<Mother> getFilteredItems() {
-        return filteredItems;
-    }
-
-    public void setFilteredItems(List<Mother> filteredItems) {
-        this.filteredItems = filteredItems;
-    }
-    
-    public void profileView() {
-        profileController.setSelected(selected.getProfile());
-        profileController.refreshSelected();
-        JsfUtil.redirect("/faces/roles/" + sessionUtil.getCurrentUser().getAccountType().getName() + 
-                "/index-profile.xhtml");
-    }
-    
 }

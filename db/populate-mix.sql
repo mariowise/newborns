@@ -39,6 +39,11 @@ INSERT INTO addictiontype (id, "name")
 INSERT INTO addictiontype (id, "name") 
     VALUES (3, 'Cigarro');
 
+INSERT INTO examtype (id, "name")
+    VALUES (1, 'OAE'), (2, 'AABR'), (3, 'ABR Clínico');
+INSERT INTO examphase (id, "name")
+    VALUES (1, 'Fase 1'), (2, 'Fase 2'), (3, 'Fase 3');
+
 INSERT INTO region(id, name) VALUES
 (14,'Región de Los Ríos'),
 (13,'Región Metropolitana'),

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition>
+
+        <p:dialog id="OaeAabrCreateDlg" widgetVar="OaeAabrCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateOaeAabrTitle}">
+            <h:form id="OaeAabrCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{oaeAabrController.selected != null}">
+                        <p:outputLabel value="Tipo de Screening" for="examType" />
+                        <p:selectOneMenu id="examType" value="#{oaeAabrController.selected.exam.examType}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{examTypeController.itemsAvailableSelectOne}"
+                                           var="examTypeItem"
+                                           itemValue="#{examTypeItem}" 
+                                           itemLabel="#{examTypeItem.name}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateOaeAabrLabel_resultOd}" for="resultOd" />
+                        <p:selectBooleanButton id="resultOd" value="#{oaeAabrController.selected.resultOd}" onLabel="Pasa" offLabel="Refiere" />
+                        <p:outputLabel value="#{bundle.CreateOaeAabrLabel_resultOi}" for="resultOi" />
+                        <p:selectBooleanButton id="resultOi" value="#{oaeAabrController.selected.resultOi}" onLabel="Pasa" offLabel="Refiere" />
+                        <p:outputLabel value="#{bundle.CreateOaeAabrLabel_finalResult}" for="finalResult" />
+                        <p:selectOneMenu id="finalResult" value="#{oaeAabrController.selected.finalResult}" style="width: 100%">
+                            <f:selectItem itemLabel="Alta" itemValue="Alta"/>
+                            <c:if test="#{oaeAabrController.phase == 1}">
+                                <f:selectItem itemLabel="Re-Screening" itemValue="Re-Screening"/>
+                            </c:if>
+                            <c:if test="#{oaeAabrController.phase == 2}">
+                                <f:selectItem itemLabel="Control" itemValue="Control"/>
+                            </c:if>
+                            <f:selectItem itemLabel="Incompleto" itemValue="Incompleto"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Observaciones" for="obs"/>
+                        <p:inputTextarea id="obs" value="#{oaeAabrController.selected.exam.obs}" rows="10" cols="25" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{oaeAabrController.create}" value="#{bundle.Save}" update="display,:OaeAabrListForm:datalist,:growl" oncomplete="handleSubmit(args,'OaeAabrCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" immediate="true" onclick="OaeAabrCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

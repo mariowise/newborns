@@ -6,15 +6,21 @@
 
 package entities.core;
 
+import entities.ExamPhase;
 import entities.Gender;
 import entities.YearsCount;
+import entities.tau.Exam;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
@@ -115,6 +121,15 @@ public class Son implements Serializable {
     private Boolean mechanicalVentilation;
     
     private int pediatricExamination;
+    
+    private String examState;
+    
+    @JoinColumn(nullable = true)
+    @ManyToOne
+    private ExamPhase examPhase;
+    
+    @OneToMany(mappedBy = "son")
+    private List<Exam> exams;
     
     public Long getId() {
         return id;
@@ -378,6 +393,32 @@ public class Son implements Serializable {
 
     public void setPediatricExamination(int pediatricExamination) {
         this.pediatricExamination = pediatricExamination;
+    }
+
+    public String getExamState() {
+        return examState;
+    }
+
+    public void setExamState(String examState) {
+        this.examState = examState;
+    }
+
+    public ExamPhase getExamPhase() {
+        return examPhase;
+    }
+
+    public void setExamPhase(ExamPhase examPhase) {
+        this.examPhase = examPhase;
+    }
+
+    public List<Exam> getExams() {
+        if(exams == null) 
+            exams = new ArrayList<Exam>();
+        return exams;
+    }
+
+    public void setExams(List<Exam> exams) {
+        this.exams = exams;
     }
 
     @Override

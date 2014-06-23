@@ -144,7 +144,8 @@ public class SonController implements Serializable {
         return getFacade().find(id);
     }
     
-    public void Premature(){if (selected.getPediatricExamination()<32){
+    public void Premature(){
+        if (selected.getPediatricExamination()<32){
             extremePremature=true;            
         } else {
             extremePremature=false;            
@@ -219,6 +220,7 @@ public class SonController implements Serializable {
     
     public void profileView() {
         profileController.setSelected(selected.getProfile());
+        profileController.refreshSelected();
         JsfUtil.redirect("/faces/roles/" + sessionUtil.getCurrentUser().getAccountType().getName() + 
                 "/index-profile.xhtml");
     }
