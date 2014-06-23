@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <ui:composition>
+        
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1>
+                    <h:graphicImage class="profile-icon" library="images" name="child.png" />
+                    <b>Ficha Nro. #{sonController.selected.profile.id}</b> - 
+                    #{sonController.selected.name}
+                </h1>
+                <hr/>
+
+                <div id="profile-info">
+                    <h:form>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <table class="profile-table">
+                                <tr>
+                                    <td class="align-right"><div class="label label-default">Nombre Recién Nacido</div></td>
+                                    <td>#{sonController.selected.name}</td>
+                                </tr>
+                                <tr>
+                                    <td class="align-right"><div class="label label-default">RUN Madre</div></td>
+                                    <td>#{sonController.selected.mother.run}</td>
+                                </tr>
+                                <tr>
+                                    <td class="align-right"><div class="label label-default">Nombre Madre</div></td>
+                                    <td>#{sonController.selected.mother.name} #{sonController.selected.mother.firstLastname} #{sonController.selected.mother.secondLastname}</td>
+                                </tr>
+                                <tr>
+                                    <td class="align-right"><div class="label label-default">Fecha parto</div></td>
+                                    <td>
+                                        <h:outputText value="#{sonController.selected.delivery.date}" title="#{bundle.ViewMotherTitle_birthDate}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-md-4">
+                            <table class="profile-table">
+                                <tr>
+                                    <td class="align-right"><div class="label label-default">Código RN</div></td>
+                                    <td>#{sonController.selected.year.id}-#{sonController.selected.ticket}</td>
+                                </tr>
+                                <tr>
+                                    <td class="align-right"><div class="label label-default">Género</div></td>
+                                    <td>#{sonController.selected.gender}</td>
+                                </tr>
+                                <tr>
+                                    <td class="align-right"><div class="label label-default">Prematuro extremo</div></td>
+                                    <td>
+                                        <p:selectBooleanCheckbox value="#{sonController.selected.extremePremature}" disabled="true"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="align-right"><div class="label label-default">Registrado por</div></td>
+                                    <td>#{sonController.selected.profile.id}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-md-3">
+                            <table class="profile-table">
+                                <tr>
+                                    <td class="align-right"><div class="label label-default">Semanas de gestación</div></td>
+                                    <td>#{sonController.selected.delivery.weeksGestation} sem.</td>
+                                </tr>
+                                <tr>
+                                    <td class="align-right"><div class="label label-default">Exámen físico pediátrico</div></td>
+                                    <td>#{sonController.selected.pediatricExamination} sem.</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    </h:form>
+                </div> 
+
+            </div>
+        </div>
+        
+    </ui:composition>
+    
+</html>

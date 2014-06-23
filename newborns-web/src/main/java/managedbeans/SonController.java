@@ -3,6 +3,7 @@ package managedbeans;
 import entities.core.Profile;
 import entities.core.Son;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -18,6 +19,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
+import managedbeans.util.SessionUtil;
 import sessionbeans.SonFacadeLocal;
 
 @Named("sonController")
@@ -36,6 +38,12 @@ public class SonController implements Serializable {
     
     @Inject
     private DeliveryController deliveryController;
+    
+    @Inject
+    private ProfileController profileController;
+    
+    @Inject
+    private SessionUtil sessionUtil;
     
     private List<Son> filteredItems;
     
@@ -100,6 +108,28 @@ public class SonController implements Serializable {
     public List<Son> getAllItems() {
         allItems = getFacade().findAll();
         return allItems;
+    }
+    
+    public List<Son> getPrematureItems() {
+        List<Son> allSons = getAllItems();
+        List<Son> selectedSons = new ArrayList<Son>();
+        for(Son son : allSons) {
+            if (son.getExtremePremature()) {
+                selectedSons.add(son);
+            }
+        }
+        return selectedSons;
+    }
+    
+    public int countPrematureItems() {
+        List<Son> allSons = getAllItems();
+        int amount = 0;
+        for(Son son : allSons) {
+            if (son.getExtremePremature()) {
+                amount++;
+            }
+        }
+        return amount;
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
@@ -208,6 +238,12 @@ public class SonController implements Serializable {
 
     public void setFilteredItems(List<Son> filteredItems) {
         this.filteredItems = filteredItems;
+    }
+    
+    public void profileView() {
+        profileController.setSelected(selected.getProfile());
+        JsfUtil.redirect("/faces/roles/" + sessionUtil.getCurrentUser().getAccountType().getName() + 
+                "/index-profile.xhtml");
     }
 
 }

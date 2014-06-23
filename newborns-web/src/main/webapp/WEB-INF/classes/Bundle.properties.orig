@@ -1946,6 +1946,8 @@ CreateSonLabel_asphyxiaDelivery=Asfixia en el parto:
 EditSonLabel_asphyxiaDelivery=Asfixia en el parto:
 ViewSonLabel_asphyxiaDelivery=Asfixia en el parto:
 
+<<<<<<< HEAD
+=======
 AddictionTypeCreated=AddictionType was successfully created.
 AddictionTypeUpdated=AddictionType was successfully updated.
 AddictionTypeDeleted=AddictionType was successfully deleted.
@@ -2055,4 +2057,4 @@ ListAddictionTitle_type=Type
 
 registerAddiction=Registrar adicci\u00f3n
 
-IndexStatisticsTitle_general=Estad\u00edsticas
+>>>>>>> b9a33189eb2d407355a3197447cbb1ab38c42307

@@ -38,8 +38,8 @@
                              filteredValue="#{sonController.filteredItems}"
                              >
 
-                    <p:ajax event="rowSelect"   update="viewButton editButton"/>
-                    <p:ajax event="rowUnselect" update="viewButton editButton"/>
+                    <p:ajax event="rowSelect"   update="viewButton profileButton editButton"/>
+                    <p:ajax event="rowUnselect" update="viewButton profileButton editButton"/>
 
                     <f:facet name="header">
                         <p:outputPanel>
@@ -92,6 +92,7 @@
                     </p:column>
                     <f:facet name="footer">
                         <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SonViewForm" oncomplete="PF('SonViewDialog').show()" disabled="#{empty sonController.selected}"/>
+                        <p:commandButton id="profileButton" icon="ui-icon-person" value="Ver perfil" actionListener="#{sonController.profileView}" disabled="#{empty sonController.selected}"/>
                         <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SonEditForm" oncomplete="PF('SonEditDialog').show()" disabled="#{empty sonController.selected}"/>
                     </f:facet>
                 </p:dataTable>
