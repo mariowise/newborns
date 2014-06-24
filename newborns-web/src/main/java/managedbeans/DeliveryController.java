@@ -2,7 +2,11 @@ package managedbeans;
 
 import entities.core.Delivery;
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +31,7 @@ public class DeliveryController implements Serializable {
     @EJB
     private DeliveryFacadeLocal ejbFacade;
     private List<Delivery> items = null;
+    private List<Delivery> allItems = null;
     private Delivery selected;
     private int numberSons;
     
@@ -90,7 +95,32 @@ public class DeliveryController implements Serializable {
         refreshSelected();
         return items;
     }
-
+    
+    public List<Delivery> getAllItems() {
+        allItems = getFacade().findAll();
+        return allItems;
+    }
+    
+    public Map getRegisteredItemsByType(String itemType) {
+        getAllItems(); 
+        Map registeredItems = new HashMap<>();
+        
+        for(Delivery item : allItems) {
+            if (itemType.equals(item.getDeliveryType().getName())) {
+                Calendar myCal = new GregorianCalendar();
+                myCal.setTime(item.getDate());
+                String key = String.valueOf(myCal.get(Calendar.YEAR));
+                int value = 0;
+                if (registeredItems.get(key) != null) {
+                    value = (int) registeredItems.get(key);
+                }
+                registeredItems.put(key , value + 1);
+            }
+        }
+        
+        return registeredItems;
+    }
+    
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();

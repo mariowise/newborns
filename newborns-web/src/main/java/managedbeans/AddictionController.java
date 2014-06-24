@@ -100,24 +100,24 @@ public class AddictionController implements Serializable {
         return allItems;
     }
     
-    public Map getAddictionsByType(String addictionType) {
-        getAllItems();
-        Map mapSelectedAddictions = new HashMap<>();
+    public Map getRegisteredItemsByType(String itemType) {
+        getAllItems(); 
+        Map registeredItems = new HashMap<>();
         
-        for(Addiction addiction : allItems) {
-            if (addictionType.equals(addiction.getType().getName())) {
+        for(Addiction item : allItems) {
+            if (itemType.equals(item.getType().getName())) {
                 Calendar myCal = new GregorianCalendar();
-                myCal.setTime(addiction.getRecordDate());
+                myCal.setTime(item.getRecordDate());
                 String key = String.valueOf(myCal.get(Calendar.YEAR));
                 int value = 0;
-                if (mapSelectedAddictions.get(key) != null) {
-                    value = (int) mapSelectedAddictions.get(key);
+                if (registeredItems.get(key) != null) {
+                    value = (int) registeredItems.get(key);
                 }
-                mapSelectedAddictions.put(key , value + 1);
+                registeredItems.put(key , value + 1);
             }
         }
         
-        return mapSelectedAddictions;
+        return registeredItems;
     }
     
     public int countAddictedMothers() {
