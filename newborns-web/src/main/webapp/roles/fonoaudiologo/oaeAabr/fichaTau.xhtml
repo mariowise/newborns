@@ -33,6 +33,8 @@
                         <div class="panel-heading">Fase 1 - Screening</div>
                         <div class="panel-body">
                             
+                            #{oaeAabrController.setPhase(1)}
+                            
                             <p:dataTable id="datalist1" value="#{oaeAabrController.items}" var="item"
                                      paginator="true"
                                      rowKey="#{item.id}"
@@ -82,6 +84,8 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">Fase 2 - Screening</div>
                         <div class="panel-body">
+                            
+                            #{oaeAabrController.setPhase(2)}
                             
                             <p:dataTable id="datalist2" value="#{oaeAabrController.items}" var="item"
                                      paginator="true"
