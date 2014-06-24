@@ -6,7 +6,6 @@
 
 package managedbeans.util;
 
-import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -31,13 +30,15 @@ import org.primefaces.model.chart.PieChartModel;
 @RequestScoped
 public class StatisticController {
 
+    /** Newborn Charts **/
     private BarChartModel recordNewbornBarModel;    
     private PieChartModel prematureNewbornPieModel;
-    
+    private PieChartModel mortalityNewbornPieModel;
+    /** Mother Charts **/
     private BarChartModel recordMotherBarModel;
     private PieChartModel addictedMotherPieModel;
     private BarChartModel addictionMotherBarModel;
-    
+    /** Delivery Charts **/
     private BarChartModel recordDeliveryBarModel;
     
     @Inject
@@ -66,6 +67,7 @@ public class StatisticController {
      
     private void createPieModels() {
         createPrematureNewbornPieModel();
+        createMortalityNewbornPieModel();
         
         createAddictedMotherPieModel();
     }
@@ -103,6 +105,10 @@ public class StatisticController {
         return recordDeliveryBarModel;
     }
     
+    public PieChartModel getMortalityNewbornPieModel() {
+        return mortalityNewbornPieModel;
+    }
+    
     private void createPrematureNewbornPieModel() {
         int amountSons = sonController.getAllItems().size();
         int amountPrematureSons = sonController.countPrematureItems();
@@ -117,6 +123,22 @@ public class StatisticController {
         prematureNewbornPieModel.setFill(false);
         prematureNewbornPieModel.setShowDataLabels(true);
         prematureNewbornPieModel.setDiameter(200);
+    }
+    
+    private void createMortalityNewbornPieModel() {
+        int amountTotalItems = sonController.getAllItems().size();
+        int amountBornAliveSons = sonController.countBornAliveItems();
+        
+        mortalityNewbornPieModel = new PieChartModel();
+         
+        mortalityNewbornPieModel.set("Nacidos Vivos", amountBornAliveSons);
+        mortalityNewbornPieModel.set("Nacidos Muertos", (amountTotalItems - amountBornAliveSons));
+         
+        mortalityNewbornPieModel.setTitle("Mortalidad al nacer");
+        mortalityNewbornPieModel.setLegendPosition("e");
+        mortalityNewbornPieModel.setFill(false);
+        mortalityNewbornPieModel.setShowDataLabels(true);
+        mortalityNewbornPieModel.setDiameter(200);
     }
     
     private void createAddictedMotherPieModel() {

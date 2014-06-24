@@ -125,10 +125,21 @@ public class SonController implements Serializable {
     }
     
     public int countPrematureItems() {
-        List<Son> allSons = getAllItems();
+        getAllItems();
         int amount = 0;
-        for(Son son : allSons) {
-            if (son.getExtremePremature()) {
+        for(Son item : allItems) {
+            if (item.getExtremePremature()) {
+                amount++;
+            }
+        }
+        return amount;
+    }
+    
+    public int countBornAliveItems() {
+        getAllItems();
+        int amount = 0;
+        for(Son item : allItems) {
+            if (item.getBornAlive()) {
                 amount++;
             }
         }
