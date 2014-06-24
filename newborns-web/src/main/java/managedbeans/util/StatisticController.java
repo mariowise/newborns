@@ -14,12 +14,14 @@ import javax.inject.Named;
 import managedbeans.AddictionController;
 import managedbeans.DeliveryController;
 import managedbeans.MotherController;
+import managedbeans.ProfileController;
 import managedbeans.ServiceAttentionController;
 import managedbeans.SonController;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.HorizontalBarChartModel;
 import org.primefaces.model.chart.PieChartModel;
 
 /**
@@ -31,6 +33,8 @@ import org.primefaces.model.chart.PieChartModel;
 public class StatisticController {
 
     /** Newborn Charts **/
+    private HorizontalBarChartModel recordProfileBarModel;    
+    /** Newborn Charts **/
     private BarChartModel recordNewbornBarModel;    
     private PieChartModel prematureNewbornPieModel;
     private PieChartModel mortalityNewbornPieModel;
@@ -41,6 +45,9 @@ public class StatisticController {
     /** Delivery Charts **/
     private BarChartModel recordDeliveryBarModel;
     
+    @Inject
+    private ProfileController profileController;
+        
     @Inject
     private SonController sonController;
     
@@ -73,6 +80,8 @@ public class StatisticController {
     }
  
     private void createBarModels() {
+        createRecordProfileBarModel();
+        
         createRecordNewbornBarModel();
         
         createRecordMotherBarModel();
@@ -91,6 +100,10 @@ public class StatisticController {
      
     public BarChartModel getAddictionMotherBarModel() {
         return addictionMotherBarModel;
+    }
+    
+    public HorizontalBarChartModel getRecordProfileBarModel() {
+        return recordProfileBarModel;
     }
     
     public BarChartModel getRecordNewbornBarModel() {
@@ -313,5 +326,47 @@ public class StatisticController {
         yAxis.setLabel("N° Partos");
         yAxis.setMin(0);
         yAxis.setMax(deliveryController.getAllItems().size());
+    }
+    
+    private HorizontalBarChartModel initRecordProfileBarModel() {
+        
+        String value1 = "Ficha Recién Nacido";
+        String value2 = "Ficha Madre";
+        
+        Map valueOneProfile = sonController.getRegisteredItems();
+        Map valueTwoProfile = motherController.getRegisteredItems();
+                
+        HorizontalBarChartModel model = new HorizontalBarChartModel();
+ 
+        ChartSeries valueOneChart = new ChartSeries();
+        valueOneChart.setLabel(value1);        
+        valueOneChart.setData(valueOneProfile);
+ 
+        ChartSeries valueTwoChart = new ChartSeries();
+        valueTwoChart.setLabel(value2);
+        valueTwoChart.setData(valueTwoProfile);
+        
+        model.addSeries(valueOneChart);
+        model.addSeries(valueTwoChart);
+        
+        return model;
+    }
+     
+    private void createRecordProfileBarModel() {
+        recordProfileBarModel = initRecordProfileBarModel();
+         
+        recordProfileBarModel.setTitle("Registro de Fichas Médicas");
+        recordProfileBarModel.setLegendPosition("e");
+        recordProfileBarModel.setStacked(true);
+        recordProfileBarModel.setBarMargin(50);
+        
+        Axis xAxis = recordProfileBarModel.getAxis(AxisType.X);
+        xAxis.setLabel("N° Fichas");
+        xAxis.setMin(0);
+        xAxis.setMax(profileController.getAllItems().size());
+        
+        Axis yAxis = recordProfileBarModel.getAxis(AxisType.Y);
+        yAxis.setLabel("Años de registro");
+            
     }
 }

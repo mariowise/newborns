@@ -4,7 +4,11 @@ import entities.core.Mother;
 import entities.core.Profile;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +33,7 @@ public class MotherController implements Serializable {
     @EJB
     private MotherFacadeLocal ejbFacade;
     private List<Mother> items = null;
+    private List<Mother> allItems = null;
     private Mother selected;
 
     @Inject
@@ -94,13 +99,31 @@ public class MotherController implements Serializable {
     }
          
     public List<Mother> getAllItems() {           
-        items = getFacade().findAll();
-        if (items == null) {
-            items = new ArrayList<Mother>();
+        allItems = getFacade().findAll();
+        if (allItems == null) {
+            allItems = new ArrayList<Mother>();
         }
-        return items;
+        return allItems;
     }
-
+  
+    public Map getRegisteredItems() {
+        
+        getAllItems();
+        Map registeredItems = new HashMap<>();
+        
+        for(Mother item : allItems) {            
+             Calendar myCal = new GregorianCalendar();
+                myCal.setTime(item.getProfile().getCreatedAt());
+                String key = String.valueOf(myCal.get(Calendar.YEAR));
+                int value = 0;
+                if (registeredItems.get(key) != null) {
+                    value = (int) registeredItems.get(key);
+                }
+                registeredItems.put(key , value + 1);         
+        }
+        return registeredItems;
+    }
+    
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();

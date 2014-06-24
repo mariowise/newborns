@@ -1,23 +1,26 @@
 package managedbeans;
 
 import entities.core.Profile;
-import managedbeans.util.JsfUtil;
-import managedbeans.util.JsfUtil.PersistAction;
-import sessionbeans.ProfileFacadeLocal;
-
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Named;
+import managedbeans.util.JsfUtil;
+import managedbeans.util.JsfUtil.PersistAction;
+import sessionbeans.ProfileFacadeLocal;
 
 @Named("profileController")
 @SessionScoped
@@ -26,6 +29,7 @@ public class ProfileController implements Serializable {
     @EJB
     private ProfileFacadeLocal ejbFacade;
     private List<Profile> items = null;
+    private List<Profile> allItems = null;
     private Profile selected;
 
     public ProfileController() {
@@ -81,6 +85,11 @@ public class ProfileController implements Serializable {
         return items;
     }
 
+    public List<Profile> getAllItems() {
+        allItems = getFacade().findAll();
+        return allItems;
+    }
+    
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
