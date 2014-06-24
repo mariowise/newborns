@@ -252,7 +252,7 @@ public class StatisticController {
         BarChartModel model = new BarChartModel();
  
         ChartSeries register = new ChartSeries();
-        register.setLabel("Madres Registradas");        
+        register.setLabel("Madres Atendidas");        
         register.setData(registeredMothers);
          
         model.addSeries(register);
@@ -263,11 +263,11 @@ public class StatisticController {
     private void createRecordMotherBarModel() {
         recordMotherBarModel = initRecordMotherBarModel();
          
-        recordMotherBarModel.setTitle("Registro de madres");
+        recordMotherBarModel.setTitle("Atención a madres");
         recordMotherBarModel.setLegendPosition("ne");
          
         Axis xAxis = recordMotherBarModel.getAxis(AxisType.X);
-        xAxis.setLabel("Años de registro");
+        xAxis.setLabel("Años de atención");
          
         Axis yAxis = recordMotherBarModel.getAxis(AxisType.Y);
         yAxis.setLabel("N° Madres");
