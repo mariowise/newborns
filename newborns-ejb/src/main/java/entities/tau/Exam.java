@@ -21,6 +21,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -33,6 +34,7 @@ public class Exam implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @NotNull(message = "Debe ingresar un Tipo de examen")
     @JoinColumn(nullable = false)
     @ManyToOne
     private ExamType examType;

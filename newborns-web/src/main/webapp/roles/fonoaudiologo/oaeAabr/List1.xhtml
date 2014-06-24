@@ -25,7 +25,14 @@
             <p>A continuación se muestran los distintos exámenes de <span class="label label-default">tamizaje</span> para el recién nacido en cuestión.</p>
             <hr/>
             <h:form>
-            <p:commandButton id="restartButton" styleClass="float-right" icon=" ui-icon-arrowrefresh-1-w" value="Reiniciar" actionListener="#{sonController.restartPhases}" immediate="true" update=":OaeAabrListForm, :profile-son, :growl"/>
+            <p:commandButton id="restartButton" styleClass="float-right" icon=" ui-icon-arrowrefresh-1-w" value="Reiniciar" actionListener="#{sonController.restartPhases}" immediate="true" update=":OaeAabrListForm, :profile-son, :growl">
+                <p:confirm header="Confirme Acción" message="¿Está seguro que desea reiniciar el proceso?" icon="ui-icon-alert" />
+            </p:commandButton>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
             </h:form>
             
             <ul class="nav nav-tabs">
@@ -90,7 +97,13 @@
                                 <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{oaeAabrController.prepareCreate}" update=":OaeAabrCreateForm" oncomplete="PF('OaeAabrCreateDialog').show()" disabled="#{!oaeAabrController.checkCreateButton()}"/>
                                 <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":OaeAabrViewForm" oncomplete="PF('OaeAabrViewDialog').show()" disabled="#{empty oaeAabrController.selected}"/>
                                 <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":OaeAabrEditForm" oncomplete="PF('OaeAabrEditDialog').show()" disabled="#{empty oaeAabrController.selected}"/>
-                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{oaeAabrController.destroy}" update=":growl,datalist" disabled="#{empty oaeAabrController.selected}"/>
+                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{oaeAabrController.destroy}" update=":growl,datalist" disabled="#{empty oaeAabrController.selected}">
+                                    <p:confirm header="Confirme Acción" message="¿Está seguro que desea eliminar el examen?" icon="ui-icon-alert" />
+                                </p:commandButton>
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                                    <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
                             </f:facet>
                         </p:dataTable>
 
