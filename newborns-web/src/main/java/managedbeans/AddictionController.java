@@ -1,8 +1,14 @@
 package managedbeans;
 
 import entities.core.Addiction;
+import entities.core.Mother;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +32,7 @@ public class AddictionController implements Serializable {
     @EJB
     private AddictionFacadeLocal ejbFacade;
     private List<Addiction> items = null;
+    private List<Addiction> allItems = null;
     private Addiction selected;
     
     @Inject
@@ -83,6 +90,45 @@ public class AddictionController implements Serializable {
         items = motherController.getSelected().getAddictions();        
         refreshSelected();
         return items;
+    }
+    
+    public List<Addiction> getAllItems() {           
+        allItems = getFacade().findAll();
+        if (allItems == null) {
+            allItems = new ArrayList<Addiction>();
+        }
+        return allItems;
+    }
+    
+    public Map getAddictionsByType(String addictionType) {
+        getAllItems();
+        Map mapSelectedAddictions = new HashMap<>();
+        
+        for(Addiction addiction : allItems) {
+            if (addictionType.equals(addiction.getType().getName())) {
+                Calendar myCal = new GregorianCalendar();
+                myCal.setTime(addiction.getRecordDate());
+                String key = String.valueOf(myCal.get(Calendar.YEAR));
+                int value = 0;
+                if (mapSelectedAddictions.get(key) != null) {
+                    value = (int) mapSelectedAddictions.get(key);
+                }
+                mapSelectedAddictions.put(key , value + 1);
+            }
+        }
+        
+        return mapSelectedAddictions;
+    }
+    
+    public int countAddictedMothers() {
+        List<Addiction> allAddictions = getAllItems();
+        List<Mother> addictedMothers = new ArrayList<Mother>();
+        for (Addiction addiction : allAddictions) {
+            if (!addictedMothers.contains(addiction)) {
+                addictedMothers.add(addiction.getMother());
+            }
+        }
+        return addictedMothers.size();
     }
 
     private void persist(PersistAction persistAction, String successMessage) {

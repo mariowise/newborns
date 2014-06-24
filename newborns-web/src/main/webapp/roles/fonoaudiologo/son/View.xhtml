@@ -73,7 +73,7 @@
                             <h:outputText value="#{bundle.ViewMotherLabel_DeafRelativesDescription}" />
                             <h:outputText value="#{motherController.selected.deafRelatives}" />
                         </c:if>
-                        <c:if test="#{motherController.selected.deafRelatives == null || motherController.selected.deafRelatives == ''}" >
+                        <c:if test="#{motherController.selected.deafRelatives == null or motherController.selected.deafRelatives == ''}" >
                             <h:outputText value="#{bundle.ViewMotherLabel_DeafRelativesDescription}" />
                             <h:outputText value="No presenta" />
                         </c:if>

@@ -3,7 +3,11 @@ package managedbeans;
 import entities.core.Profile;
 import entities.core.Son;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -107,6 +111,44 @@ public class SonController implements Serializable {
     public List<Son> getAllItems() {
         allItems = getFacade().findAll();
         return allItems;
+    }
+    
+    public List<Son> getPrematureItems() {
+        List<Son> allSons = getAllItems();
+        List<Son> selectedSons = new ArrayList<Son>();
+        for(Son son : allSons) {
+            if (son.getExtremePremature()) {
+                selectedSons.add(son);
+            }
+        }
+        return selectedSons;
+    }
+    
+    public int countPrematureItems() {
+        List<Son> allSons = getAllItems();
+        int amount = 0;
+        for(Son son : allSons) {
+            if (son.getExtremePremature()) {
+                amount++;
+            }
+        }
+        return amount;
+    }
+    
+    public Map getRegisteredItems() {
+        
+        getAllItems();
+        Map registeredItems = new HashMap<>();
+        
+        for(Son item : allItems) {            
+            String key = item.getYear().getId().toString();
+            int value = 0;
+            if (registeredItems.get(key) != null) {
+                value = (int) registeredItems.get(key);
+            }
+            registeredItems.put(key , value + 1);            
+        }
+        return registeredItems;
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
