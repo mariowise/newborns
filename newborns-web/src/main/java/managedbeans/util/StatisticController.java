@@ -13,6 +13,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import managedbeans.AddictionController;
+import managedbeans.DeliveryController;
 import managedbeans.MotherController;
 import managedbeans.ServiceAttentionController;
 import managedbeans.SonController;
@@ -37,11 +38,16 @@ public class StatisticController {
     private PieChartModel addictedMotherPieModel;
     private BarChartModel addictionMotherBarModel;
     
+    private BarChartModel recordDeliveryBarModel;
+    
     @Inject
     private SonController sonController;
     
     @Inject
     private MotherController motherController;
+    
+    @Inject
+    private DeliveryController deliveryController;
     
     @Inject
     private AddictionController addictionController;
@@ -69,6 +75,8 @@ public class StatisticController {
         
         createRecordMotherBarModel();
         createAddictionMotherBarModel();
+        
+        createRecordDeliveryBarModel();
     }
  
     public PieChartModel getPrematureNewbornPieModel() {
@@ -89,6 +97,10 @@ public class StatisticController {
     
     public BarChartModel getRecordMotherBarModel() {
         return recordMotherBarModel;
+    }
+        
+    public BarChartModel getRecordDeliveryBarModel() {
+        return recordDeliveryBarModel;
     }
     
     private void createPrematureNewbornPieModel() {
@@ -128,9 +140,9 @@ public class StatisticController {
         String value2 = "Droga";
         String value3 = "Cigarro";
         
-        Map alcoholAddictions = addictionController.getAddictionsByType(value1);
-        Map drugAddictions = addictionController.getAddictionsByType(value2);
-        Map cigarAddictions = addictionController.getAddictionsByType(value3);
+        Map alcoholAddictions = addictionController.getRegisteredItemsByType(value1);
+        Map drugAddictions = addictionController.getRegisteredItemsByType(value2);
+        Map cigarAddictions = addictionController.getRegisteredItemsByType(value3);
         
         BarChartModel model = new BarChartModel();
  
@@ -226,5 +238,58 @@ public class StatisticController {
         yAxis.setLabel("N° Madres");
         yAxis.setMin(0);
         yAxis.setMax(motherController.getAllItems().size());
+    }
+    
+    private BarChartModel initRecordDeliveryBarModel() {
+        
+        String value1 = "Cesarea";
+        String value2 = "Forceps";
+        String value3 = "Podálico";
+        String value4 = "Fuera del Servicio";
+        
+        Map valueOneDelivery = deliveryController.getRegisteredItemsByType(value1);
+        Map valueTwoDelivery = deliveryController.getRegisteredItemsByType(value2);
+        Map valueThreeDelivery = deliveryController.getRegisteredItemsByType(value3);
+        Map valueFourDelivery = deliveryController.getRegisteredItemsByType(value4);
+        
+        BarChartModel model = new BarChartModel();
+ 
+        ChartSeries valueOneChart = new ChartSeries();
+        valueOneChart.setLabel(value1);        
+        valueOneChart.setData(valueOneDelivery);
+ 
+        ChartSeries valueTwoChart = new ChartSeries();
+        valueTwoChart.setLabel(value2);
+        valueTwoChart.setData(valueTwoDelivery);
+        
+        ChartSeries valueThreeChart = new ChartSeries();
+        valueThreeChart.setLabel(value3);
+        valueThreeChart.setData(valueThreeDelivery);
+        
+        ChartSeries valueFourChart = new ChartSeries();
+        valueFourChart.setLabel(value4);
+        valueFourChart.setData(valueFourDelivery);
+        
+        model.addSeries(valueOneChart);
+        model.addSeries(valueTwoChart);
+        model.addSeries(valueThreeChart);
+        model.addSeries(valueFourChart);
+         
+        return model;
+    }
+     
+    private void createRecordDeliveryBarModel() {
+        recordDeliveryBarModel = initRecordDeliveryBarModel();
+         
+        recordDeliveryBarModel.setTitle("Registro de partos");
+        recordDeliveryBarModel.setLegendPosition("ne");
+         
+        Axis xAxis = recordDeliveryBarModel.getAxis(AxisType.X);
+        xAxis.setLabel("Años de registro");
+         
+        Axis yAxis = recordDeliveryBarModel.getAxis(AxisType.Y);
+        yAxis.setLabel("N° Partos");
+        yAxis.setMin(0);
+        yAxis.setMax(deliveryController.getAllItems().size());
     }
 }
