@@ -6,6 +6,7 @@
 
 package sessionbeans;
 
+import entities.core.Son;
 import entities.tau.Abr;
 import java.util.List;
 import javax.ejb.Local;
@@ -28,6 +29,8 @@ public interface AbrFacadeLocal {
     List<Abr> findAll();
 
     List<Abr> findRange(int[] range);
+    
+    List<Abr> findBySon(Son son);
 
     int count();
     

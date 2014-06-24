@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AbrViewDlg" widgetVar="AbrViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAbrTitle}">
+            <h:form id="AbrViewForm">
+                <h:panelGroup id="display">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Oído derecho</div>
+                                <div class="panel-body">
+                                    <p:panelGrid columns="2">
+                                        <p:outputLabel value="#{bundle.CreateAbrLabel_onda1_od}" for="onda1_od" />
+                                        <h:outputText id="onda1_od" value="#{abrController.selected.onda1_od}" title="#{bundle.CreateAbrTitle_onda1_od}" />
+                                        <p:outputLabel value="#{bundle.CreateAbrLabel_onda3_od}" for="onda3_od" />
+                                        <h:outputText id="onda3_od" value="#{abrController.selected.onda3_od}" title="#{bundle.CreateAbrTitle_onda3_od}" />
+                                        <p:outputLabel value="#{bundle.CreateAbrLabel_onda5_od}" for="onda5_od" />
+                                        <h:outputText id="onda5_od" value="#{abrController.selected.onda5_od}" title="#{bundle.CreateAbrTitle_onda5_od}" />
+                                        <p:outputLabel value="#{bundle.CreateAbrLabel_tcc_od}" for="tcc_od" />
+                                        <h:outputText id="tcc_od" value="#{abrController.selected.tcc_od}" title="#{bundle.CreateAbrTitle_tcc_od}" />
+                                        <p:outputLabel value="#{bundle.CreateAbrLabel_tcp_od}" for="tcp_od" />
+                                        <h:outputText id="tcp_od" value="#{abrController.selected.tcp_od}" title="#{bundle.CreateAbrTitle_tcp_od}" />
+                                        <p:outputLabel value="#{bundle.CreateAbrLabel_uondav_od}" for="uondav_od" />
+                                        <h:outputText id="uondav_od" value="#{abrController.selected.uondav_od}" title="#{bundle.CreateAbrTitle_uondav_od}" />
+                                        <p:outputLabel value="#{bundle.CreateAbrLabel_od}" for="od" />
+                                        <h:outputText id="od" value="#{abrController.selected.od}" title="#{bundle.CreateAbrTitle_od}" />
+                                    </p:panelGrid>        
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Oído izquierdo</div>
+                                <div class="panel-body">
+                                    <p:panelGrid columns="2">
+                                        <p:outputLabel value="#{bundle.CreateAbrLabel_onda1_oi}" for="onda1_oi" />
+                                        <h:outputText id="onda1_oi" value="#{abrController.selected.onda1_oi}" title="#{bundle.CreateAbrTitle_onda1_oi}" />
+                                        <p:outputLabel value="#{bundle.CreateAbrLabel_onda3_oi}" for="onda3_oi" />
+                                        <h:outputText id="onda3_oi" value="#{abrController.selected.onda3_oi}" title="#{bundle.CreateAbrTitle_onda3_oi}" />
+                                        <p:outputLabel value="#{bundle.CreateAbrLabel_onda5_oi}" for="onda5_oi" />
+                                        <h:outputText id="onda5_oi" value="#{abrController.selected.onda5_oi}" title="#{bundle.CreateAbrTitle_onda5_oi}" />
+                                        <p:outputLabel value="#{bundle.CreateAbrLabel_tcc_oi}" for="tcc_oi" />
+                                        <h:outputText id="tcc_oi" value="#{abrController.selected.tcc_oi}" title="#{bundle.CreateAbrTitle_tcc_oi}" />
+                                        <p:outputLabel value="#{bundle.CreateAbrLabel_tcp_oi}" for="tcp_oi" />
+                                        <h:outputText id="tcp_oi" value="#{abrController.selected.tcp_oi}" title="#{bundle.CreateAbrTitle_tcp_oi}" />
+                                        <p:outputLabel value="#{bundle.CreateAbrLabel_uondav_oi}" for="uondav_oi" />
+                                        <h:outputText id="uondav_oi" value="#{abrController.selected.uondav_oi}" title="#{bundle.CreateAbrTitle_uondav_oi}" />
+                                        <p:outputLabel value="#{bundle.CreateAbrLabel_oi}" for="oi" />
+                                        <h:outputText id="oi" value="#{abrController.selected.oi}" title="#{bundle.CreateAbrTitle_oi}" />
+                                    </p:panelGrid>        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p:panelGrid columns="2" rendered="#{abrController.selected != null}" style="width: 100%">
+                        <p:outputLabel value="#{bundle.CreateOaeAabrLabel_finalResult}" for="finalResult" />
+                        <h:outputText id="finalResult" value="#{abrController.selected.finalResult}"/>
+                        <p:outputLabel value="Observaciones" for="obs" />
+                        <h:outputText id="obs" value="#{abrController.selected.exam.obs}" style="width: 100%" />
+                    </p:panelGrid>
+                    
+                    <p:commandButton value="#{bundle.Close}" immediate="true" onclick="AbrViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

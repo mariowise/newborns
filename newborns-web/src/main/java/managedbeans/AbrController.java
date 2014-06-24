@@ -1,8 +1,10 @@
 package managedbeans;
 
-import entities.ExamType;
+import entities.ExamPhase;
+import entities.tau.Abr;
+import entities.tau.Exam;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -18,31 +20,40 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
-import sessionbeans.ExamTypeFacadeLocal;
+import sessionbeans.AbrFacadeLocal;
 
-@Named("examTypeController")
+@Named("abrController")
 @SessionScoped
-public class ExamTypeController implements Serializable {
+public class AbrController implements Serializable {
 
     @EJB
-    private ExamTypeFacadeLocal ejbFacade;
-    private List<ExamType> items = null;
-    private ExamType selected;
+    private AbrFacadeLocal ejbFacade;
+    private List<Abr> items = null;
+    private Abr selected;
+    
+    @Inject 
+    private SonController sonController;
     
     @Inject
     private OaeAabrController oaeAabrController;
     
+    @Inject 
+    private ExamPhaseController examPhaseController;
+    
     @Inject
-    private SonController sonController;
+    private ExamTypeController examTypeController;
+    
+    @Inject
+    private ExamController examController;
 
-    public ExamTypeController() {
+    public AbrController() {
     }
 
-    public ExamType getSelected() {
+    public Abr getSelected() {
         return selected;
     }
 
-    public void setSelected(ExamType selected) {
+    public void setSelected(Abr selected) {
         this.selected = selected;
     }
 
@@ -52,39 +63,44 @@ public class ExamTypeController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private ExamTypeFacadeLocal getFacade() {
+    private AbrFacadeLocal getFacade() {
         return ejbFacade;
     }
 
-    public ExamType prepareCreate() {
-        selected = new ExamType();
+    public Abr prepareCreate() {
+        selected = new Abr();
+        selected.setExam(new Exam());
+        selected.getExam().setCreated(new Date());
+        selected.getExam().setSon(sonController.getSelected());
+        selected.getExam().setPhase(examPhaseController.getExamPhase(Long.parseLong(Integer.toString(oaeAabrController.getPhase()))));
+        selected.getExam().setExamType(examTypeController.getExamType(new Long(3)));
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ExamTypeCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("AbrCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ExamTypeUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("AbrUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ExamTypeDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("AbrDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<ExamType> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
+    public List<Abr> getItems() {
+        sonController.refreshSelected();
+        refreshSelected();
+        items = getFacade().findBySon(sonController.getSelected());
         return items;
     }
 
@@ -92,8 +108,12 @@ public class ExamTypeController implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if (persistAction != PersistAction.DELETE) {
+                if (persistAction == PersistAction.CREATE) {
+                    getFacade().create(selected);
+                } else if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
+                    examController.setSelected(selected.getExam());
+                    examController.update();
                 } else {
                     getFacade().remove(selected);
                 }
@@ -115,43 +135,45 @@ public class ExamTypeController implements Serializable {
             }
         }
     }
-
-    public ExamType getExamType(java.lang.Long id) {
-        return getFacade().find(id);
+    
+    private void updateSon() {
+        System.out.println("Update son");
+        sonController.update();
+        sonController.refreshSelected();
+        refreshSelected();
     }
 
-    public List<ExamType> getItemsAvailableSelectMany() {
+    public Abr getAbr(java.lang.Long id) {
+        return getFacade().find(id);
+    }
+    
+    public void refreshSelected() {
+        if(selected != null) {
+            if(selected.getId() != null) {
+                selected = getAbr(selected.getId());
+            }
+        }
+    }
+
+    public List<Abr> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<ExamType> getItemsAvailableSelectOne() {
-        List<ExamType> allThem = getFacade().findAll();
-        List<ExamType> allowed = new ArrayList<ExamType>();
-        
-        for (ExamType item : allThem) {
-            if(oaeAabrController.getPhase() != 3) {
-                if(item.getId() != 3)
-                    allowed.add(item);
-            } else {
-                if(item.getId() == 3) {
-                    allowed.add(item);
-                }
-            }
-        }
-        return allowed;
+    public List<Abr> getItemsAvailableSelectOne() {
+        return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = ExamType.class)
-    public static class ExamTypeControllerConverter implements Converter {
+    @FacesConverter(forClass = Abr.class)
+    public static class AbrControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ExamTypeController controller = (ExamTypeController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "examTypeController");
-            return controller.getExamType(getKey(value));
+            AbrController controller = (AbrController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "abrController");
+            return controller.getAbr(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -171,11 +193,11 @@ public class ExamTypeController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof ExamType) {
-                ExamType o = (ExamType) object;
+            if (object instanceof Abr) {
+                Abr o = (Abr) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), ExamType.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Abr.class.getName()});
                 return null;
             }
         }

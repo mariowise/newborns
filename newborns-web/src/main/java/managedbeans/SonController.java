@@ -46,6 +46,9 @@ public class SonController implements Serializable {
     private ProfileController profileController;
     
     @Inject
+    private ExamPhaseController examPhaseController;
+    
+    @Inject
     private SessionUtil sessionUtil;
     
     private List<Son> filteredItems;
@@ -76,6 +79,7 @@ public class SonController implements Serializable {
         selected.setProfile(new Profile());
         selected.setMother(motherController.getSelected());
         selected.setDelivery(deliveryController.getSelected());
+        selected.setExamPhase(examPhaseController.getExamPhase(new Long(1)));
         initializeEmbeddableKey();
         return selected;
     }
@@ -265,6 +269,12 @@ public class SonController implements Serializable {
         profileController.refreshSelected();
         JsfUtil.redirect("/faces/roles/" + sessionUtil.getCurrentUser().getAccountType().getName() + 
                 "/index-profile.xhtml");
+    }
+    
+    public void restartPhases() {
+        selected.setExamPhase(examPhaseController.getExamPhase(new Long(1)));
+        persist(PersistAction.UPDATE, "Se ha reiniciado el proceso de tamizaje a la Fase 1");
+        refreshSelected();
     }
 
 }

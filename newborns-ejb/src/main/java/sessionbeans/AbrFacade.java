@@ -6,10 +6,14 @@
 
 package sessionbeans;
 
+import entities.core.Son;
 import entities.tau.Abr;
+import entities.tau.OaeAabr;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -23,6 +27,13 @@ public class AbrFacade extends AbstractFacade<Abr> implements AbrFacadeLocal {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    @Override
+    public List<Abr> findBySon(Son son) {
+        Query q = em.createQuery("SELECT a FROM Abr a JOIN a.exam.son s JOIN a.exam e WHERE s.id = :sonId");
+        q.setParameter("sonId", son.getId());
+        return q.getResultList();
     }
 
     public AbrFacade() {

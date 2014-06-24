@@ -7,6 +7,7 @@
 package entities.tau;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -71,7 +72,7 @@ public class Abr implements Serializable {
     private String finalResult;
     
     @JoinColumn(nullable = false)
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Exam exam;
     
     public Long getId() {

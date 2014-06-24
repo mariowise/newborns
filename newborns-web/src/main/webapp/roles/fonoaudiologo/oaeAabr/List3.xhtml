@@ -24,6 +24,9 @@
             <h1>Tamizaje Auditivo Universal</h1>
             <p>A continuación se muestran los distintos exámenes de <span class="label label-default">tamizaje</span> para el recién nacido en cuestión.</p>
             <hr/>
+            <h:form>
+            <p:commandButton id="restartButton" styleClass="float-right" icon=" ui-icon-arrowrefresh-1-w" value="Reiniciar" actionListener="#{sonController.restartPhases}" immediate="true" update=":OaeAabrListForm, :profile-son, :growl"/>
+            </h:form>
             
             <ul class="nav nav-tabs">
                 <li><a href="List1.xhtml">Fase 1 - Screening</a></li>
@@ -38,8 +41,8 @@
                     
                     <h:form id="OaeAabrListForm">
 
-                        <p:dataTable id="datalist" value="#{oaeAabrController.items}" var="item"
-                                     selectionMode="single" selection="#{oaeAabrController.selected}"
+                        <p:dataTable id="datalist" value="#{abrController.items}" var="item"
+                                     selectionMode="single" selection="#{abrController.selected}"
                                      paginator="false"
                                      rowKey="#{item.id}"
                                      rows="10"
@@ -69,25 +72,11 @@
                                 </f:facet>
                                 <h:outputText value="#{item.finalResult}"/>
                             </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListOaeAabrTitle_resultOd}"/>
-                                </f:facet>
-                                <h:outputText value="Pasa" rendered="#{item.resultOd}"/>
-                                <h:outputText value="Refiere" rendered="#{!item.resultOd}"/>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListOaeAabrTitle_resultOi}"/>
-                                </f:facet>
-                                <h:outputText value="Pasa" rendered="#{item.resultOi}"/>
-                                <h:outputText value="Refiere" rendered="#{!item.resultOi}"/>
-                            </p:column>
                             <f:facet name="footer">
-                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{oaeAabrController.prepareCreate}" update=":OaeAabrCreateForm" oncomplete="PF('OaeAabrCreateDialog').show()"/>
-                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":OaeAabrViewForm" oncomplete="PF('OaeAabrViewDialog').show()" disabled="#{empty oaeAabrController.selected}"/>
-                                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":OaeAabrEditForm" oncomplete="PF('OaeAabrEditDialog').show()" disabled="#{empty oaeAabrController.selected}"/>
-                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{oaeAabrController.destroy}" update=":growl,datalist" disabled="#{empty oaeAabrController.selected}"/>
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{abrController.prepareCreate}" update=":AbrCreateForm" oncomplete="PF('AbrCreateDialog').show()"/>
+                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":AbrViewForm" oncomplete="PF('AbrViewDialog').show()" disabled="#{empty abrController.selected}"/>
+                                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AbrEditForm" oncomplete="PF('AbrEditDialog').show()" disabled="#{empty abrController.selected}"/>
+                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{abrController.destroy}" update=":growl,datalist" disabled="#{empty abrController.selected}"/>
                             </f:facet>
                         </p:dataTable>
 
@@ -96,9 +85,9 @@
                 </div>
             </div>
 
-            <ui:include src="Create.xhtml"/>
-            <ui:include src="Edit.xhtml"/>
-            <ui:include src="View.xhtml"/>
+            <ui:include src="CreateAbr.xhtml"/>
+            <ui:include src="EditAbr.xhtml"/>
+            <ui:include src="ViewAbr.xhtml"/>
         </ui:define>
     </ui:composition>
 

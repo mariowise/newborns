@@ -39,7 +39,7 @@
                         <p:outputLabel value="Observaciones" for="obs"/>
                         <p:inputTextarea id="obs" value="#{oaeAabrController.selected.exam.obs}" rows="10" cols="25" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{oaeAabrController.create}" value="#{bundle.Save}" update="display,:OaeAabrListForm:datalist,:growl" oncomplete="handleSubmit(args,'OaeAabrCreateDialog');"/>
+                    <p:commandButton actionListener="#{oaeAabrController.create}" value="#{bundle.Save}" update="display,:OaeAabrListForm:datalist,:profile-son,:growl" oncomplete="handleSubmit(args,'OaeAabrCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" immediate="true" onclick="OaeAabrCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

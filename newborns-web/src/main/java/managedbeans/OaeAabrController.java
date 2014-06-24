@@ -149,13 +149,12 @@ public class OaeAabrController implements Serializable {
             ep = examPhaseController.getExamPhase(new Long(2));
             System.out.println("- Seteando " + ep);
             sonController.getSelected().setExamPhase(ep);
-            sonController.update();
-            sonController.refreshSelected();
         } else if(order.compareTo("Control") == 0) {
             ep = examPhaseController.getExamPhase(new Long(3));
             sonController.getSelected().setExamPhase(ep);
-            sonController.refreshSelected();
         }
+        sonController.update();
+        sonController.refreshSelected();
         refreshSelected();
     }
 

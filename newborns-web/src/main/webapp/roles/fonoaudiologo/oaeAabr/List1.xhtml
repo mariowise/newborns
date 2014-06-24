@@ -24,6 +24,9 @@
             <h1>Tamizaje Auditivo Universal</h1>
             <p>A continuación se muestran los distintos exámenes de <span class="label label-default">tamizaje</span> para el recién nacido en cuestión.</p>
             <hr/>
+            <h:form>
+            <p:commandButton id="restartButton" styleClass="float-right" icon=" ui-icon-arrowrefresh-1-w" value="Reiniciar" actionListener="#{sonController.restartPhases}" immediate="true" update=":OaeAabrListForm, :profile-son, :growl"/>
+            </h:form>
             
             <ul class="nav nav-tabs">
                 <li class="active"><a href="List1.xhtml">Fase 1 - Screening</a></li>

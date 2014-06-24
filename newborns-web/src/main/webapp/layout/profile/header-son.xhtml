@@ -20,7 +20,7 @@
                 <hr/>
 
                 <div id="profile-info">
-                    <h:form>
+                    <h:form id="profile-son">
                         <div class="row">
                             <div class="col-md-4">
                                 <table class="profile-table">
@@ -79,6 +79,10 @@
                                     <tr>
                                         <td class="align-right"><div class="label label-default">Exámen físico pediátrico</div></td>
                                         <td>#{sonController.selected.pediatricExamination} sem.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-right"><span class="label label-default">Fase actual:</span></td>
+                                        <td>#{sonController.selected.examPhase.id}</td>
                                     </tr>
                                 </table>
                             </div>
