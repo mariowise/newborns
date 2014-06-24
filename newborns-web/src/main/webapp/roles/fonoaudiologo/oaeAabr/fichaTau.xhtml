@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/layout/profile/2columns-left.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListOaeAabrTitle}"></h:outputText>
+        </ui:define>
+        
+        <ui:define name="sidebar-left">
+
+            <ui:include src="../sidebar-left-profile.xhtml"/>
+
+        </ui:define>
+
+        <ui:define name="body">
+            
+            <h1>Ficha TAU</h1>
+            <p>A continuación se muestran la <span class="label label-default">Ficha de Tamizaje Auditivo Universal</span> para el recién nacido en cuestión.</p>
+            <hr/>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">Resumen</div>
+                <div class="panel-body">
+                    
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Fase 1 - Screening</div>
+                        <div class="panel-body">
+                            
+                            <p:dataTable id="datalist1" value="#{oaeAabrController.items}" var="item"
+                                     paginator="true"
+                                     rowKey="#{item.id}"
+                                     rows="10"
+                                     rowsPerPageTemplate="10,20,30,40,50"
+                                     >
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha"/>
+                                </f:facet>
+                                <h:outputText value="#{item.exam.created}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Tipo de Screening"/>
+                                </f:facet>
+                                <h:outputText value="#{item.exam.examType.name}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Indicación"/>
+                                </f:facet>
+                                <h:outputText value="#{item.finalResult}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListOaeAabrTitle_resultOd}"/>
+                                </f:facet>
+                                <h:outputText value="Pasa" rendered="#{item.resultOd}"/>
+                                <h:outputText value="Refiere" rendered="#{!item.resultOd}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListOaeAabrTitle_resultOi}"/>
+                                </f:facet>
+                                <h:outputText value="Pasa" rendered="#{item.resultOi}"/>
+                                <h:outputText value="Refiere" rendered="#{!item.resultOi}"/>
+                            </p:column>
+                        </p:dataTable>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Fase 2 - Screening</div>
+                        <div class="panel-body">
+                            
+                            <p:dataTable id="datalist2" value="#{oaeAabrController.items}" var="item"
+                                     paginator="true"
+                                     rowKey="#{item.id}"
+                                     rows="10"
+                                     rowsPerPageTemplate="10,20,30,40,50"
+                                     >
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha"/>
+                                </f:facet>
+                                <h:outputText value="#{item.exam.created}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Tipo de Screening"/>
+                                </f:facet>
+                                <h:outputText value="#{item.exam.examType.name}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Indicación"/>
+                                </f:facet>
+                                <h:outputText value="#{item.finalResult}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListOaeAabrTitle_resultOd}"/>
+                                </f:facet>
+                                <h:outputText value="Pasa" rendered="#{item.resultOd}"/>
+                                <h:outputText value="Refiere" rendered="#{!item.resultOd}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListOaeAabrTitle_resultOi}"/>
+                                </f:facet>
+                                <h:outputText value="Pasa" rendered="#{item.resultOi}"/>
+                                <h:outputText value="Refiere" rendered="#{!item.resultOi}"/>
+                            </p:column>
+                        </p:dataTable>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Fase 3 - Control y diagnóstico clínico</div>
+                        <div class="panel-body">
+                            
+                            <p:dataTable id="datalist3" value="#{abrController.items}" var="item"
+                                     paginator="true"
+                                     rowKey="#{item.id}"
+                                     rows="10"
+                                     rowsPerPageTemplate="10,20,30,40,50"
+                                     >
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha"/>
+                                </f:facet>
+                                <h:outputText value="#{item.exam.created}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Tipo de Screening"/>
+                                </f:facet>
+                                <h:outputText value="#{item.exam.examType.name}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Indicación"/>
+                                </f:facet>
+                                <h:outputText value="#{item.finalResult}"/>
+                            </p:column>
+                        </p:dataTable>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            
+        </ui:define>
+    </ui:composition>
+
+</html>
