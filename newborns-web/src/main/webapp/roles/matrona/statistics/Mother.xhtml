@@ -10,7 +10,7 @@
 
 
         <ui:define name="title">
-            <h:outputText value="#{bundle.IndexStatisticsTitle_general}"></h:outputText>
+            <h:outputText value="#{bundle.StatisticsTitle}"></h:outputText>
         </ui:define>
         
         <ui:define name="sidebar-left">
@@ -39,12 +39,12 @@
                 <p:chart type="bar" model="#{statisticController.recordMotherBarModel}" style="height:300px"/>
             </center>
             
-            <h2>Adicciones</h2>
+            <h3>Adicciones</h3>
             <p>En el presente punto, se presentan estadísticas relacionadas con las <span class="label label-default">addicciones</span> registradas en el sistema. 
                 En particular, las de las <b>madres</b> registradas.
             </p>
             
-            <h3>Madres adictas</h3>
+            <h4>Madres adictas</h4>
             <p>
                 Como se logra mostrar en el siguiente gráfico, es posible notar el porcentaje de <b>madres</b> que registran al menos una <b>adicción</b>.
             </p>
@@ -52,7 +52,7 @@
                 <p:chart type="pie" model="#{statisticController.addictedMotherPieModel}" style="width:400px;height:300px" />   
             </center>
             
-            <h3>Tipos de adicción</h3>
+            <h4>Tipos de adicción</h4>
             <p>
                 En el siguiente gráfico, se presenta los tipos de <b>adicciones</b> que se registran en el sistema, según el año de registro.
             </p>
