@@ -39,6 +39,13 @@
                 <p:chart type="bar" model="#{statisticController.recordNewbornBarModel}" style="height:300px"/>
             </center>
                 
+            <h3>Prematuridad</h3>
+            <p>
+                En el presente punto, se presentan estadísticas relacionadas con los registros de los <b>recién nacidos</b> ingresados al sistema según el año. 
+            </p>
+            <center>
+                <p:chart type="pie" model="#{statisticController.prematureNewbornPieModel}" style="width:400px;height:300px" />
+            </center>
         </ui:define>
         
     </ui:composition>

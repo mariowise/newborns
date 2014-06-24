@@ -31,20 +31,14 @@
                 <li class="active"><a href="Delivery.xhtml">Parto</a></li>
             </ul>
             
-            <h2>Parto</h2>
+            <h2>Registro partos</h2>
             <p>
-                A continuación, se plasman las estadisticas relacionadas con el <b>parto</b>.
-            </p>
-            
-            
-            <h3>Prematuridad</h3>
-            <p>
-                En el presente punto, se presentan estadísticas relacionadas con los registros de los <b>recién nacidos</b> ingresados al sistema según el año. 
+                En el presente punto, se muestran estadísticas relacionadas con los registros de los <span class="label label-default">partos</span> ingresadas al sistema según el año. 
             </p>
             <center>
-                <p:chart type="pie" model="#{statisticController.prematureNewbornPieModel}" style="width:400px;height:300px" />
-            </center>
-            
+                <p:chart type="bar" model="#{statisticController.recordDeliveryBarModel}" style="height:300px"/>
+            </center>            
+                        
         </ui:define>
         
     </ui:composition>
