@@ -124,6 +124,35 @@ public class Son implements Serializable {
     
     private String examState;
     
+    // Risk factors
+    private Boolean torchSuspect;
+    
+    private Boolean cmv;
+    
+    private Boolean toxo;
+    
+    private Boolean herpes;
+    
+    private Boolean rubeola;
+    
+    private Boolean sifilis;
+    
+    private Boolean meningitis;
+    
+    private Boolean sepsisConnatal;
+    
+    private double hiperbilirrubina;
+    
+    private Boolean furosemida;
+    
+    private Boolean aminoglicosidos;
+    
+    private int ventMecanica;
+    
+    private Boolean antFamiliar;
+    
+    private String parienteSordo;
+    
     @JoinColumn(nullable = true)
     @ManyToOne
     private ExamPhase examPhase;
@@ -406,6 +435,120 @@ public class Son implements Serializable {
     public ExamPhase getExamPhase() {
         return examPhase;
     }
+
+    public Boolean getTorchSuspect() {
+        return torchSuspect;
+    }
+
+    public void setTorchSuspect(Boolean torchSuspect) {
+        this.torchSuspect = torchSuspect;
+    }
+
+    public Boolean getCmv() {
+        return cmv;
+    }
+
+    public void setCmv(Boolean cmv) {
+        this.cmv = cmv;
+    }
+
+    public Boolean getToxo() {
+        return toxo;
+    }
+
+    public void setToxo(Boolean toxo) {
+        this.toxo = toxo;
+    }
+
+    public Boolean getHerpes() {
+        return herpes;
+    }
+
+    public void setHerpes(Boolean herpes) {
+        this.herpes = herpes;
+    }
+
+    public Boolean getRubeola() {
+        return rubeola;
+    }
+
+    public void setRubeola(Boolean rubeola) {
+        this.rubeola = rubeola;
+    }
+
+    public Boolean getSifilis() {
+        return sifilis;
+    }
+
+    public void setSifilis(Boolean sifilis) {
+        this.sifilis = sifilis;
+    }
+
+    public Boolean getMeningitis() {
+        return meningitis;
+    }
+
+    public void setMeningitis(Boolean meningitis) {
+        this.meningitis = meningitis;
+    }
+
+    public Boolean getSepsisConnatal() {
+        return sepsisConnatal;
+    }
+
+    public void setSepsisConnatal(Boolean sepsisConnatal) {
+        this.sepsisConnatal = sepsisConnatal;
+    }
+
+    public double getHiperbilirrubina() {
+        return hiperbilirrubina;
+    }
+
+    public void setHiperbilirrubina(double hiperbilirrubina) {
+        this.hiperbilirrubina = hiperbilirrubina;
+    }
+
+    public Boolean getFurosemida() {
+        return furosemida;
+    }
+
+    public void setFurosemida(Boolean furosemida) {
+        this.furosemida = furosemida;
+    }
+
+    public Boolean getAminoglicosidos() {
+        return aminoglicosidos;
+    }
+
+    public void setAminoglicosidos(Boolean aminoglicosidos) {
+        this.aminoglicosidos = aminoglicosidos;
+    }
+
+    public int getVentMecanica() {
+        return ventMecanica;
+    }
+
+    public void setVentMecanica(int ventMecanica) {
+        this.ventMecanica = ventMecanica;
+    }
+
+    public Boolean getAntFamiliar() {
+        return antFamiliar;
+    }
+
+    public void setAntFamiliar(Boolean antFamiliar) {
+        this.antFamiliar = antFamiliar;
+    }
+
+    public String getParienteSordo() {
+        return parienteSordo;
+    }
+
+    public void setParienteSordo(String parienteSordo) {
+        this.parienteSordo = parienteSordo;
+    }
+    
+    
 
     public void setExamPhase(ExamPhase examPhase) {
         this.examPhase = examPhase;

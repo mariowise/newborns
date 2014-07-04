@@ -84,6 +84,11 @@
                                         <td class="align-right"><span class="label label-default">Fase actual:</span></td>
                                         <td>#{sonController.selected.examPhase.id}</td>
                                     </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <p:commandButton id="viewButton" icon="ui-icon-search" value="#{bundle.View}" update=":SonViewForm" oncomplete="PF('SonViewDialog').show()" disabled="#{empty sonController.selected}"/>
+                                        </td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>
@@ -92,6 +97,8 @@
 
             </div>
         </div>
+        
+        <ui:include src="/roles/#{SessionUtil.currentUser.accountType.name}/son/View.xhtml"/>
         
     </ui:composition>
     

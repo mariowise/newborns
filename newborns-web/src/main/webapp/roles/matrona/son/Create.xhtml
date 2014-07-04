@@ -11,64 +11,124 @@
         <p:dialog id="SonCreateDlg" widgetVar="SonCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSonTitle}">
             <h:form id="SonCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="6" rendered="#{sonController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateSonLabel_name}" for="name" />
-                        <p:inputText id="name" value="#{sonController.selected.name}" title="#{bundle.CreateSonTitle_name}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_gender}" for="gender" />
-                        <p:selectOneMenu id="gender" value="#{sonController.selected.gender}" >
-                            <f:selectItems value="#{genderController.itemsAvailableSelectOne}"
-                                           var="genderItem"
-                                           itemValue="#{genderItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateSonLabel_weight}" for="weight" />
-                        <p:inputText id="weight" value="#{sonController.selected.weight}" title="#{bundle.CreateSonTitle_weight}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_size}" for="size" />
-                        <p:inputText id="size" value="#{sonController.selected.size}" title="#{bundle.CreateSonTitle_size}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_skullPerimeter}" for="skullPerimeter" />
-                        <p:inputText id="skullPerimeter" value="#{sonController.selected.skullPerimeter}" title="#{bundle.CreateSonTitle_skullPerimeter}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_apgar1}" for="apgar1" />
-                        <p:inputText id="apgar1" value="#{sonController.selected.apgar1}" title="#{bundle.CreateSonTitle_apgar1}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_apgar5}" for="apgar5" />
-                        <p:inputText id="apgar5" value="#{sonController.selected.apgar5}" title="#{bundle.CreateSonTitle_apgar5}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_apgar10}" for="apgar10" />
-                        <p:inputText id="apgar10" value="#{sonController.selected.apgar10}" title="#{bundle.CreateSonTitle_apgar10}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_vitk}" for="vitk" />
-                        <p:selectBooleanCheckbox id="vitk" value="#{sonController.selected.vitk}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_bcg}" for="bcg" />
-                        <p:selectBooleanCheckbox id="bcg" value="#{sonController.selected.bcg}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_weightPlacenta}" for="weightPlacenta" />
-                        <p:inputText id="weightPlacenta" value="#{sonController.selected.weightPlacenta}" title="#{bundle.CreateSonTitle_weightPlacenta}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_cry}" for="cry" />
-                        <p:selectBooleanCheckbox id="cry" value="#{sonController.selected.cry}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_attachedTime}" for="attachedTime" />
-                        <p:inputText id="attachedTime" value="#{sonController.selected.attachedTime}" title="#{bundle.CreateSonTitle_attachedTime}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_tempAxilar}" for="tempAxilar" />
-                        <p:inputText id="tempAxilar" value="#{sonController.selected.tempAxilar}" title="#{bundle.CreateSonTitle_tempAxilar}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_tempRectal}" for="tempRectal" />
-                        <p:inputText id="tempRectal" value="#{sonController.selected.tempRectal}" title="#{bundle.CreateSonTitle_tempRectal}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_of}" for="of" />
-                        <p:selectBooleanCheckbox id="of" value="#{sonController.selected.of}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_og}" for="og" />
-                        <p:selectBooleanCheckbox id="og" value="#{sonController.selected.og}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_ot}" for="ot" />
-                        <p:selectBooleanCheckbox id="ot" value="#{sonController.selected.ot}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_secretion}" for="secretion" />
-                        <p:inputText id="secretion" value="#{sonController.selected.secretion}" title="#{bundle.CreateSonTitle_secretion}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_secretionColour}" for="secretionColour" />
-                        <p:inputText id="secretionColour" value="#{sonController.selected.secretionColour}" title="#{bundle.CreateSonTitle_secretionColour}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_consistency}" for="consistency" />
-                        <p:inputText id="consistency" value="#{sonController.selected.consistency}" title="#{bundle.CreateSonTitle_consistency}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_pediatricExamination}" for="pediatricExamination" />
-                        <p:inputText id="pediatricExamination" value="#{sonController.selected.pediatricExamination}" title="#{bundle.CreateSonTitle_pediatricExamination}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_gas}" for="gas" />
-                        <p:selectBooleanCheckbox id="gas" value="#{sonController.selected.gas}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_asphyxiaDelivery}" for="asphyxiaDelivery" />
-                        <p:selectBooleanCheckbox id="asphyxiaDelivery" value="#{sonController.selected.asphyxiaDelivery}" />                        
-                        <p:outputLabel value="#{bundle.CreateSonLabel_bornAlive}" for="bornAlive" />
-                        <p:selectBooleanCheckbox id="bornAlive" value="#{sonController.selected.bornAlive}" />
-                        <p:outputLabel value="#{bundle.CreateSonLabel_mechanicalVentilation}" for="mechanicalVentilation" />
-                        <p:selectBooleanCheckbox id="mechanicalVentilation" value="#{sonController.selected.mechanicalVentilation}" />
-                    </p:panelGrid>
+                    
+                    <div class="panel-scroll" style="max-height: 450px">
+                        <div class="panel-body">
+                    
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Datos generales</div>
+                                <div class="panel-body">
+                            
+                                    <p:panelGrid columns="6" rendered="#{sonController.selected != null}">
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_name}" for="name" />
+                                        <p:inputText id="name" value="#{sonController.selected.name}" title="#{bundle.CreateSonTitle_name}" />
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_gender}" for="gender" />
+                                        <p:selectOneMenu id="gender" value="#{sonController.selected.gender}" >
+                                            <f:selectItems value="#{genderController.itemsAvailableSelectOne}"
+                                                           var="genderItem"
+                                                           itemValue="#{genderItem}"/>
+                                        </p:selectOneMenu>
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_weight}" for="weight" />
+                                        <p:inputText id="weight" value="#{sonController.selected.weight}" title="#{bundle.CreateSonTitle_weight}" />
+
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_size}" for="size" />
+                                        <p:inputText id="size" value="#{sonController.selected.size}" title="#{bundle.CreateSonTitle_size}" />
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_skullPerimeter}" for="skullPerimeter" />
+                                        <p:inputText id="skullPerimeter" value="#{sonController.selected.skullPerimeter}" title="#{bundle.CreateSonTitle_skullPerimeter}" />
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_apgar1}" for="apgar1" />
+                                        <p:inputText id="apgar1" value="#{sonController.selected.apgar1}" title="#{bundle.CreateSonTitle_apgar1}" />
+
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_apgar5}" for="apgar5" />
+                                        <p:inputText id="apgar5" value="#{sonController.selected.apgar5}" title="#{bundle.CreateSonTitle_apgar5}" />
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_apgar10}" for="apgar10" />
+                                        <p:inputText id="apgar10" value="#{sonController.selected.apgar10}" title="#{bundle.CreateSonTitle_apgar10}" />
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_vitk}" for="vitk" />
+                                        <p:selectBooleanCheckbox id="vitk" value="#{sonController.selected.vitk}" />
+
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_bcg}" for="bcg" />
+                                        <p:selectBooleanCheckbox id="bcg" value="#{sonController.selected.bcg}" />
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_weightPlacenta}" for="weightPlacenta" />
+                                        <p:inputText id="weightPlacenta" value="#{sonController.selected.weightPlacenta}" title="#{bundle.CreateSonTitle_weightPlacenta}" />
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_cry}" for="cry" />
+                                        <p:selectBooleanCheckbox id="cry" value="#{sonController.selected.cry}" />
+
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_attachedTime}" for="attachedTime" />
+                                        <p:inputText id="attachedTime" value="#{sonController.selected.attachedTime}" title="#{bundle.CreateSonTitle_attachedTime}" />
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_tempAxilar}" for="tempAxilar" />
+                                        <p:inputText id="tempAxilar" value="#{sonController.selected.tempAxilar}" title="#{bundle.CreateSonTitle_tempAxilar}" />
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_tempRectal}" for="tempRectal" />
+                                        <p:inputText id="tempRectal" value="#{sonController.selected.tempRectal}" title="#{bundle.CreateSonTitle_tempRectal}" />
+
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_of}" for="of" />
+                                        <p:selectBooleanCheckbox id="of" value="#{sonController.selected.of}" />
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_og}" for="og" />
+                                        <p:selectBooleanCheckbox id="og" value="#{sonController.selected.og}" />
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_ot}" for="ot" />
+                                        <p:selectBooleanCheckbox id="ot" value="#{sonController.selected.ot}" />
+
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_secretion}" for="secretion" />
+                                        <p:inputText id="secretion" value="#{sonController.selected.secretion}" title="#{bundle.CreateSonTitle_secretion}" />
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_secretionColour}" for="secretionColour" />
+                                        <p:inputText id="secretionColour" value="#{sonController.selected.secretionColour}" title="#{bundle.CreateSonTitle_secretionColour}" />
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_consistency}" for="consistency" />
+                                        <p:inputText id="consistency" value="#{sonController.selected.consistency}" title="#{bundle.CreateSonTitle_consistency}" />
+
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_pediatricExamination}" for="pediatricExamination" />
+                                        <p:inputText id="pediatricExamination" value="#{sonController.selected.pediatricExamination}" title="#{bundle.CreateSonTitle_pediatricExamination}" />
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_gas}" for="gas" />
+                                        <p:selectBooleanCheckbox id="gas" value="#{sonController.selected.gas}" />
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_asphyxiaDelivery}" for="asphyxiaDelivery" />
+                                        <p:selectBooleanCheckbox id="asphyxiaDelivery" value="#{sonController.selected.asphyxiaDelivery}" />                        
+
+                                        <p:outputLabel value="#{bundle.CreateSonLabel_bornAlive}" for="bornAlive" />
+                                        <p:selectBooleanCheckbox id="bornAlive" value="#{sonController.selected.bornAlive}" />
+                                    </p:panelGrid>
+                            
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Factores de riesgo</div>
+                                <div class="panel-body">
+                                    <p:panelGrid columns="6" rendered="#{sonController.selected != null}">
+                                        <p:outputLabel value="Sospecha TORCH" for="torchSuspect" />
+                                        <p:selectBooleanCheckbox id="torchSuspect" value="#{sonController.selected.torchSuspect}" />
+                                        <p:outputLabel value="CMV" for="cmv" />
+                                        <p:selectBooleanCheckbox id="cmv" value="#{sonController.selected.cmv}" />
+                                        <p:outputLabel value="TOXO" for="toxo" />
+                                        <p:selectBooleanCheckbox id="toxo" value="#{sonController.selected.toxo}" />
+
+                                        <p:outputLabel value="Herpes" for="herpes" />
+                                        <p:selectBooleanCheckbox id="herpes" value="#{sonController.selected.herpes}" />
+                                        <p:outputLabel value="Rubeola" for="rubeola" />
+                                        <p:selectBooleanCheckbox id="rubeola" value="#{sonController.selected.rubeola}" />
+                                        <p:outputLabel value="Sifilis" for="sifilis" />
+                                        <p:selectBooleanCheckbox id="sifilis" value="#{sonController.selected.sifilis}" />
+
+                                        <p:outputLabel value="Meningitis" for="meningitis" />
+                                        <p:selectBooleanCheckbox id="meningitis" value="#{sonController.selected.meningitis}" />
+                                        <p:outputLabel value="Sepsis connatal" for="sepsis" />
+                                        <p:selectBooleanCheckbox id="sepsis" value="#{sonController.selected.sepsisConnatal}" />
+                                        <p:outputLabel value="Hiperbilirrubinemia" for="hiper" />
+                                        <p:inputText id="hiper" value="#{sonController.selected.hiperbilirrubina}" />
+
+                                        <p:outputLabel value="Furosemida" for="furo" />
+                                        <p:selectBooleanCheckbox id="furo" value="#{sonController.selected.furosemida}" />
+                                        <p:outputLabel value="Aminoglicósidos" for="amino" />
+                                        <p:selectBooleanCheckbox id="amino" value="#{sonController.selected.aminoglicosidos}" />
+                                        <p:outputLabel value="Ventilación mecánica (Dias):" for="ventilacion" />
+                                        <p:inputText id="ventilacion" value="#{sonController.selected.ventMecanica}" />
+                                        <p:outputLabel value="Ant. familiares (Hipoacusia)" for="ant" />
+                                        <p:selectBooleanCheckbox id="ant" value="#{sonController.selected.antFamiliar}" />
+                                        <p:outputLabel value="Pariente con hipoacusia" for="pariente" />
+                                        <p:inputText id="pariente" value="#{sonController.selected.parienteSordo}" />
+                                    </p:panelGrid>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
                     <p:commandButton actionListener="#{sonController.create}" value="#{bundle.Save}" update="display,:DeliveryListForm:datalist,:growl" oncomplete="handleSubmit(args,'SonCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SonCreateDialog.hide()" immediate="true"/>
                 </h:panelGroup>

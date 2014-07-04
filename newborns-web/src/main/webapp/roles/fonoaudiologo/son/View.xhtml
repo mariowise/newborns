@@ -4,14 +4,22 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
 
         <p:dialog id="SonViewDlg" widgetVar="SonViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSonTitle}">
             <h:form id="SonViewForm">
                 <h:panelGroup id="display">
+                    
+                    <div class="panel-scroll" style="max-height: 450px">
+                        <div class="panel-body">
+                    
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Datos generales</div>
+                                <div class="panel-body">
+                                    
+                                
                     <p:panelGrid columns="6" rendered="#{sonController.selected != null}">
                         <h:outputText value="#{bundle.ViewSonLabel_id}"/>
                         <h:outputText value="#{sonController.selected.id}" title="#{bundle.ViewSonTitle_id}"/>
@@ -69,15 +77,58 @@
                         <h:outputText value="#{sonController.selected.mother.profile}" title="#{bundle.ViewSonTitle_mother}"/>
                         <h:outputText value="#{bundle.ViewSonLabel_delivery}"/>
                         <h:outputText value="#{sonController.selected.delivery}" title="#{bundle.ViewSonTitle_delivery}"/>
-                        <c:if test="#{motherController.selected.deafRelatives != null and motherController.selected.deafRelatives != ''}" >
-                            <h:outputText value="#{bundle.ViewMotherLabel_DeafRelativesDescription}" />
-                            <h:outputText value="#{motherController.selected.deafRelatives}" />
-                        </c:if>
-                        <c:if test="#{motherController.selected.deafRelatives == null or motherController.selected.deafRelatives == ''}" >
-                            <h:outputText value="#{bundle.ViewMotherLabel_DeafRelativesDescription}" />
-                            <h:outputText value="No presenta" />
-                        </c:if>
+                        <h:outputText value="#{bundle.ViewSonLabel_bornAlive}"/>
+                        <p:selectBooleanCheckbox value="#{sonController.selected.bornAlive}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_mechanicalVentilation}"/>
+                        <p:selectBooleanCheckbox value="#{sonController.selected.mechanicalVentilation}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewSonLabel_pediatricExamination}"/>
+                        <h:outputText value="#{sonController.selected.pediatricExamination}" title="#{bundle.ViewSonTitle_pediatricExamination}"/>
                     </p:panelGrid>
+                    
+                                </div>
+                            </div>
+                                    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Factores de riesgo</div>
+                        <div class="panel-body">
+                            <p:panelGrid columns="6" rendered="#{sonController.selected != null}">
+                                <h:outputText value="Sospecha TORCH"/>
+                                <p:selectBooleanCheckbox value="#{sonController.selected.torchSuspect}" disabled="true"/>
+                                <h:outputText value="CMV"/>
+                                <p:selectBooleanCheckbox value="#{sonController.selected.cmv}" disabled="true"/>
+                                <h:outputText value="TOXO"/>
+                                <p:selectBooleanCheckbox value="#{sonController.selected.toxo}" disabled="true"/>
+                                <h:outputText value="Herpes"/>
+                                <p:selectBooleanCheckbox value="#{sonController.selected.herpes}" disabled="true"/>
+                                <h:outputText value="Rubeola"/>
+                                <p:selectBooleanCheckbox value="#{sonController.selected.rubeola}" disabled="true"/>
+                                <h:outputText value="Sífilis"/>
+                                <p:selectBooleanCheckbox value="#{sonController.selected.sifilis}" disabled="true"/>
+                                <h:outputText value="Meningitis"/>
+                                <p:selectBooleanCheckbox value="#{sonController.selected.meningitis}" disabled="true"/>
+                                <h:outputText value="Sepsis connatal"/>
+                                <p:selectBooleanCheckbox value="#{sonController.selected.sepsisConnatal}" disabled="true"/>
+                                <h:outputText value="Hiperbilirrubinemia"/>
+                                <h:outputText value="#{sonController.selected.hiperbilirrubina}" />
+                                <h:outputText value="Furosemida"/>
+                                <p:selectBooleanCheckbox value="#{sonController.selected.furosemida}" disabled="true"/>
+                                <h:outputText value="Aminoglicósidos"/>
+                                <p:selectBooleanCheckbox value="#{sonController.selected.aminoglicosidos}" disabled="true"/>
+                                <h:outputText value="Ventilación mecánica (Dias)"/>
+                                <h:outputText value="#{sonController.selected.ventMecanica}"/>
+                                <h:outputText value="Antecedentes familiares"/>
+                                <p:selectBooleanCheckbox value="#{sonController.selected.antFamiliar}" disabled="true"/>
+                                <h:outputText value="Pariente con hipoacusia"/>
+                                <h:outputText value="#{sonController.selected.parienteSordo}"/>
+                            </p:panelGrid>
+                            
+                        </div>
+                    </div>
+                            </div>
+                        </div>
+                        
+                          
+                    
                     <p:commandButton value="#{bundle.Close}" onclick="SonViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

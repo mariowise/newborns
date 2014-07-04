@@ -5548,6 +5548,10 @@ html, body {
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
   background-color: #2b3e50; }
 
+.panel-scroll {
+  overflow: scroll;
+  width: 100%; }
+
 body {
   background: white;
   /* Old browsers */
