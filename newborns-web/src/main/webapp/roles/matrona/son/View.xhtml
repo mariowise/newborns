@@ -76,6 +76,8 @@
                         <h:outputText value="#{sonController.selected.pediatricExamination}" title="#{bundle.ViewSonTitle_pediatricExamination}"/>
                         
                         <h:outputText value="Sospecha TORCH"/>
+                        <p:selectBooleanCheckbox value="#{sonController.selected.torch}" disabled="true"/>
+                        <h:outputText value="Sospecha TORCH"/>
                         <p:selectBooleanCheckbox value="#{sonController.selected.torchSuspect}" disabled="true"/>
                         <h:outputText value="CMV"/>
                         <p:selectBooleanCheckbox value="#{sonController.selected.cmv}" disabled="true"/>
@@ -92,17 +94,25 @@
                         <h:outputText value="Sepsis connatal"/>
                         <p:selectBooleanCheckbox value="#{sonController.selected.sepsisConnatal}" disabled="true"/>
                         <h:outputText value="Hiperbilirrubinemia"/>
-                        <h:outputText value="#{sonController.selected.hiperbilirrubina}" />
+                        <h:selectBooleanCheckbox value="#{sonController.selected.hiperbilirrubinemia}" disabled="true"/>
+                        <h:outputText value="Valor maximo"/>
+                        <h:outputText value="#{sonController.selected.hiperbilirrubinemiaMax}" />
+                        <h:outputText value="Ototoxicos"/>
+                        <p:selectBooleanCheckbox value="#{sonController.selected.ototoxicos}" disabled="true"/>
                         <h:outputText value="Furosemida"/>
                         <p:selectBooleanCheckbox value="#{sonController.selected.furosemida}" disabled="true"/>
                         <h:outputText value="Aminoglicósidos"/>
                         <p:selectBooleanCheckbox value="#{sonController.selected.aminoglicosidos}" disabled="true"/>
+                        <h:outputText value="Otros"/>
+                        <h:outputText value="#{sonController.selected.otherOtos}"/>
                         <h:outputText value="Ventilación mecánica (Dias)"/>
                         <h:outputText value="#{sonController.selected.ventMecanica}"/>
                         <h:outputText value="Antecedentes familiares"/>
                         <p:selectBooleanCheckbox value="#{sonController.selected.antFamiliar}" disabled="true"/>
                         <h:outputText value="Pariente con hipoacusia"/>
                         <h:outputText value="#{sonController.selected.parienteSordo}"/>
+                        <h:outputText value="ICN"/>
+                        <p:selectBooleanCheckbox value="#{sonController.selected.icn}" disabled="true"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SonViewDialog.hide()"/>
                 </h:panelGroup>

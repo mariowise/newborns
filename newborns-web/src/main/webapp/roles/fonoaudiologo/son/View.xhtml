@@ -91,36 +91,91 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">Factores de riesgo</div>
                         <div class="panel-body">
-                            <p:panelGrid columns="6" rendered="#{sonController.selected != null}">
-                                <h:outputText value="Sospecha TORCH"/>
-                                <p:selectBooleanCheckbox value="#{sonController.selected.torchSuspect}" disabled="true"/>
-                                <h:outputText value="CMV"/>
-                                <p:selectBooleanCheckbox value="#{sonController.selected.cmv}" disabled="true"/>
-                                <h:outputText value="TOXO"/>
-                                <p:selectBooleanCheckbox value="#{sonController.selected.toxo}" disabled="true"/>
-                                <h:outputText value="Herpes"/>
-                                <p:selectBooleanCheckbox value="#{sonController.selected.herpes}" disabled="true"/>
-                                <h:outputText value="Rubeola"/>
-                                <p:selectBooleanCheckbox value="#{sonController.selected.rubeola}" disabled="true"/>
-                                <h:outputText value="Sífilis"/>
-                                <p:selectBooleanCheckbox value="#{sonController.selected.sifilis}" disabled="true"/>
-                                <h:outputText value="Meningitis"/>
-                                <p:selectBooleanCheckbox value="#{sonController.selected.meningitis}" disabled="true"/>
-                                <h:outputText value="Sepsis connatal"/>
-                                <p:selectBooleanCheckbox value="#{sonController.selected.sepsisConnatal}" disabled="true"/>
-                                <h:outputText value="Hiperbilirrubinemia"/>
-                                <h:outputText value="#{sonController.selected.hiperbilirrubina}" />
-                                <h:outputText value="Furosemida"/>
-                                <p:selectBooleanCheckbox value="#{sonController.selected.furosemida}" disabled="true"/>
-                                <h:outputText value="Aminoglicósidos"/>
-                                <p:selectBooleanCheckbox value="#{sonController.selected.aminoglicosidos}" disabled="true"/>
-                                <h:outputText value="Ventilación mecánica (Dias)"/>
-                                <h:outputText value="#{sonController.selected.ventMecanica}"/>
-                                <h:outputText value="Antecedentes familiares"/>
-                                <p:selectBooleanCheckbox value="#{sonController.selected.antFamiliar}" disabled="true"/>
-                                <h:outputText value="Pariente con hipoacusia"/>
-                                <h:outputText value="#{sonController.selected.parienteSordo}"/>
-                            </p:panelGrid>
+                            
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">TORCH</div>
+                                        <div class="panel-body">
+                                            <p:panelGrid columns="2" rendered="#{sonController.selected != null}">
+                                                <p:outputLabel value="TORCH" for="torch" />
+                                                <p:selectBooleanCheckbox id="torch" value="#{sonController.selected.torch}" disabled="true"/>
+                                                <p:outputLabel value="CMV" for="cmv" />
+                                                <p:selectBooleanCheckbox id="cmv" value="#{sonController.selected.cmv}" disabled="true"/>
+                                                <p:outputLabel value="Herpes" for="herpes" />
+                                                <p:selectBooleanCheckbox id="herpes" value="#{sonController.selected.herpes}" disabled="true"/>
+                                                <p:outputLabel value="TOXO" for="toxo" />
+                                                <p:selectBooleanCheckbox id="toxo" value="#{sonController.selected.toxo}" disabled="true"/>
+                                                <p:outputLabel value="Sifilis" for="sifilis" />
+                                                <p:selectBooleanCheckbox id="sifilis" value="#{sonController.selected.sifilis}" disabled="true"/>
+                                                <p:outputLabel value="Rubeola" for="rubeola" />
+                                                <p:selectBooleanCheckbox id="rubeola" value="#{sonController.selected.rubeola}" disabled="true"/>
+
+                                                <p:outputLabel value="Sospecha TORCH" for="torchSuspect" />
+                                                <p:selectBooleanCheckbox id="torchSuspect" value="#{sonController.selected.torchSuspect}" disabled="true"/>        
+                                            </p:panelGrid>        
+                                        </div>
+                                    </div>        
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <p:panelGrid columns="2" rendered="#{sonController.selected != null}">
+                                                <p:outputLabel value="Ototoxicos" for="oto" />
+                                                <p:selectBooleanCheckbox id="oto" value="#{sonController.selected.ototoxicos}" disabled="true"/>
+                                                <p:outputLabel value="Furosemida" for="furo" />
+                                                <p:selectBooleanCheckbox id="furo" value="#{sonController.selected.furosemida}" disabled="true"/>
+                                                <p:outputLabel value="Aminoglicósidos" for="amino" />
+                                                <p:selectBooleanCheckbox id="amino" value="#{sonController.selected.aminoglicosidos}" disabled="true"/>
+                                                <p:outputLabel value="Otro" for="otherOtos"/>
+                                                <h:outputText id="otherOtos" value="#{sonController.selected.otherOtos}"/>
+                                            </p:panelGrid>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <p:panelGrid columns="2" rendered="#{sonController.selected != null}">
+                                                <p:outputLabel value="Hiperbilirrubinemia" for="hiper1" />
+                                                <p:selectBooleanCheckbox id="hiper1" value="#{sonController.selected.hiperbilirrubinemia}" disabled="true"/>
+                                                <p:outputLabel value="Valor maximo" for="hiper" />
+                                                <h:outputText id="hiper" value="#{sonController.selected.hiperbilirrubinemiaMax}" />
+                                            </p:panelGrid>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <p:panelGrid columns="2" rendered="#{sonController.selected != null}">
+                                                <p:outputLabel value="Ventilación mecánica (Dias):" for="ventilacion" />
+                                                <h:outputText id="ventilacion" value="#{sonController.selected.ventMecanica}" />
+                                            </p:panelGrid>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <p:panelGrid columns="2" rendered="#{sonController.selected != null}">
+                                                <p:outputLabel value="Ant. familiares (Hipoacusia)" for="ant" />
+                                                <p:selectBooleanCheckbox id="ant" value="#{sonController.selected.antFamiliar}" disabled="true"/>
+                                                <p:outputLabel value="Pariente con hipoacusia" for="pariente" />
+                                                <h:outputText id="pariente" value="#{sonController.selected.parienteSordo}" />
+                                            </p:panelGrid>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <p:panelGrid columns="2" rendered="#{sonController.selected != null}">
+                                                <p:outputLabel value="ICN" for="icn"/>
+                                                <p:selectBooleanButton id="icn" value="#{sonController.selected.icn}" onLabel="Confirmada" offLabel="Descartada" disabled="true"/>
+                                                <p:outputLabel value="Meningitis" for="meningitis" />
+                                                <p:selectBooleanCheckbox id="meningitis" value="#{sonController.selected.meningitis}" disabled="true"/>
+                                                <p:outputLabel value="Sepsis connatal" for="sepsis" />
+                                                <p:selectBooleanCheckbox id="sepsis" value="#{sonController.selected.sepsisConnatal}" disabled="true"/>
+                                            </p:panelGrid>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             
                         </div>
                     </div>

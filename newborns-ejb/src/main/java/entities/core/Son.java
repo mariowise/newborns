@@ -125,6 +125,8 @@ public class Son implements Serializable {
     private String examState;
     
     // Risk factors
+    private Boolean torch;
+    
     private Boolean torchSuspect;
     
     private Boolean cmv;
@@ -141,17 +143,25 @@ public class Son implements Serializable {
     
     private Boolean sepsisConnatal;
     
-    private double hiperbilirrubina;
+    private Boolean hiperbilirrubinemia;
+    
+    private double hiperbilirrubinemiaMax;
+    
+    private Boolean ototoxicos;
     
     private Boolean furosemida;
     
     private Boolean aminoglicosidos;
+    
+    private String otherOtos;
     
     private int ventMecanica;
     
     private Boolean antFamiliar;
     
     private String parienteSordo;
+    
+    private Boolean icn;
     
     @JoinColumn(nullable = true)
     @ManyToOne
@@ -435,6 +445,8 @@ public class Son implements Serializable {
     public ExamPhase getExamPhase() {
         return examPhase;
     }
+    
+    
 
     public Boolean getTorchSuspect() {
         return torchSuspect;
@@ -500,14 +512,6 @@ public class Son implements Serializable {
         this.sepsisConnatal = sepsisConnatal;
     }
 
-    public double getHiperbilirrubina() {
-        return hiperbilirrubina;
-    }
-
-    public void setHiperbilirrubina(double hiperbilirrubina) {
-        this.hiperbilirrubina = hiperbilirrubina;
-    }
-
     public Boolean getFurosemida() {
         return furosemida;
     }
@@ -547,9 +551,55 @@ public class Son implements Serializable {
     public void setParienteSordo(String parienteSordo) {
         this.parienteSordo = parienteSordo;
     }
-    
-    
 
+    public Boolean getTorch() {
+        return torch;
+    }
+
+    public void setTorch(Boolean torch) {
+        this.torch = torch;
+    }
+
+    public Boolean getHiperbilirrubinemia() {
+        return hiperbilirrubinemia;
+    }
+
+    public void setHiperbilirrubinemia(Boolean hiperbilirrubinemia) {
+        this.hiperbilirrubinemia = hiperbilirrubinemia;
+    }
+
+    public double getHiperbilirrubinemiaMax() {
+        return hiperbilirrubinemiaMax;
+    }
+
+    public void setHiperbilirrubinemiaMax(double hiperbilirrubinemiaMax) {
+        this.hiperbilirrubinemiaMax = hiperbilirrubinemiaMax;
+    }
+
+    public Boolean getOtotoxicos() {
+        return ototoxicos;
+    }
+
+    public void setOtotoxicos(Boolean ototoxicos) {
+        this.ototoxicos = ototoxicos;
+    }
+
+    public String getOtherOtos() {
+        return otherOtos;
+    }
+
+    public void setOtherOtos(String otherOtos) {
+        this.otherOtos = otherOtos;
+    }
+
+    public Boolean getIcn() {
+        return icn;
+    }
+
+    public void setIcn(Boolean icn) {
+        this.icn = icn;
+    }
+    
     public void setExamPhase(ExamPhase examPhase) {
         this.examPhase = examPhase;
     }
@@ -563,6 +613,8 @@ public class Son implements Serializable {
     public void setExams(List<Exam> exams) {
         this.exams = exams;
     }
+    
+    
 
     @Override
     public int hashCode() {
